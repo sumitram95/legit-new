@@ -10,6 +10,8 @@ export default function ConfirmPassword() {
         password: '',
     });
 
+
+
     const submit = (e) => {
         e.preventDefault();
 
