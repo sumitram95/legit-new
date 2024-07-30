@@ -9,6 +9,7 @@ export default function ForgotPassword({ status }) {
         email: '',
     });
 
+
     const submit = (e) => {
         e.preventDefault();
 
