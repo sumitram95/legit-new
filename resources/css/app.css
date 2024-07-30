@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-ai {
+    background: url("../js/Assests/Image/ai.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.bg-ai2 {
+    background: url("../js/Assests/Image/ai_side.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right bottom;
+}
+
+/* .blur{
+    backdrop-filter: blur(10px);
+    z-index: 1;
+} */
+
+.blur-ai {
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    /* z-index: 1; */
+}
+.form-container {
+    position: relative;
+    z-index: 2;
+}
