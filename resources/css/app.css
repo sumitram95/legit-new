@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* In app.css */
+@import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
+
+
+
 .bg-ai {
     background: url("../js/Assests/Image/ai.gif");
     background-repeat: no-repeat;
@@ -30,3 +35,10 @@
     position: relative;
     z-index: 2;
 }
+
+.country-tooltip {
+    background-color: white;
+    border: 1px solid gray;
+    padding: 5px;
+    font-size: 14px;
+  }
