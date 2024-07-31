@@ -10,7 +10,7 @@ export default function Welcome() {
             <Head title="Welcome" />
             <Header />
             {/* contant */}
-            <section className="px-40">
+            <section className="px-40 mt-11">
                 {/* <MapChart /> */}
                 <WorldMap />
             </section>

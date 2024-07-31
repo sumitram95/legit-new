@@ -8,24 +8,40 @@ const CountryLayer = () => {
 
     useEffect(() => {
         fetch('/geojson/countries.geojson')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok " + response.statusText);
-                }
-                return response.json();
-            })
-            .then((data) => setGeoData(data))
-            .catch((error) => {
-                console.error("There was a problem with the fetch operation:", error);
-            });
+            .then((response) => response.json())
+            .then((data) => setGeoData(data));
     }, []);
 
     const onEachCountry = (country, layer) => {
         const countryName = country.properties.ADMIN;
+
+        // Bind tooltip
         layer.bindTooltip(countryName, {
             permanent: false,
             direction: "center",
             className: "country-tooltip",
+        });
+
+        // Event handlers
+        layer.on({
+            mouseover: (event) => {
+                const { target } = event;
+                target.setStyle({
+                    weight: 3,
+                    color: "#666",
+                    fillColor: "#f39c12", // Background color on hover
+                    fillOpacity: 0.7,
+                });
+            },
+            mouseout: (event) => {
+                const { target } = event;
+                target.setStyle({
+                    weight: 2,
+                    color: "#4a83ec",
+                    fillColor: "#1a1d62", // Default background color
+                    fillOpacity: 0.1,
+                });
+            },
         });
     };
 

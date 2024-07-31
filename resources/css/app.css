@@ -35,10 +35,3 @@
     position: relative;
     z-index: 2;
 }
-
-.country-tooltip {
-    background-color: white;
-    border: 1px solid gray;
-    padding: 5px;
-    font-size: 14px;
-  }
