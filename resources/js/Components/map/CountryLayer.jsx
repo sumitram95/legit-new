@@ -28,16 +28,16 @@ const CountryLayer = () => {
                 const { target } = event;
                 target.setStyle({
                     weight: 3,
-                    color: "#666",
-                    fillColor: "#f39c12", // Background color on hover
-                    fillOpacity: 0.7,
+                    color: "#D53E45",
+                    fillColor: "#0B2041", // Background color on hover
+                    fillOpacity: 1,
                 });
             },
             mouseout: (event) => {
                 const { target } = event;
                 target.setStyle({
                     weight: 2,
-                    color: "#4a83ec",
+                    color: "#0B2041",
                     fillColor: "#1a1d62", // Default background color
                     fillOpacity: 0.1,
                 });

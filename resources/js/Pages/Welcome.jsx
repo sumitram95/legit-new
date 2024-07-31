@@ -12,6 +12,7 @@ export default function Welcome() {
             {/* contant */}
             <section className="px-40 mt-11">
                 {/* <MapChart /> */}
+
                 <WorldMap />
             </section>
         </div>
