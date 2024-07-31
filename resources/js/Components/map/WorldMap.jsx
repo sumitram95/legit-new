@@ -20,7 +20,7 @@ const WorldMap = () => {
         center={[0, 0]} // Center of the map to focus on the entire world
         zoom={1}         // Default zoom level to show the entire world
         minZoom={1}      // Minimum zoom level to ensure the map is not zoomed in too much
-        maxZoom={2}      // Maximum zoom level to prevent zooming in too much
+        maxZoom={6}      // Maximum zoom level to prevent zooming in too much
         style={{ height: '100%', width: '100%' }} // Full size of the parent container
         zoomControl={true}
         ref={mapRef} // Reference to the map container
