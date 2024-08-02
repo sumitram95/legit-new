@@ -1,4 +1,4 @@
-import LogoImage from "@/Assests/Image/ai_logo.png";
+import LogoImage from "@/assets/images/ai_logo.png";
 export function HeaderLogo() {
     return (
         <div className="header-logo">

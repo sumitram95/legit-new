@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import countryData from "./countryData"; // Import the country data
+import { color } from "@amcharts/amcharts5";
 
 const CountryLayer = () => {
     const [geoData, setGeoData] = useState(null);
@@ -14,16 +15,14 @@ const CountryLayer = () => {
 
     const onEachCountry = (country, layer) => {
         const countryName = country.properties.ADMIN;
-        const details = countryData[countryName] || "No additional information"; // Fallback if no details
+        const details = countryData[countryName] || ""; // Fallback if no details
 
         // Define custom HTML content for the tooltip
         const tooltipContent = `
       <div style="text-align: center; font-size: 14px;">
         <strong>${countryName}</strong>
         <br />
-        <div >
-      ${details}
-        </div>
+        ${details}
       </div>
     `;
 
@@ -37,16 +36,18 @@ const CountryLayer = () => {
         layer.on("mouseover", (event) => {
             const layer = event.target;
             layer.setStyle({
-                fillColor: "#ff7800",
-                fillOpacity: 0.5,
+                // color: "#D53E45",
+                fillColor: "#1a1d62",
+                fillOpacity: 0.3,
             });
         });
 
         layer.on("mouseout", (event) => {
             const layer = event.target;
             layer.setStyle({
+                // color: "#ffff",
                 fillColor: "#1a1d62",
-                fillOpacity: 0.1,
+                fillOpacity: 0.3,
             });
         });
     };

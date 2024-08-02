@@ -1,1 +1,0 @@
-export const TIMELINE_MAX_TEXT_LENGTH = 100

@@ -11,8 +11,12 @@ a {
     text-decoration: none;
 }
 
+.text-secondary {
+    color: $tex-secondary-color;
+}
+
 p {
-    color: #7997C3;
+    color: $tex-secondary-color;
 }
 
 .px-40 {
@@ -248,3 +252,34 @@ $input-min-height: 46px;
 
 // Card
 $card-line-border: 1px solid rgba(205, 224, 241, .5);
+
+.cancelled {
+    color: $status-cancelled-secondary-color;
+    background-color: $status-cancelled-secondary-color;
+}
+
+.research {
+    color: $status-research-secondary-color;
+    background-color: $status-research-secondary-color;;
+}
+
+.whitepaper {
+    color:$status-none-secondary-color;
+    background-color: $status-none-secondary-color;
+}
+
+.pilot {
+    color: $status-pilot-secondary-color;
+    background-color: $status-pilot-secondary-color;
+}
+
+.development {
+    color: $status-development-secondary-color;
+    background-color: $status-development-secondary-color;
+}
+
+
+.launched {
+    color: $status-launched-secondary-color;
+    background-color: $status-launched-secondary-color;
+}
