@@ -7,6 +7,118 @@ $min-tablet-width: 768px;
 $max-tablet-width: 1439px;
 $min-desktop-width: 1440px;
 
+a {
+    text-decoration: none;
+}
+
+.text-secondary {
+    color: $tex-secondary-color;
+}
+
+p {
+    color: $tex-secondary-color;
+}
+
+.px-40 {
+    padding: 0 40px;
+}
+
+.mx-auto {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    color: #0B2041;
+    background-color: $timeline-status-main-background-color;
+}
+
+// header
+.header {
+    background-color: $site-primary-color;
+    padding: 15px 40px;
+    padding-bottom: 80px;
+
+}
+
+.header-logo {
+    width: fit-content;
+    height: 30px;
+}
+
+// .header a {
+//     font-weight: bold;
+//     font-size: 14px;
+//     color: #FFFFFF;
+
+
+// }
+
+// .header a:hover {
+//     border-bottom: 3.5px solid rgba(217, 233, 244, 0.636);
+// }
+
+
+.header a {
+    color: #FFFFFF;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    /* Remove the default underline */
+
+}
+
+.header a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 3.5px;
+    background-color: rgba(217, 233, 244, 0.636);
+    border-radius: 3.5px;
+    transition: transform 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+.header a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.header a:hover::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    height: 3.5px;
+    width: 3.5px;
+    background-color: $status-launched-primary-color;
+    border-radius: 3.5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Fonts
 $default-font-color: #0B2041;
 
@@ -20,6 +132,10 @@ $default-font-color: #0B2041;
 
 .bg-primary {
     background: #0B2041;
+}
+
+.text-primary {
+    color: #0B2041;
 }
 
 body {
@@ -136,3 +252,34 @@ $input-min-height: 46px;
 
 // Card
 $card-line-border: 1px solid rgba(205, 224, 241, .5);
+
+.cancelled {
+    color: $status-cancelled-secondary-color;
+    background-color: $status-cancelled-secondary-color;
+}
+
+.research {
+    color: $status-research-secondary-color;
+    background-color: $status-research-secondary-color;;
+}
+
+.whitepaper {
+    color:$status-none-secondary-color;
+    background-color: $status-none-secondary-color;
+}
+
+.pilot {
+    color: $status-pilot-secondary-color;
+    background-color: $status-pilot-secondary-color;
+}
+
+.development {
+    color: $status-development-secondary-color;
+    background-color: $status-development-secondary-color;
+}
+
+
+.launched {
+    color: $status-launched-secondary-color;
+    background-color: $status-launched-secondary-color;
+}

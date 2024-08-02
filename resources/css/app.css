@@ -2,14 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .bg-ai {
-    background: url("../js/Assests/Image/ai.gif");
+    background: url("../js/assets/images/ai.gif");
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .bg-ai2 {
-    background: url("../js/Assests/Image/ai_side.gif");
+    background: url("../js/assets/images/ai_side.gif");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right bottom;
@@ -29,4 +30,15 @@
 .form-container {
     position: relative;
     z-index: 2;
+}
+
+/* map */
+
+.leaflet-container {
+    background: white;
+    /* outline-offset: 1px; */
+}
+
+.leaflet-control-attribution {
+    display: none;
 }
