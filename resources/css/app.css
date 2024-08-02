@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* In app.css */
-@import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
-
-
 
 .bg-ai {
     background: url("../js/assets/images/ai.gif");
