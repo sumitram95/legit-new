@@ -6,6 +6,9 @@ export function createChart(root) {
         am5map.MapChart.new(root, {
             panX: "rotateX",
             projection: am5map.geoNaturalEarth1(),
+            wheelable: false
         })
     );
 }
+
+
