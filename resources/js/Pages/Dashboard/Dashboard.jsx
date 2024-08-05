@@ -12,8 +12,11 @@ import Button from "@/Components/Button";
 import Table from "@/Components/table/Table";
 import Columns from "@/Components/table/Columns";
 import TableData from "@/Components/table/TableData";
+import EditColumn from "./components/EditColumn";
+import EditColumnLists from "./components/EditColumnLists";
 
-console.log( "tableData = " + TableData);
+// import { Dropdown } from "flowbite-react";
+// import { Dropdown, DropdownItem } from "flowbite-react";
 
 export default function Dashboard() {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -119,11 +122,26 @@ export default function Dashboard() {
                             name={"Watchlist"}
                             className=" bg-secondary py-2 px-5 rounded-md text-primary font-bold"
                         />
-                        <Button
+                        {/* <Button
                             icon={<i class="fa-solid fa-table-list"></i>}
                             name={"Edit Columns"}
                             className=" bg-secondary py-2 px-5 rounded-md text-primary font-bold"
-                        />
+                        /> */}
+                        {/*
+                        <Dropdown
+                            label="Edit Columns"
+                            dismissOnClick={false}
+                            class={" bg-secondary font-bold p-0 px-0 py-0"}
+                            style={{ padding: "0" }}
+                        >
+                            <DropdownItem>
+                                <input type="checkbox" /> Dashboard
+                            </DropdownItem>
+                            <DropdownItem>Settings</DropdownItem>
+                            <DropdownItem>Earnings</DropdownItem>
+                            <DropdownItem>Sign out</DropdownItem>
+                        </Dropdown> */}
+                        <EditColumn EditColumnLists={EditColumnLists} />
                     </div>
 
                     {/* table data */}
@@ -183,7 +201,11 @@ export default function Dashboard() {
                         </table>
                     </div> */}
 
-                    <Table columns={Columns} tableData={TableData} />
+                    <Table
+                        columns={Columns}
+                        tableData={TableData}
+                        btnName={"Edit Columns"}
+                    />
                 </div>
             </div>
         </AppLayout>
