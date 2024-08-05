@@ -13,6 +13,7 @@ import Columns from "@/Components/table/Columns";
 import TableData from "@/Components/table/TableData";
 import EditColumn from "./components/EditColumn";
 import EditColumnLists from "./components/EditColumnLists";
+import News from "./components/new/News";
 
 export default function Dashboard() {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -20,11 +21,8 @@ export default function Dashboard() {
     return (
         <AppLayout>
             <Head title="Dashboard" />
-            <div className="relative">
-                <div
-                    className="border rounded-md w-full bg-white py-5 absolute"
-                    style={{ top: "-55px", zIndex: "999" }}
-                >
+            <div className="relative top-[-50px]">
+                <div className="border rounded-md w-full bg-white py-5">
                     <div className=" border-b-2 pb-4 px-5 flex justify-between items-center">
                         <div>
                             <div>
@@ -128,6 +126,9 @@ export default function Dashboard() {
                         btnName={"Edit Columns"}
                     />
                 </div>
+
+                {/* news */}
+                <News />
             </div>
         </AppLayout>
     );
