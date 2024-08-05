@@ -1,6 +1,7 @@
 import React from "react";
 import { Header } from "./Header/Header";
 import { Link } from "@inertiajs/react";
+import Footer from "./footer/Footer";
 
 export function AppLayout({ children }) {
     return (
@@ -14,6 +15,7 @@ export function AppLayout({ children }) {
             </section>
 
             {/* footer */}
+            <Footer />
         </main>
     );
 }

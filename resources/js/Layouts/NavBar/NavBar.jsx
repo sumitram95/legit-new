@@ -1,3 +1,5 @@
+import { Link } from "@inertiajs/react";
+
 export function NavBar({ NavBarLists }) {
     return (
         <nav className="flex gap-12 font-bold">
@@ -5,7 +7,7 @@ export function NavBar({ NavBarLists }) {
                 const targetAttrVaule =
                     NavBarLists[key] == "whitepaper" ? "_blank" : undefined;
                 return (
-                    <a
+                    <Link
                         href={NavBarLists[key].url}
                         key={key}
                         target={targetAttrVaule}
@@ -15,7 +17,7 @@ export function NavBar({ NavBarLists }) {
                         className=" capitalize"
                     >
                         {NavBarLists[key].name}
-                    </a>
+                    </Link>
                 );
             })}
         </nav>
