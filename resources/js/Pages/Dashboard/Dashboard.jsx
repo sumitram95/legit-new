@@ -7,6 +7,13 @@ import SelectInputLists from "@/Components/map/SelectInputList";
 // import Checkbox from "@/Components/Checkbox";
 import Status from "@/Components/status/Status";
 import { Head } from "@inertiajs/react";
+import HistoricState from "./components/HistoricState";
+import Button from "@/Components/Button";
+import Table from "@/Components/table/Table";
+import Columns from "@/Components/table/Columns";
+import TableData from "@/Components/table/TableData";
+
+console.log( "tableData = " + TableData);
 
 export default function Dashboard() {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -93,7 +100,7 @@ export default function Dashboard() {
                     )}
                     <div
                         style={{ height: "100vh", width: "100%" }}
-                        className="mt-5"
+                        className="mt-5 px-4"
                     >
                         <div className="flex justify-center items-center mb-3">
                             <div>
@@ -102,6 +109,81 @@ export default function Dashboard() {
                         </div>
                         <MapChart />
                     </div>
+                    {/* Historic state */}
+                    <div className="px-5 mt-4">
+                        <HistoricState date={"August 2024"} />
+                    </div>
+                    {/* button */}
+                    <div className="flex justify-between mt-5 px-5">
+                        <Button
+                            name={"Watchlist"}
+                            className=" bg-secondary py-2 px-5 rounded-md text-primary font-bold"
+                        />
+                        <Button
+                            icon={<i class="fa-solid fa-table-list"></i>}
+                            name={"Edit Columns"}
+                            className=" bg-secondary py-2 px-5 rounded-md text-primary font-bold"
+                        />
+                    </div>
+
+                    {/* table data */}
+                    {/* <div class="relative overflow-x-auto px-5 mt-5">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-primary uppercase bg-secondary">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Product name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Color
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Category
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Price
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b">
+                                    <th
+                                        scope="row"
+                                        class="px-6 py-4 font-medium whitespace-nowrap"
+                                    >
+                                        Apple MacBook Pro 17"
+                                    </th>
+                                    <td class="px-6 py-4">Silver</td>
+                                    <td class="px-6 py-4">Laptop</td>
+                                    <td class="px-6 py-4">$2999</td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <th
+                                        scope="row"
+                                        class="px-6 py-4 font-medium whitespace-nowrap"
+                                    >
+                                        Microsoft Surface Pro
+                                    </th>
+                                    <td class="px-6 py-4">White</td>
+                                    <td class="px-6 py-4">Laptop PC</td>
+                                    <td class="px-6 py-4">$1999</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <th
+                                        scope="row"
+                                        class="px-6 py-4 font-medium whitespace-nowrap"
+                                    >
+                                        Magic Mouse 2
+                                    </th>
+                                    <td class="px-6 py-4">Black</td>
+                                    <td class="px-6 py-4">Accessories</td>
+                                    <td class="px-6 py-4">$99</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> */}
+
+                    <Table columns={Columns} tableData={TableData} />
                 </div>
             </div>
         </AppLayout>

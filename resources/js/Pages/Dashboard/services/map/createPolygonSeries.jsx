@@ -13,7 +13,7 @@ export function createPolygonSeries(chart) {
     polygonSeries.mapPolygons.template.setAll({
         tooltipText: "", // Disable default tooltip text
         tooltipHTML: `
-            <div style="font-size: 14px;">
+            <div style="font-size: 15px;" class="text-white">
                 {name}
             </div>
             <div style="font-size: 15px; color:white">
@@ -41,7 +41,7 @@ export function createPolygonSeries(chart) {
 
         // Ensure the tooltip label uses the custom styling from HTML
         tooltip.get("label").setAll({
-            fontSize: "14px",
+            fontSize: "16px",
             color: "#fff",
         });
     }

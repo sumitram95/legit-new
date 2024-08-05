@@ -26,6 +26,8 @@
         "@amcharts/amcharts5-geodata": "^5.1.4",
         "@react-leaflet/core": "^2.1.0",
         "@reduxjs/toolkit": "^2.2.7",
+        "flowbite": "^2.4.1",
+        "flowbite-react": "^0.10.1",
         "leaflet": "^1.9.4",
         "react-leaflet": "^4.2.1",
         "react-leaflet-vector-tile-layer": "^0.3.2",
