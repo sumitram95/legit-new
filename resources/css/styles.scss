@@ -11,6 +11,10 @@ a {
     text-decoration: none;
 }
 
+.bg-secondary {
+    background: $site-secondary-color;
+}
+
 .text-secondary {
     color: $tex-secondary-color;
 }
@@ -260,11 +264,12 @@ $card-line-border: 1px solid rgba(205, 224, 241, .5);
 
 .research {
     color: $status-research-secondary-color;
-    background-color: $status-research-secondary-color;;
+    background-color: $status-research-secondary-color;
+    ;
 }
 
 .whitepaper {
-    color:$status-none-secondary-color;
+    color: $status-none-secondary-color;
     background-color: $status-none-secondary-color;
 }
 
