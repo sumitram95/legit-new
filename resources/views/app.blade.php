@@ -8,7 +8,7 @@
         {{ config(
             'app.name',
             'Global Artificial Intelligence (AI) Policy
-                                            Status',
+                                                    Status',
         ) }}
     </title>
     {{-- fontawesome cdn --}}
@@ -29,6 +29,9 @@
 
 <body class="font-sans antialiased">
     @inertia
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </body>
 
 </html>
