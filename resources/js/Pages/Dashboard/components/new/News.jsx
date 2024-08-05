@@ -17,7 +17,7 @@ const News = () => {
         pauseOnHover: true,
         adaptiveHeight: false,
         arrows: false,
-        className:"flex gap-6"
+        className: "flex gap-6",
     };
 
     const newsList = ["1", "2", "3", "4"];
@@ -54,8 +54,9 @@ const News = () => {
                             />
                         </Link>
                         <div className="p-5">
+                            <p className=" text-xs mb-3"><i class="fa-regular fa-clock"></i> 05/01/24</p>
                             <Link>
-                                <h5 className="mb-2 text-xl font-bold tracking-tight text-primary truncate ...">
+                                <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate ...">
                                     Noteworthy 1 technology acquisitions 2021
                                 </h5>
                             </Link>
