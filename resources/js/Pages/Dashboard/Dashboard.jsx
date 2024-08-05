@@ -14,6 +14,14 @@ import TableData from "@/Components/table/TableData";
 import EditColumn from "./components/EditColumn";
 import EditColumnLists from "./components/EditColumnLists";
 import News from "./components/new/News";
+import Description from "./components/description/Description";
+import DescriptionData from "./components/description/DescriptionData";
+import ContributorLists from "@/Components/contributor/ContributorList";
+import ContactLists from "@/Components/contact/ContactLists";
+import Organization from "./components/organization/Organization";
+import organizationLogo from "@/assets/images/T4DNepal.png";
+
+console.log("DessciptionData " + DescriptionData);
 
 export default function Dashboard() {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -129,6 +137,15 @@ export default function Dashboard() {
 
                 {/* news */}
                 <News />
+
+                {/* Description */}
+                <Description
+                    dessciptionData={DescriptionData}
+                    contributorLists={ContributorLists}
+                    contactLists={ContactLists}
+                />
+
+                <Organization organizationLogo={organizationLogo} />
             </div>
         </AppLayout>
     );
