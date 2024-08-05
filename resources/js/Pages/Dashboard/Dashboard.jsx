@@ -4,7 +4,6 @@ import { MapChart } from "./components/map/MapChart";
 import { AppLayout } from "@/Layouts/AppLayout";
 import SelectInput from "@/Components/SelectInput";
 import SelectInputLists from "@/Components/map/SelectInputList";
-// import Checkbox from "@/Components/Checkbox";
 import Status from "@/Components/status/Status";
 import { Head } from "@inertiajs/react";
 import HistoricState from "./components/HistoricState";
@@ -14,9 +13,7 @@ import Columns from "@/Components/table/Columns";
 import TableData from "@/Components/table/TableData";
 import EditColumn from "./components/EditColumn";
 import EditColumnLists from "./components/EditColumnLists";
-
-// import { Dropdown } from "flowbite-react";
-// import { Dropdown, DropdownItem } from "flowbite-react";
+import News from "./components/new/News";
 
 export default function Dashboard() {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -24,11 +21,8 @@ export default function Dashboard() {
     return (
         <AppLayout>
             <Head title="Dashboard" />
-            <div className="relative">
-                <div
-                    className="border rounded-md w-full bg-white py-5 absolute"
-                    style={{ top: "-55px", zIndex: "999" }}
-                >
+            <div className="relative top-[-50px]">
+                <div className="border rounded-md w-full bg-white py-5">
                     <div className=" border-b-2 pb-4 px-5 flex justify-between items-center">
                         <div>
                             <div>
@@ -120,93 +114,21 @@ export default function Dashboard() {
                     <div className="flex justify-between mt-5 px-5">
                         <Button
                             name={"Watchlist"}
-                            className=" bg-secondary py-2 px-5 rounded-md text-primary font-bold"
+                            className=" bg-secondary py-2 px-5 rounded-md text-primary font-bold  hover:bg-blue-100"
                         />
-                        {/* <Button
-                            icon={<i class="fa-solid fa-table-list"></i>}
-                            name={"Edit Columns"}
-                            className=" bg-secondary py-2 px-5 rounded-md text-primary font-bold"
-                        /> */}
-                        {/*
-                        <Dropdown
-                            label="Edit Columns"
-                            dismissOnClick={false}
-                            class={" bg-secondary font-bold p-0 px-0 py-0"}
-                            style={{ padding: "0" }}
-                        >
-                            <DropdownItem>
-                                <input type="checkbox" /> Dashboard
-                            </DropdownItem>
-                            <DropdownItem>Settings</DropdownItem>
-                            <DropdownItem>Earnings</DropdownItem>
-                            <DropdownItem>Sign out</DropdownItem>
-                        </Dropdown> */}
+
                         <EditColumn EditColumnLists={EditColumnLists} />
                     </div>
-
-                    {/* table data */}
-                    {/* <div class="relative overflow-x-auto px-5 mt-5">
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                            <thead class="text-xs text-primary uppercase bg-secondary">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">
-                                        Product name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Color
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Category
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Price
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-white border-b">
-                                    <th
-                                        scope="row"
-                                        class="px-6 py-4 font-medium whitespace-nowrap"
-                                    >
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="px-6 py-4">Silver</td>
-                                    <td class="px-6 py-4">Laptop</td>
-                                    <td class="px-6 py-4">$2999</td>
-                                </tr>
-                                <tr class="bg-white border-b">
-                                    <th
-                                        scope="row"
-                                        class="px-6 py-4 font-medium whitespace-nowrap"
-                                    >
-                                        Microsoft Surface Pro
-                                    </th>
-                                    <td class="px-6 py-4">White</td>
-                                    <td class="px-6 py-4">Laptop PC</td>
-                                    <td class="px-6 py-4">$1999</td>
-                                </tr>
-                                <tr class="bg-white">
-                                    <th
-                                        scope="row"
-                                        class="px-6 py-4 font-medium whitespace-nowrap"
-                                    >
-                                        Magic Mouse 2
-                                    </th>
-                                    <td class="px-6 py-4">Black</td>
-                                    <td class="px-6 py-4">Accessories</td>
-                                    <td class="px-6 py-4">$99</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> */}
-
+                    {/* table */}
                     <Table
                         columns={Columns}
                         tableData={TableData}
                         btnName={"Edit Columns"}
                     />
                 </div>
+
+                {/* news */}
+                <News />
             </div>
         </AppLayout>
     );
