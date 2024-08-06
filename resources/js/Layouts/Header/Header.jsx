@@ -24,7 +24,7 @@ const NavBarLists = {
 export function Header() {
     return (
         <header className="header">
-            <div className="flex justify-between">
+            <div className="flex justify-between max-auto">
                 <HeaderLogo />
                 <NavBar NavBarLists={NavBarLists} />
             </div>
