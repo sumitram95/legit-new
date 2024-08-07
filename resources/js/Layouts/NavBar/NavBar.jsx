@@ -18,6 +18,7 @@ export function NavBar({ NavBarLists }) {
 
                 // here check current and url pathaname match
                 const isActive = url.pathname == currentUrl;
+
                 return (
                     <Link
                         href={NavBarLists[key].url}
