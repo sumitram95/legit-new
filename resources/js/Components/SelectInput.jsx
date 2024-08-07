@@ -5,7 +5,7 @@ import makeAnimated from "react-select/animated";
 
 const animatedComponents = makeAnimated();
 
-export default forwardRef(function SelectInput(
+export default function SelectInput(
     {
         type = "text",
         className = "",
@@ -38,27 +38,7 @@ export default forwardRef(function SelectInput(
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 options={SelectInputLists[listName]}
-
             />
-
-            {/* <select
-                className={
-                    "appearance-none block w-full bg-slate-100 text-gray-700 border border-slate-300 rounded py-3 px-4 mb-3 " +
-                    className
-                }
-                id="grid-state"
-                ref={input}
-                {...props}
-            >
-                {SelectInputLists[listName].name.map((name, index) => (
-                    <option
-                        key={SelectInputLists[listName].value[index]}
-                        value={SelectInputLists[listName].value[index]}
-                    >
-                        {name}
-                    </option>
-                ))}
-            </select> */}
         </div>
     );
-});
+}

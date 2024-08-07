@@ -1,8 +1,15 @@
 import LogoImage from "@/assets/images/ai_logo.png";
+import { Link } from "@inertiajs/react";
 export function HeaderLogo() {
     return (
-        <div className="header-logo">
-            <img src={LogoImage} alt="AI Policy Tracker" className="w-full h-full" />
-        </div>
+        <Link href={'/'}>
+            <div className="header-logo">
+                <img
+                    src={LogoImage}
+                    alt="AI Policy Tracker"
+                    className="w-full h-full"
+                />
+            </div>
+        </Link>
     );
 }

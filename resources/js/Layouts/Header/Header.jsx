@@ -5,7 +5,7 @@ import { NavBar } from "@/Layouts/NavBar/NavBar";
 const NavBarLists = {
     dashboard: {
         name: "Dashboard",
-        url: "/dashboard",
+        url: route("fontend.dashboard"),
     },
     watchlist: {
         name: "watchlist",
@@ -13,7 +13,7 @@ const NavBarLists = {
     },
     news: {
         name: "news",
-        url: "/news",
+        url: route("news.index"),
     },
     whitepaper: {
         name: "whitepaper",
@@ -24,7 +24,7 @@ const NavBarLists = {
 export function Header() {
     return (
         <header className="header">
-            <div className="flex justify-between">
+            <div className="flex justify-between max-auto">
                 <HeaderLogo />
                 <NavBar NavBarLists={NavBarLists} />
             </div>
