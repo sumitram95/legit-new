@@ -1,5 +1,5 @@
 <template>
-  <b-pagination class="ui-pagination"
+  <b-pagination className="ui-pagination"
                 v-model="localCurrentPage"
                 :total-rows="totalRows"
                 :per-page="perPage"

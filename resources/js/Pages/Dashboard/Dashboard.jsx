@@ -21,8 +21,6 @@ import ContactLists from "@/Components/contact/ContactLists";
 import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 
-console.log("DessciptionData " + DescriptionData);
-
 export default function Dashboard() {
     const [visibleDiv, setVisibleDiv] = useState(false);
 
@@ -58,7 +56,7 @@ export default function Dashboard() {
                                     type="button"
                                     className=" hover:underline"
                                 >
-                                    <i class="fa-solid fa-square-xmark"></i>
+                                    <i className="fa-solid fa-square-xmark"></i>
                                     <span className="ml-2"> Clear filters</span>
                                 </button>
                             )}
@@ -86,7 +84,10 @@ export default function Dashboard() {
                                 <div className="flex flex-wrap -mx-3 mb-6">
                                     {SelectInputLists.labels.map(
                                         (label, index) => (
-                                            <div className="w-full md:w-1/2 px-3">
+                                            <div
+                                                className="w-full md:w-1/2 px-3"
+                                                key={index}
+                                            >
                                                 <SelectInput
                                                     key={index}
                                                     label={label}

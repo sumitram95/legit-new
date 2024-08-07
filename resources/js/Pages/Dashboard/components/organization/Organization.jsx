@@ -29,7 +29,7 @@ export default function Organization({ organizationLogo }) {
             </div>
             <Slider {...settings}>
                 {org.map((data, index) => (
-                    <div className="mt-3">
+                    <div className="mt-3" key={index}>
                         <Link hre={"/logo"} className=" w-fit">
                             <img src={organizationLogo} alt="" />
                         </Link>

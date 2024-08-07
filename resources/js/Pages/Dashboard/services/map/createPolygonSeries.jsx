@@ -13,7 +13,7 @@ export function createPolygonSeries(chart) {
     polygonSeries.mapPolygons.template.setAll({
         tooltipText: "", // Disable default tooltip text
         tooltipHTML: `
-            <div style="font-size: 15px;" class="text-white">
+            <div style="font-size: 15px;" className="text-white">
                 {name}
             </div>
             <div style="font-size: 15px; color:white">
@@ -79,13 +79,13 @@ export function createPolygonSeries(chart) {
             <div>
                 <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
                    <div>AI Policy Name</div>
-                    <div class="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
-                    <div><a href="http://www.google.com"><i class="fa-solid fa-circle-arrow-right"></i></a></div>
+                    <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
+                    <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
                 </div>
                  <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
                    <div>AI Policy Name</div>
-                    <div class="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
-                    <div><a href="http://www.google.com"><i class="fa-solid fa-circle-arrow-right"></i></a></div>
+                    <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
+                    <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
                 </div>
                 </div>
             `, // Preprocessed infoHTML

@@ -28,7 +28,7 @@ export default function SelectInput(
         <div className="mb-4">
             <label
                 className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                for="grid-last-name"
+                htmlFor="grid-last-name"
             >
                 {label}
             </label>

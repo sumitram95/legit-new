@@ -1,11 +1,11 @@
 <template>
-  <app-active-element :class="statusName"
-                      class="ui-status-checkbox"
+  <app-active-element :className="statusName"
+                      className="ui-status-checkbox"
                       @click="onClick">
-    <span class="ui-status-checkbox_rect">
+    <span className="ui-status-checkbox_rect">
       <app-icon v-if="localValue" :name="ICON_NAMES.CHECK_MARK"></app-icon>
     </span>
-    <span class="ui-status-checkbox_text">{{ localLabel }}</span>
+    <span className="ui-status-checkbox_text">{{ localLabel }}</span>
   </app-active-element>
 </template>
 
