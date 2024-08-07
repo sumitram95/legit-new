@@ -1,5 +1,5 @@
 <template>
-  <button class="ui-button-without-styles"
+  <button className="ui-button-without-styles"
           :id="id"
           :disabled="disabled"
           :title="title"

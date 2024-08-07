@@ -15,16 +15,9 @@
     background-position: right bottom;
 }
 
-/* .blur{
-    backdrop-filter: blur(10px);
-    z-index: 1;
-} */
-
 .blur-ai {
     backdrop-filter: blur(4px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
-    /* z-index: 1; */
 }
 .form-container {
     position: relative;
@@ -65,7 +58,7 @@ textarea:focus,
 select:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
-    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+    --tw-ring-inset: var(--tw-empty);
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: none;

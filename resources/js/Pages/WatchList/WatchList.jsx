@@ -9,7 +9,7 @@ import TableData from "@/Components/table/TableData";
 import EditColumn from "../Dashboard/components/EditColumn";
 import EditColumnLists from "../Dashboard/components/EditColumnLists";
 
-export default function Dashboard() {
+export default function WatchList() {
     const [visibleDiv, setVisibleDiv] = useState(false);
 
     return (
@@ -30,7 +30,7 @@ export default function Dashboard() {
                                     className=" text-sm flex gap-2 hover:underline"
                                 >
                                     <span>
-                                        <i class="fa-regular fa-circle-left"></i>
+                                        <i className="fa-regular fa-circle-left"></i>
                                     </span>
                                     <span>Back to full list of AI Policy</span>
                                 </Link>
@@ -42,7 +42,7 @@ export default function Dashboard() {
                                     type="button"
                                     className=" hover:underline"
                                 >
-                                    <i class="fa-solid fa-square-xmark"></i>
+                                    <i className="fa-solid fa-square-xmark"></i>
                                     <span className="ml-2"> Clear filters</span>
                                 </button>
                             )}
@@ -70,7 +70,10 @@ export default function Dashboard() {
                                 <div className="flex flex-wrap -mx-3 mb-6">
                                     {SelectInputLists.labels.map(
                                         (label, index) => (
-                                            <div className="w-full md:w-1/2 px-3">
+                                            <div
+                                                className="w-full md:w-1/2 px-3"
+                                                key={index}
+                                            >
                                                 <SelectInput
                                                     key={index}
                                                     label={label}

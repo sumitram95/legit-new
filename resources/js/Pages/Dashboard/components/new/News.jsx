@@ -57,7 +57,7 @@ const News = () => {
 
                         <div className="p-5">
                             <p className=" text-xs mb-3">
-                                <i class="fa-regular fa-clock"></i> 05/01/24
+                                <i className="fa-regular fa-clock"></i> 05/01/24
                             </p>
 
                                 <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate ...">
@@ -83,9 +83,9 @@ const News = () => {
                                 >
                                     <path
                                         stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
                                         d="M1 5h12m0 0L9 1m4 4L9 9"
                                     />
                                 </svg>

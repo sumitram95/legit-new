@@ -26,7 +26,7 @@ export default function TimeLine({ timeLines = [] }) {
                     <div className="mt-5 px-5 bg-white py-5 text-wrap md:py-0 rounded-md md:rounded-none">
                         <ol className="relative border-s-4 border-blue-100">
                             {timeLines.map((timeLine, index) => (
-                                <li className="mb-10 ms-6">
+                                <li className="mb-10 ms-6" key={index}>
                                     <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white">
                                         <svg
                                             className="w-2.5 h-2.5 text-blue-800"

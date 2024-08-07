@@ -35,7 +35,7 @@ export default function News({ newsLists }) {
                                     type="button"
                                     className=" hover:underline"
                                 >
-                                    <i class="fa-solid fa-square-xmark"></i>
+                                    <i className="fa-solid fa-square-xmark"></i>
                                     <span className="ml-2"> Clear filters</span>
                                 </button>
                             )}
@@ -62,7 +62,7 @@ export default function News({ newsLists }) {
                             <form className="w-full" id="filterData">
                                 <div className="flex flex-wrap -mx-3 mb-6">
                                     {filteredLabels.map((label, index) => (
-                                        <div className="w-full md:w-1/2 px-3">
+                                        <div className="w-full md:w-1/2 px-3" key={index}>
                                             <SelectInput
                                                 key={index}
                                                 label={label}
