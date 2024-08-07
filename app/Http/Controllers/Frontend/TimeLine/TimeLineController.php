@@ -10,6 +10,12 @@ class TimeLineController extends Controller
 {
     public function index()
     {
-        return Inertia::render("TimeLine/TimeLine");
+        $data['timeLines'] = [
+            1,
+            2,
+            3,
+            4
+        ];
+        return Inertia::render("TimeLine/TimeLine", $data);
     }
 }
