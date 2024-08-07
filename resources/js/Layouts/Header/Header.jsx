@@ -5,15 +5,19 @@ import { NavBar } from "@/Layouts/NavBar/NavBar";
 const NavBarLists = {
     dashboard: {
         name: "Dashboard",
-        url: route("fontend.dashboard"),
+        url: route("frontend.dashboard"),
     },
     watchlist: {
         name: "watchlist",
-        url: "/watchlists",
+        url: route("frontend.watch_list.index"),
     },
     news: {
         name: "news",
         url: route("news.index"),
+    },
+    timeline: {
+        name: "Timeline",
+        url: route("frontend.time_line.index"),
     },
     whitepaper: {
         name: "whitepaper",
@@ -31,5 +35,3 @@ export function Header() {
         </header>
     );
 }
-
-

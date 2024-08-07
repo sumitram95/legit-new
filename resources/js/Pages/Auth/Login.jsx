@@ -1,4 +1,3 @@
-import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
@@ -87,7 +86,7 @@ export default function Login({ status, canResetPassword }) {
                         </div>
 
                         <div className=" mt-4 flex justify-between">
-                            <label className="flex items-center">
+                            {/* <label className="flex items-center">
                                 <Checkbox
                                     name="remember"
                                     className=" border-white bg-transparent"
@@ -99,31 +98,27 @@ export default function Login({ status, canResetPassword }) {
                                 <span className="ms-2 text-sm text-white">
                                     Remember me
                                 </span>
-                            </label>
+                            </label> */}
 
                             <Link
-                            href={route("register")}
-                            className="underline text-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Register
-                        </Link>
+                                href={route("register")}
+                                className="underline text-sm text-white rounded-md focus:outline-none"
+                            >
+                                Register
+                            </Link>
                         </div>
-
 
                         <div className="flex items-center justify-end mt-4">
                             {canResetPassword && (
                                 <Link
                                     href={route("password.request")}
-                                    className="underline text-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    className="underline text-sm text-white rounded-md focus:outline-none"
                                 >
                                     Forgot your password?
                                 </Link>
                             )}
 
-                            <PrimaryButton
-                                className="ms-4 bg-blue-600 hover:bg-blue-500"
-                                disabled={processing}
-                            >
+                            <PrimaryButton disabled={processing}>
                                 Log in
                             </PrimaryButton>
                         </div>

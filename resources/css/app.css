@@ -87,3 +87,8 @@ select:focus {
 .min-h-100 {
     min-height: 90.5vh;
 }
+
+.css-13cymwt-control{
+    background: #f4f8fc !important;
+}
+

@@ -1,33 +1,7 @@
 <?php
 
-use App\Http\Controllers\Frontend\News\NewsController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Dashboard/Dashboard');
-})->name("fontend.dashboard");
-
-Route::get('/demo', function () {
-    return Inertia::render('demo', [
-    ]);
-});
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::controller(NewsController::class)->group(function () {
-    Route::get("/news", "index")->name("news.index");
-    Route::get("/news/news-name-here", "singleNews")->name("news.single");
-});
-
+require __DIR__ . "/frontend/web.php";
 require __DIR__ . '/auth.php';
+require __DIR__ . "/backend/web.php";
