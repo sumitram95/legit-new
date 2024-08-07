@@ -1,9 +1,7 @@
-import React from "react";
-
-export default function InputLabel({ value = "", ...props }) {
+export default function InputLabel({ value, className = '', children, ...props }) {
     return (
-        <div>
-            <label {...props}>{value}</label>
-        </div>
+        <label {...props} className={`block font-medium text-sm text-gray-700 ` + className}>
+            {value ? value : children}
+        </label>
     );
 }
