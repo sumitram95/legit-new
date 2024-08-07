@@ -17,7 +17,6 @@ const News = () => {
         pauseOnHover: true,
         adaptiveHeight: false,
         arrows: false,
-        className: "flex gap-6",
     };
 
     const newsList = ["1", "2", "3", "4"];
@@ -49,29 +48,29 @@ const News = () => {
                         className="max-w-sm bg-white border border-gray-200 rounded-lg shadow"
                         key={index}
                     >
-                        <Link>
+
                             <img
                                 className="rounded-t-lg"
                                 src="https://flowbite.com/docs/images/blog/image-1.jpg"
                                 alt=""
                             />
-                        </Link>
+
                         <div className="p-5">
                             <p className=" text-xs mb-3">
                                 <i class="fa-regular fa-clock"></i> 05/01/24
                             </p>
-                            <Link>
+
                                 <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate ...">
                                     Noteworthy 1 technology acquisitions 2021
                                 </h5>
-                            </Link>
+
                             <p className="mb-3 font-normal text-primary truncate ...">
                                 Here are the biggest enterprise technology
                                 acquisitions of 2021 so far, in reverse
                                 chronological order.
                             </p>
                             <Link
-                                href={"#"}
+                                href={route("news.single")}
                                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-pr bg-secondary rounded-lg hover:bg-blue-100 focus:ring-4 focus:outline-none"
                             >
                                 Read more

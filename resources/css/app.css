@@ -31,16 +31,6 @@
     z-index: 2;
 }
 
-/* map */
-
-.leaflet-container {
-    background: white;
-    /* outline-offset: 1px; */
-}
-
-.leaflet-control-attribution {
-    display: none;
-}
 
 .before-dot::before {
     content: "";
@@ -51,17 +41,7 @@
     border-radius: 100%;
     right: 0;
 }
-.before-cone::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 8.5px solid transparent;
-    border-right: 8.5px solid transparent;
-    border-top: 15px solid #0b2041;
-    bottom: -8px;
-    right: 0;
-}
+
 
 .slick-slide > div {
     margin: 0 10px;
@@ -102,4 +82,8 @@ select:focus {
     width: 1200px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.min-h-100 {
+    min-height: 90.5vh;
 }
