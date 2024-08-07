@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\News\NewsController;
+use App\Http\Controllers\Frontend\TimeLine\TimeLineController;
 use App\Http\Controllers\Frontend\WatchList\WatchListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -34,6 +35,11 @@ Route::controller(NewsController::class)->group(function () {
 Route:: as('frontend.')->group(function () {
     Route::controller(WatchListController::class)->as('watch_list.')->group(function () {
         Route::get('/watchlist', 'index')->name('index');
+    });
+
+    // time line controller
+    Route::controller(TimeLineController::class)->as('time_line.')->group(function () {
+        Route::get('/timeline', 'index')->name('index');
     });
 });
 
