@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\News\NewsController;
+use App\Http\Controllers\Frontend\WatchList\WatchListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -8,7 +9,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Dashboard/Dashboard');
-})->name("fontend.dashboard");
+})->name("frontend.dashboard");
 
 Route::get('/demo', function () {
     return Inertia::render('demo', [
@@ -29,5 +30,12 @@ Route::controller(NewsController::class)->group(function () {
     Route::get("/news", "index")->name("news.index");
     Route::get("/news/news-name-here", "singleNews")->name("news.single");
 });
+
+Route:: as('frontend.')->group(function () {
+    Route::controller(WatchListController::class)->as('watch_list.')->group(function () {
+        Route::get('/watchlist', 'index')->name('index');
+    });
+});
+
 
 require __DIR__ . '/auth.php';
