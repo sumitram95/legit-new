@@ -6,9 +6,9 @@ export default function TimeLine({ timeLines = [] }) {
     return (
         <AppLayout>
             <Head title="Timeline" />
-            <div className="relative top-[-50px] max-auto">
-                <div className="border rounded-md w-full bg-white py-5">
-                    <div className=" border-b-2 pb-4 px-5 flex justify-between items-center">
+            <div className="block md:relative top-[-50px] max-auto w-full ">
+                <div className="md:border rounded-md w-full md:bg-white py-5">
+                    <div className=" md:border-b-2 pb-4 px-5 flex justify-between items-center">
                         <div>
                             <div>
                                 <p className="font-bold text-primary text-lg">
@@ -23,7 +23,7 @@ export default function TimeLine({ timeLines = [] }) {
                         </div>
                     </div>
 
-                    <div className="mt-5 px-5">
+                    <div className="mt-5 px-5 bg-white py-5 text-wrap md:py-0 rounded-md md:rounded-none">
                         <ol className="relative border-s-4 border-blue-100">
                             {timeLines.map((timeLine, index) => (
                                 <li className="mb-10 ms-6">
