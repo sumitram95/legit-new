@@ -7,7 +7,6 @@ import SelectInputLists from "@/Components/map/SelectInputList";
 import Status from "@/Components/status/Status";
 import { Head } from "@inertiajs/react";
 import HistoricState from "./components/HistoricState";
-import Button from "@/Components/Button";
 import Table from "@/Components/table/Table";
 import Columns from "@/Components/table/Columns";
 import TableData from "@/Components/table/TableData";
@@ -20,6 +19,7 @@ import ContributorLists from "@/Components/contributor/ContributorList";
 import ContactLists from "@/Components/contact/ContactLists";
 import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
+import LinkButton from "@/Components/LinkButton";
 
 export default function Dashboard() {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -121,10 +121,13 @@ export default function Dashboard() {
                     </div>
                     {/* button */}
                     <div className="flex justify-between mt-5 px-5">
-                        <Button
-                            name={"Watchlist"}
-                            className=" bg-secondary py-2 px-5 rounded-md text-primary font-bold  hover:bg-blue-100"
-                        />
+                        <LinkButton
+                            href={route("frontend.watch_list.index")}
+                            className="flex gap-2 text-red-900 items-center"
+                        >
+                            <i className="fa-regular fa-star"></i>
+                            <span>Watchlist (0)</span>
+                        </LinkButton>
 
                         <EditColumn EditColumnLists={EditColumnLists} />
                     </div>
@@ -132,7 +135,7 @@ export default function Dashboard() {
                     <Table
                         columns={Columns}
                         tableData={TableData}
-                        btnName={"Edit Columns"}
+                        btnName={"Edit Columns "}
                     />
                 </div>
 
