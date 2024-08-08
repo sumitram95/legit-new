@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AiPolicyTracker\SinglePolicyTackerControlle;
 use App\Http\Controllers\Frontend\News\NewsController;
 use App\Http\Controllers\Frontend\TimeLine\TimeLineController;
 use App\Http\Controllers\Frontend\WatchList\WatchListController;
@@ -32,6 +33,11 @@ Route:: as('frontend.')->group(function () {
     // time line controller
     Route::controller(TimeLineController::class)->as('time_line.')->group(function () {
         Route::get('/timeline', 'index')->name('index');
+    });
+
+    // single AI policy tracker
+    Route::controller(SinglePolicyTackerControlle::class)->as('single_ai_policy_tracker.')->group(function () {
+        Route::get("/aipolicytracker/name-here", "index")->name('index');
     });
 });
 
