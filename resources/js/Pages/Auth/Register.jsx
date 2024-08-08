@@ -124,7 +124,7 @@ export default function Register() {
                         <div className="flex items-center justify-end mt-4">
                             <Link
                                 href={route("login")}
-                                className="underline text-sm text-white rounded-md focus:outline-none"
+                                className="underline text-sm text-white"
                             >
                                 Already registered?
                             </Link>

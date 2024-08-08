@@ -1,3 +1,4 @@
+import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
@@ -86,7 +87,7 @@ export default function Login({ status, canResetPassword }) {
                         </div>
 
                         <div className=" mt-4 flex justify-between">
-                            {/* <label className="flex items-center">
+                            <label className="flex items-center">
                                 <Checkbox
                                     name="remember"
                                     className=" border-white bg-transparent"
@@ -98,11 +99,11 @@ export default function Login({ status, canResetPassword }) {
                                 <span className="ms-2 text-sm text-white">
                                     Remember me
                                 </span>
-                            </label> */}
+                            </label>
 
                             <Link
                                 href={route("register")}
-                                className="underline text-sm text-white rounded-md focus:outline-none"
+                                className="underline text-sm text-white focus:outline-none"
                             >
                                 Register
                             </Link>
@@ -112,13 +113,16 @@ export default function Login({ status, canResetPassword }) {
                             {canResetPassword && (
                                 <Link
                                     href={route("password.request")}
-                                    className="underline text-sm text-white rounded-md focus:outline-none"
+                                    className="underline text-sm text-white focus:outline-none"
                                 >
                                     Forgot your password?
                                 </Link>
                             )}
 
-                            <PrimaryButton disabled={processing}>
+                            <PrimaryButton
+                                className="ms-4 bg-blue-600 hover:bg-blue-500"
+                                disabled={processing}
+                            >
                                 Log in
                             </PrimaryButton>
                         </div>
