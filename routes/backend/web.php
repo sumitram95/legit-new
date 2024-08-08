@@ -7,5 +7,5 @@ use Inertia\Inertia;
 // });
 
 Route::get('/backend/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Backend/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

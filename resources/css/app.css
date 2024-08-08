@@ -24,7 +24,6 @@
     z-index: 2;
 }
 
-
 .before-dot::before {
     content: "";
     position: absolute;
@@ -34,7 +33,6 @@
     border-radius: 100%;
     right: 0;
 }
-
 
 .slick-slide > div {
     margin: 0 10px;
@@ -81,7 +79,12 @@ select:focus {
     min-height: 90.5vh;
 }
 
-.css-13cymwt-control{
+.css-13cymwt-control {
     background: #f4f8fc !important;
 }
 
+.backend-header {
+    left: "calc(16rem + 1rem)";
+    right: "1rem";
+    width: "auto";
+}
