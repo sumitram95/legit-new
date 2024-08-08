@@ -32,7 +32,10 @@ export default function Table({ columns = [], tableData = [], ...props }) {
                                             <i className="fa-solid fa-star"></i>
                                         </button>
                                     </form>
-                                    <Link className="text-primary hover:underline">
+                                    <Link
+                                        href={route("frontend.single_ai_policy_tracker.index")}
+                                        className="text-primary hover:underline"
+                                    >
                                         {list.aiPolicyName}
                                     </Link>
                                 </div>

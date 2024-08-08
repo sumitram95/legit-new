@@ -95,7 +95,7 @@ export default function WatchList() {
                 </div>
 
                 {/* Subscription */}
-                <Subscription  className=""/>
+                <Subscription className="" />
             </div>
         </AppLayout>
     );

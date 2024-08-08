@@ -43,7 +43,7 @@ export default function NewsCard({ newsLists = [] }) {
             ))}
 
             {newsLists.length == 0 && (
-                <div className="flex items-center h-full w-full justify-center">
+                <div className="flex items-center h-full w-full justify-center mt-5">
                     <h1 className=" text-xl text-primary">
                         There are no news lists
                     </h1>
