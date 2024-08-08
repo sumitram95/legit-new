@@ -1,6 +1,8 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
 import NoTableData from "./NoTableData";
+import Button from "../Button";
+import LinkButton from "../LinkButton";
 
 export default function Table({ columns = [], tableData = [], ...props }) {
     const hasData = Array.isArray(tableData) && tableData.length > 0;
@@ -20,7 +22,21 @@ export default function Table({ columns = [], tableData = [], ...props }) {
                 <tbody>
                     {tableData.map((list, index) => (
                         <tr className="bg-white border-b" key={index}>
-                            <td className="px-6 py-4">{list.aiPolicyName}</td>
+                            <td className="px-6 py-4">
+                                <div className="flex gap-x-2">
+                                    <form action="" method="post">
+                                        <button
+                                            type="submit"
+                                            className=" text-primary"
+                                        >
+                                            <i className="fa-solid fa-star"></i>
+                                        </button>
+                                    </form>
+                                    <Link className="text-primary hover:underline">
+                                        {list.aiPolicyName}
+                                    </Link>
+                                </div>
+                            </td>
                             <td className="px-6 py-4">{list.country}</td>
                             <td className="px-6 py-4">{list.governingBody}</td>
                             <td className="px-6 py-4">

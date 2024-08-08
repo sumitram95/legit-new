@@ -6,8 +6,7 @@ import { Head, Link } from "@inertiajs/react";
 import Table from "@/Components/table/Table";
 import Columns from "@/Components/table/Columns";
 import TableData from "@/Components/table/TableData";
-import EditColumn from "../Dashboard/components/EditColumn";
-import EditColumnLists from "../Dashboard/components/EditColumnLists";
+import Subscription from "./components/Subscription";
 
 export default function WatchList() {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -16,8 +15,8 @@ export default function WatchList() {
         <AppLayout>
             <Head title="Watch List" />
             <div className="relative top-[-50px] max-auto">
-                <div className="border rounded-md w-full bg-white py-5">
-                    <div className=" border-b-2 pb-4 px-5 flex justify-between items-center">
+                <div className="rounded-md w-full bg-white py-5">
+                    <div className="border-b-2 pb-4 px-5 flex justify-between items-center">
                         <div>
                             <div>
                                 <p className="font-bold text-primary text-lg">
@@ -92,12 +91,11 @@ export default function WatchList() {
                     )}
 
                     {/* table */}
-                    <Table
-                        columns={Columns}
-                        tableData={TableData}
-                        btnName={"Edit Columns"}
-                    />
+                    <Table columns={Columns} tableData={TableData} />
                 </div>
+
+                {/* Subscription */}
+                <Subscription  className=""/>
             </div>
         </AppLayout>
     );
