@@ -4,7 +4,12 @@ import NoTableData from "./NoTableData";
 import Button from "../Button";
 import LinkButton from "../LinkButton";
 
-export default function Table({ columns = [], tableData = [], ...props }) {
+export default function Table({
+    columns = [],
+    tableData = [],
+    noTableDataTitle = "No Data",
+    ...props
+}) {
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
     return (
@@ -33,7 +38,9 @@ export default function Table({ columns = [], tableData = [], ...props }) {
                                         </button>
                                     </form>
                                     <Link
-                                        href={route("frontend.single_ai_policy_tracker.index")}
+                                        href={route(
+                                            "frontend.single_ai_policy_tracker.index"
+                                        )}
                                         className="text-primary hover:underline"
                                     >
                                         {list.aiPolicyName}
@@ -58,9 +65,7 @@ export default function Table({ columns = [], tableData = [], ...props }) {
                     ))}
                 </tbody>
             </table>
-            {!hasData && (
-                <NoTableData titleName="There are no AI Policy Lists" />
-            )}
+            {!hasData && <NoTableData noTableDataTitle={noTableDataTitle} />}
         </div>
     );
 }

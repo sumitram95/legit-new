@@ -83,8 +83,7 @@ select:focus {
     background: #f4f8fc !important;
 }
 
-.backend-header {
-    left: "calc(16rem + 1rem)";
-    right: "1rem";
-    width: "auto";
+.sidebar-active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }

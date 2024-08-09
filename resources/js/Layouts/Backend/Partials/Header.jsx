@@ -10,7 +10,7 @@ export default function Header({ avatarUrl = "NA" }) {
 
     return (
         <div
-            className="px-5 py-1 hidden md:block rounded w-full bg-white shadow-md fixed"
+            className="px-5 py-1 hidden md:block rounded-lg w-full bg-white shadow-md fixed z-50"
             style={{
                 left: "calc(16rem + 1rem)",
                 right: "1rem",
@@ -25,7 +25,7 @@ export default function Header({ avatarUrl = "NA" }) {
                     id="dropdownDefaultButton"
                     onClick={toggleDropdown}
                 >
-                    <p className="font-bold">Sumit Ram</p>
+                    <p className=" text-gray-700">Sumit Ram</p>
                     <div className="flex justify-center w-[43px] h-[43px] rounded-full overflow-hidden">
                         <img
                             src={avatarUrl}
