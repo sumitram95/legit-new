@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-export default function Model({ isOpen, onClose, title = "", children }) {
+export default function Model({
+    isOpen,
+    onClose,
+    title = "",
+    width = "",
+    children,
+}) {
     if (!isOpen) return null;
 
     return (
@@ -10,7 +16,7 @@ export default function Model({ isOpen, onClose, title = "", children }) {
             aria-hidden="true"
             className="fixed inset-0 z-50 flex justify-center items-center w-full h-screen bg-black bg-opacity-50"
         >
-            <div className="relative p-4 w-full max-w-2xl max-h-full">
+            <div className={`relative p-4 w-full ${width} max-h-full`}>
                 {/* Modal content */}
                 <div className="relative bg-white rounded-lg shadow">
                     {/* Modal header */}
@@ -42,7 +48,9 @@ export default function Model({ isOpen, onClose, title = "", children }) {
                         </button>
                     </div>
                     {/* Modal body */}
-                    <div className="p-4 md:p-5 space-y-4 overflow-y-auto max-h-[60vh]">{children}</div>
+                    <div className="p-4 md:p-5 space-y-4 overflow-y-auto max-h-[60vh]">
+                        {children}
+                    </div>
                     {/* Modal footer */}
                     {/* <div className="flex items-center p-4 md:p-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                         <button

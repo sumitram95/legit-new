@@ -6,21 +6,30 @@ export default function ({
     placeholder = "",
     htmlFor = "",
     className = "",
+    ...props
 }) {
     return (
         <div className={className}>
             <label
                 htmlFor={htmlFor}
-                class="block mb-2 text-sm font-medium text-gray-700"
+                className="block tracking-wide text-gray-500 text-sm font-bold mb-2"
             >
                 {label}
             </label>
+            {/* <input
+                type={type}
+                id={htmlFor}
+                className="bg-gray-50 border input-class border-gray-300 text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-600 text-sm rounded block w-full px-2.5"
+                placeholder={placeholder}
+                required
+            /> */}
+
             <input
                 type={type}
                 id={htmlFor}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-100 focus:border-blue-100 block w-full p-2.5"
+                className="input-class border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5"
                 placeholder={placeholder}
-                required
+                {...props}
             />
         </div>
     );

@@ -6,14 +6,7 @@ import makeAnimated from "react-select/animated";
 const animatedComponents = makeAnimated();
 
 export default function SelectInput(
-    {
-        type = "text",
-        className = "",
-        isFocused = false,
-        listName = null,
-        label,
-        ...props
-    },
+    { className = "", isFocused = false, options = null, label, ...props },
     ref
 ) {
     const input = ref ? ref : useRef();
@@ -25,9 +18,9 @@ export default function SelectInput(
     }, [isFocused]);
 
     return (
-        <div className="mb-4">
+        <div className="">
             <label
-                className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
+                className="block tracking-wide text-gray-500 text-sm font-bold mb-2"
                 htmlFor="grid-last-name"
             >
                 {label}
@@ -38,7 +31,7 @@ export default function SelectInput(
                 isMulti
                 closeMenuOnSelect={false}
                 components={animatedComponents}
-                options={SelectInputLists[listName]}
+                options={options}
             />
         </div>
     );
