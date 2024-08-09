@@ -10,7 +10,7 @@ export default function Header({ avatarUrl = "NA" }) {
 
     return (
         <div
-            className="px-5 py-1 hidden md:block rounded-lg w-full bg-white shadow-md fixed z-50"
+            className="px-5 py-1 hidden md:block rounded-lg w-full bg-white shadow-md fixed z-10"
             style={{
                 left: "calc(16rem + 1rem)",
                 right: "1rem",
