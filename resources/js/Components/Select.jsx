@@ -28,10 +28,10 @@ export default function SelectInput(
 
             <Select
                 id="select"
-                isMulti
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 options={options}
+                {...props}
             />
         </div>
     );

@@ -183,6 +183,17 @@ body::-webkit-scrollbar {
     height: 8px;
 }
 
+.backend-webkit::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: green;
+}
+
+.backend-webkit::-webkit-scrollbar-thumb {
+    background-color: red;
+    border-radius: 4px;
+}
+
 $values: (0, 4, 8, 12, 16, 20, 24, 28, 32, 40);
 $sides: (top, bottom, left, right);
 
