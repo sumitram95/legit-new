@@ -2,18 +2,15 @@ import AddIcon from "@/Components/AddIcon";
 import Button from "@/Components/Button";
 import DeleteIcon from "@/Components/DeleteIcon";
 import EditIcon from "@/Components/EditIcon";
-import Input from "@/Components/Input";
 import Model from "@/Components/Model";
-import SelectInput from "@/Components/SelectInput";
 import NoTableData from "@/Components/table/NoTableData";
-import Table from "@/Components/table/Table";
 import ViewIcon from "@/Components/ViewIcon";
 import Layout from "@/Layouts/Backend/Layout";
 import { Head, Link } from "@inertiajs/react";
 import React, { useState } from "react";
 import Add from "./components/Add";
 
-export default function CountryIndex({ tableData = [] }) {
+export default function Index({ tableData = [] }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleModal = () => {
@@ -21,7 +18,7 @@ export default function CountryIndex({ tableData = [] }) {
     };
 
     const hasData = Array.isArray(tableData) && tableData > 0;
-    var noTableDataTitle = "There are no country lists";
+    var noTableDataTitle = "There are no (AI) policy tracker lists";
     return (
         <Layout>
             <Head title="Country Lists" />
@@ -33,7 +30,7 @@ export default function CountryIndex({ tableData = [] }) {
                             type="button"
                             className=" text-sm text-gray-700 font-semibold flex gap-1"
                         >
-                            <AddIcon /> Add new country
+                            <AddIcon /> Add (AI) Policy Tracker
                         </Button>
                     </div>
 
@@ -104,7 +101,8 @@ export default function CountryIndex({ tableData = [] }) {
             <Model
                 isOpen={isModalOpen}
                 onClose={toggleModal}
-                title="Add new country"
+                title="Add (AI) Policy Tracker"
+                width="max-w-5xl"
             >
                 <Add />
             </Model>
