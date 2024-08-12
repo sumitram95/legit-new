@@ -6,7 +6,14 @@ import makeAnimated from "react-select/animated";
 const animatedComponents = makeAnimated();
 
 export default function SelectInput(
-    { className = "", isFocused = false, options = null, label, ...props },
+    {
+        className = "",
+        isFocused = false,
+        options = null,
+        label,
+        errorMsg = null,
+        ...props
+    },
     ref
 ) {
     const input = ref ? ref : useRef();
@@ -28,11 +35,13 @@ export default function SelectInput(
 
             <Select
                 id="select"
-                isMulti
-                closeMenuOnSelect={false}
+                closeMenuOnSelect={true}
                 components={animatedComponents}
                 options={options}
+                {...props}
             />
+
+            {errorMsg && <p className=" text-red-500 text-xs mt-1">{errorMsg}</p>}
         </div>
     );
 }

@@ -14,13 +14,9 @@ Route::get('/backend/dashboard', function () {
 
 Route:: as("backend.")->group(function () {
 
-    // country controller
-    // Route::controller(CountryController::class)->as("country.")->group(function () {
-    //     Route::get("/backend/country", "index")->name("index");
-    // });
-
-    // country controller
+    // ai policy tracker
     Route::controller(AiPolicyTrackerController::class)->as("ai_policy_tracker.")->group(function () {
         Route::get("/backend/aipolicytracker", "index")->name("index");
+        Route::post("/backend/aipolicytracker", "store")->name("store");
     });
 });

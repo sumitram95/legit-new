@@ -18,7 +18,10 @@ export default function Header({ avatarUrl = "NA" }) {
             }}
         >
             <div className="flex justify-between items-center">
-                <div>Welcome to Dashboard</div>
+                <div>
+                    Welcome to Dashboard
+                    {/* {flash.success && <span>fdfdsfd</span>} */}
+                </div>
 
                 <div
                     className="flex items-center gap-3 cursor-pointer"

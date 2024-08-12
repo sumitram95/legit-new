@@ -16,7 +16,7 @@ export default function Model({
             aria-hidden="true"
             className="fixed inset-0 z-50 flex justify-center items-center w-full h-screen bg-black bg-opacity-50"
         >
-            <div className={`relative p-4 w-full ${width} max-h-full`}>
+            <div className={`relative p-4 w-full ${width} overflow-y-auto  max-h-full`}>
                 {/* Modal content */}
                 <div className="relative bg-white rounded-lg shadow">
                     {/* Modal header */}
@@ -48,7 +48,7 @@ export default function Model({
                         </button>
                     </div>
                     {/* Modal body */}
-                    <div className="p-4 md:p-5 space-y-4 overflow-y-auto max-h-[60vh]">
+                    <div className="p-4 md:p-5 space-y-4 overflow-y-auto">
                         {children}
                     </div>
                     {/* Modal footer */}

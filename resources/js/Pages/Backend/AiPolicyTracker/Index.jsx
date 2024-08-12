@@ -10,7 +10,11 @@ import { Head, Link } from "@inertiajs/react";
 import React, { useState } from "react";
 import Add from "./components/Add";
 
-export default function Index({ tableData = [] }) {
+export default function Index({
+    tableData = [],
+    countries = null,
+    status = null,
+}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleModal = () => {
@@ -101,10 +105,10 @@ export default function Index({ tableData = [] }) {
             <Model
                 isOpen={isModalOpen}
                 onClose={toggleModal}
-                title="Add (AI) Policy Tracker"
-                width="max-w-5xl"
+                title="Add new (AI) Policy Tracker"
+                width="max-w-6xl"
             >
-                <Add />
+                <Add countries={countries} status={status} />
             </Model>
         </Layout>
     );
