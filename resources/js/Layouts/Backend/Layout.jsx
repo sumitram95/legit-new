@@ -1,6 +1,7 @@
 import React from "react";
 import SiderBar from "./Partials/SiderBar";
 import Header from "./Partials/Header";
+import { usePage } from "@inertiajs/react";
 
 // Helper function to generate avatar URL
 const generateAvatarUrl = (name) => {
@@ -10,7 +11,12 @@ const generateAvatarUrl = (name) => {
 };
 
 export default function Layout({ children }) {
-    const userName = "Sumit Ram"; // Example: Replace with actual user name from your application
+    const { props } = usePage();
+    const userName = props.auth.user ? props.auth.user : "Guest"; // Example: Replace with actual user name from your application
+
+    // const { props } = usePage();
+    // const successMessage = props.flash?.success;
+    // const errorMessage = props.flash?.error;
 
     // Generate the avatar URL
     const avatarUrl = generateAvatarUrl(userName);

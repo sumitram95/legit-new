@@ -6,6 +6,7 @@ export default function ({
     placeholder = "",
     htmlFor = "",
     className = "",
+    errorMsg = null,
     ...props
 }) {
     return (
@@ -16,14 +17,6 @@ export default function ({
             >
                 {label}
             </label>
-            {/* <input
-                type={type}
-                id={htmlFor}
-                className="bg-gray-50 border input-class border-gray-300 text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-600 text-sm rounded block w-full px-2.5"
-                placeholder={placeholder}
-                required
-            /> */}
-
             <input
                 type={type}
                 id={htmlFor}
@@ -31,7 +24,9 @@ export default function ({
                 placeholder={placeholder}
                 {...props}
             />
-            {/* <p>fdsfsdfasdfsafsadfa</p> */}
+            {errorMsg && (
+                <p className=" text-red-500 text-xs mt-1">{errorMsg}</p>
+            )}
         </div>
     );
 }
