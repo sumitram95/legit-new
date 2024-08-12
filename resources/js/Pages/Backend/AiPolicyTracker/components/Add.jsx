@@ -154,7 +154,7 @@ export default function Add({ countries = null, status = null }) {
                     cols={30}
                 />
 
-                <Button type="submit" disabled={formAiPolicy.processing}>
+                <Button type="submit" disabled={formAiPolicy.processing}                             className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100">
                     Add
                 </Button>
             </form>
