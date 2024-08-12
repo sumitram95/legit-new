@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import SiderBar from "./Partials/SiderBar";
 import Header from "./Partials/Header";
 import { usePage } from "@inertiajs/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Helper function to generate avatar URL
 const generateAvatarUrl = (name) => {
@@ -12,14 +14,23 @@ const generateAvatarUrl = (name) => {
 
 export default function Layout({ children }) {
     const { props } = usePage();
-    const userName = props.auth.user ? props.auth.user : "Guest"; // Example: Replace with actual user name from your application
+    const userName = props.auth.user ? props.auth.user.name : 'Guest'; // Get the user's name or use 'Guest' if not available
 
-    // const { props } = usePage();
-    // const successMessage = props.flash?.success;
-    // const errorMessage = props.flash?.error;
-
-    // Generate the avatar URL
     const avatarUrl = generateAvatarUrl(userName);
+
+    // Extract flash messages
+    const successMessage = props.flash?.success;
+    const errorMessage = props.flash?.error;
+
+    // Show toast notifications
+    useEffect(() => {
+        if (successMessage) {
+            toast.success(successMessage);
+        }
+        if (errorMessage) {
+            toast.error(errorMessage);
+        }
+    }, [successMessage, errorMessage]);
 
     return (
         <div>
@@ -55,6 +66,9 @@ export default function Layout({ children }) {
                 <Header avatarUrl={avatarUrl} />
                 <div className="rounded-lg mt-0 md:mt-20">{children}</div>
             </div>
+
+            {/* ToastContainer for toast notifications */}
+            <ToastContainer />
         </div>
     );
 }
