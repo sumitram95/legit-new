@@ -70,7 +70,7 @@ export default function Add({ countries = null, status = null, onClose }) {
         <div>
             <Head title="Add News" />
             <form onSubmit={handleSubmit}>
-                <div className="grid gap-6 mb-6 md:grid-cols-3 ">
+                <div className="w-full">
                     <Input
                         name="title"
                         value={formAiPolicy.data.title}
@@ -81,7 +81,9 @@ export default function Add({ countries = null, status = null, onClose }) {
                         placeholder="Eg. Global AI Law and Policy Tracker"
                         errorMsg={formAiPolicy.errors.title}
                     />
+                </div>
 
+                <div className="grid gap-6 md:grid-cols-2 mt-5">
                     <Select
                         onChange={(option) =>
                             handleChange({
@@ -108,7 +110,7 @@ export default function Add({ countries = null, status = null, onClose }) {
                     />
                 </div>
                 {/* Drag and drop upload image */}
-                <div className=" grid grid-cols-2">
+                <div className="grid gap-6 md:grid-cols-2 mt-5">
                     <ImageUpload
                         onImageChange={(images) =>
                             handleImageChange(images, "thumbnail")
@@ -135,14 +137,15 @@ export default function Add({ countries = null, status = null, onClose }) {
                     rows={8}
                     cols={30}
                 />
-
-                <Button
-                    type="submit"
-                    disabled={formAiPolicy.processing}
-                    className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100"
-                >
-                    Add
-                </Button>
+                <div className=" float-end">
+                    <Button
+                        type="submit"
+                        disabled={formAiPolicy.processing}
+                        className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100"
+                    >
+                        Add
+                    </Button>
+                </div>
             </form>
         </div>
     );

@@ -96,7 +96,7 @@ export default function Index({
             <Head title="Country Lists" />
             <div className="rounded-lg bg-white py-2 px-5">
                 <div className="relative overflow-x-auto mt-5">
-                    <div className="mb-3">
+                    <div className="mb-3 float-end">
                         <Button
                             onClick={toggleAddModal}
                             type="button"
@@ -232,6 +232,8 @@ export default function Index({
             </Model>
 
             <DeleteModel
+                title={"Are you sure you want to delete this (AI) policy tracker?"}
+                routePath={"/backend/aipolicytracker/delete/"}
                 isOpen={isDeleteModalOpen}
                 onClose={() => toggleDeleteModal()}
                 aiId={selectedAiId}

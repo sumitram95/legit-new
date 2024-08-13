@@ -1,7 +1,7 @@
 import { router } from "@inertiajs/react";
 import React, { useState } from "react";
 
-const DeleteModel = ({ onClose, isOpen, aiId }) => {
+const DeleteModel = ({ onClose, isOpen, aiId, routePath, title }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -11,7 +11,7 @@ const DeleteModel = ({ onClose, isOpen, aiId }) => {
         setLoading(true);
         setError(null);
         try {
-            await router.delete(`/backend/aipolicytracker/delete/${aiId}`);
+            await router.delete(routePath+aiId);
             onClose(); // Close modal after deletion
         } catch (err) {
             setError("Failed to delete the item. Please try again.");
@@ -72,7 +72,7 @@ const DeleteModel = ({ onClose, isOpen, aiId }) => {
                                 </svg>
                             </div>
                             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                                Are you sure you want to delete this Ai policy tracker?
+                                {title}
                             </h3>
                             {error && (
                                 <p className="text-red-500 mb-4">{error}</p>
@@ -81,7 +81,9 @@ const DeleteModel = ({ onClose, isOpen, aiId }) => {
                                 onClick={handleDelete}
                                 type="button"
                                 disabled={loading}
-                                className={`text-white ${loading ? "bg-red-400" : "bg-red-600"} hover:bg-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center`}
+                                className={`text-white ${
+                                    loading ? "bg-red-400" : "bg-red-600"
+                                } hover:bg-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center`}
                             >
                                 {loading ? "Deleting..." : "Yes"}
                             </button>

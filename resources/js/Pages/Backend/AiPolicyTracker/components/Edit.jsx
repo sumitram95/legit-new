@@ -10,7 +10,7 @@ export default function Edit({
     status = null,
     aiId = null,
     updatedData = null,
-    onClose
+    onClose,
 }) {
     const formAiPolicy = useForm({
         ai_policy_name: updatedData.ai_policy_name ?? "",
@@ -159,14 +159,15 @@ export default function Edit({
                     rows={8}
                     cols={30}
                 />
-
-                <Button
-                    type="submit"
-                    disabled={formAiPolicy.processing}
-                    className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100"
-                >
-                    Update
-                </Button>
+                <div className=" float-end">
+                    <Button
+                        type="submit"
+                        disabled={formAiPolicy.processing}
+                        className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100"
+                    >
+                        Update
+                    </Button>
+                </div>
             </form>
         </div>
     );

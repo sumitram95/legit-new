@@ -49,17 +49,15 @@ export default function Index({
 
         try {
             // Make a GET request to fetch data by ID
-            const response = await axios.post(
-                `/backend/aipolicytracker/update/${id}`
-            );
+            const response = await axios.post(`/backend/news/update/${id}`);
 
-            const updatedData = response.data.aiPolicyTracker; // Adjust according to your response structure
+            const updatedData = response.data.news; // Adjust according to your response structure
 
             if (updatedData) {
                 // Set the updating data and open the modal if data is not null
                 setUpdatingData(updatedData);
                 setSelectedAiId(id);
-                // setIsEditModalOpen(!isEditModalOpen);
+                setIsEditModalOpen(!isEditModalOpen);
 
                 openEditModal();
             } else {
@@ -141,13 +139,13 @@ export default function Index({
                                                 {tableData.from + index}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.ai_policy_name}
+                                                {list.title}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.governing_body}
+                                                {list.status?.name}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.country?.name ?? "N/A"}
+                                                {list.upload_date ?? "N/A"}
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">
@@ -199,14 +197,14 @@ export default function Index({
                 title="Add new news"
                 width="max-w-6xl"
             >
-                <Add countries={countries} status={status}/>
+                <Add countries={countries} status={status} />
             </Model>
 
             {/* edit model */}
             <Model
                 isOpen={isEditModalOpen}
                 onClose={openEditModal}
-                title="Edit (AI) Policy Tracker"
+                title="Edit News"
                 width="max-w-6xl"
             >
                 <Edit
@@ -219,6 +217,8 @@ export default function Index({
             </Model>
 
             <DeleteModel
+                title={"Are you sure you want to delete this news?"}
+                routePath={"/backend/news/delete/"}
                 isOpen={isDeleteModalOpen}
                 onClose={() => toggleDeleteModal()}
                 aiId={selectedAiId}

@@ -112,7 +112,7 @@ class AiPolicyTrackerController extends Controller
             }
             $aiPolicyTracker->update($validated);
 
-            return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Deleted');
+            return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Updated');
 
         } catch (\Throwable $th) {
             report($th);

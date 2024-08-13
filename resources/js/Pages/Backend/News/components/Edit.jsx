@@ -12,11 +12,13 @@ export default function Edit({
     updatedData = null,
     onClose,
 }) {
+    const defaultDate = new Date().toISOString().substring(0, 10);
+
     const formAiPolicy = useForm({
-        title: updatedData.ai_policy_name ?? "",
-        category_id: updatedData.country_id ?? "",
-        created_at: updatedData.announcement_year ?? "",
-        description: updatedData.description ?? "",
+        title: updatedData.title,
+        category_id: updatedData.category_id,
+        upload_date: updatedData.upload_date,
+        description: updatedData.description,
     });
 
     const handleChange = (e) => {
@@ -35,14 +37,14 @@ export default function Edit({
 
         // alert(aiId);
         onClose;
-        formAiPolicy.put(route("backend.ai_policy_tracker.update", aiId));
+        formAiPolicy.put(route("backend.news.update", aiId));
     };
 
     return (
         <div>
             <Head title="Edit News" />
             <form onSubmit={handleSubmit}>
-                <div className="grid gap-6 mb-6 md:grid-cols-3 ">
+                <div className="w-full">
                     <Input
                         name="title"
                         value={formAiPolicy.data.title}
@@ -53,7 +55,8 @@ export default function Edit({
                         placeholder="Eg. Global AI Law and Policy Tracker"
                         errorMsg={formAiPolicy.errors.title}
                     />
-
+                </div>
+                <div className="grid gap-6 md:grid-cols-2 mb-5 mt-5">
                     <Select
                         onChange={(option) =>
                             handleChange({
@@ -62,19 +65,19 @@ export default function Edit({
                             })
                         }
                         name="category_id"
-                        value={countries.find(
-                            (country) =>
-                                country.value === formAiPolicy.data.category_id
+                        value={status.find(
+                            (list) =>
+                                list.value === formAiPolicy.data.category_id
                         )}
                         label="Category"
-                        options={countries}
+                        options={status}
                         errorMsg={formAiPolicy.errors.category_id}
                     />
                     <Input
                         onChange={handleChange}
-                        name="created_at"
-                        value={formAiPolicy.data.created_at}
-                        htmlFor="created_at"
+                        name="upload_date"
+                        value={formAiPolicy.data.upload_date}
+                        htmlFor="upload_date"
                         label="Created At"
                         type="date"
                     />
@@ -88,14 +91,15 @@ export default function Edit({
                     rows={8}
                     cols={30}
                 />
-
-                <Button
-                    type="submit"
-                    disabled={formAiPolicy.processing}
-                    className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100"
-                >
-                    Update
-                </Button>
+                <div className=" float-end">
+                    <Button
+                        type="submit"
+                        disabled={formAiPolicy.processing}
+                        className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100"
+                    >
+                        Update
+                    </Button>
+                </div>
             </form>
         </div>
     );
