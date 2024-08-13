@@ -1,43 +1,32 @@
-// ImageUpload.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-const ImageUpload = ({ onImageChange, ...props }) => {
-    const [image, setImage] = useState(null);
-    const [previewUrl, setPreviewUrl] = useState("");
+const ImageUpload = ({ onImageChange, name, multiple = false , title}) => {
+    const [images, setImages] = useState([]);
+    const [previewUrls, setPreviewUrls] = useState([]);
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: "image/*",
+        multiple: multiple,
         onDrop: (acceptedFiles) => {
-            const file = acceptedFiles[0];
-            setImage(file);
-            setPreviewUrl(URL.createObjectURL(file));
+            const files = multiple ? acceptedFiles : [acceptedFiles[0]];
+            setImages(files);
+            setPreviewUrls(files.map(file => URL.createObjectURL(file)));
+            onImageChange(files);
         },
     });
 
-    // Notify parent component about the image change
-    useEffect(() => {
-        if (onImageChange) {
-            onImageChange(image);
-        }
-    }, [image, onImageChange]);
-
     return (
-        <div className="grid grid-cols-3 gap-6">
-            <div {...getRootProps({ className: "dropzone" })}>
-                <input {...getInputProps()}  {...props}/>
-                <p>Drag && drop some files here, or click to select files</p>
+        <div>
+            <div {...getRootProps({ className: "dropzone w-fit" })}>
+                <input {...getInputProps()} name={name} />
+                <p>{title}</p>
             </div>
-            {previewUrl && (
-                <div className="image-preview">
-                    <img src={previewUrl} alt="Preview" />
-                </div>
-            )}
-            {image && (
-                <div className="image-info">
-                    <p>Filename: {image.name}</p>
-                    <p>Filetype: {image.type}</p>
-                    <p>Filesize: {image.size} bytes</p>
+            {previewUrls.length > 0 && (
+                <div className="image-previews">
+                    {previewUrls.map((url, index) => (
+                        <img key={index} src={url} alt={`Preview ${index}`} />
+                    ))}
                 </div>
             )}
             <style jsx>{`
@@ -47,10 +36,18 @@ const ImageUpload = ({ onImageChange, ...props }) => {
                     padding: 20px;
                     text-align: center;
                     cursor: pointer;
+                    margin-bottom: 20px;
                 }
-                .image-preview img {
-                    max-width: 100%;
+                .image-previews {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 10px;
+                }
+                .image-previews img {
+                    width: 100%;
                     height: auto;
+                    border-radius: 4px;
+                    object-fit: cover;
                 }
             `}</style>
         </div>

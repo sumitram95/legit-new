@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\AiPolicyTracker;
 use App\Models\Country;
+use App\Models\News;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class NewsController extends Controller
@@ -48,6 +50,75 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $validate = $request->validate([
+            'title' => 'required|string|max:255',
+            'category_id' => 'required|string',
+            'upload_date' => 'required|date',
+            'description' => 'sometimes|nullable|string',
+            'thumbnails.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validation for multiple images
+            'future_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $news = News::create($validate);
+
+            if ($request->hasFile('thumbnails')) {
+                $thumbnails = $request->thumbnails[0];
+
+                $this->fileUpload($thumbnails, "thumbnails", $news);
+            }
+
+            if ($request->hasFile('future_images')) {
+
+                $futureImages = $request->future_images;
+                foreach ($futureImages as $futureImage) {
+                    $fileName = time() . '-' . $futureImage->getClientOriginalName();
+                    $filePath = $futureImage->storeAs('future_images', $fileName, 'public');
+                    $relativePath = str_replace('public/', '', $filePath);
+
+                    $news->newsFutureImage()->create([
+                        'type' => $futureImage->getMimeType(),
+                        'name' => $futureImage->getClientOriginalName(),
+                        'path' => $relativePath,
+                    ]);
+                }
+
+
+            }
+
+            DB::commit();
+
+            return to_route('backend.news.index')->with('success', 'SuccessFully Created');
+
+
+        } catch (\Throwable $th) {
+            report($th);
+            DB::rollBack();
+            return to_route('backend.news.index')->with('error', 'Oops! Something went wrong');
+        }
+
+    }
+
+
+
+
+    // file upload
+
+    private function fileUpload($value = null, $storageFileName = '', $news)
+    {
+        $fileName = time() . '-' . $value->getClientOriginalName();
+
+        $filePath = $value->storeAs($storageFileName, $fileName, 'public');
+
+        // Get the path relative to storage/
+        $relativePath = str_replace('public/', '', $filePath);
+
+        $news->thumbnail()->create([
+            'type' => $value->getMimeType(),
+            'name' => $value->getClientOriginalName(),
+            'path' => $relativePath,
+        ]);
     }
 }
