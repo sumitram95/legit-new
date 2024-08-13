@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@inertiajs/react";
 
-export default function Header({ avatarUrl = "NA" }) {
+export default function Header({ avatarUrl = "NA", userName = nulll }) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -28,7 +28,7 @@ export default function Header({ avatarUrl = "NA" }) {
                     id="dropdownDefaultButton"
                     onClick={toggleDropdown}
                 >
-                    <p className=" text-gray-700">Sumit Ram</p>
+                    <p className=" text-gray-700">{userName}</p>
                     <div className="flex justify-center w-[43px] h-[43px] rounded-full overflow-hidden">
                         <img
                             src={avatarUrl}

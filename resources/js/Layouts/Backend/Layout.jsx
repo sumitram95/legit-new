@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import SiderBar from "./Partials/SiderBar";
 import Header from "./Partials/Header";
 import { usePage } from "@inertiajs/react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Helper function to generate avatar URL
 const generateAvatarUrl = (name) => {
@@ -14,7 +14,7 @@ const generateAvatarUrl = (name) => {
 
 export default function Layout({ children }) {
     const { props } = usePage();
-    const userName = props.auth.user ? props.auth.user.name : 'Guest'; // Get the user's name or use 'Guest' if not available
+    const userName = props.auth.user ? props.auth.user.name : "Guest"; // Get the user's name or use 'Guest' if not available
 
     const avatarUrl = generateAvatarUrl(userName);
 
@@ -63,7 +63,7 @@ export default function Layout({ children }) {
 
             {/* Content */}
             <div className="p-4 sm:ml-64">
-                <Header avatarUrl={avatarUrl} />
+                <Header avatarUrl={avatarUrl} userName={userName} />
                 <div className="rounded-lg mt-0 md:mt-20">{children}</div>
             </div>
 
