@@ -117,19 +117,12 @@ export default function Index({
                                         >
                                             S.N
                                         </th>
-                                        <th className="px-6 py-3">Name</th>
+                                        <th className="px-6 py-3">Title</th>
+                                        <th className="px-6 py-3">Category</th>
                                         <th className="px-6 py-3">
-                                            Governing Body
+                                            uploaded At
                                         </th>
-                                        <th className="px-6 py-3">
-                                            Country Name
-                                        </th>
-                                        <th className="px-6 py-3">
-                                            Status Name
-                                        </th>
-                                        <th className="px-6 py-3">
-                                            Created At
-                                        </th>
+
                                         <th
                                             style={{ width: "10%" }}
                                             className="px-6 py-3"
@@ -155,12 +148,6 @@ export default function Index({
                                             </td>
                                             <td className="px-6 py-4">
                                                 {list.country?.name ?? "N/A"}
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                {list.status?.name ?? "N/A"}
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                {list.formatted_created_at}
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">

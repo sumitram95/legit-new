@@ -34,7 +34,7 @@ class NewsController extends Controller
             });
 
 
-        $tableData = AiPolicyTracker::with(['country', 'status'])->paginate(15);
+        $tableData = News::with(['country', 'status'])->paginate(15);
 
 
         // dd($tableData);
