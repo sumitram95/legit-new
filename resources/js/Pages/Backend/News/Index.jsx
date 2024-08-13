@@ -199,7 +199,7 @@ export default function Index({
                 title="Add new news"
                 width="max-w-6xl"
             >
-                <Add countries={countries} status={status} />
+                <Add countries={countries} status={status}/>
             </Model>
 
             {/* edit model */}
