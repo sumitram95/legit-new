@@ -18,6 +18,8 @@ Route:: as("backend.")->group(function () {
     Route::controller(AiPolicyTrackerController::class)->as("ai_policy_tracker.")->group(function () {
         Route::get("/backend/aipolicytracker", "index")->name("index");
         Route::post("/backend/aipolicytracker", "store")->name("store");
+        Route::post("/backend/aipolicytracker/update/{id}", "updateData")->name("updateData");
+        Route::put("/backend/aipolicytracker/update/{id}", "update")->name("update");
 
 
         Route::delete("/backend/aipolicytracker/delete/{id}", "delete")->name("delete");

@@ -6,22 +6,72 @@ import Model from "@/Components/Model";
 import NoTableData from "@/Components/table/NoTableData";
 import ViewIcon from "@/Components/ViewIcon";
 import Layout from "@/Layouts/Backend/Layout";
-import { Head, Link, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import Add from "./components/Add";
 import Pagination from "@/Components/Pagination";
 import DeleteModel from "@/Components/DeleteModel";
+import Edit from "./components/Edit";
+import axios from "axios";
 
 export default function Index({
     tableData = [],
     countries = null,
     status = null,
 }) {
+    // add modal
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+    // edit modal
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+    //delete modal
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+    // set id
     const [selectedAiId, setSelectedAiId] = useState(null);
 
+    // set updating data
+    const [updatingData, setUpdatingData] = useState(null);
+
+    // add toggle func
     const toggleAddModal = () => setIsAddModalOpen(!isAddModalOpen);
+
+    // import axios from 'axios'; // Ensure axios is imported
+
+    function openEditModal() {
+        setIsEditModalOpen(!isEditModalOpen);
+    }
+
+    // edit toggle func
+    const toggleEdiModal = async (id = null) => {
+        if (!id) return;
+
+        try {
+            // Make a GET request to fetch data by ID
+            const response = await axios.post(
+                `/backend/aipolicytracker/update/${id}`
+            );
+
+            const updatedData = response.data.aiPolicyTracker; // Adjust according to your response structure
+
+            if (updatedData) {
+                // Set the updating data and open the modal if data is not null
+                setUpdatingData(updatedData);
+                setSelectedAiId(id);
+                // setIsEditModalOpen(!isEditModalOpen);
+
+                openEditModal();
+            } else {
+                // Handle case where data is null, e.g., show a warning or notification
+            }
+        } catch (error) {
+            // Handle error case if needed
+            console.error("Failed to fetch data:", error);
+        }
+    };
+
+    // delete toggle func
     const toggleDeleteModal = (id = null) => {
         setSelectedAiId(id);
         setIsDeleteModalOpen(!isDeleteModalOpen);
@@ -36,6 +86,8 @@ export default function Index({
     useEffect(() => {
         if (successMessage) {
             setIsAddModalOpen(false); // Close the modal on success
+
+            setIsEditModalOpen(false);
         }
     }, [successMessage]);
 
@@ -112,12 +164,16 @@ export default function Index({
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">
-                                                    <Link
-                                                        href="#"
-                                                        className="underline text-blue-950"
+                                                    <Button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            toggleEdiModal(
+                                                                list.id
+                                                            )
+                                                        }
                                                     >
                                                         <EditIcon />
-                                                    </Link>
+                                                    </Button>
                                                     <Link
                                                         href="#"
                                                         className="underline text-blue-950"
@@ -149,6 +205,7 @@ export default function Index({
                 </div>
             </div>
 
+            {/* add model */}
             <Model
                 isOpen={isAddModalOpen}
                 onClose={toggleAddModal}
@@ -156,6 +213,22 @@ export default function Index({
                 width="max-w-6xl"
             >
                 <Add countries={countries} status={status} />
+            </Model>
+
+            {/* edit model */}
+            <Model
+                isOpen={isEditModalOpen}
+                onClose={openEditModal}
+                title="Edit (AI) Policy Tracker"
+                width="max-w-6xl"
+            >
+                <Edit
+                    countries={countries}
+                    status={status}
+                    onClose={openEditModal}
+                    aiId={selectedAiId}
+                    updatedData={updatingData}
+                />
             </Model>
 
             <DeleteModel
