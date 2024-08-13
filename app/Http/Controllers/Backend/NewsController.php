@@ -45,4 +45,9 @@ class NewsController extends Controller
             'tableData' => $tableData,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
 }
