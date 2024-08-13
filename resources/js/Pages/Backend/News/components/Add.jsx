@@ -7,16 +7,18 @@ import { Head, useForm } from "@inertiajs/react";
 import React, { useState } from "react";
 import ImageUpload from "@/Components/ImageUpload";
 
-export default function Add({ countries = null, status = null }) {
+export default function Add({ countries = null, status = null, onClose }) {
     const defaultDate = new Date().toISOString().substring(0, 10);
-    const [thumbnail, setThumbnail] = useState(null);
+    const [thumbnails, setThumbnails] = useState([]);
+    const [featureImages, setFeatureImages] = useState([]);
 
     const formAiPolicy = useForm({
         title: "",
         category_id: "",
-        created_at: defaultDate,
+        upload_date: defaultDate,
         description: "",
-        thumbnail: ""  // Initialize with an empty string
+        thumbnails: [],
+        future_images: [],
     });
 
     const handleChange = (e) => {
@@ -30,10 +32,15 @@ export default function Add({ countries = null, status = null }) {
         }
     };
 
-    const handleImageChange = (image) => {
-        // Set the thumbnail state and form data
-        setThumbnail(image);
-        formAiPolicy.setData('thumbnail', image);
+    const handleImageChange = (images, type) => {
+        // Update the state and form data based on the image type
+        if (type === "thumbnail") {
+            setThumbnails(images);
+            formAiPolicy.setData("thumbnails", images);
+        } else if (type === "feature_img") {
+            setFeatureImages(images);
+            formAiPolicy.setData("future_images", images);
+        }
     };
 
     const handleSubmit = (event) => {
@@ -42,21 +49,22 @@ export default function Add({ countries = null, status = null }) {
         // Create FormData instance
         const formData = new FormData();
         Object.keys(formAiPolicy.data).forEach((key) => {
-            formData.append(key, formAiPolicy.data[key]);
+            if (key === "thumbnails" || key === "future_images") {
+                formAiPolicy.data[key].forEach((image, index) => {
+                    formData.append(`${key}[${index}]`, image);
+                });
+            } else {
+                formData.append(key, formAiPolicy.data[key]);
+            }
         });
-        if (thumbnail) {
-            formData.append('thumbnail', thumbnail);
-        }
 
         formAiPolicy.post(route("backend.news.store"), {
             data: formData,
             headers: {
-                'Content-Type': 'multipart/form-data',
+                "Content-Type": "multipart/form-data",
             },
         });
     };
-
-    console.log(formAiPolicy.errors);
 
     return (
         <div>
@@ -92,16 +100,31 @@ export default function Add({ countries = null, status = null }) {
                     />
                     <Input
                         onChange={handleChange}
-                        name="created_at"
-                        value={formAiPolicy.data.created_at}
-                        htmlFor="created_at"
+                        name="upload_date"
+                        value={formAiPolicy.data.upload_date}
+                        htmlFor="upload_date"
                         label="Created At"
                         type="date"
                     />
                 </div>
                 {/* Drag and drop upload image */}
-                <div>
-                    <ImageUpload onImageChange={handleImageChange} />
+                <div className=" grid grid-cols-2">
+                    <ImageUpload
+                        onImageChange={(images) =>
+                            handleImageChange(images, "thumbnail")
+                        }
+                        name="thumbnail"
+                        title="Drag & drop thumbnail"
+                    />
+
+                    <ImageUpload
+                        multiple
+                        onImageChange={(images) =>
+                            handleImageChange(images, "feature_img")
+                        }
+                        name="feature_img"
+                        title="Drag & drop multiple feature image"
+                    />
                 </div>
                 <TextArea
                     onChange={handleChange}
