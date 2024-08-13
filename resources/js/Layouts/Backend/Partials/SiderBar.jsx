@@ -196,7 +196,7 @@ export default function SiderBar() {
                         )}
                     </li>
 
-                    <li>
+                    {/* <li>
                         <button
                             type="button"
                             className={`flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-blue-100 ${
@@ -259,7 +259,7 @@ export default function SiderBar() {
                                 </li>
                             </ul>
                         )}
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </aside>
