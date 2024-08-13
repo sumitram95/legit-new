@@ -85,9 +85,9 @@ export default function SiderBar() {
 
                     <li>
                         <Link
-                            href={route("backend.ai_policy_tracker.index")}
+                            href={route("backend.news.index")}
                             className={`${isActiveUrl(
-                                route("backend.ai_policy_tracker.index")
+                                route("backend.news.index")
                             )} flex items-center p-2 rounded-lg hover:bg-blue-100 group`}
                         >
                             <svg
