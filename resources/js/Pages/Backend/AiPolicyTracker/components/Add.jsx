@@ -6,11 +6,14 @@ import { useForm } from "@inertiajs/react";
 import React from "react";
 
 export default function Add({ countries = null, status = null }) {
+
+    const defaultDate = new Date().toISOString().substring(0, 10);
+
     const formAiPolicy = useForm({
         ai_policy_name: "",
         country_id: "",
         governing_body: "",
-        announcement_year: "",
+        announcement_year: defaultDate,
         status_id: "",
         whitepaper_document_link: "",
         technology_partners: "",
@@ -37,6 +40,7 @@ export default function Add({ countries = null, status = null }) {
     };
 
     console.log(formAiPolicy.errors);
+
 
     return (
         <div>
