@@ -36,7 +36,7 @@ class NewsController extends Controller
             });
 
 
-        $tableData = AiPolicyTracker::with(['country', 'status'])->paginate(15);
+        $tableData = News::with(['thumbnail', 'status'])->paginate(15);
 
 
         // dd($tableData);
@@ -63,15 +63,11 @@ class NewsController extends Controller
         try {
 
             $news = News::create($validate);
-
             if ($request->hasFile('thumbnails')) {
                 $thumbnails = $request->thumbnails[0];
-
                 $this->fileUpload($thumbnails, "thumbnails", $news);
             }
-
             if ($request->hasFile('future_images')) {
-
                 $futureImages = $request->future_images;
                 foreach ($futureImages as $futureImage) {
                     $fileName = time() . '-' . $futureImage->getClientOriginalName();
@@ -84,15 +80,9 @@ class NewsController extends Controller
                         'path' => $relativePath,
                     ]);
                 }
-
-
             }
-
             DB::commit();
-
             return to_route('backend.news.index')->with('success', 'SuccessFully Created');
-
-
         } catch (\Throwable $th) {
             report($th);
             DB::rollBack();
@@ -101,6 +91,59 @@ class NewsController extends Controller
 
     }
 
+    public function updateData($id)
+    {
+        try {
+            $news = News::find($id);
+            if (!$news) {
+
+                return to_route('backend.news.index')->with('error', 'Not founded');
+            }
+            return response()->json(['news' => $news]);
+        } catch (\Throwable $th) {
+            report($th);
+            return to_route('backend.news.index')->with('error', 'Oops! Somethings went wrong');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'title' => 'required|string|max:255',
+            'category_id' => 'required|string',
+            'upload_date' => 'required|date',
+            'description' => 'sometimes|nullable|string',
+            // 'thumbnails.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'future_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        try {
+            $news = News::find($id);
+            if (!$news) {
+                return to_route('backend.news.index')->with('error', 'Not founded');
+            }
+            $news->update($validate);
+            return to_route('backend.news.index')->with('success', 'SuccessFully Updated');
+        } catch (\Throwable $th) {
+            report($th);
+            return to_route('backend.news.index')->with('error', 'Oops! Somethings went wrong');
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $news = News::find($id);
+            if (!$news) {
+                return to_route('backend.news.index')->with('error', 'Not founded');
+            }
+            $news->delete();
+            return to_route('backend.news.index')->with('success', 'SuccessFully Deleted');
+        } catch (\Throwable $th) {
+            report($th);
+            return to_route('backend.news.index')->with('error', 'Oops! Somethings went wrong');
+        }
+    }
 
 
 

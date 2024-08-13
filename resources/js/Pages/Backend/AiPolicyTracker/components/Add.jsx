@@ -6,7 +6,6 @@ import { useForm } from "@inertiajs/react";
 import React from "react";
 
 export default function Add({ countries = null, status = null }) {
-
     const defaultDate = new Date().toISOString().substring(0, 10);
 
     const formAiPolicy = useForm({
@@ -38,9 +37,6 @@ export default function Add({ countries = null, status = null }) {
 
         formAiPolicy.post(route("backend.ai_policy_tracker.store"));
     };
-
-    console.log(formAiPolicy.errors);
-
 
     return (
         <div>
@@ -158,9 +154,15 @@ export default function Add({ countries = null, status = null }) {
                     cols={30}
                 />
 
-                <Button type="submit" disabled={formAiPolicy.processing}                             className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100">
-                    Add
-                </Button>
+                <div className=" float-end">
+                    <Button
+                        type="submit"
+                        disabled={formAiPolicy.processing}
+                        className="text-sm text-gray-700 font-semibold bg-secondary px-5 py-2 hover:bg-blue-100"
+                    >
+                        Add
+                    </Button>
+                </div>
             </form>
         </div>
     );

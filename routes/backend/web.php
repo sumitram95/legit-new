@@ -30,11 +30,11 @@ Route::middleware(['auth'])
         Route::controller(NewsController::class)->as("news.")->group(function () {
             Route::get("/backend/news", "index")->name("index");
             Route::post("/backend/news", "store")->name("store");
-            // Route::post("/backend/aipolicytracker/update/{id}", "updateData")->name("updateData");
-            // Route::put("/backend/aipolicytracker/update/{id}", "update")->name("update");
+            Route::post("/backend/news/update/{id}", "updateData")->name("updateData");
+            Route::put("/backend/news/update/{id}", "update")->name("update");
 
 
-            // Route::delete("/backend/aipolicytracker/delete/{id}", "delete")->name("delete");
+            Route::delete("/backend/news/delete/{id}", "delete")->name("delete");
 
 
             // image upload after drop or choosen

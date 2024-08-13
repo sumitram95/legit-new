@@ -27,4 +27,9 @@ class News extends Model
     {
         return $this->hasOne(NewsFutureImage::class);
     }
+
+    public function status()
+    {
+        return $this->hasOne(Status::class,'id','category_id');
+    }
 }
