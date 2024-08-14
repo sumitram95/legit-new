@@ -5,10 +5,10 @@ import SelectInputLists from "@/Components/map/SelectInputList";
 import { Head, Link } from "@inertiajs/react";
 import Table from "@/Components/table/Table";
 import Columns from "@/Components/table/Columns";
-import TableData from "@/Components/table/TableData";
+// import TableData from "@/Components/table/TableData";
 import Subscription from "./components/Subscription";
 
-export default function WatchList() {
+export default function WatchList({ tableData }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
 
     return (
@@ -91,7 +91,7 @@ export default function WatchList() {
                     )}
 
                     {/* table */}
-                    <Table columns={Columns} tableData={TableData} />
+                    <Table columns={Columns} tableData={tableData.data} />
                 </div>
 
                 {/* Subscription */}

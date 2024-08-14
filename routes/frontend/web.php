@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(NewsController::class)->group(function () {
     Route::get("/news", "index")->name("news.index");
-    Route::get("/news/news-name-here", "singleNews")->name("news.single");
+    Route::get("/news/{id}", "singleNews")->name("news.single");
 });
 
 Route:: as('frontend.')->group(function () {

@@ -21,7 +21,7 @@ import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import LinkButton from "@/Components/LinkButton";
 
-export default function Dashboard({ tableData }) {
+export default function Dashboard({ tableData, news }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
 
     console.log("tableData = ", tableData.data);
@@ -142,7 +142,7 @@ export default function Dashboard({ tableData }) {
                 </div>
 
                 {/* news */}
-                <News />
+                <News news={news.data} />
 
                 {/* Description */}
                 <Description

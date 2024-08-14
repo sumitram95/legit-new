@@ -6,7 +6,7 @@ import { Head } from "@inertiajs/react";
 import React, { useState } from "react";
 import NewsCard from "./components/NewsCard";
 
-export default function News({ newsLists }) {
+export default function News({ news }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
 
     const filteredLabels = ["AI Policy Name", "Country / Region"];
@@ -62,7 +62,10 @@ export default function News({ newsLists }) {
                             <form className="w-full" id="filterData">
                                 <div className="flex flex-wrap -mx-3 mb-6">
                                     {filteredLabels.map((label, index) => (
-                                        <div className="w-full md:w-1/2 px-3" key={index}>
+                                        <div
+                                            className="w-full md:w-1/2 px-3"
+                                            key={index}
+                                        >
                                             <SelectInput
                                                 key={index}
                                                 label={label}
@@ -80,7 +83,7 @@ export default function News({ newsLists }) {
                     )}
 
                     <div className="mt-5" style={{ minHeight: "500px" }}>
-                        <NewsCard newsLists={newsLists} />
+                        <NewsCard newsLists={news.data} />
                     </div>
                 </div>
             </div>
