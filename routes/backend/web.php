@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Backend\AiPolicyTrackerController;
+use App\Http\Controllers\Backend\CMS\HeaderMenuController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\NewsController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,17 @@ Route::middleware(['auth'])
             // image upload after drop or choosen
             // Route::delete("/upload-image", "imgUpload")->name("imgUpload");
 
+        });
+
+        // Header menu
+        Route::controller(HeaderMenuController::class)->as("header_menu.")->group(function () {
+            Route::get("/backend/header-menu", "index")->name("index");
+            Route::post("/backend/header-menu", "store")->name("store");
+            // Route::post("/backend/header-menu/update/{id}", "updateData")->name("updateData");
+            // Route::put("/backend/header-menu/update/{id}", "update")->name("update");
+
+
+            // Route::delete("/backend/header-menu/delete/{id}", "delete")->name("delete");
         });
 
     });

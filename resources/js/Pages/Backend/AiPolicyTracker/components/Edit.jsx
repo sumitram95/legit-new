@@ -10,7 +10,6 @@ export default function Edit({
     status = null,
     aiId = null,
     updatedData = null,
-    onClose,
 }) {
     const formAiPolicy = useForm({
         ai_policy_name: updatedData.ai_policy_name ?? "",
@@ -38,9 +37,6 @@ export default function Edit({
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // alert(aiId);
-        onClose;
         formAiPolicy.put(route("backend.ai_policy_tracker.update", aiId));
     };
 

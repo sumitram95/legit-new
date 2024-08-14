@@ -111,6 +111,35 @@ export default function SiderBar() {
                         </Link>
                     </li>
 
+                    {/* cms */}
+                    <li>
+                        <Link
+                            href={route("backend.header_menu.index")}
+                            className={`${isActiveUrl(
+                                route("backend.header_menu.index")
+                            )} flex items-center p-2 rounded-lg hover:bg-blue-100 group`}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="#4E87D3"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="size-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z"
+                                />
+                            </svg>
+
+                            <span className="ms-3 text-sm text-gray-700 capitalize">
+                                Cms
+                            </span>
+                        </Link>
+                    </li>
+{/*
                     <li>
                         <button
                             type="button"
@@ -161,7 +190,9 @@ export default function SiderBar() {
                             >
                                 <li>
                                     <Link
-                                        href="#"
+                                        href={route(
+                                            "backend.header_menu.index"
+                                        )}
                                         className="flex text-sm text-gray-700 items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-blue-100"
                                     >
                                         Header Menu
@@ -194,9 +225,9 @@ export default function SiderBar() {
                                 </li>
                             </ul>
                         )}
-                    </li>
+                    </li> */}
 
-                    <li>
+                    {/* <li>
                         <button
                             type="button"
                             className={`flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-blue-100 ${
@@ -259,7 +290,7 @@ export default function SiderBar() {
                                 </li>
                             </ul>
                         )}
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </aside>
