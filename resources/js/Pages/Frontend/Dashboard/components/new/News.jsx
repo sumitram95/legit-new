@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const News = () => {
+const News = ({ news }) => {
     const sliderRef = useRef(null);
 
     const settings = {
@@ -18,8 +18,6 @@ const News = () => {
         adaptiveHeight: false,
         arrows: false,
     };
-
-    const newsList = ["1", "2", "3", "4"];
 
     return (
         <div className="bg-white h-fit p-5 rounded-md w-full mt-6">
@@ -43,34 +41,61 @@ const News = () => {
                 </div>
             </div>
             <Slider ref={sliderRef} {...settings} className="flex gap-6 mt-5">
-                {newsList.map((list, index) => (
+                {news.map((list, index) => (
                     <div
                         className="max-w-sm bg-white border border-gray-200 rounded-lg shadow"
                         key={index}
                     >
-
+                        {/* <img
+                            className="rounded-t-lg h-44"
+                            src="https://flowbite.com/docs/images/blog/image-1.jpg"
+                            alt=""
+                        /> */}
+                        {list.thumbnail?.path ? (
                             <img
-                                className="rounded-t-lg"
-                                src="https://flowbite.com/docs/images/blog/image-1.jpg"
-                                alt=""
+                                className="rounded-t-lg h-44"
+                                src={`/storage/${list.thumbnail?.path}`}
+                                alt="no-image"
                             />
+                        ) : (
+                            <div className="w-full h-44 flex justify-center items-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="#4E87D3"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth="1.5"
+                                    stroke="currentColor"
+                                    className="size-12"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+                                    />
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+                                    />
+                                </svg>
+                            </div>
+                        )}
 
                         <div className="p-5">
                             <p className=" text-xs mb-3">
-                                <i className="fa-regular fa-clock"></i> 05/01/24
+                                <i className="fa-regular fa-clock"></i>{" "}
+                                {list.upload_date}
                             </p>
 
-                                <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate ...">
-                                    Noteworthy 1 technology acquisitions 2021
-                                </h5>
+                            <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate ...">
+                                {list.title}
+                            </h5>
 
                             <p className="mb-3 font-normal text-primary truncate ...">
-                                Here are the biggest enterprise technology
-                                acquisitions of 2021 so far, in reverse
-                                chronological order.
+                                {list.description}
                             </p>
                             <Link
-                                href={route("news.single")}
+                                href={route("news.single", list.id)}
                                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-pr bg-secondary rounded-lg hover:bg-blue-100 focus:ring-4 focus:outline-none"
                             >
                                 Read more
