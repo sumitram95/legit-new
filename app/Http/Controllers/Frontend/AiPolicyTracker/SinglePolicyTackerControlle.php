@@ -23,6 +23,6 @@ class SinglePolicyTackerControlle extends Controller
             2,
             3
         ];
-        return Inertia::render("AiPolicyTracker/SingleAiPolicyTracker", $data);
+        return Inertia::render("Frontend/AiPolicyTracker/SingleAiPolicyTracker", $data);
     }
 }
