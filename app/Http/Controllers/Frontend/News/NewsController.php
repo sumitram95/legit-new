@@ -21,7 +21,7 @@ class NewsController extends Controller
             8,
             9
         ];
-        return Inertia::render('News/News', $data);
+        return Inertia::render('Frontend/News/News', $data);
     }
 
     public function singleNews($id = null)
@@ -37,6 +37,6 @@ class NewsController extends Controller
             8,
             9
         ];
-        return Inertia::render('News/SingleNews', $data);
+        return Inertia::render('Frontend/News/SingleNews', $data);
     }
 }

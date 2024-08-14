@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Dashboard/Dashboard');
+    return Inertia::render('Frontend/Dashboard/Dashboard');
 })->name("frontend.dashboard");
 
 

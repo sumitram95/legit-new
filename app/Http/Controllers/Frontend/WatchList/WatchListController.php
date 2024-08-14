@@ -10,6 +10,6 @@ class WatchListController extends Controller
 {
     public function index()
     {
-        return Inertia::render("WatchList/WatchList");
+        return Inertia::render("Frontend/WatchList/WatchList");
     }
 }
