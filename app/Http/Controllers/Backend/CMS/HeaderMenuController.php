@@ -18,7 +18,8 @@ class HeaderMenuController extends Controller
         $validated = $request->validate([
             'logo' => 'sometimes|nullable|mimes:png,jpg,gif',
             'navBars.*' => 'sometimes|nullable',
-            'aiPolicyTrackeData.*' => 'sometimes|nullable'
+            'aiPolicyTrackeData.*' => 'sometimes|nullable',
+            'contributorData.*' => 'sometimes|nullable',
         ]);
         dd($validated);
     }
