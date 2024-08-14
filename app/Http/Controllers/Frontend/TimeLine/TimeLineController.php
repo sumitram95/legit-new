@@ -16,6 +16,6 @@ class TimeLineController extends Controller
             3,
             4
         ];
-        return Inertia::render("TimeLine/TimeLine", $data);
+        return Inertia::render("Frontend/TimeLine/TimeLine", $data);
     }
 }
