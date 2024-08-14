@@ -9,7 +9,7 @@ export default function Contributor({
     handleRemovecontributor,
 }) {
     const handleSocialChange = (index, value) => {
-        handleContributorChange(index, 'social', value);
+        handleContributorChange(index, "social", value);
     };
 
     return (
@@ -40,43 +40,62 @@ export default function Contributor({
                             />
                         </svg>
                     </button>
+                    <div className=" grid grid-cols-3 gap-2 pb-3" key={index}>
+                        <Input
+                            placeholder="Eg. Pilot"
+                            type="text"
+                            name={`contributor_name_${index}`}
+                            value={item.name}
+                            onChange={(e) =>
+                                handleContributorChange(
+                                    index,
+                                    "name",
+                                    e.target.value
+                                )
+                            }
+                        />
+                        <Input
+                            type="text"
+                            name={`contributor_url_${index}`}
+                            placeholder="Kink"
+                            value={item.url} // Corrected from `description` to `url`
+                            onChange={(e) =>
+                                handleContributorChange(
+                                    index,
+                                    "url",
+                                    e.target.value
+                                )
+                            }
+                        />
+                        {/* <select
+                            name="social"
+                            value={item.social || ""}
+                            onChange={(e) =>
+                                handleSocialChange(index, e.target.value)
+                            }
+                            className=""
+                        >
+                            <option value="">Choose Social Icon</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="linkedin">Linkedin</option>
+                        </select> */}
 
-                    <Input
-                        placeholder="Eg. Pilot"
-                        type="text"
-                        name={`contributor_name_${index}`}
-                        value={item.name}
-                        onChange={(e) =>
-                            handleContributorChange(
-                                index,
-                                "name",
-                                e.target.value
-                            )
-                        }
-                    />
-                    <Input
-                        type="text"
-                        name={`contributor_url_${index}`}
-                        placeholder="Kink"
-                        value={item.url} // Corrected from `description` to `url`
-                        onChange={(e) =>
-                            handleContributorChange(
-                                index,
-                                "url",
-                                e.target.value
-                            )
-                        }
-                    />
-                    <select
-                        name="social"
-                        value={item.social || ""}
-                        onChange={(e) => handleSocialChange(index, e.target.value)}
-                    >
-                        <option value="">Choose Social Icon</option>
-                        <option value="twitter">Twitter</option>
-                        <option value="facebook">Facebook</option>
-                        <option value="linkedin">Linkedin</option>
-                    </select>
+                        <select
+                            name="social"
+                            value={item.social || ""}
+                            onChange={(e) =>
+                                handleSocialChange(index, e.target.value)
+                            }
+                            id="small-input"
+                            className="block w-full py-0 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500"
+                        >
+                            <option value="">Choose Social Icon</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="linkedin">Linkedin</option>
+                        </select>
+                    </div>
                 </div>
             ))}
 
