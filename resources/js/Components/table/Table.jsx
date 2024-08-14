@@ -26,7 +26,7 @@ export default function Table({
                 </thead>
                 <tbody>
                     {tableData.map((list, index) => (
-                        <tr className="bg-white border-b" key={index}>
+                        <tr className="bg-white border-b" key={list.id}>
                             <td className="px-6 py-4">
                                 <div className="flex gap-x-2">
                                     <form action="" method="post">
@@ -43,23 +43,25 @@ export default function Table({
                                         )}
                                         className="text-primary hover:underline"
                                     >
-                                        {list.aiPolicyName}
+                                        {list.ai_policy_name}
                                     </Link>
                                 </div>
                             </td>
-                            <td className="px-6 py-4">{list.country}</td>
-                            <td className="px-6 py-4">{list.governingBody}</td>
+                            <td className="px-6 py-4">{list.country?.name}</td>
+                            <td className="px-6 py-4">{list.governing_body}</td>
                             <td className="px-6 py-4">
-                                {list.announcementYear}
+                                {list.formatted_created_at}
                             </td>
-                            <td className="px-6 py-4">{list.status}</td>
+                            <td className="px-6 py-4">{list.status?.name}</td>
                             <td className="px-6 py-4">
-                                <Link
-                                    href={"#"}
+                                <a
+                                    href={list.whitepaper_document_link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="underline text-blue-950"
                                 >
-                                    {list.Whitepaper_Document_Link}
-                                </Link>
+                                   open
+                                </a>
                             </td>
                         </tr>
                     ))}

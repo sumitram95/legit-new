@@ -21,8 +21,10 @@ import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import LinkButton from "@/Components/LinkButton";
 
-export default function Dashboard() {
+export default function Dashboard({ tableData }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
+
+    console.log("tableData = ", tableData.data);
 
     return (
         <AppLayout>
@@ -134,7 +136,7 @@ export default function Dashboard() {
                     {/* table */}
                     <Table
                         columns={Columns}
-                        tableData={TableData}
+                        tableData={tableData.data}
                         btnName={"Edit Columns "}
                     />
                 </div>

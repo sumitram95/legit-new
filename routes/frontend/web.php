@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\AiPolicyTracker\SinglePolicyTackerControlle;
+use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\News\NewsController;
 use App\Http\Controllers\Frontend\TimeLine\TimeLineController;
 use App\Http\Controllers\Frontend\WatchList\WatchListController;
@@ -9,9 +10,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Frontend/Dashboard/Dashboard');
-})->name("frontend.dashboard");
+// Route::get('/', function () {
+//     return Inertia::render('Frontend/Dashboard/Dashboard');
+// })->name("frontend.dashboard");
 
 
 Route::middleware('auth')->group(function () {
@@ -26,6 +27,9 @@ Route::controller(NewsController::class)->group(function () {
 });
 
 Route:: as('frontend.')->group(function () {
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/', 'dashboard')->name('dashboard');
+    });
     Route::controller(WatchListController::class)->as('watch_list.')->group(function () {
         Route::get('/watchlist', 'index')->name('index');
     });
