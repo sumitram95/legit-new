@@ -20,6 +20,7 @@ class HeaderMenuController extends Controller
             'navBars.*' => 'sometimes|nullable',
             'aiPolicyTrackeData.*' => 'sometimes|nullable',
             'contributorData.*' => 'sometimes|nullable',
+            'organizationData.*'=> 'sometimes|nullable',
         ]);
         dd($validated);
     }
