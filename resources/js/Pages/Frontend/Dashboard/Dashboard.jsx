@@ -30,7 +30,7 @@ export default function Dashboard({ tableData, news }) {
         <AppLayout>
             {/* <Head title="Dashboard" /> */}
             <Head title=" " />
-            <div className="relative top-[-50px] max-auto">
+            <div className="relative top-[-50px] max-w-screen-2xl">
                 <div className="border rounded-md w-full bg-white py-5">
                     <div className=" border-b-2 pb-4 px-5 flex justify-between items-center">
                         <div>
