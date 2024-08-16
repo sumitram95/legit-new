@@ -42,15 +42,23 @@ const News = ({ news }) => {
             </div>
             <Slider ref={sliderRef} {...settings} className="flex gap-6 mt-5">
                 {news.map((list, index) => (
-                    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow" key={index}>
+                    <div
+                        className="max-w-sm bg-white border border-gray-200 rounded-lg shadow"
+                        key={index}
+                    >
+                        {/* <img
+                            className="rounded-t-lg h-44"
+                            src="https://flowbite.com/docs/images/blog/image-1.jpg"
+                            alt=""
+                        /> */}
                         {list.thumbnail?.path ? (
                             <img
-                                className="rounded-t-lg h-44 w-full object-cover"
+                                className="rounded-t-lg h-44"
                                 src={`/storage/${list.thumbnail?.path}`}
-                                alt="News Thumbnail"
+                                alt="no-image"
                             />
                         ) : (
-                            <div className="w-full h-44 flex justify-center items-center bg-gray-100">
+                            <div className="w-full h-44 flex justify-center items-center">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="#4E87D3"
@@ -74,21 +82,21 @@ const News = ({ news }) => {
                         )}
 
                         <div className="p-5">
-                            <p className="text-xs mb-3 text-gray-500">
+                            <p className=" text-xs mb-3">
                                 <i className="fa-regular fa-clock"></i>{" "}
                                 {list.upload_date}
                             </p>
 
-                            <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate">
+                            <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate ...">
                                 {list.title}
                             </h5>
 
-                            <p className="mb-3 font-normal text-primary truncate">
+                            <p className="mb-3 font-normal text-primary truncate ...">
                                 {list.description}
                             </p>
                             <Link
                                 href={route("news.single", list.id)}
-                                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-primary bg-secondary rounded-lg hover:bg-blue-100 focus:ring-4 focus:outline-none"
+                                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-pr bg-secondary rounded-lg hover:bg-blue-100 focus:ring-4 focus:outline-none"
                             >
                                 Read more
                                 <svg
@@ -110,7 +118,6 @@ const News = ({ news }) => {
                         </div>
                     </div>
                 ))}
-
             </Slider>
         </div>
     );

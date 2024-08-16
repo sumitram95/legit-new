@@ -72,11 +72,10 @@ export default function Dashboard({ tableData, news }) {
                                     : "Hide filters"}
 
                                 <i
-                                    className={`fa-solid ${
-                                        visibleDiv
-                                            ? "fa-chevron-up"
-                                            : "fa-chevron-down"
-                                    } ml-3`}
+                                    className={`fa-solid ${visibleDiv
+                                        ? "fa-chevron-up"
+                                        : "fa-chevron-down"
+                                        } ml-3`}
                                 ></i>
                             </button>
                         </div>
@@ -96,7 +95,7 @@ export default function Dashboard({ tableData, news }) {
                                                     label={label}
                                                     listName={
                                                         SelectInputLists.lists[
-                                                            index
+                                                        index
                                                         ]
                                                     }
                                                 />
@@ -107,6 +106,7 @@ export default function Dashboard({ tableData, news }) {
                             </form>
                         </div>
                     )}
+
                     <div
                         style={{ height: "100vh", width: "100%" }}
                         className="mt-5 px-4"
@@ -116,8 +116,11 @@ export default function Dashboard({ tableData, news }) {
                                 <Status />
                             </div>
                         </div>
+
+                        {/* ********************** Rendering the MapChart component ********************** */}
                         <MapChart />
                     </div>
+
                     {/* Historic state */}
                     <div className="px-5 mt-4">
                         <HistoricState date={"August 2024"} />
@@ -142,16 +145,18 @@ export default function Dashboard({ tableData, news }) {
                     />
                 </div>
 
-                {/* news */}
+                {/* ********************** Rendering the News component ********************** */}
                 <News news={news.data} />
 
-                {/* Description */}
+                {/* ********************** Rendering the Description component ********************** */}
+                {/* AIPolicyTracker Project */}
                 <Description
                     dessciptionData={DescriptionData}
                     contributorLists={ContributorLists}
                     contactLists={ContactLists}
                 />
 
+                {/* ********************** Rendering the News Organization ********************** */}
                 <Organization organizationLogo={organizationLogo} />
             </div>
         </AppLayout>
