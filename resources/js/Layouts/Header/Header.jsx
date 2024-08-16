@@ -27,7 +27,7 @@ const NavBarLists = {
 
 export function Header() {
     return (
-        <header className="header">
+        <header className="header absolute w-full">
             <div className="flex justify-between">
                 <HeaderLogo />
                 <NavBar NavBarLists={NavBarLists} />
