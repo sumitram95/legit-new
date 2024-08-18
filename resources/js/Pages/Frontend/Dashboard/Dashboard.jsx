@@ -40,16 +40,17 @@ export default function Dashboard({ tableData, news }) {
                                     Status
                                 </p>
                             </div>
-                            <div className="flex gap-5 mt-[0.5rem] text-sm">
+                            <div className="flex items-center mt-[0.5rem] text-sm">
                                 <p className=" text-sm leading-normal text-primary-light">
                                     Database Update:
-                                    <span className=" text-black">
+                                    <span className=" text-black ml-[4px]">
                                         July 2022
                                     </span>
                                 </p>
+                                <span class="date-separator"></span>
                                 <p className=" text-sm leading-normal text-primary-light">
                                     News Update:
-                                    <span className="text-black">Aug 2024</span>
+                                    <span className="text-black ml-[4px]">Aug 2024</span>
                                 </p>
                             </div>
                         </div>
