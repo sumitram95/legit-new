@@ -30,24 +30,24 @@ export default function Dashboard({ tableData, news }) {
         <AppLayout>
             {/* <Head title="Dashboard" /> */}
             <Head title=" " />
-            <div className="relative top-[-50px]">
-                <div className="border rounded-md w-full bg-white py-5">
-                    <div className=" border-b-2 pb-4 px-5 flex justify-between items-center">
+            <div className="relative top-[-60px]">
+                <div className="border rounded-md w-full bg-white">
+                    <div className=" border-b-2 py-[16px] px-[16px] flex justify-between items-center">
                         <div>
                             <div>
-                                <p className="font-bold text-primary text-lg">
+                                <p className="font-bold text-primary text-lg leading-none">
                                     Global Artificial Intelligence (AI) Policy
                                     Status
                                 </p>
                             </div>
-                            <div className="flex gap-5 mt-3 text-sm">
-                                <p className=" text-sm">
+                            <div className="flex gap-5 mt-[0.5rem] text-sm">
+                                <p className=" text-sm leading-normal">
                                     Database Update:
                                     <span className=" text-black">
                                         July 2022
                                     </span>
                                 </p>
-                                <p className=" text-sm">
+                                <p className=" text-sm leading-normal">
                                     News Update:
                                     <span className="text-black">Aug 2024</span>
                                 </p>

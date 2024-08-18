@@ -71,7 +71,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -3px;
+    bottom: 4px;
     height: 3.5px;
     background-color: rgba(217, 233, 244, 0.636);
     border-radius: 3.5px;
@@ -89,7 +89,7 @@ body {
     content: '';
     position: absolute;
     right: 0;
-    bottom: -3px;
+    bottom: 4px;
     height: 3.5px;
     width: 3.5px;
     background-color: $status-launched-primary-color;
@@ -101,7 +101,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -3px;
+    bottom: 4px;
     height: 3.5px;
     background-color: rgba(217, 233, 244, 0.636);
     border-radius: 3.5px;
