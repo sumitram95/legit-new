@@ -18,6 +18,7 @@ export function MapChart() {
 
         createPolygonSeries(chart);
 
+        {/* ********************** Zoom Control ********************** */ }
         setZoomControl(chart, root);
 
         return () => {
