@@ -16,10 +16,26 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                // sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                primary: {
+                    light: '#7997c3',
+                    DEFAULT: '#0f4698',
+                    dark: '#4c1d95',
+                },
+                secondary: {
+                    light: '#3b82f6',
+                    DEFAULT: '#2563eb',
+                    dark: '#1d4ed8',
+                },
+                // Add more custom colors as needed
             },
         },
     },
 
-    plugins: [forms,  require('flowbite/plugin')],
+    plugins: [
+        forms,
+        require('flowbite/plugin')
+    ],
 };

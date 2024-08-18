@@ -41,13 +41,13 @@ export default function Dashboard({ tableData, news }) {
                                 </p>
                             </div>
                             <div className="flex gap-5 mt-[0.5rem] text-sm">
-                                <p className=" text-sm leading-normal">
+                                <p className=" text-sm leading-normal text-primary-light">
                                     Database Update:
                                     <span className=" text-black">
                                         July 2022
                                     </span>
                                 </p>
-                                <p className=" text-sm leading-normal">
+                                <p className=" text-sm leading-normal text-primary-light">
                                     News Update:
                                     <span className="text-black">Aug 2024</span>
                                 </p>
