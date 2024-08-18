@@ -21,7 +21,6 @@ export function MapChart() {
         {/* ********************** Zoom Control ********************** */ }
         setZoomControl(chart, root);
 
-
         return () => {
             root.dispose();
         };
