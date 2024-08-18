@@ -21,10 +21,16 @@ export function MapChart() {
         {/* ********************** Zoom Control ********************** */ }
         setZoomControl(chart, root);
 
+
         return () => {
             root.dispose();
         };
     }, []);
 
-    return <div id="chartdiv" className="map-chart-wrapper"></div>;
+    return (
+        <>
+            {/* Map content load here */}
+            <div id="chartdiv" className="map-chart-wrapper"></div>
+        </>
+    );
 }
