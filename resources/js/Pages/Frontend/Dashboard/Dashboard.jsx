@@ -108,7 +108,8 @@ export default function Dashboard({ tableData, news }) {
                     )}
 
                     <div
-                        style={{ height: "100vh", width: "100%" }}
+                        style={{ height: "100%", width: "100%" }}
+                        // style={{ height: "100vh", width: "100%" }}
                         className="mt-5 px-4"
                     >
                         <div className="flex justify-center items-center mb-3">
