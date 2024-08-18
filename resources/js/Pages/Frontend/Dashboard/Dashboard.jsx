@@ -68,7 +68,7 @@ export default function Dashboard({ tableData, news }) {
                                     )}
                                     <button
                                         onClick={() => setVisibleDiv(!visibleDiv)}
-                                        className="text-sm text-secondary hover:text-blue-300"
+                                        className="text-sm text-secondary hover:text-blue-300 lg:hidden"
                                     >
                                         {!visibleDiv
                                             ? "  Show filters"
