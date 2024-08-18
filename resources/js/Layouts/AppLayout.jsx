@@ -11,7 +11,6 @@ export function AppLayout({ children }) {
             <Header />
             {/* content here */}
             <section className="px-[64px] pb-[16px]">
-
                     {children}
             </section>
 
