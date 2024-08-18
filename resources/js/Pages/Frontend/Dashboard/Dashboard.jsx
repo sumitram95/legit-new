@@ -31,7 +31,7 @@ export default function Dashboard({ tableData, news }) {
             {/* ********************** Rendering the Main Content  ********************** */}
             <div className="content-wrapper relative top-[-60px]">
                 <div className="flex gap-[30px]">
-                    <div className="w-[83.33%]">
+                    <div className="w-full lg:w-[83.33%]">
                         {/* ********************** Rendering the Map component ********************** */}
                         <div className="border rounded-md w-full bg-white">
                             <div className=" border-b-2 py-[16px] px-[16px] flex justify-between items-center">
@@ -164,7 +164,7 @@ export default function Dashboard({ tableData, news }) {
                     </div>
 
                     {/* ********************** Rendering the Filter Content [Right Sidebar] ********************** */}
-                    <div className="w-full">
+                    <div className="hidden lg:block w-full">
                         <div className="border rounded-md w-full bg-white">
                             <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
                                 <div className="flex items-center justify-between w-full">
