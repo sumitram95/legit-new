@@ -2,7 +2,7 @@ import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
 
-export default function TimeLine({ timeLines = [] }) {
+export default function TimeLine({ timeLines, lastUpdateDate  }) {
     return (
         <AppLayout>
             <Head title="Timeline" />
@@ -17,7 +17,7 @@ export default function TimeLine({ timeLines = [] }) {
                             </div>
                             <div className="flex gap-5 mt-3 text-sm">
                                 <p className=" text-sm font-thin text-primary">
-                                    Last update: <span>June 2024</span>
+                                    Last update: <span>{lastUpdateDate}</span>
                                 </p>
                             </div>
                         </div>
