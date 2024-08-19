@@ -14,6 +14,8 @@ class AiPolicyTrackerSeeder extends Seeder
      */
     public function run(): void
     {
+       // Truncate the table to remove all existing records
+        AiPolicyTracker::truncate();
         // Create an array of sample policies
         $policies = [
             [
