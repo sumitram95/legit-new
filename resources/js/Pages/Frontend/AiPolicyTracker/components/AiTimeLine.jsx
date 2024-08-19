@@ -34,11 +34,7 @@ export default function AiTimeLine({ timeLines = [] }) {
                             <h3 className="flex items-center mb-1 text-sm font-bold text-primary capitalize">
                                 June 2024
                             </h3>
-                            <div className="mb-2  bg-blue-100 px-5 py-2 rounded-md">
-                                <p className="text-sm font-normal text-blue-500">
-                                 {}
-                                </p>
-                            </div>
+
                             <div className="mb-2  bg-blue-100 px-5 py-2 rounded-md">
                                 <p className="text-sm font-normal text-blue-500">
                                     Get access to over 20+ pages including a
