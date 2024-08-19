@@ -34,7 +34,7 @@ export default function Table({
                                             type="submit"
                                             className=" text-primary"
                                         >
-                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-regular fa-star"></i>
                                         </button>
                                     </form>
                                     <Link

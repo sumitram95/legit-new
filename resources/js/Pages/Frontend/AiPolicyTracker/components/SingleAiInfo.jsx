@@ -7,7 +7,7 @@ export default function SingleAiInfo() {
             <div className=" border-b-2 pb-4 px-5">
                 <div>
                     <p className="font-bold text-primary text-lg">
-                        Act AI (AIPT) <i className="fa-solid fa-star"></i>
+                        Act AI (AIPT) <i className="fa-regular fa-star"></i>
                     </p>
                 </div>
                 <div className="flex gap-5 mt-3 text-sm">
