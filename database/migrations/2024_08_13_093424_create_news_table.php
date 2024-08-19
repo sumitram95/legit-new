@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+class CreateNewsTable extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -12,15 +13,21 @@ return new class extends Migration {
     {
         Schema::create('news', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('policy_tracker_id')->nullable(); // Foreign key column
+            $table->uuid('category_id')->nullable(); // Category foreign key column
             $table->string('title');
-            $table->uuid('category_id')->nullable()->default(null);
+            $table->longText('description')->nullable();
             $table->string('upload_date');
-            $table->longText("description")->nullable()->default(null);
 
+            // Foreign key constraint
+            $table->foreign('policy_tracker_id')
+                ->references('id')
+                ->on('ai_policy_trackers')
+                ->onDelete('set null');
+
+            // Timestamps and soft deletes
             $table->softDeletes();
-
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
         });
     }
 
@@ -31,4 +38,4 @@ return new class extends Migration {
     {
         Schema::dropIfExists('news');
     }
-};
+}

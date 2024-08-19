@@ -14,6 +14,7 @@ class News extends Model
     protected $fillable = [
         'title',
         'category_id',
+        'policy_tracker_id',
         'upload_date',
         'description',
     ];
@@ -30,6 +31,11 @@ class News extends Model
 
     public function status()
     {
-        return $this->hasOne(Status::class,'id','category_id');
+        return $this->hasOne(Status::class, 'id', 'category_id');
+    }
+
+    public function policyTracker()
+    {
+        return $this->belongsTo(AiPolicyTracker::class, 'policy_tracker_id');
     }
 }
