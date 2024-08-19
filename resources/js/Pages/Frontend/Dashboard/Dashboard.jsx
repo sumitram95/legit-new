@@ -189,141 +189,24 @@ export default function Dashboard({ tableData, news }) {
                                     <div className="px-[16px] mt-5">
                                         <form className="w-full" id="filterData">
                                             <div className="">
-                                                <div className="">
-                                                    <div className="mb-4">
-                                                        <label
-                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                            htmlFor="grid-last-name"
+                                                {SelectInputLists.labels.map(
+                                                    (label, index) => (
+                                                        <div
+                                                            className="w-full px-3"
+                                                            key={index}
                                                         >
-                                                            AI Policy Name
-                                                        </label>
-                                                        <div id="select">
-                                                            <div className="relative">
-                                                                <div className="absolute inset-0 flex items-center pointer-events-none pl-3"></div>
-                                                                <input
-                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                                    id="react-select-2-input"
-                                                                    type="text"
-                                                                    placeholder="Select..."
-                                                                    autoComplete="off"
-                                                                    autoCorrect="off"
-                                                                    aria-autocomplete="list"
-                                                                    aria-expanded="false"
-                                                                    aria-haspopup="true"
-                                                                    role="combobox"
-                                                                />
-                                                            </div>
+                                                            <SelectInput
+                                                                key={index}
+                                                                label={label}
+                                                                listName={
+                                                                    SelectInputLists.lists[
+                                                                    index
+                                                                    ]
+                                                                }
+                                                            />
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="">
-                                                    <div className="mb-4">
-                                                        <label
-                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                            htmlFor="grid-last-name"
-                                                        >
-                                                            Country / Region
-                                                        </label>
-                                                        <div id="select">
-                                                            <div className="relative">
-                                                                <input
-                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                                    id="react-select-3-input"
-                                                                    type="text"
-                                                                    placeholder="Select..."
-                                                                    autoComplete="off"
-                                                                    autoCorrect="off"
-                                                                    aria-autocomplete="list"
-                                                                    aria-expanded="false"
-                                                                    aria-haspopup="true"
-                                                                    role="combobox"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="">
-                                                    <div className="mb-4">
-                                                        <label
-                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                            htmlFor="grid-last-name"
-                                                        >
-                                                            Announcement Year
-                                                        </label>
-                                                        <div id="select">
-                                                            <div className="relative">
-                                                                <input
-                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                                    id="react-select-4-input"
-                                                                    type="text"
-                                                                    placeholder="Select..."
-                                                                    autoComplete="off"
-                                                                    autoCorrect="off"
-                                                                    aria-autocomplete="list"
-                                                                    aria-expanded="false"
-                                                                    aria-haspopup="true"
-                                                                    role="combobox"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="">
-                                                    <div className="mb-4">
-                                                        <label
-                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                            htmlFor="grid-last-name"
-                                                        >
-                                                            Status
-                                                        </label>
-                                                        <div id="select">
-                                                            <div className="relative">
-                                                                <input
-                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                                    id="react-select-5-input"
-                                                                    type="text"
-                                                                    placeholder="Select..."
-                                                                    autoComplete="off"
-                                                                    autoCorrect="off"
-                                                                    aria-autocomplete="list"
-                                                                    aria-expanded="false"
-                                                                    aria-haspopup="true"
-                                                                    role="combobox"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="">
-                                                    <div className="mb-4">
-                                                        <label
-                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                            htmlFor="grid-last-name"
-                                                        >
-                                                            Technology Partners
-                                                        </label>
-                                                        <div id="select">
-                                                            <div className="relative">
-                                                                <input
-                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                                    id="react-select-6-input"
-                                                                    type="text"
-                                                                    placeholder="Select..."
-                                                                    autoComplete="off"
-                                                                    autoCorrect="off"
-                                                                    aria-autocomplete="list"
-                                                                    aria-expanded="false"
-                                                                    aria-haspopup="true"
-                                                                    role="combobox"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    )
+                                                )}
                                             </div>
                                         </form>
                                     </div>
