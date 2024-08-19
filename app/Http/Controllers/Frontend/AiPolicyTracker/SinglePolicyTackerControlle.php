@@ -3,29 +3,27 @@
 namespace App\Http\Controllers\Frontend\AiPolicyTracker;
 
 use App\Http\Controllers\Controller;
+use App\Models\AiPolicyTracker;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SinglePolicyTackerControlle extends Controller
 {
-    public function index($id = null)
+    public function index($id)
     {
-        // $data['newsLists'] = [
-        //     1,
-        //     2,
-        //     3,
-        //     4,
-        //     5
-        // ];
+        $data['aiPolicyTrackerWithRelatedNews'] = AiPolicyTracker::with([
+            'news' => function ($query) {
+                $query->with(['thumbnail', 'status']);
+            },
+            'country', // Make sure status is included
+            'status' // Make sure status is included
+        ])->where('id', $id)
+        ->first();
 
-        $data['timeLines'] = [
-            1,
-            2,
-            3
-        ];
+        // dd( $data['aiPolicyTrackerWithRelatedNews']);
 
-        $data['newsLists'] = News::with(['thumbnail', 'status'])->paginate(15);
+        // $data['newsLists'] = News::with(['thumbnail', 'status'])->paginate(15);
         return Inertia::render("Frontend/AiPolicyTracker/SingleAiPolicyTracker", $data);
     }
 }

@@ -18,6 +18,7 @@ export function MapChart() {
 
         createPolygonSeries(chart);
 
+        {/* ********************** Zoom Control ********************** */ }
         setZoomControl(chart, root);
 
         return () => {
@@ -25,5 +26,10 @@ export function MapChart() {
         };
     }, []);
 
-    return <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>;
+    return (
+        <>
+            {/* Map content load here */}
+            <div id="chartdiv" className="map-chart-wrapper"></div>
+        </>
+    );
 }

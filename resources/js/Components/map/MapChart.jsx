@@ -111,7 +111,7 @@ export function MapChart() {
             </div>
             <div
                 id="chartdiv"
-                style={{ width: "100%", height: "500px", padding: "0" }}
+                className="map-chart-wrapper"
             ></div>
         </div>
     );

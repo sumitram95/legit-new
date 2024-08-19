@@ -34,17 +34,16 @@ export default function Table({
                                             type="submit"
                                             className=" text-primary"
                                         >
-                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-regular fa-star"></i>
                                         </button>
                                     </form>
                                     <Link
-                                        href={route(
-                                            "frontend.single_ai_policy_tracker.index"
-                                        )}
+                                        href={route("frontend.single_ai_policy_tracker.index", { id: list.id })}
                                         className="text-primary hover:underline"
                                     >
                                         {list.ai_policy_name}
                                     </Link>
+
                                 </div>
                             </td>
                             <td className="px-6 py-4">{list.country?.name}</td>
@@ -60,7 +59,7 @@ export default function Table({
                                     rel="noopener noreferrer"
                                     className="underline text-blue-950"
                                 >
-                                   open
+                                    open
                                 </a>
                             </td>
                         </tr>

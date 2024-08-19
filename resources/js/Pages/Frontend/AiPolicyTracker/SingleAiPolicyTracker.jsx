@@ -8,9 +8,9 @@ import AiTimeLine from "./components/AiTimeLine";
 const name = "Act Ai";
 
 export default function SingleAiPolicyTracker({
-    newsLists,
-    timeLines,
+    aiPolicyTrackerWithRelatedNews,
 }) {
+
     return (
         <AppLayout>
             <Head title={name} />
@@ -18,16 +18,16 @@ export default function SingleAiPolicyTracker({
                 <div className="w-full flex gap-8">
                     <div className="w-1/3">
                         <div className="">
-                            <SingleAiInfo />
+                            <SingleAiInfo aiPolicyTrackerdetail={aiPolicyTrackerWithRelatedNews} />
                         </div>
 
                         <div>
-                            <AiTimeLine timeLines={timeLines} />
+                            <AiTimeLine timeLines={aiPolicyTrackerWithRelatedNews} />
                         </div>
                     </div>
                     {/* Ai News */}
                     <div className="w-2/3">
-                        <AiNews newsLists={newsLists.data} />
+                        <AiNews newsLists={aiPolicyTrackerWithRelatedNews.news} />
                     </div>
                 </div>
             </div>

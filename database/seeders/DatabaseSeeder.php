@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(StatusSeeder::class);
+        $this->call(AiPolicyTrackerSeeder::class);
     }
 }

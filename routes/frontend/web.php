@@ -41,7 +41,7 @@ Route:: as('frontend.')->group(function () {
 
     // single AI policy tracker
     Route::controller(SinglePolicyTackerControlle::class)->as('single_ai_policy_tracker.')->group(function () {
-        Route::get("/aipolicytracker/name-here", "index")->name('index');
+        Route::get("/aipolicytracker/single-view/{id}", "index")->name('index');
     });
 });
 

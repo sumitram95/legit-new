@@ -1,6 +1,8 @@
 @import "./bootstrap/export";
 @import "./colors/export";
 
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
 // Breakpoints
 $max-mobile-width: 767px;
 $min-tablet-width: 768px;
@@ -19,7 +21,7 @@ a {
 //     color: $tex-secondary-color;
 // }
 .text-secondary {
-    color: #4E87D3;
+    color: #4e87d3;
 }
 
 p {
@@ -37,20 +39,18 @@ p {
 }
 
 body {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: normal;
-    color: #0B2041;
+    font-family: "IBM Plex Sans", sans-serif !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    color: #0b2041 !important;
     background-color: $timeline-status-main-background-color;
 }
 
 // header
 .header {
     background-color: $site-primary-color;
-    padding: 15px 40px;
+    padding: 0.8125rem 64px;
     padding-bottom: 80px;
-
 }
 
 .header-logo {
@@ -59,18 +59,18 @@ body {
 }
 
 .header nav a {
-    color: #FFFFFF;
+    color: #ffffff;
     position: relative;
     display: inline-block;
     text-decoration: none;
 }
 
 .header nav a::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -3px;
+    bottom: 4px;
     height: 3.5px;
     background-color: rgba(217, 233, 244, 0.636);
     border-radius: 3.5px;
@@ -85,10 +85,10 @@ body {
 }
 
 .header nav a:hover::before {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
-    bottom: -3px;
+    bottom: 4px;
     height: 3.5px;
     width: 3.5px;
     background-color: $status-launched-primary-color;
@@ -96,11 +96,11 @@ body {
 }
 
 .nav-active::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -3px;
+    bottom: 4px;
     height: 3.5px;
     background-color: rgba(217, 233, 244, 0.636);
     border-radius: 3.5px;
@@ -109,30 +109,13 @@ body {
     transform-origin: right;
     transform: scaleX(1);
     transform-origin: left;
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Fonts
-$default-font-color: #0B2041;
+$default-font-color: #0b2041;
 
 %ui-default-font {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
@@ -140,11 +123,25 @@ $default-font-color: #0B2041;
 }
 
 .bg-primary {
-    background: #0B2041;
+    background: #0b2041;
 }
 
-.text-primary {
-    color: #0B2041;
+// .text-primary {
+//     color: #0B2041;
+// }
+.date-separator {
+    display: inline-block;
+    background-color: #7997c3;
+    border-radius: 100%;
+    height: 6px;
+    width: 6px;
+    margin: 0 8px;
+}
+
+.map-chart-wrapper {
+    width: 100%;
+    height: 680px;
+    max-height: 100vh;
 }
 
 body {
@@ -159,8 +156,8 @@ body {
 }
 
 // Scroll
-$scroll-color: #CDE0F1;
-$scroll-background-color: #EEF6FD;
+$scroll-color: #cde0f1;
+$scroll-background-color: #eef6fd;
 
 * {
     scrollbar-color: $scroll-color $scroll-background-color;
@@ -206,14 +203,13 @@ $sides: (top, bottom, left, right);
 }
 
 // Fields
-$input-border-color: #DBE6F1;
+$input-border-color: #dbe6f1;
 $input-color: $default-font-color;
-$input-background-color: #F4F8FC;
-$input-placeholder-color: #7997C3;
+$input-background-color: #f4f8fc;
+$input-placeholder-color: #7997c3;
 $input-min-height: 46px;
 
 .ui-field-wrapper {
-
     .input-group-text,
     input,
     select {
@@ -236,31 +232,30 @@ $input-min-height: 46px;
     }
 
     &.is-invalid {
-
         .input-group-text,
         input,
         select {
-            background-color: #FBECEC;
-            color: #D53E45;
-            border-color: #F3C9CB;
+            background-color: #fbecec;
+            color: #d53e45;
+            border-color: #f3c9cb;
         }
 
         input:focus {
-            color: #D53E45;
+            color: #d53e45;
             background-color: white;
         }
 
         input::-webkit-input-placeholder {
-            color: #F3C9CB;
+            color: #f3c9cb;
         }
 
         input:-moz-placeholder {
-            color: #F3C9CB;
+            color: #f3c9cb;
         }
 
         .invalid-feedback {
             font-size: 12px;
-            color: #EC8596;
+            color: #ec8596;
         }
     }
 }
@@ -271,7 +266,7 @@ $input-min-height: 46px;
 }
 
 // Card
-$card-line-border: 1px solid rgba(205, 224, 241, .5);
+$card-line-border: 1px solid rgba(205, 224, 241, 0.5);
 
 .cancelled {
     color: $status-cancelled-secondary-color;
@@ -281,7 +276,6 @@ $card-line-border: 1px solid rgba(205, 224, 241, .5);
 .research {
     color: $status-research-secondary-color;
     background-color: $status-research-secondary-color;
-    ;
 }
 
 .whitepaper {
@@ -299,8 +293,13 @@ $card-line-border: 1px solid rgba(205, 224, 241, .5);
     background-color: $status-development-secondary-color;
 }
 
-
 .launched {
     color: $status-launched-secondary-color;
     background-color: $status-launched-secondary-color;
 }
+
+#chartdiv {
+    width: 100%;
+    height: 90%;
+    // height: 440px;
+  }

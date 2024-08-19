@@ -19,6 +19,10 @@ const NavBarLists = {
         name: "Timeline",
         url: route("frontend.time_line.index"),
     },
+    community: {
+        name: "community",
+        url: "https://community.aipolicytracker.org/",
+    },
     whitepaper: {
         name: "whitepaper",
         url: "https://docs.google.com/document/d/199QtBdQwRWVHXxN5wasRBbTNTgsvmP347GsQFyR2p3o/edit",
@@ -28,7 +32,7 @@ const NavBarLists = {
 export function Header() {
     return (
         <header className="header">
-            <div className="flex justify-between max-auto">
+            <div className="flex justify-between ">
                 <HeaderLogo />
                 <NavBar NavBarLists={NavBarLists} />
             </div>

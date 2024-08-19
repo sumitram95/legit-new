@@ -3,6 +3,9 @@ import React from "react";
 
 export default function AiTimeLine({ timeLines = [] }) {
 
+    console.log(timeLines);
+    return true;
+
     return (
         <div className="bg-white rounded-md py-3 mt-5">
             <div className=" border-b-2 pb-4 px-5">
@@ -18,8 +21,8 @@ export default function AiTimeLine({ timeLines = [] }) {
 
             <div className="mt-5 px-5 bg-white py-5 text-wrap md:py-0 rounded-md md:rounded-none">
                 <ol className="relative border-s-4 border-blue-100">
-                    {/* {timeLines.map((timeLine, index) => ( */}
-                        <li className="mb-10 ms-6">
+                    {timeLines.map((timeLine, index) => (
+                        <li className="mb-10 ms-6" key={index}>
                             <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white">
                                 <svg
                                     className="w-2.5 h-2.5 text-blue-800"
@@ -34,7 +37,14 @@ export default function AiTimeLine({ timeLines = [] }) {
                             <h3 className="flex items-center mb-1 text-sm font-bold text-primary capitalize">
                                 June 2024
                             </h3>
-
+                            <div className="mb-2  bg-blue-100 px-5 py-2 rounded-md">
+                                <p className="text-sm font-normal text-blue-500">
+                                    Get access to over 20+ pages including a
+                                    dashboard layout, charts, kanban board,
+                                    calendar, and pre-order E-commerce &
+                                    Marketing pages.
+                                </p>
+                            </div>
                             <div className="mb-2  bg-blue-100 px-5 py-2 rounded-md">
                                 <p className="text-sm font-normal text-blue-500">
                                     Get access to over 20+ pages including a
@@ -52,7 +62,7 @@ export default function AiTimeLine({ timeLines = [] }) {
                                 </p>
                             </div>
                         </li>
-                    {/* ))} */}
+                    ))}
                 </ol>
             </div>
         </div>

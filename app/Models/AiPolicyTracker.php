@@ -18,18 +18,18 @@ class AiPolicyTracker extends Model
     //note:- $appends property on a model allows you to include additional attributes in the model's JSON representation
     protected $appends = ['formatted_created_at'];
     protected $fillable =
-        [
-            "country_id",
-            "status_id",
-            "ai_policy_name",
-            "governing_body",
-            "announcement_year",
-            "whitepaper_document_link",
-            "technology_partners",
-            "governance_structure",
-            "main_motivation",
-            "description",
-        ];
+    [
+        "country_id",
+        "status_id",
+        "ai_policy_name",
+        "governing_body",
+        "announcement_year",
+        "whitepaper_document_link",
+        "technology_partners",
+        "governance_structure",
+        "main_motivation",
+        "description",
+    ];
 
     public function country(): HasOne
     {
@@ -45,5 +45,10 @@ class AiPolicyTracker extends Model
     public function getFormattedCreatedAtAttribute()
     {
         return Carbon::parse($this->created_at)->format('M d, Y');
+    }
+
+    public function news()
+    {
+        return $this->hasMany(News::class, 'policy_tracker_id');
     }
 }

@@ -2,19 +2,29 @@
 
 namespace App\Http\Controllers\Frontend\TimeLine;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Models\AiPolicyTracker;
+use App\Http\Controllers\Controller;
 
 class TimeLineController extends Controller
 {
     public function index()
     {
-        $data['timeLines'] = [
-            1,
-            2,
-            3,
-            4
+        // Fetch the most recent record and format the date
+        $lastUpdateDate = AiPolicyTracker::latest('created_at')->first();
+        $formattedLastDate = $lastUpdateDate
+            ? Carbon::parse($lastUpdateDate->created_at)->format('M Y')
+            : 'No records found';
+
+        // Group data by announcement_year
+        $groupedData = AiPolicyTracker::all()->groupBy('announcement_year')->toArray();
+
+        // Prepare data for Inertia view
+        $data = [
+            'timeLines' => $groupedData,
+            'lastUpdateDate' => $formattedLastDate,
         ];
         return Inertia::render("Frontend/TimeLine/TimeLine", $data);
     }
