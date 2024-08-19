@@ -30,124 +30,306 @@ export default function Dashboard({ tableData, news }) {
             <Head title=" " />
             {/* ********************** Rendering the Main Content  ********************** */}
             <div className="content-wrapper relative top-[-60px]">
-                <div className="flex gap-[30px]">
-                    <div className="w-full lg:w-[83.33%]">
-                        {/* ********************** Rendering the Map component ********************** */}
-                        <div className="border rounded-md w-full bg-white">
-                            <div className=" border-b-2 py-[16px] px-[16px] flex justify-between items-center">
-                                <div>
-                                    <div>
-                                        <p className="font-bold text-primary text-lg leading-none">
-                                            Global Artificial Intelligence (AI) Policy
-                                            Status
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center mt-[0.5rem] text-sm">
-                                        <p className=" text-sm leading-normal text-primary-light">
-                                            Database Update:
-                                            <span className=" text-black ml-[4px]">
-                                                July 2022
-                                            </span>
-                                        </p>
-                                        <span class="date-separator"></span>
-                                        <p className=" text-sm leading-normal text-primary-light">
-                                            News Update:
-                                            <span className="text-black ml-[4px]">Aug 2024</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-3">
-                                    {visibleDiv && (
-                                        <button
-                                            type="button"
-                                            className=" hover:underline"
-                                        >
-                                            <i className="fa-solid fa-square-xmark"></i>
-                                            <span className="ml-2"> Clear filters</span>
-                                        </button>
-                                    )}
-                                    <button
-                                        onClick={() => setVisibleDiv(!visibleDiv)}
-                                        className="text-sm text-secondary hover:text-blue-300 lg:hidden"
-                                    >
-                                        {!visibleDiv
-                                            ? "  Show filters"
-                                            : "Hide filters"}
-
-                                        <i
-                                            className={`fa-solid ${visibleDiv
-                                                ? "fa-chevron-up"
-                                                : "fa-chevron-down"
-                                                } ml-3`}
-                                        ></i>
-                                    </button>
-                                </div>
-                            </div>
-                            {visibleDiv && (
-                                <div className="px-5 w-full mt-5">
-                                    <form className="w-full" id="filterData">
-                                        <div className="flex">
-                                            {SelectInputLists.labels.map(
-                                                (label, index) => (
-                                                    <div
-                                                        className="w-full md:w-1/2 px-3"
-                                                        key={index}
+                <div className="">
+                    <div>
+                        <div className="flex gap-[30px]">
+                            <div className="w-full lg:w-[83.33%]">
+                                <div className="w-full">
+                                    {/* ********************** Rendering the Map component ********************** */}
+                                    <div className="border rounded-md w-full bg-white">
+                                        <div className=" border-b-2 py-[16px] px-[16px] flex justify-between items-center">
+                                            <div>
+                                                <div>
+                                                    <p className="font-bold text-primary text-lg leading-none">
+                                                        Global Artificial Intelligence (AI) Policy
+                                                        Status
+                                                    </p>
+                                                </div>
+                                                <div className="flex items-center mt-[0.5rem] text-sm">
+                                                    <p className=" text-sm leading-normal text-primary-light">
+                                                        Database Update:
+                                                        <span className=" text-black ml-[4px]">
+                                                            July 2022
+                                                        </span>
+                                                    </p>
+                                                    <span class="date-separator"></span>
+                                                    <p className=" text-sm leading-normal text-primary-light">
+                                                        News Update:
+                                                        <span className="text-black ml-[4px]">Aug 2024</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="flex gap-3">
+                                                {visibleDiv && (
+                                                    <button
+                                                        type="button"
+                                                        className=" hover:underline"
                                                     >
-                                                        <SelectInput
-                                                            key={index}
-                                                            label={label}
-                                                            listName={
-                                                                SelectInputLists.lists[
-                                                                index
-                                                                ]
-                                                            }
-                                                        />
-                                                    </div>
-                                                )
-                                            )}
+                                                        <i className="fa-solid fa-square-xmark"></i>
+                                                        <span className="ml-2"> Clear filters</span>
+                                                    </button>
+                                                )}
+                                                <button
+                                                    onClick={() => setVisibleDiv(!visibleDiv)}
+                                                    className="text-sm text-secondary hover:text-blue-300 lg:hidden"
+                                                >
+                                                    {!visibleDiv
+                                                        ? "  Show filters"
+                                                        : "Hide filters"}
+
+                                                    <i
+                                                        className={`fa-solid ${visibleDiv
+                                                            ? "fa-chevron-up"
+                                                            : "fa-chevron-down"
+                                                            } ml-3`}
+                                                    ></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </form>
-                                </div>
-                            )}
+                                        {visibleDiv && (
+                                            <div className="px-5 w-full mt-5">
+                                                <form className="w-full" id="filterData">
+                                                    <div className="flex">
+                                                        {SelectInputLists.labels.map(
+                                                            (label, index) => (
+                                                                <div
+                                                                    className="w-full md:w-1/2 px-3"
+                                                                    key={index}
+                                                                >
+                                                                    <SelectInput
+                                                                        key={index}
+                                                                        label={label}
+                                                                        listName={
+                                                                            SelectInputLists.lists[
+                                                                            index
+                                                                            ]
+                                                                        }
+                                                                    />
+                                                                </div>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        )}
 
-                            <div
+                                        <div
 
-                                className="mt-5 px-4 map-chart-wrapper"
-                            >
-                                <div className="flex justify-center items-center mb-3">
-                                    <div>
-                                        <Status />
+                                            className="mt-5 px-4 map-chart-wrapper"
+                                        >
+                                            <div className="flex justify-center items-center mb-3">
+                                                <div>
+                                                    <Status />
+                                                </div>
+                                            </div>
+
+                                            {/* ********************** Rendering the MapChart component ********************** */}
+                                            <MapChart />
+                                        </div>
+
+                                        {/* Historic state */}
+                                        <div className="px-5 mt-4">
+                                            <HistoricState date={"August 2024"} />
+                                        </div>
+                                        {/* button */}
+                                        <div className="flex justify-between mt-5 px-5">
+                                            <LinkButton
+                                                href={route("frontend.watch_list.index")}
+                                                className="flex gap-2 text-red-900 items-center"
+                                            >
+                                                <i className="fa-regular fa-star"></i>
+                                                <span>Watchlist (0)</span>
+                                            </LinkButton>
+
+                                            <EditColumn EditColumnLists={EditColumnLists} />
+                                        </div>
+                                        {/* table */}
+                                        <Table
+                                            columns={Columns}
+                                            tableData={tableData.data}
+                                            btnName={"Edit Columns "}
+                                        />
                                     </div>
                                 </div>
-
-                                {/* ********************** Rendering the MapChart component ********************** */}
-                                <MapChart />
                             </div>
 
-                            {/* Historic state */}
-                            <div className="px-5 mt-4">
-                                <HistoricState date={"August 2024"} />
-                            </div>
-                            {/* button */}
-                            <div className="flex justify-between mt-5 px-5">
-                                <LinkButton
-                                    href={route("frontend.watch_list.index")}
-                                    className="flex gap-2 text-red-900 items-center"
-                                >
-                                    <i className="fa-regular fa-star"></i>
-                                    <span>Watchlist (0)</span>
-                                </LinkButton>
+                            {/* ********************** Rendering the Filter Content [Right Sidebar] ********************** */}
+                            <div className="hidden lg:block">
+                                <div className="border rounded-md w-full bg-white">
+                                    <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
+                                        <div className="flex items-center justify-between w-full">
+                                            <div>
+                                                <p className="font-bold text-primary text-lg leading-none">Filters</p>
+                                            </div>
+                                            <button className="button-wthout-border flex items-center gap-2">
+                                                <span className="ui-icon">
+                                                    <svg
+                                                        viewBox="0 0 16 16"
+                                                        width="1em"
+                                                        height="1em"
+                                                        focusable="false"
+                                                        role="img"
+                                                        aria-label="x square"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor"
+                                                        className="bi-x-square b-icon bi"
+                                                    >
+                                                        <title>Clear</title>
+                                                        <g>
+                                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                                <span className="ui-clear-button_text">Clear</span>
+                                            </button>
+                                        </div>
+                                    </div>
 
-                                <EditColumn EditColumnLists={EditColumnLists} />
+                                    <div className="px-[16px] mt-5">
+                                        <form className="w-full" id="filterData">
+                                            <div className="">
+                                                <div className="">
+                                                    <div className="mb-4">
+                                                        <label
+                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
+                                                            htmlFor="grid-last-name"
+                                                        >
+                                                            AI Policy Name
+                                                        </label>
+                                                        <div id="select">
+                                                            <div className="relative">
+                                                                <div className="absolute inset-0 flex items-center pointer-events-none pl-3"></div>
+                                                                <input
+                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
+                                                                    id="react-select-2-input"
+                                                                    type="text"
+                                                                    placeholder="Select..."
+                                                                    autoComplete="off"
+                                                                    autoCorrect="off"
+                                                                    aria-autocomplete="list"
+                                                                    aria-expanded="false"
+                                                                    aria-haspopup="true"
+                                                                    role="combobox"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="">
+                                                    <div className="mb-4">
+                                                        <label
+                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
+                                                            htmlFor="grid-last-name"
+                                                        >
+                                                            Country / Region
+                                                        </label>
+                                                        <div id="select">
+                                                            <div className="relative">
+                                                                <input
+                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
+                                                                    id="react-select-3-input"
+                                                                    type="text"
+                                                                    placeholder="Select..."
+                                                                    autoComplete="off"
+                                                                    autoCorrect="off"
+                                                                    aria-autocomplete="list"
+                                                                    aria-expanded="false"
+                                                                    aria-haspopup="true"
+                                                                    role="combobox"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="">
+                                                    <div className="mb-4">
+                                                        <label
+                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
+                                                            htmlFor="grid-last-name"
+                                                        >
+                                                            Announcement Year
+                                                        </label>
+                                                        <div id="select">
+                                                            <div className="relative">
+                                                                <input
+                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
+                                                                    id="react-select-4-input"
+                                                                    type="text"
+                                                                    placeholder="Select..."
+                                                                    autoComplete="off"
+                                                                    autoCorrect="off"
+                                                                    aria-autocomplete="list"
+                                                                    aria-expanded="false"
+                                                                    aria-haspopup="true"
+                                                                    role="combobox"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="">
+                                                    <div className="mb-4">
+                                                        <label
+                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
+                                                            htmlFor="grid-last-name"
+                                                        >
+                                                            Status
+                                                        </label>
+                                                        <div id="select">
+                                                            <div className="relative">
+                                                                <input
+                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
+                                                                    id="react-select-5-input"
+                                                                    type="text"
+                                                                    placeholder="Select..."
+                                                                    autoComplete="off"
+                                                                    autoCorrect="off"
+                                                                    aria-autocomplete="list"
+                                                                    aria-expanded="false"
+                                                                    aria-haspopup="true"
+                                                                    role="combobox"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="">
+                                                    <div className="mb-4">
+                                                        <label
+                                                            className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
+                                                            htmlFor="grid-last-name"
+                                                        >
+                                                            Technology Partners
+                                                        </label>
+                                                        <div id="select">
+                                                            <div className="relative">
+                                                                <input
+                                                                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
+                                                                    id="react-select-6-input"
+                                                                    type="text"
+                                                                    placeholder="Select..."
+                                                                    autoComplete="off"
+                                                                    autoCorrect="off"
+                                                                    aria-autocomplete="list"
+                                                                    aria-expanded="false"
+                                                                    aria-haspopup="true"
+                                                                    role="combobox"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            {/* table */}
-                            <Table
-                                columns={Columns}
-                                tableData={tableData.data}
-                                btnName={"Edit Columns "}
-                            />
                         </div>
-
                         {/* ********************** Rendering the News component ********************** */}
                         <News news={news.data} />
 
@@ -163,182 +345,7 @@ export default function Dashboard({ tableData, news }) {
                         <Organization organizationLogo={organizationLogo} />
                     </div>
 
-                    {/* ********************** Rendering the Filter Content [Right Sidebar] ********************** */}
-                    <div className="hidden lg:block w-full">
-                        <div className="border rounded-md w-full bg-white">
-                            <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
-                                <div className="flex items-center justify-between w-full">
-                                    <div>
-                                        <p className="font-bold text-primary text-lg leading-none">Filters</p>
-                                    </div>
-                                    <button className="button-wthout-border flex items-center gap-2">
-                                        <span className="ui-icon">
-                                            <svg
-                                                viewBox="0 0 16 16"
-                                                width="1em"
-                                                height="1em"
-                                                focusable="false"
-                                                role="img"
-                                                aria-label="x square"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor"
-                                                className="bi-x-square b-icon bi"
-                                            >
-                                                <title>Clear</title>
-                                                <g>
-                                                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
-                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                        <span className="ui-clear-button_text">Clear</span>
-                                    </button>
-                                </div>
-                            </div>
 
-                            <div className="px-[16px] mt-5">
-                                <form className="w-full" id="filterData">
-                                    <div className="">
-                                        <div className="">
-                                            <div className="mb-4">
-                                                <label
-                                                    className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                    htmlFor="grid-last-name"
-                                                >
-                                                    AI Policy Name
-                                                </label>
-                                                <div id="select">
-                                                    <div className="relative">
-                                                        <div className="absolute inset-0 flex items-center pointer-events-none pl-3"></div>
-                                                        <input
-                                                            className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                            id="react-select-2-input"
-                                                            type="text"
-                                                            placeholder="Select..."
-                                                            autoComplete="off"
-                                                            autoCorrect="off"
-                                                            aria-autocomplete="list"
-                                                            aria-expanded="false"
-                                                            aria-haspopup="true"
-                                                            role="combobox"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="">
-                                            <div className="mb-4">
-                                                <label
-                                                    className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                    htmlFor="grid-last-name"
-                                                >
-                                                    Country / Region
-                                                </label>
-                                                <div id="select">
-                                                    <div className="relative">
-                                                        <input
-                                                            className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                            id="react-select-3-input"
-                                                            type="text"
-                                                            placeholder="Select..."
-                                                            autoComplete="off"
-                                                            autoCorrect="off"
-                                                            aria-autocomplete="list"
-                                                            aria-expanded="false"
-                                                            aria-haspopup="true"
-                                                            role="combobox"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="">
-                                            <div className="mb-4">
-                                                <label
-                                                    className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                    htmlFor="grid-last-name"
-                                                >
-                                                    Announcement Year
-                                                </label>
-                                                <div id="select">
-                                                    <div className="relative">
-                                                        <input
-                                                            className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                            id="react-select-4-input"
-                                                            type="text"
-                                                            placeholder="Select..."
-                                                            autoComplete="off"
-                                                            autoCorrect="off"
-                                                            aria-autocomplete="list"
-                                                            aria-expanded="false"
-                                                            aria-haspopup="true"
-                                                            role="combobox"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="">
-                                            <div className="mb-4">
-                                                <label
-                                                    className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                    htmlFor="grid-last-name"
-                                                >
-                                                    Status
-                                                </label>
-                                                <div id="select">
-                                                    <div className="relative">
-                                                        <input
-                                                            className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                            id="react-select-5-input"
-                                                            type="text"
-                                                            placeholder="Select..."
-                                                            autoComplete="off"
-                                                            autoCorrect="off"
-                                                            aria-autocomplete="list"
-                                                            aria-expanded="false"
-                                                            aria-haspopup="true"
-                                                            role="combobox"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="">
-                                            <div className="mb-4">
-                                                <label
-                                                    className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                                                    htmlFor="grid-last-name"
-                                                >
-                                                    Technology Partners
-                                                </label>
-                                                <div id="select">
-                                                    <div className="relative">
-                                                        <input
-                                                            className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-secondary"
-                                                            id="react-select-6-input"
-                                                            type="text"
-                                                            placeholder="Select..."
-                                                            autoComplete="off"
-                                                            autoCorrect="off"
-                                                            aria-autocomplete="list"
-                                                            aria-expanded="false"
-                                                            aria-haspopup="true"
-                                                            role="combobox"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
