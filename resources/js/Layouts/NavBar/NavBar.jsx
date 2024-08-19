@@ -39,6 +39,23 @@ export function NavBar({ NavBarLists }) {
                     );
                 }
 
+                if (NavBarLists[key].name === "community") {
+                    return (
+                        // remove of cors policy
+                        <a
+                            href={NavBarLists[key].url}
+                            key={key}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            // className={`capitalize ${
+                            //     isActive ? "nav-active" : ""
+                            // }`}
+                        >
+                            {NavBarLists[key].name}
+                        </a>
+                    );
+                }
+
                 return (
                     <Link
                         href={NavBarLists[key].url}
