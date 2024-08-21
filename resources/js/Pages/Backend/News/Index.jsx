@@ -206,7 +206,7 @@ export default function Index({
             <Model
                 isOpen={isAddModalOpen}
                 onClose={toggleAddModal}
-                title="Add new news"
+                title="Add News"
                 width="max-w-6xl"
             >
                 <Add
