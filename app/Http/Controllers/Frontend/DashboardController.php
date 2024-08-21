@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $data['tableData'] = AiPolicyTracker::with(['country', 'status'])->paginate(15);
-        $data['news'] = News::with(['thumbnail', 'status'])->paginate(15);
+        $data['news'] = News::with(['thumbnail', 'newsCategory'])->paginate(15);
 
         // dd($data['news']);
         return Inertia::render('Frontend/Dashboard/Dashboard', $data);

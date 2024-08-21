@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Contributor({ contributorLists = [] }) {
     return (
-        <div className="mt-3">
+        <div className="w-1/2">
             <strong>Key Contributors</strong>
             <div className="mt-3 h-fit w-fit grid grid-cols-2 gap-x-5">
                 {contributorLists.map((data, index) => (
