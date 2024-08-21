@@ -93,7 +93,7 @@ export default function Index({
 
 
 
-    // console.log(tableData);
+    console.log(tableData);
     return (
         <Layout>
             <Head title="News Lists" />
@@ -121,6 +121,7 @@ export default function Index({
                                             S.N
                                         </th>
                                         <th className="px-6 py-3">Title</th>
+                                        <th className="px-6 py-3">AI Policy Tracker</th>
                                         <th className="px-6 py-3">Category</th>
                                         <th className="px-6 py-3">
                                             uploaded At
@@ -145,6 +146,9 @@ export default function Index({
                                             </td>
                                             <td className="px-6 py-4">
                                                 {list.title}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {list.policy_tracker ? list.policy_tracker.ai_policy_name : ''}
                                             </td>
                                             <td className="px-6 py-4">
                                                 {list.news_category ? (

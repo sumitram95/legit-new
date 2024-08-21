@@ -46,7 +46,7 @@ class NewsController extends Controller
                 ];
             });
 
-        $tableData = News::with(['thumbnail', 'newsCategory'])
+        $tableData = News::with(['thumbnail', 'newsCategory','policyTracker'])
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
@@ -60,11 +60,10 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-
-
         $validate = $request->validate([
             'title' => 'required|string|max:255',
             'category_id' => 'required|string',
+            'policy_tracker_id' => 'required|string',
             'upload_date' => 'required|date',
             'description' => 'sometimes|nullable|string',
             'thumbnails.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validation for multiple images
@@ -73,7 +72,6 @@ class NewsController extends Controller
 
         DB::beginTransaction();
         try {
-
             $news = News::create($validate);
             if ($request->hasFile('thumbnails')) {
                 $thumbnails = $request->thumbnails[0];
