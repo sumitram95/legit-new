@@ -16,6 +16,7 @@ class NewsController extends Controller
 {
     public function index()
     {
+        //-- get countries list
         $countries = Country::select('id', 'name')
             ->orderBy('name', 'asc')
             ->get()
@@ -26,12 +27,22 @@ class NewsController extends Controller
                 ];
             });
 
+        //-- get news Categories
         $newsCategories = NewsCategory::select("id", "name")
             ->get()
             ->map(function ($value) {
                 return [
                     "value" => $value->id,
                     "label" => $value->name,
+                ];
+            });
+
+        $aiPolicyTrackers = AiPolicyTracker::select("id", "ai_policy_name")
+            ->get()
+            ->map(function ($value) {
+                return [
+                    "value" => $value->id,
+                    "label" => $value->ai_policy_name,
                 ];
             });
 
@@ -42,6 +53,7 @@ class NewsController extends Controller
         return Inertia::render("Backend/News/Index", [
             'countries' => $countries,
             'categories' => $newsCategories,
+            'aiPolicyTrackers' => $aiPolicyTrackers,
             'tableData' => $tableData,
         ]);
     }

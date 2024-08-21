@@ -18,6 +18,7 @@ export default function Index({
     tableData = [],
     countries = null,
     categories = null,
+    aiPolicyTrackers = null,
 }) {
     // add modal
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -208,7 +209,11 @@ export default function Index({
                 title="Add new news"
                 width="max-w-6xl"
             >
-                <Add countries={countries} categories={categories} />
+                <Add
+                    countries={countries}
+                    categories={categories}
+                    aiPolicyTrackers={aiPolicyTrackers}
+                />
             </Model>
 
             {/* edit model */}
