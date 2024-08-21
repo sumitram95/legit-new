@@ -19,6 +19,18 @@ class News extends Model
         'description',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'id' => 'uuid',
+        'policy_tracker_id' => 'uuid',
+        'category_id' => 'uuid',
+        'upload_date' => 'date',
+    ];
+
     public function thumbnail()
     {
         return $this->hasOne(Thumbnail::class);

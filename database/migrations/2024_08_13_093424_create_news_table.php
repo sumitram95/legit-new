@@ -13,19 +13,11 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('policy_tracker_id')->nullable(); // Foreign key column
-            $table->uuid('category_id')->nullable(); // Category foreign key column
+            $table->uuid('policy_tracker_id')->nullable();
+            $table->uuid('category_id')->nullable();
             $table->string('title');
             $table->longText('description')->nullable();
-            $table->string('upload_date');
-
-            // Foreign key constraint
-            $table->foreign('policy_tracker_id')
-                ->references('id')
-                ->on('ai_policy_trackers')
-                ->onDelete('set null');
-
-            // Timestamps and soft deletes
+            $table->date('upload_date');
             $table->softDeletes();
             $table->timestamps();
         });
