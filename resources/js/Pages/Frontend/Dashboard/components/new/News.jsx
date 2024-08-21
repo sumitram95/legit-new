@@ -84,7 +84,7 @@ const News = ({ news }) => {
                                     {list.title}
                                 </h5>
 
-                                <p className="mb-3 font-normal text-primary truncate">
+                                <p className="mb-3 font-normal truncate">
                                     {list.description}
                                 </p>
                                 <Link
