@@ -127,10 +127,11 @@ export default function Dashboard({ tableData, news }) {
                                             <MapChart />
                                         </div>
 
-                                        {/* Historic state */}
+                                        {/* ********************** Rendering the Historic state component ********************** */}
                                         <div className="px-5 mt-4">
                                             <HistoricState date={"August 2024"} />
                                         </div>
+
                                         {/* button */}
                                         <div className="flex justify-between mt-5 px-5">
                                             <LinkButton
@@ -138,12 +139,13 @@ export default function Dashboard({ tableData, news }) {
                                                 className="flex gap-2 text-red-900 items-center"
                                             >
                                                 <i className="fa-regular fa-star"></i>
-                                                <span>Watchlist (0)</span>
+                                                <span>Watchlist ()</span>
                                             </LinkButton>
 
                                             <EditColumn EditColumnLists={EditColumnLists} />
                                         </div>
-                                        {/* table */}
+
+                                        {/* ********************** Rendering the AI Policy Detail ********************** */}
                                         <Table
                                             columns={Columns}
                                             tableData={tableData.data}
@@ -227,9 +229,6 @@ export default function Dashboard({ tableData, news }) {
                         {/* ********************** Rendering the News Organization ********************** */}
                         <Organization organizationLogo={organizationLogo} />
                     </div>
-
-
-
                 </div>
             </div>
         </AppLayout>

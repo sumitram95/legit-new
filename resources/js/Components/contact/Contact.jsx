@@ -3,9 +3,9 @@ import React from "react";
 
 export default function Contact({ contactLists = [] }) {
     return (
-        <div className="mt-3">
-            <strong>Contact</strong>
-            <div className="mt-3 h-fit w-full grid grid-cols-2 gap-x-3">
+        <div className="w-1/2">
+            <strong>Contacts</strong>
+            <div className="mt-3 h-fit w-full">
                 {contactLists.map((data, index) => (
                     <Link
                         href={data.url}

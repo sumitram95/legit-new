@@ -7,14 +7,18 @@ import { Head, useForm } from "@inertiajs/react";
 import React, { useState } from "react";
 import ImageUpload from "@/Components/ImageUpload";
 
-export default function Add({ countries = null, status = null, onClose }) {
+export default function Add({ countries = null, categories = null, aiPolicyTrackers = null, onClose }) {
     const defaultDate = new Date().toISOString().substring(0, 10);
     const [thumbnails, setThumbnails] = useState([]);
     const [featureImages, setFeatureImages] = useState([]);
 
+
+    console.log(aiPolicyTrackers);
+
     const formAiPolicy = useForm({
         title: "",
         category_id: "",
+        policy_tracker_id: "",
         upload_date: defaultDate,
         description: "",
         thumbnails: [],
@@ -92,14 +96,34 @@ export default function Add({ countries = null, status = null, onClose }) {
                             })
                         }
                         name="category_id"
-                        value={status.find(
+                        value={categories.find(
                             (list) =>
                                 list.value === formAiPolicy.data.category_id
                         )}
                         label="Category"
-                        options={status}
+                        options={categories}
                         errorMsg={formAiPolicy.errors.category_id}
                     />
+
+                    {/* dropdown ai policy tracker */}
+                    <Select
+                        onChange={(option) =>
+                            handleChange({
+                                name: "policy_tracker_id",
+                                value: option.value,
+                            })
+                        }
+                        name="policy_tracker_id"
+                        value={aiPolicyTrackers.find(
+                            (list) =>
+                                list.value === formAiPolicy.data.policy_tracker_id
+                        )}
+                        label="AI Policy Tracker"
+                        options={aiPolicyTrackers}
+                        errorMsg={formAiPolicy.errors.policy_tracker_id}
+                    />
+
+
                     <Input
                         onChange={handleChange}
                         name="upload_date"

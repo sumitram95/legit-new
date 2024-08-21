@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AiPolicyTracker;
 use App\Models\Country;
 use App\Models\News;
+use App\Models\NewsCategory;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,9 +16,9 @@ class NewsController extends Controller
 {
     public function index()
     {
-
-        // dd("news index page");
-        $countries = Country::select('id', 'name')->orderBy('name', 'asc')
+        //-- get countries list
+        $countries = Country::select('id', 'name')
+            ->orderBy('name', 'asc')
             ->get()
             ->map(function ($country) {
                 return [
@@ -26,7 +27,8 @@ class NewsController extends Controller
                 ];
             });
 
-        $status = Status::select("id", "name")
+        //-- get news Categories
+        $newsCategories = NewsCategory::select("id", "name")
             ->get()
             ->map(function ($value) {
                 return [
@@ -35,15 +37,23 @@ class NewsController extends Controller
                 ];
             });
 
+        $aiPolicyTrackers = AiPolicyTracker::select("id", "ai_policy_name")
+            ->get()
+            ->map(function ($value) {
+                return [
+                    "value" => $value->id,
+                    "label" => $value->ai_policy_name,
+                ];
+            });
 
-        $tableData = News::with(['thumbnail', 'status'])->paginate(15);
-
-
-        // dd($tableData);
+        $tableData = News::with(['thumbnail', 'newsCategory','policyTracker'])
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
 
         return Inertia::render("Backend/News/Index", [
             'countries' => $countries,
-            'status' => $status,
+            'categories' => $newsCategories,
+            'aiPolicyTrackers' => $aiPolicyTrackers,
             'tableData' => $tableData,
         ]);
     }
@@ -53,6 +63,7 @@ class NewsController extends Controller
         $validate = $request->validate([
             'title' => 'required|string|max:255',
             'category_id' => 'required|string',
+            'policy_tracker_id' => 'required|string',
             'upload_date' => 'required|date',
             'description' => 'sometimes|nullable|string',
             'thumbnails.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validation for multiple images
@@ -61,7 +72,6 @@ class NewsController extends Controller
 
         DB::beginTransaction();
         try {
-
             $news = News::create($validate);
             if ($request->hasFile('thumbnails')) {
                 $thumbnails = $request->thumbnails[0];
@@ -88,7 +98,6 @@ class NewsController extends Controller
             DB::rollBack();
             return to_route('backend.news.index')->with('error', 'Oops! Something went wrong');
         }
-
     }
 
     public function updateData($id)
@@ -113,6 +122,7 @@ class NewsController extends Controller
             'category_id' => 'required|string',
             'upload_date' => 'required|date',
             'description' => 'sometimes|nullable|string',
+            'policy_tracker_id' => 'required|string',
             // 'thumbnails.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             // 'future_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);

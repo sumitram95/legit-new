@@ -17,7 +17,8 @@ import axios from "axios";
 export default function Index({
     tableData = [],
     countries = null,
-    status = null,
+    categories = null,
+    aiPolicyTrackers = null,
 }) {
     // add modal
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -89,6 +90,10 @@ export default function Index({
         }
     }, [successMessage]);
 
+
+
+
+    console.log(tableData);
     return (
         <Layout>
             <Head title="News Lists" />
@@ -116,6 +121,7 @@ export default function Index({
                                             S.N
                                         </th>
                                         <th className="px-6 py-3">Title</th>
+                                        <th className="px-6 py-3">AI Policy Tracker</th>
                                         <th className="px-6 py-3">Category</th>
                                         <th className="px-6 py-3">
                                             uploaded At
@@ -142,7 +148,17 @@ export default function Index({
                                                 {list.title}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.status?.name}
+                                                {list.policy_tracker ? list.policy_tracker.ai_policy_name : ''}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {list.news_category ? (
+                                                    <span className="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">
+                                                        {list.news_category.name}
+                                                    </span>
+                                                ) : (
+                                                    ' '
+                                                )}
+
                                             </td>
                                             <td className="px-6 py-4">
                                                 {list.upload_date ?? "N/A"}
@@ -194,10 +210,14 @@ export default function Index({
             <Model
                 isOpen={isAddModalOpen}
                 onClose={toggleAddModal}
-                title="Add new news"
+                title="Add News"
                 width="max-w-6xl"
             >
-                <Add countries={countries} status={status} />
+                <Add
+                    countries={countries}
+                    categories={categories}
+                    aiPolicyTrackers={aiPolicyTrackers}
+                />
             </Model>
 
             {/* edit model */}
@@ -208,8 +228,9 @@ export default function Index({
                 width="max-w-6xl"
             >
                 <Edit
+                    aiPolicyTrackers={aiPolicyTrackers}
                     countries={countries}
-                    status={status}
+                    categories={categories}
                     onClose={openEditModal}
                     aiId={selectedAiId}
                     updatedData={updatingData}

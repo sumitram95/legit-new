@@ -23,20 +23,26 @@ export default function Description({
                 </div>
             </div>
             <div className="mt-3">
-                <strong>Description</strong>
+                <div className="flex">
+                    <div className="w-1/2">
+                        <strong>Description</strong>
 
-                {dessciptionData.map((data, index) => (
-                    <div className="flex gap-2 mt-3" key={index}>
-                        <strong className=" capitalize">{data.name}</strong>
-                        <span className="text-gray-500">{data.title}</span>
+                        {dessciptionData.map((data, index) => (
+                            <div className="flex gap-2 mt-3" key={index}>
+                                <strong className=" capitalize">{data.name}</strong>
+                                <span className="text-gray-500">{data.title}</span>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
 
-            {/* key contributors */}
-            <div className=" flex justify-between">
-                <Contributor contributorLists={contributorLists} />
-                <Contact contactLists={contactLists} />
+                    <div className="w-1/2">
+                        {/* key contributors */}
+                        <div className="flex justify-between">
+                            <Contributor contributorLists={contributorLists} />
+                            <Contact contactLists={contactLists} />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

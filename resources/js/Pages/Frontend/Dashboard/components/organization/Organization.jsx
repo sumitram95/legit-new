@@ -5,12 +5,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function Organization({ organizationLogo }) {
-    const org = [1, 2, 3, 4];
+    const org = [1];
+    // const org = [1, 2, 3, 4];
 
     const settings = {
         dots: false,
         infinite: true,
-        slidesToShow: 4,
+        slidesToShow: 1,
+        // slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
@@ -27,15 +29,16 @@ export default function Organization({ organizationLogo }) {
                     </h1>
                 </div>
             </div>
-            <Slider {...settings}>
-                {org.map((data, index) => (
-                    <div className="mt-3" key={index}>
+            {/* <Slider {...settings}> */}
+                {/* {org.map((data, index) => ( */}
+                    {/* <div className="mt-3" key={index}> */}
+                    <div className="mt-3">
                         <Link hre={"/logo"} className=" w-fit">
                             <img src={organizationLogo} alt="" />
                         </Link>
                     </div>
-                ))}
-            </Slider>
+                {/* ))} */}
+            {/* </Slider> */}
         </div>
     );
 }

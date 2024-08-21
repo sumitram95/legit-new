@@ -81,10 +81,13 @@ const News = ({ news }) => {
                                 </p>
 
                                 <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate">
-                                    {list.title}
+                                    <Link href={route("news.single", list.id)}>
+                                        {list.title}
+                                    </Link>
                                 </h5>
 
-                                <p className="mb-3 font-normal text-primary truncate">
+
+                                <p className="mb-3 font-normal truncate">
                                     {list.description}
                                 </p>
                                 <Link

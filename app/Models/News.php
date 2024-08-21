@@ -19,6 +19,16 @@ class News extends Model
         'description',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'upload_date' => 'date',
+    ];
+
+
     public function thumbnail()
     {
         return $this->hasOne(Thumbnail::class);
@@ -29,13 +39,27 @@ class News extends Model
         return $this->hasOne(NewsFutureImage::class);
     }
 
-    public function status()
+    public function newsCategory()
     {
-        return $this->hasOne(Status::class, 'id', 'category_id');
+        return $this->belongsTo(NewsCategory::class, 'category_id', 'id');
     }
 
     public function policyTracker()
     {
         return $this->belongsTo(AiPolicyTracker::class, 'policy_tracker_id');
     }
+
+    /**
+     * Get the formatted upload date.
+     *
+     * @return string
+     */
+    public function getUploadDateAttribute()
+    {
+        return $this->attributes['upload_date']
+            ? \Carbon\Carbon::parse($this->attributes['upload_date'])->format('Y-m-d')
+            : null;
+    }
+
+
 }
