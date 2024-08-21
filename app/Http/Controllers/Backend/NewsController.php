@@ -16,7 +16,6 @@ class NewsController extends Controller
 {
     public function index()
     {
-
         $countries = Country::select('id', 'name')
             ->orderBy('name', 'asc')
             ->get()
@@ -39,8 +38,6 @@ class NewsController extends Controller
         $tableData = News::with(['thumbnail', 'newsCategory'])
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
-
-            // dd($tableData);
 
         return Inertia::render("Backend/News/Index", [
             'countries' => $countries,
