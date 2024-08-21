@@ -15,9 +15,8 @@ class NewsController extends Controller
 {
     public function index()
     {
-
-        // dd("news index page");
-        $countries = Country::select('id', 'name')->orderBy('name', 'asc')
+        $countries = Country::select('id', 'name')
+            ->orderBy('name', 'asc')
             ->get()
             ->map(function ($country) {
                 return [
@@ -35,11 +34,9 @@ class NewsController extends Controller
                 ];
             });
 
-
-        $tableData = News::with(['thumbnail', 'status'])->paginate(15);
-
-
-        // dd($tableData);
+        $tableData = News::with(['thumbnail', 'status'])
+            ->orderBy('created_at', 'DESC')
+            ->paginate(15);
 
         return Inertia::render("Backend/News/Index", [
             'countries' => $countries,
@@ -88,7 +85,6 @@ class NewsController extends Controller
             DB::rollBack();
             return to_route('backend.news.index')->with('error', 'Oops! Something went wrong');
         }
-
     }
 
     public function updateData($id)
