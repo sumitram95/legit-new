@@ -122,6 +122,7 @@ class NewsController extends Controller
             'category_id' => 'required|string',
             'upload_date' => 'required|date',
             'description' => 'sometimes|nullable|string',
+            'policy_tracker_id' => 'required|string',
             // 'thumbnails.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             // 'future_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);

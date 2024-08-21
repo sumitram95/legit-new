@@ -228,6 +228,7 @@ export default function Index({
                 width="max-w-6xl"
             >
                 <Edit
+                    aiPolicyTrackers={aiPolicyTrackers}
                     countries={countries}
                     categories={categories}
                     onClose={openEditModal}

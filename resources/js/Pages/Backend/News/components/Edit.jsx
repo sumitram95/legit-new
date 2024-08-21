@@ -6,19 +6,21 @@ import { Head, useForm } from "@inertiajs/react";
 import React from "react";
 
 export default function Edit({
-    countries = null,
-    categories = null,
+    countries = [],
+    aiPolicyTrackers = [],
+    categories = [],
     aiId = null,
-    updatedData = null,
+    updatedData = {},
     onClose,
 }) {
     const defaultDate = new Date().toISOString().substring(0, 10);
 
     const formAiPolicy = useForm({
-        title: updatedData.title,
-        category_id: updatedData.category_id,
-        upload_date: updatedData.upload_date,
-        description: updatedData.description,
+        title: updatedData.title || '',
+        category_id: updatedData.category_id || '',
+        policy_tracker_id: updatedData.policy_tracker_id || '',
+        upload_date: updatedData.upload_date || defaultDate,
+        description: updatedData.description || '',
     });
 
     const handleChange = (e) => {
@@ -34,9 +36,7 @@ export default function Edit({
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // alert(aiId);
-        onClose;
+        onClose(); // Call onClose as a function
         formAiPolicy.put(route("backend.news.update", aiId));
     };
 
@@ -48,7 +48,7 @@ export default function Edit({
                     <Input
                         name="title"
                         value={formAiPolicy.data.title}
-                        htmlFor="name"
+                        htmlFor="title"
                         label="News Title"
                         type="text"
                         onChange={handleChange}
@@ -73,6 +73,25 @@ export default function Edit({
                         options={categories}
                         errorMsg={formAiPolicy.errors.category_id}
                     />
+
+                    {/* dropdown ai policy tracker */}
+                    <Select
+                        onChange={(option) =>
+                            handleChange({
+                                name: "policy_tracker_id",
+                                value: option.value,
+                            })
+                        }
+                        name="policy_tracker_id"
+                        value={aiPolicyTrackers.find(
+                            (list) =>
+                                list.value === formAiPolicy.data.policy_tracker_id
+                        )}
+                        label="AI Policy Tracker"
+                        options={aiPolicyTrackers}
+                        errorMsg={formAiPolicy.errors.policy_tracker_id}
+                    />
+
                     <Input
                         onChange={handleChange}
                         name="upload_date"
@@ -91,7 +110,7 @@ export default function Edit({
                     rows={8}
                     cols={30}
                 />
-                <div className=" float-end">
+                <div className="float-end">
                     <Button
                         type="submit"
                         disabled={formAiPolicy.processing}
