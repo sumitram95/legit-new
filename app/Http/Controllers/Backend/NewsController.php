@@ -41,7 +41,7 @@ class NewsController extends Controller
 
         return Inertia::render("Backend/News/Index", [
             'countries' => $countries,
-            'status' => $newsCategories,
+            'categories' => $newsCategories,
             'tableData' => $tableData,
         ]);
     }
