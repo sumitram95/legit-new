@@ -7,7 +7,7 @@ import React from "react";
 
 export default function Edit({
     countries = null,
-    status = null,
+    categories = null,
     aiId = null,
     updatedData = null,
     onClose,
@@ -65,12 +65,12 @@ export default function Edit({
                             })
                         }
                         name="category_id"
-                        value={status.find(
+                        value={categories.find(
                             (list) =>
                                 list.value === formAiPolicy.data.category_id
                         )}
                         label="Category"
-                        options={status}
+                        options={categories}
                         errorMsg={formAiPolicy.errors.category_id}
                     />
                     <Input
