@@ -18,16 +18,14 @@ class News extends Model
         'upload_date',
         'description',
     ];
-
     /**
      * The attributes that should be cast to native types.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'id' => 'uuid',
-        'policy_tracker_id' => 'uuid',
-        'category_id' => 'uuid',
+        // 'policy_tracker_id' => 'uuid',
+        // 'category_id' => 'uuid',
         'upload_date' => 'date',
     ];
 
@@ -41,9 +39,9 @@ class News extends Model
         return $this->hasOne(NewsFutureImage::class);
     }
 
-    public function status()
+    public function newsCategory()
     {
-        return $this->hasOne(Status::class, 'id', 'category_id');
+        return $this->belongsTo(NewsCategory::class, 'category_id', 'id');
     }
 
     public function policyTracker()

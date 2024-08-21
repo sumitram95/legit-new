@@ -24,4 +24,8 @@ class NewsCategory extends Model
      * @var bool
      */
     // public $timestamps = true;
+    public function news()
+    {
+        return $this->hasMany(News::class, 'category_id', 'id');
+    }
 }
