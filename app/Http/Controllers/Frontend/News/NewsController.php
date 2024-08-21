@@ -23,14 +23,15 @@ class NewsController extends Controller
         //     9
         // ];
 
-        $data['news'] = News::with(['thumbnail', 'status'])->paginate(15);
+        $data['news'] = News::with(['thumbnail', 'newsCategory'])->paginate(15);
         return Inertia::render('Frontend/News/News', $data);
     }
 
     public function singleNews($id = null)
     {
+
         try {
-            $data['news'] = News::with(['thumbnail', 'status'])->find($id);
+            $data['news'] = News::with(['thumbnail', 'newsCategory'])->find($id);
             if (!$data['news']) {
                 return to_route('news.index')->with('error', 'News Not Founded');
             }
