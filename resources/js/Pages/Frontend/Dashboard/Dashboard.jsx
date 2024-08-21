@@ -227,9 +227,6 @@ export default function Dashboard({ tableData, news }) {
                         {/* ********************** Rendering the News Organization ********************** */}
                         <Organization organizationLogo={organizationLogo} />
                     </div>
-
-
-
                 </div>
             </div>
         </AppLayout>

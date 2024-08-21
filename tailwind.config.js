@@ -31,6 +31,15 @@ export default {
                 },
                 // Add more custom colors as needed
             },
+            aspectRatio: {
+                '1/1': '1 / 1',
+            },
+            objectFit: {
+                contain: 'contain',
+            },
+            blendMode: {
+                'color-burn': 'color-burn',
+            },
         },
     },
 

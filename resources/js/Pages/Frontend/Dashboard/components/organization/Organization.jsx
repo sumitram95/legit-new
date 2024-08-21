@@ -22,6 +22,7 @@ export default function Organization({ organizationLogo }) {
         pauseOnHover: true,
         adaptiveHeight: false,
         arrows: false,
+        speed: 700,
     };
     return (
         <div className="bg-white h-fit p-5 rounded-md w-full mt-6">
