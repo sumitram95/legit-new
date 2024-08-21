@@ -7,7 +7,7 @@ import { Head, useForm } from "@inertiajs/react";
 import React, { useState } from "react";
 import ImageUpload from "@/Components/ImageUpload";
 
-export default function Add({ countries = null, status = null, onClose }) {
+export default function Add({ countries = null, categories = null, onClose }) {
     const defaultDate = new Date().toISOString().substring(0, 10);
     const [thumbnails, setThumbnails] = useState([]);
     const [featureImages, setFeatureImages] = useState([]);
@@ -92,12 +92,12 @@ export default function Add({ countries = null, status = null, onClose }) {
                             })
                         }
                         name="category_id"
-                        value={status.find(
+                        value={categories.find(
                             (list) =>
                                 list.value === formAiPolicy.data.category_id
                         )}
                         label="Category"
-                        options={status}
+                        options={categories}
                         errorMsg={formAiPolicy.errors.category_id}
                     />
                     <Input
