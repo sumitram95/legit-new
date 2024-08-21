@@ -18,17 +18,15 @@ class News extends Model
         'upload_date',
         'description',
     ];
+
     /**
      * The attributes that should be cast to native types.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        // 'policy_tracker_id' => 'uuid',
-        // 'category_id' => 'uuid',
         'upload_date' => 'date',
     ];
-
 
 
     public function thumbnail()
@@ -50,4 +48,18 @@ class News extends Model
     {
         return $this->belongsTo(AiPolicyTracker::class, 'policy_tracker_id');
     }
+
+    /**
+     * Get the formatted upload date.
+     *
+     * @return string
+     */
+    public function getUploadDateAttribute()
+    {
+        return $this->attributes['upload_date']
+            ? \Carbon\Carbon::parse($this->attributes['upload_date'])->format('Y-m-d')
+            : null;
+    }
+
+
 }
