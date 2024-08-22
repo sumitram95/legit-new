@@ -14,14 +14,7 @@ const SelectInputLists = {
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
       ],
-    // Status: {
-    //     name: ["Nepal", "America", "Japan"],
-    //     value: ["NP", "A", "JA"],
-    // },
-    // Technology_partners: {
-    //     name: ["Nepal", "America", "Japan"],
-    //     value: ["NP", "A", "JA"],
-    // },
+
 
     labels: [
         "AI Policy Name",

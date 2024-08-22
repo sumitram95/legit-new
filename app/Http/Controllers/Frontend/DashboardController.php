@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AiPolicyTracker;
+use App\Models\Country;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,7 +16,23 @@ class DashboardController extends Controller
         $data['tableData'] = AiPolicyTracker::with(['country', 'status'])->paginate(15);
         $data['news'] = News::with(['thumbnail', 'newsCategory'])->paginate(15);
 
-        // dd($data['news']);
+        $data['aiPolicies'] = AiPolicyTracker::get()
+            ->map(function ($aiPolicy) {
+                return [
+                    'value' => $aiPolicy->id,
+                    'label' => $aiPolicy->ai_policy_name,
+                ];
+            });
+
+        $data['countries'] = Country::get()
+            ->map(function ($aiPolicy) {
+                return [
+                    'value' => $aiPolicy->id,
+                    'label' => $aiPolicy->name,
+                ];
+            });
+
+
         return Inertia::render('Frontend/Dashboard/Dashboard', $data);
     }
 }
