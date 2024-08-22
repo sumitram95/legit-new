@@ -43,9 +43,9 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
         Country1: countries.map(country => ({ value: country.value, label: country.label })),
 
         Announcement_year: [
-            { value: 'dfdsfsd', label: 'dfdsfsd' },
-            { value: 'dfdsfsd', label: 'dfdsfsd' },
-            { value: 'dfdsfsd', label: 'dfdsfsd' }
+            { value: '2002', label: '2002' },
+            { value: '2010', label: '2010' },
+            { value: '2024', label: '2024' }
         ],
         Status: [
             { value: 'active', label: 'Active' },
@@ -145,6 +145,7 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                                     <form className="w-full" id="filterData">
                                         <div className="flex">
                                             {SelectInputLists.labels.map((label, index) => (
+
                                                 <div className="w-full md:w-1/2 px-3" key={index}>
                                                     <SelectInput
                                                         label={label}
