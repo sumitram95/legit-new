@@ -39,7 +39,9 @@ export default function Status({ className = "", ...props }) {
                         onChange={handleCheckboxChange}
                         className={`rounded ${status} focus:ring-0 ${className}`}
                     />
-                    <label htmlFor={status} className="capitalize" style={{ fontSize: '10px' }}>
+                    <label htmlFor={status} className="capitalize"
+                    style={{ fontSize: '12px' }}
+                    >
                         {status}
                     </label>
                 </div>

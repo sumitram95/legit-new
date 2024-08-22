@@ -118,7 +118,7 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                                 <div className="flex justify-center items-center mb-3">
                                     <Status />
                                 </div>
-                                <div className="flex gap-3">
+                                <div className="flex gap-3 lg:hidden">
                                     {visibleDiv && (
                                         <button
                                             type="button"
