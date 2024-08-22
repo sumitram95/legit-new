@@ -117,6 +117,12 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                                             <span className="text-black ml-[4px]">Aug 2024</span>
                                         </p>
                                     </div>
+
+                                </div>
+
+                                {/* ********************** Status Comonent ********************** */}
+                                <div className="flex justify-center items-center mb-3">
+                                    <Status />
                                 </div>
                                 <div className="flex gap-3">
                                     {visibleDiv && (
@@ -158,10 +164,9 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                                     </form>
                                 </div>
                             )}
+
+                            {/* ********************** MapChart Comonent ********************** */}
                             <div className="mt-5 px-4 map-chart-wrapper">
-                                <div className="flex justify-center items-center mb-3">
-                                    <Status />
-                                </div>
                                 <MapChart />
                             </div>
                             <div className="px-5 mt-4">
