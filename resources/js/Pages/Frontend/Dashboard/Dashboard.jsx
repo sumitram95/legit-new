@@ -169,6 +169,7 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                             <div className="mt-5 px-4 map-chart-wrapper">
                                 <MapChart />
                             </div>
+                            {/* ********************** HistoricState Comonent ********************** */}
                             <div className="px-5 mt-4">
                                 <HistoricState date={"August 2024"} />
                             </div>

@@ -39,7 +39,7 @@ export default function Status({ className = "", ...props }) {
                         onChange={handleCheckboxChange}
                         className={`rounded ${status} focus:ring-0 ${className}`}
                     />
-                    <label htmlFor={status} className="capitalize">
+                    <label htmlFor={status} className="capitalize" style={{ fontSize: '10px' }}>
                         {status}
                     </label>
                 </div>
@@ -50,6 +50,7 @@ export default function Status({ className = "", ...props }) {
                     type="button"
                     className="text-blue-400 hover:underline"
                     onClick={handleShowAllChecked}
+                    style={{fontSize:'12px'}}
                 >
                     Show all
                 </button>
