@@ -18,7 +18,9 @@ class WatchListController extends Controller
     public function show(Request $request)
     {
 
-        return($request->all());
+        return $this->index();
+
+        return ($request->all());
 
         return 'true';
         // Logic for handling the POST request with the given IDs
