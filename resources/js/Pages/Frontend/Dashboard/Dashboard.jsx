@@ -132,6 +132,7 @@ export default function Dashboard({ tableData, news }) {
                                             <HistoricState date={"August 2024"} />
                                         </div>
 
+                                        {/* ********************** Rendering the AI Policy Detail (with watch list) ********************** */}
                                         {/* button */}
                                         <div className="flex justify-between mt-5 px-5">
                                             <LinkButton
@@ -145,7 +146,7 @@ export default function Dashboard({ tableData, news }) {
                                             <EditColumn EditColumnLists={EditColumnLists} />
                                         </div>
 
-                                        {/* ********************** Rendering the AI Policy Detail (with watch list) ********************** */}
+                                        {/* Show content on table */}
                                         <Table
                                             columns={Columns}
                                             tableData={tableData.data}
