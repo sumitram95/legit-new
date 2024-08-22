@@ -41,8 +41,8 @@ export default function Dashboard({ tableData, news }) {
         });
     };
 
-    console.log("Watch List IDs:", watchListIds); // Debugging watchListIds
-    console.log("Table Data:", tableData.data); // Debugging tableData
+    // console.log("Watch List IDs:", watchListIds);
+    // console.log("Table Data:", tableData.data);
 
     return (
         <AppLayout>
@@ -119,7 +119,7 @@ export default function Dashboard({ tableData, news }) {
                                         className="flex gap-2 text-red-900 items-center"
                                     >
                                         <i className="fa-regular fa-star"></i>
-                                        <span>Watchlist (bookmark count: {bookmarkCount})</span>
+                                        <span>Watchlist ({bookmarkCount})</span>
                                     </LinkButton>
                                     <EditColumn EditColumnLists={EditColumnLists} />
                                 </div>
