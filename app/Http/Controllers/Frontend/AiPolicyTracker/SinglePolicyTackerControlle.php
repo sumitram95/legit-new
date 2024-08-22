@@ -23,4 +23,12 @@ class SinglePolicyTackerControlle extends Controller
 
         return Inertia::render("Frontend/AiPolicyTracker/SingleAiPolicyTracker", $data);
     }
+
+    public function aiPolicyBookMark(Request $request, $id)
+    {
+        $aiPolicyTracker = AiPolicyTracker::find($id);
+
+        return response()->json(['id' => $aiPolicyTracker, 'status' => 'success']);
+        // return response()->json(['id' => $id, 'status' => 'success']);
+    }
 }
