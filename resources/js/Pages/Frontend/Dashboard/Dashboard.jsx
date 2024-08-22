@@ -35,7 +35,7 @@ export default function Dashboard({ tableData, news }) {
                         <div className="flex gap-[30px]">
                             <div className="w-full lg:w-[83.33%]">
                                 <div className="w-full">
-                                    {/* ********************** Rendering the Map component ********************** */}
+
                                     <div className="border rounded-md w-full bg-white ">
                                         <div className=" border-b-2 py-[16px] px-[16px] flex justify-between items-center">
                                             <div>
@@ -52,7 +52,7 @@ export default function Dashboard({ tableData, news }) {
                                                             July 2022
                                                         </span>
                                                     </p>
-                                                    <span class="date-separator"></span>
+                                                    <span className="date-separator"></span>
                                                     <p className=" text-sm leading-normal text-primary-light">
                                                         News Update:
                                                         <span className="text-black ml-[4px]">Aug 2024</span>
@@ -145,7 +145,7 @@ export default function Dashboard({ tableData, news }) {
                                             <EditColumn EditColumnLists={EditColumnLists} />
                                         </div>
 
-                                        {/* ********************** Rendering the AI Policy Detail ********************** */}
+                                        {/* ********************** Rendering the AI Policy Detail (with watch list) ********************** */}
                                         <Table
                                             columns={Columns}
                                             tableData={tableData.data}
