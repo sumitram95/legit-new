@@ -41,7 +41,7 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
         ],
     };
     console.log(statuses);
-    const FilterData = {
+    const FormFiled = {
         AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
         Country: countries.map(country => ({ value: country.value, label: country.label })),
         Status: statuses.map(status => ({ value: status.value, label: status.label })),
@@ -158,13 +158,13 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                             </div>
                             {visibleDiv && (
                                 <div className="px-5 w-full mt-5">
-                                    {/* ********************** Search Comonent ********************** */}
-                                    <Search
+                                    {/* ********************** mobile ********************** */}
+                                    {/* <Search
                                         SelectInputLists={SelectInputLists}
-                                        FilterData={FilterData}
+                                        FormFiled={FormFiled}
                                         filters={data}
                                         handleFilterChange={e => setData(e.target.name, e.target.value)}
-                                    />
+                                    /> */}
                                 </div>
                             )}
 
@@ -230,13 +230,13 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                                 </div>
                             </div>
                             <div className="px-[16px] mt-5">
-                                <form className="w-full" id="filterData">
+                                <form className="w-full" id="FormFiled">
                                     <div>
                                         {SelectInputLists.labels.map((label, index) => (
                                             <div className="w-full px-3" key={index}>
                                                 <SelectInput
                                                     label={label}
-                                                    listName={FilterData[SelectInputLists.lists[index]] || []} // Access the data array based on the listName
+                                                    listName={FormFiled[SelectInputLists.lists[index]] || []} // Access the data array based on the listName
                                                 />
                                             </div>
                                         ))}
