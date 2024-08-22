@@ -44,9 +44,13 @@ export default function EditColumn({
                                 <input
                                     type="checkbox"
                                     id={EditColumnList.name}
-                                    // className={`rounded ${StatusList} focus:ring-0 ${className}`}
-                                    className="rounded focus:ring-0"
+                                    className={`rounded focus:ring-0 ${EditColumnList.status ? 'disabled-checkbox' : ''}`}
+
+                                    checked={EditColumnList.status ? true : undefined}
+                                    disabled={EditColumnList.status}
                                 />
+
+
                                 <label
                                     htmlFor={EditColumnList.name}
                                     className="capitalize"

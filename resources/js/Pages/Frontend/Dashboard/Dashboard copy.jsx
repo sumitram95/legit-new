@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MapChart } from "./components/map/MapChart";
 import { AppLayout } from "@/Layouts/AppLayout";
 import SelectInput from "@/Components/SelectInput";
+import SelectInputLists from "@/Components/map/SelectInputList";
 import Status from "@/Components/status/Status";
 import { Head } from "@inertiajs/react";
 import HistoricState from "./components/HistoricState";
@@ -16,47 +17,10 @@ import ContributorLists from "@/Components/contributor/ContributorList";
 import ContactLists from "@/Components/contact/ContactLists";
 import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
+import LinkButton from "@/Components/LinkButton";
 import { useForm } from '@inertiajs/react';
-
-
+import TextInput from '@/Components/TextInput';
 export default function Dashboard({ tableData, news, aiPolicies, countries }) {
-    // Define SelectInputLists and Raj objects properly
-    const SelectInputLists = {
-        labels: [
-            "AI Policy Name 1",
-            "Country / Region",
-            "Announcement year",
-            "Status",
-            "Technology partners",
-        ],
-        lists: [
-            "AI_Policy_Name1",
-            "Country1",
-            "Announcement_year",
-            "Status",
-            "Technology_partners",
-        ],
-    };
-    console.log(aiPolicies);
-    const Raj = {
-        AI_Policy_Name1: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
-        Country1: countries.map(country => ({ value: country.value, label: country.label })),
-
-        Announcement_year: [
-            { value: '2002', label: '2002' },
-            { value: '2010', label: '2010' },
-            { value: '2024', label: '2024' }
-        ],
-        Status: [
-            { value: 'active', label: 'Active' },
-            { value: 'inactive', label: 'Inactive' }
-        ],
-        Technology_partners: [
-            { value: 'partner1', label: 'Partner 1' },
-            { value: 'partner2', label: 'Partner 2' }
-        ],
-    };
-
     const [visibleDiv, setVisibleDiv] = useState(false);
     const [bookmarkCount, setBookmarkCount] = useState(0);
     const [watchListIds, setWatchListIds] = useState([]);
@@ -80,10 +44,14 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
         });
     };
 
+
+
     const submit = (e) => {
         e.preventDefault();
+        const ids = 10;
+        // setData('ids', 111);
         post(route('frontend.watch_list.show'), {
-            data: { ids: data.ids }, // Use dynamic ids
+            data: { ids },
             onFinish: () => {
                 console.log('Submission finished');
                 reset(); // Reset the form data
@@ -145,15 +113,13 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                                     <form className="w-full" id="filterData">
                                         <div className="flex">
                                             {SelectInputLists.labels.map((label, index) => (
-
                                                 <div className="w-full md:w-1/2 px-3" key={index}>
                                                     <SelectInput
                                                         label={label}
-                                                        listName={Raj[SelectInputLists.lists[index]] || []} // Pass the array directly
+                                                        listName={SelectInputLists.lists[index]}
                                                     />
                                                 </div>
                                             ))}
-
                                         </div>
                                     </form>
                                 </div>
@@ -168,6 +134,7 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                                 <HistoricState date={"August 2024"} />
                             </div>
                             <div className="flex justify-between mt-5 px-5">
+
                                 <form onSubmit={submit} className="text-primary bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2">
                                     <button type="submit" className="">
                                         <i className="fa-regular fa-star mr-3"></i>
@@ -221,14 +188,15 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                             <div className="px-[16px] mt-5">
                                 <form className="w-full" id="filterData">
                                     <div>
-                                        {SelectInputLists.labels.map((label, index) => (
+                                        {aiPolicies.map((policy, index) => (
                                             <div className="w-full px-3" key={index}>
                                                 <SelectInput
-                                                    label={label}
-                                                    listName={Raj[SelectInputLists.lists[index]] || []} // Access the data array based on the listName
+                                                    label={policy.label}      // Use policy.label to set the label
+                                                    listName={policy.value}   // Pass policy.value as listName or use another approach
                                                 />
                                             </div>
                                         ))}
+
                                     </div>
                                 </form>
                             </div>

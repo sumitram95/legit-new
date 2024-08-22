@@ -26,13 +26,16 @@ Route::controller(NewsController::class)->group(function () {
     Route::get("/news/{id}", "singleNews")->name("news.single");
 });
 
-Route:: as('frontend.')->group(function () {
+Route::as('frontend.')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'dashboard')->name('dashboard');
     });
-    Route::controller(WatchListController::class)->as('watch_list.')->group(function () {
-        Route::get('/watchlist', 'index')->name('index');
-    });
+    Route::controller(WatchListController::class)
+        ->as('watch_list.')
+        ->group(function () {
+            Route::get('/watchlist', 'index')->name('index');
+            Route::post('/watchlist/show', 'show')->name('show');
+        });
 
     // time line controller
     Route::controller(TimeLineController::class)->as('time_line.')->group(function () {
@@ -42,6 +45,6 @@ Route:: as('frontend.')->group(function () {
     // single AI policy tracker
     Route::controller(SinglePolicyTackerControlle::class)->as('single_ai_policy_tracker.')->group(function () {
         Route::get("/aipolicytracker/single-view/{id}", "index")->name('index');
+        Route::post("/aipolicytracker/bookmark/{id}", "aiPolicyBookMark")->name('bookmark');
     });
 });
-
