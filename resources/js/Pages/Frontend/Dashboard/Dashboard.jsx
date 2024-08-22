@@ -40,7 +40,7 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
             // "Technology_partners",
         ],
     };
-    console.log(statuses);
+    // console.log(statuses);
     const FormFiled = {
         AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
         Country: countries.map(country => ({ value: country.value, label: country.label })),
@@ -53,18 +53,30 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
     };
 
     const [filters, setFilters] = useState({
+        AI_Policy_Name: [],
+        country_id: [],
+        status_id: [],
         announcement_year: '',
-        // Add other filters as needed
     });
 
+    const handleFilterChange = (name, selectedOptions) => {
+        const value = selectedOptions ? selectedOptions.map(option => option.value) : [];
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: value,
+        }));
+    };
 
-    const handleFilterChange = (e) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFilters(prevFilters => ({
             ...prevFilters,
             [name]: value,
         }));
     };
+
+    console.log(filters);
+
 
 
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -232,27 +244,35 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                             <div className="px-[16px] mt-5">
                                 <form className="w-full" id="FormFiled">
                                     <div>
-                                        {SelectInputLists.labels.map((label, index) => (
-                                            <div className="w-full px-3" key={index}>
-                                                <SelectInput
-                                                    label={label}
-                                                    listName={FormFiled[SelectInputLists.lists[index]] || []} // Access the data array based on the listName
-                                                />
-                                            </div>
-                                        ))}
+                                        <SelectInput
+                                            label="AI Policy Name"
+                                            options={aiPolicies.map(policy => ({ value: policy.value, label: policy.label }))}
+                                            value={filters.AI_Policy_Name}
+                                            onChange={(selectedOptions) => handleFilterChange('AI_Policy_Name', selectedOptions)}
+                                        />
 
-                                        {/* ********************** Announcement year ********************** */}
-                                        <div className="w-full px-3 mb-7">
-                                            <Input
-                                                name="announcement_year"
-                                                value={filters.announcement_year}
-                                                // onChange={handleFilterChange}
-                                                htmlFor="announcement_year"
-                                                label="Announcement year"
-                                                type="date" // Use "date" type for date input
-                                                placeholder="Select a date"
-                                            />
-                                        </div>
+                                        <SelectInput
+                                            label="Country / Region"
+                                            options={countries.map(country => ({ value: country.value, label: country.label }))}
+                                            value={filters.country_id}
+                                            onChange={(selectedOptions) => handleFilterChange('country_id', selectedOptions)}
+                                        />
+
+                                        <SelectInput
+                                            label="Status"
+                                            options={statuses.map(status => ({ value: status.value, label: status.label }))}
+                                            value={filters.status_id}
+                                            onChange={(selectedOptions) => handleFilterChange('status_id', selectedOptions)}
+                                        />
+
+                                        <Input
+                                            name="announcement_year"
+                                            value={filters.announcement_year}
+                                            onChange={handleInputChange}
+                                            htmlFor="announcement_year"
+                                            label="Announcement Year"
+                                            type="date"
+                                        />
 
 
                                     </div>

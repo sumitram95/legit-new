@@ -7,11 +7,12 @@ const animatedComponents = makeAnimated();
 const SelectInput = forwardRef(
     (
         {
-            type = "text",
-            className = "",
             isFocused = false,
-            listName = null,
             label,
+            options = [],
+            onChange,
+            value = [],
+            className = "",
             ...props
         },
         ref
@@ -25,20 +26,22 @@ const SelectInput = forwardRef(
         }, [isFocused]);
 
         return (
-            <div className="mb-4">
+            <div className={`mb-4 ${className}`}>
                 <label
                     className="block uppercase tracking-wide text-secondary text-xs font-bold mb-2"
-                    htmlFor="grid-last-name"
                 >
                     {label}
                 </label>
 
                 <Select
-                    id="select"
                     isMulti
                     closeMenuOnSelect={false}
                     components={animatedComponents}
-                    options={listName} // Use the listName prop directly
+                    options={options}
+                    onChange={onChange}
+                    value={value} // Set the value based on the parent component's state
+                    className="basic-multi-select"
+                    classNamePrefix="select"
                     {...props}
                 />
             </div>
