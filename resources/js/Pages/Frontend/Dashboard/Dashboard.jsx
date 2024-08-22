@@ -17,36 +17,34 @@ import ContactLists from "@/Components/contact/ContactLists";
 import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from '@inertiajs/react';
+import Input from "@/Components/Input";
 
 
-export default function Dashboard({ tableData, news, aiPolicies, countries }) {
+
+export default function Dashboard({ tableData, news, aiPolicies, countries, statuses }) {
     // Define SelectInputLists and Raj objects properly
     const SelectInputLists = {
         labels: [
             "AI Policy Name",
             "Country / Region",
-            "Announcement year",
             "Status",
+            // "Announcement year",
             // "Technology partners",
         ],
         lists: [
             "AI_Policy_Name",
             "Country",
-            // "Announcement_year",
             "Status",
+            // "Announcement_year",
             // "Technology_partners",
         ],
     };
-    console.log(aiPolicies);
+    console.log(statuses);
     const Raj = {
         AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
         Country: countries.map(country => ({ value: country.value, label: country.label })),
+        Status: statuses.map(status => ({ value: status.value, label: status.label })),
 
-
-        Status: [
-            { value: 'active', label: 'Active' },
-            { value: 'inactive', label: 'Inactive' }
-        ],
         // Technology_partners: [
         //     { value: 'partner1', label: 'Partner 1' },
         //     { value: 'partner2', label: 'Partner 2' }
@@ -144,10 +142,10 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                             </div>
                             {visibleDiv && (
                                 <div className="px-5 w-full mt-5">
+
                                     <form className="w-full" id="filterData">
                                         <div className="flex">
                                             {SelectInputLists.labels.map((label, index) => (
-
                                                 <div className="w-full md:w-1/2 px-3" key={index}>
                                                     <SelectInput
                                                         label={label}
@@ -155,6 +153,19 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                                                     />
                                                 </div>
                                             ))}
+
+
+                                            <input type="text" name="hh" id="" value={dsfsad} />
+                                            <Input
+                                                name="ai_policy_name"
+                                                value={formAiPolicy.data.ai_policy_name}
+                                                htmlFor="name"
+                                                label="Ai policy tracker name"
+                                                type="text"
+                                                onChange={handleChange}
+                                                placeholder="Eg. Act of (AI) not allowed"
+                                                errorMsg={formAiPolicy.errors.ai_policy_name}
+                                            />
 
                                         </div>
                                     </form>
@@ -190,7 +201,7 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                         </div>
                     </div>
 
-                    {/* Search */}
+                    {/* ********************** Search Comonent (desktop) ********************** */}
                     <div className="hidden lg:block">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
@@ -231,6 +242,21 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                                                 />
                                             </div>
                                         ))}
+
+                                        <div className="w-full px-3 mb-7">
+                                            <Input
+                                                // onChange={handleChange}
+                                                name="announcement_year"
+                                                value=''
+                                                // value={formAiPolicy.data.governing_body}
+                                                htmlFor="announcement_year"
+                                                label="Announcement year"
+                                                type="text"
+                                                placeholder="Date"
+                                            />
+
+                                        </div>
+
                                     </div>
                                 </form>
                             </div>

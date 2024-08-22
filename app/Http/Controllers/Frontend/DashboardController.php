@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AiPolicyTracker;
 use App\Models\Country;
 use App\Models\News;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -31,6 +32,15 @@ class DashboardController extends Controller
                     'label' => $aiPolicy->name,
                 ];
             });
+
+        $data['statuses'] = Status::get()
+            ->map(function ($status) {
+                return [
+                    'value' => $status->id,
+                    'label' => $status->name,
+                ];
+            });
+
 
 
 
