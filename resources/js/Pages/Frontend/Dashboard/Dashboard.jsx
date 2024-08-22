@@ -18,11 +18,12 @@ import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from '@inertiajs/react';
 import Input from "@/Components/Input";
+import SearchComponent from "./components/search/Search";
+import Search from "./components/search/Search";
 
 
 
 export default function Dashboard({ tableData, news, aiPolicies, countries, statuses }) {
-    // Define SelectInputLists and Raj objects properly
     const SelectInputLists = {
         labels: [
             "AI Policy Name",
@@ -40,7 +41,7 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
         ],
     };
     console.log(statuses);
-    const Raj = {
+    const FilterData = {
         AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
         Country: countries.map(country => ({ value: country.value, label: country.label })),
         Status: statuses.map(status => ({ value: status.value, label: status.label })),
@@ -50,6 +51,21 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
         //     { value: 'partner2', label: 'Partner 2' }
         // ],
     };
+
+    const [filters, setFilters] = useState({
+        announcement_year: '',
+        // Add other filters as needed
+    });
+
+
+    const handleFilterChange = (e) => {
+        const { name, value } = e.target;
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: value,
+        }));
+    };
+
 
     const [visibleDiv, setVisibleDiv] = useState(false);
     const [bookmarkCount, setBookmarkCount] = useState(0);
@@ -142,33 +158,13 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                             </div>
                             {visibleDiv && (
                                 <div className="px-5 w-full mt-5">
-
-                                    <form className="w-full" id="filterData">
-                                        <div className="flex">
-                                            {SelectInputLists.labels.map((label, index) => (
-                                                <div className="w-full md:w-1/2 px-3" key={index}>
-                                                    <SelectInput
-                                                        label={label}
-                                                        listName={Raj[SelectInputLists.lists[index]] || []} // Pass the array directly
-                                                    />
-                                                </div>
-                                            ))}
-
-
-                                            <input type="text" name="hh" id="" value={dsfsad} />
-                                            <Input
-                                                name="ai_policy_name"
-                                                value={formAiPolicy.data.ai_policy_name}
-                                                htmlFor="name"
-                                                label="Ai policy tracker name"
-                                                type="text"
-                                                onChange={handleChange}
-                                                placeholder="Eg. Act of (AI) not allowed"
-                                                errorMsg={formAiPolicy.errors.ai_policy_name}
-                                            />
-
-                                        </div>
-                                    </form>
+                                    {/* ********************** Search Comonent ********************** */}
+                                    <Search
+                                        SelectInputLists={SelectInputLists}
+                                        FilterData={FilterData}
+                                        filters={data}
+                                        handleFilterChange={e => setData(e.target.name, e.target.value)}
+                                    />
                                 </div>
                             )}
 
@@ -190,6 +186,8 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                                 </form>
                                 <EditColumn EditColumnLists={EditColumnLists} />
                             </div>
+
+                            {/* ********************** AI Policy Comonent ********************** */}
                             <Table
                                 columns={Columns}
                                 tableData={tableData.data}
@@ -238,24 +236,24 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                                             <div className="w-full px-3" key={index}>
                                                 <SelectInput
                                                     label={label}
-                                                    listName={Raj[SelectInputLists.lists[index]] || []} // Access the data array based on the listName
+                                                    listName={FilterData[SelectInputLists.lists[index]] || []} // Access the data array based on the listName
                                                 />
                                             </div>
                                         ))}
 
+                                        {/* ********************** Announcement year ********************** */}
                                         <div className="w-full px-3 mb-7">
                                             <Input
-                                                // onChange={handleChange}
                                                 name="announcement_year"
-                                                value=''
-                                                // value={formAiPolicy.data.governing_body}
+                                                value={filters.announcement_year}
+                                                // onChange={handleFilterChange}
                                                 htmlFor="announcement_year"
                                                 label="Announcement year"
-                                                type="text"
-                                                placeholder="Date"
+                                                type="date" // Use "date" type for date input
+                                                placeholder="Select a date"
                                             />
-
                                         </div>
+
 
                                     </div>
                                 </form>
