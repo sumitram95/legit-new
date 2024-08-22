@@ -134,15 +134,7 @@ export default function Dashboard({ tableData, news }) {
                                 <HistoricState date={"August 2024"} />
                             </div>
                             <div className="flex justify-between mt-5 px-5">
-                                {/* <div>
-                                    <LinkButton
-                                        href={route("frontend.watch_list.index")}
-                                        className="flex gap-2 text-primary items-center"
-                                    >
-                                        <i className="fa-regular fa-star"></i>
-                                        <span>Watchlist ({bookmarkCount})</span>
-                                    </LinkButton>
-                                </div> */}
+
                                 <form onSubmit={submit} className="text-primary bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2">
                                     <button type="submit" className="">
                                         <i className="fa-regular fa-star mr-3"></i>
