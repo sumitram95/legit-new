@@ -3,64 +3,64 @@ const EditColumnLists = [
     {
         name: "ai_policy_name",
         title: "AI Policy Name",
-        checked: true
+        status: true
     },
     {
         name: "country_region",
         title: "Country / Region",
-        checked: true
+        status: true
     },
     {
         name: "governing_body",
         title: "Governing Body",
-        checked: true
+        status: true
     },
     {
         name: "announcement_year",
         title: "Announcement Year",
-        checked: true
+        status: true
     },
     {
         name: "status",
         title: "Status",
-        checked: true
+        status: true
     },
     {
         name: "whitepaper_document_link",
         title: "Whitepaper / Document Link",
-        checked: true
+        status: true
     },
 
     //
     {
         name: "technology_partners",
         title: "Technology partners",
-        checked: false
+        status: false
     },
     {
         name: "governance_structure",
         title: "Governance structure",
-        checked: false
+        status: false
     },
     {
         name: "main_motivation",
         title: "Main motivation/goals of the AI policy",
-        checked: false
+        status: false
     },
     {
         name: "description",
         title: "Description",
-        checked: false
+        status: false
     },
     {
         name: "link_to_announcement",
         title: "Link to announcement",
-        checked: false
+        status: false
     },
     {
         name: "link_to_whitepaper",
         title: "Link to whitepaper",
-        checked: false
+        status: false
     },
 ];
 

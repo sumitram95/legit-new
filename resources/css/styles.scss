@@ -311,3 +311,7 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
     object-fit: contain;
     mix-blend-mode: color-burn;
 }
+
+.disabled-checkbox {
+    background-color: rgb(184 192 247 / 90%) !important;
+}
