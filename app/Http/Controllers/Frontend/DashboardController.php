@@ -33,6 +33,7 @@ class DashboardController extends Controller
             });
 
 
+
         return Inertia::render('Frontend/Dashboard/Dashboard', $data);
     }
 }

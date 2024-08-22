@@ -23,38 +23,34 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
     // Define SelectInputLists and Raj objects properly
     const SelectInputLists = {
         labels: [
-            "AI Policy Name 1",
+            "AI Policy Name",
             "Country / Region",
             "Announcement year",
             "Status",
-            "Technology partners",
+            // "Technology partners",
         ],
         lists: [
-            "AI_Policy_Name1",
-            "Country1",
-            "Announcement_year",
+            "AI_Policy_Name",
+            "Country",
+            // "Announcement_year",
             "Status",
-            "Technology_partners",
+            // "Technology_partners",
         ],
     };
     console.log(aiPolicies);
     const Raj = {
-        AI_Policy_Name1: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
-        Country1: countries.map(country => ({ value: country.value, label: country.label })),
+        AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
+        Country: countries.map(country => ({ value: country.value, label: country.label })),
 
-        Announcement_year: [
-            { value: '2002', label: '2002' },
-            { value: '2010', label: '2010' },
-            { value: '2024', label: '2024' }
-        ],
+
         Status: [
             { value: 'active', label: 'Active' },
             { value: 'inactive', label: 'Inactive' }
         ],
-        Technology_partners: [
-            { value: 'partner1', label: 'Partner 1' },
-            { value: 'partner2', label: 'Partner 2' }
-        ],
+        // Technology_partners: [
+        //     { value: 'partner1', label: 'Partner 1' },
+        //     { value: 'partner2', label: 'Partner 2' }
+        // ],
     };
 
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -241,12 +237,18 @@ export default function Dashboard({ tableData, news, aiPolicies, countries }) {
                         </div>
                     </div>
                 </div>
+
+                {/* ********************** News Comonent ********************** */}
                 <News news={news.data} />
+
+                {/* ********************** Description Comonent ********************** */}
                 <Description
                     descriptionData={DescriptionData}
                     contributorLists={ContributorLists}
                     contactLists={ContactLists}
                 />
+
+                {/* ********************** Organization/Client Comonent ********************** */}
                 <Organization organizationLogo={organizationLogo} />
             </div>
         </AppLayout>
