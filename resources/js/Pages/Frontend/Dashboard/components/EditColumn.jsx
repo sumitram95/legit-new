@@ -45,9 +45,11 @@ export default function EditColumn({
                                     type="checkbox"
                                     id={EditColumnList.name}
                                     className={`rounded focus:ring-0 ${EditColumnList.status ? 'disabled-checkbox' : ''}`}
-                                    checked={EditColumnList.status}
+
+                                    checked={EditColumnList.status ? true : undefined}
                                     disabled={EditColumnList.status}
                                 />
+
 
                                 <label
                                     htmlFor={EditColumnList.name}
