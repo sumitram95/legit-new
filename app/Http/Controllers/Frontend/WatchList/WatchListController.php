@@ -14,4 +14,23 @@ class WatchListController extends Controller
         $data['tableData'] = AiPolicyTracker::with(['country', 'status'])->paginate(15);
         return Inertia::render("Frontend/WatchList/WatchList", $data);
     }
+
+    public function show(Request $request)
+    {
+
+        return($request->all());
+
+        return 'true';
+        // Logic for handling the POST request with the given IDs
+
+        // Assuming $ids is a comma-separated string of IDs
+        $idArray = explode(',', $ids);
+
+        // Example response
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Watchlist updated',
+            'ids' => $idArray,
+        ]);
+    }
 }

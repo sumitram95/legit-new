@@ -26,13 +26,16 @@ Route::controller(NewsController::class)->group(function () {
     Route::get("/news/{id}", "singleNews")->name("news.single");
 });
 
-Route:: as('frontend.')->group(function () {
+Route::as('frontend.')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'dashboard')->name('dashboard');
     });
-    Route::controller(WatchListController::class)->as('watch_list.')->group(function () {
-        Route::get('/watchlist', 'index')->name('index');
-    });
+    Route::controller(WatchListController::class)
+        ->as('watch_list.')
+        ->group(function () {
+            Route::get('/watchlist', 'index')->name('index');
+            Route::post('/watchlist/show', 'show')->name('show');
+        });
 
     // time line controller
     Route::controller(TimeLineController::class)->as('time_line.')->group(function () {
@@ -45,4 +48,3 @@ Route:: as('frontend.')->group(function () {
         Route::post("/aipolicytracker/bookmark/{id}", "aiPolicyBookMark")->name('bookmark');
     });
 });
-
