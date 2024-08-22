@@ -20,8 +20,6 @@ import { useForm } from '@inertiajs/react';
 import Input from "@/Components/Input";
 import SearchComponent from "./components/search/Search";
 import Search from "./components/search/Search";
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
 
 
 
@@ -68,7 +66,6 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
             [name]: value,
         }));
     };
-
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
