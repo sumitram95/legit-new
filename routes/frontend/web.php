@@ -30,8 +30,7 @@ Route::as('frontend.')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'dashboard')->name('dashboard');
 
-        Route::post('/dashboard/filtered', 'getFilteredData')->name('dashboard.filtered');
-
+        Route::get('/dashboard/filtered', 'getFilteredData')->name('dashboard.filtered');
 
     });
     Route::controller(WatchListController::class)
