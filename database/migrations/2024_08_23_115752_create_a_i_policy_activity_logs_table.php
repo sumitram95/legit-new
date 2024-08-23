@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('a_i_policy_activity_logs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->bigInteger('user_id');
+            $table->uuid('user_id');
+            $table->uuid('ai_policy_tracker_id');
             $table->text('activity_name');
             $table->longText('description')->nullable()->default(null);
             $table->timestamps();
