@@ -18,12 +18,6 @@ import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from '@inertiajs/react';
 import Input from "@/Components/Input";
-import SearchComponent from "./components/search/Search";
-import Search from "./components/search/Search";
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
-
-
 
 
 export default function Dashboard({ tableData, news, aiPolicies, countries, statuses }) {
