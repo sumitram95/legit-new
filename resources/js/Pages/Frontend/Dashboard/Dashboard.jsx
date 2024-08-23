@@ -21,7 +21,7 @@ import Input from "@/Components/Input";
 
 export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData }) {
 
-//   console.log(initialTableData);
+    //   console.log(initialTableData);
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
     useEffect(() => {
@@ -95,6 +95,18 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
         } catch (error) {
             console.error('Error fetching filtered data:', error);
         }
+    };
+
+    const handleClearFilters = () => {
+        const clearedFilters = {
+            AI_Policy_Name: [],
+            country_id: [],
+            status_id: [],
+            announcement_year: '',
+        };
+
+        setFilters(clearedFilters);
+        fetchData(clearedFilters); // Fetch data with cleared filters
     };
 
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -235,7 +247,9 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                             <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
                                 <div className="flex items-center justify-between w-full">
                                     <p className="font-bold text-primary text-lg leading-none">Filters</p>
-                                    <button className="button-wthout-border flex items-center gap-2">
+                                    <button className="button-wthout-border flex items-center gap-2"
+                                        onClick={handleClearFilters}
+                                    >
                                         <span className="ui-icon">
                                             <svg
                                                 viewBox="0 0 16 16"
