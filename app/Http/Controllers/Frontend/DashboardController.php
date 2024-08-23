@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\AiPolicyTracker;
-use App\Models\Country;
+use Log;
 use App\Models\News;
-use App\Models\Status;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Status;
+use App\Models\Country;
+use Illuminate\Http\Request;
+use App\Models\AiPolicyTracker;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -48,7 +49,61 @@ class DashboardController extends Controller
     }
 
 
-    public function getFilteredData(){
-        return response()->json('hello');
+    public function getFilteredData(Request $request)
+    {
+        $query = AiPolicyTracker::query(); // Base query for AI policies
+
+        // Apply filters based on the request parameters
+        // if ($request->has('AI_Policy_Name') && !empty($request->AI_Policy_Name)) {
+        //     $aiPolicyNames = explode(',', $request->AI_Policy_Name);
+        //     $query->whereIn('ai_policy_name', $aiPolicyNames);
+        // }
+
+        // if ($request->has('country_id') && !empty($request->country_id)) {
+        //     $countryIds = explode(',', $request->country_id);
+        //     $query->whereIn('country_id', $countryIds);
+        // }
+
+        // if ($request->has('status_id') && !empty($request->status_id)) {
+        //     $statusIds = explode(',', $request->status_id);
+        //     $query->whereIn('status_id', $statusIds);
+        // }
+
+        // if ($request->has('announcement_year') && !empty($request->announcement_year)) {
+        //     $query->whereYear('announcement_date', $request->announcement_year);
+        // }
+
+        // Apply pagination
+        $perPage = $request->get('per_page', 15); // Default to 15 items per page if not provided
+        $filteredData = $query->paginate($perPage);
+
+        // Format the data as needed
+        $tableData = $filteredData->getCollection()->map(function ($policy) {
+            return [
+                'id' => $policy->id,
+                'ai_policy_name' => $policy->ai_policy_name,
+                'country' => $policy->country->name,
+                'status' => $policy->status->name,
+                'announcement_date' => $policy->announcement_date,
+                // Add other fields as needed
+            ];
+        });
+
+        // Return the filtered and paginated data as JSON
+        return response()->json([
+            'current_page' => $filteredData->currentPage(),
+            'data' => $tableData,
+            'first_page_url' => $filteredData->url(1),
+            'last_page' => $filteredData->lastPage(),
+            'last_page_url' => $filteredData->url($filteredData->lastPage()),
+            'next_page_url' => $filteredData->nextPageUrl(),
+            'path' => $filteredData->path(),
+            'per_page' => $filteredData->perPage(),
+            'prev_page_url' => $filteredData->previousPageUrl(),
+            'to' => $filteredData->lastItem(),
+            'total' => $filteredData->total(),
+        ]);
     }
+
+
 }

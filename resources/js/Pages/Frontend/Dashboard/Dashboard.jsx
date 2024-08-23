@@ -19,34 +19,33 @@ import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from '@inertiajs/react';
 import Input from "@/Components/Input";
 
+export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData }) {
 
-export default function Dashboard({ tableData, news, aiPolicies, countries, statuses }) {
+//   console.log(initialTableData);
+    const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
+
+    useEffect(() => {
+        // Update the state if the initialTableData prop changes
+        setTableData(initialTableData);
+    }, [initialTableData]);
+
     const SelectInputLists = {
         labels: [
             "AI Policy Name",
             "Country / Region",
             "Status",
-            // "Announcement year",
-            // "Technology partners",
         ],
         lists: [
             "AI_Policy_Name",
             "Country",
             "Status",
-            // "Announcement_year",
-            // "Technology_partners",
         ],
     };
-    // console.log(statuses);
+
     const FormFiled = {
         AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
         Country: countries.map(country => ({ value: country.value, label: country.label })),
         Status: statuses.map(status => ({ value: status.value, label: status.label })),
-
-        // Technology_partners: [
-        //     { value: 'partner1', label: 'Partner 1' },
-        //     { value: 'partner2', label: 'Partner 2' }
-        // ],
     };
 
     const [filters, setFilters] = useState({
@@ -68,7 +67,6 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
         });
     };
 
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFilters(prevFilters => {
@@ -81,9 +79,6 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
         });
     };
 
-    console.log(filters);
-
-
     const fetchData = async (updatedFilters) => {
         try {
             const queryParams = new URLSearchParams(updatedFilters).toString();
@@ -95,16 +90,12 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
             });
 
             const result = await response.json();
-            alert (result);
-            setTableData(result.tableData);
+            // console.log(result);
+            setTableData(result); // Update the tableData state
         } catch (error) {
             console.error('Error fetching filtered data:', error);
         }
     };
-
-
-
-
 
     const [visibleDiv, setVisibleDiv] = useState(false);
     const [bookmarkCount, setBookmarkCount] = useState(0);
@@ -166,7 +157,6 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                                             <span className="text-black ml-[4px]">Aug 2024</span>
                                         </p>
                                     </div>
-
                                 </div>
 
                                 {/* ********************** Status Comonent ********************** */}
@@ -229,12 +219,13 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                             {/* ********************** AI Policy Comonent ********************** */}
                             <Table
                                 columns={Columns}
-                                tableData={tableData.data}
+                                tableData={tableData.data} // Ensure this matches the structure of the data returned from fetchData
                                 btnName={"Edit Columns "}
                                 onBookmarkChange={handleBookmarkChange}
                                 onHandleBookmark={handleBookmark}
                                 watchListIds={watchListIds}
                             />
+
                         </div>
                     </div>
 

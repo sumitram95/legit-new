@@ -12,6 +12,7 @@ export default function Table({
 }) {
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
+    console.log(tableData);
     // console.log(watchListIds);
     return (
         <div className="relative overflow-x-auto px-5 mt-5">
