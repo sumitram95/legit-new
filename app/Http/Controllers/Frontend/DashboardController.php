@@ -52,7 +52,7 @@ class DashboardController extends Controller
     public function getFilteredData(Request $request)
     {
 
-        return response()->json($request->all());
+        // return response()->json($request->all());
         $query = AiPolicyTracker::query(); // Base query for AI policies
 
         // Apply filters based on the request parameters

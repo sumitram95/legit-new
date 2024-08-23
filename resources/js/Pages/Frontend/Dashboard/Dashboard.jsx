@@ -259,7 +259,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                     </button>
                                 </div>
                             </div>
-                            <div className="px-[16px] mt-5">
+                            <div className="px-[16px] my-5">
                                 <form className="w-full" id="FormFiled">
                                     <div>
                                         <SelectInput

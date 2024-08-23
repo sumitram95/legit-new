@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 
 export default function Description({
-    dessciptionData = [],
+    descriptionData = [],
     contributorLists = [],
     contactLists = [],
 }) {
@@ -27,7 +27,7 @@ export default function Description({
                     <div className="w-1/2">
                         <strong>Description</strong>
 
-                        {dessciptionData.map((data, index) => (
+                        {descriptionData.map((data, index) => (
                             <div className="flex gap-2 mt-3" key={index}>
                                 <strong className=" capitalize">{data.name}</strong>
                                 <span className="text-gray-500">{data.title}</span>
