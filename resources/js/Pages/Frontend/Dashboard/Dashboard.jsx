@@ -90,7 +90,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
             });
 
             const result = await response.json();
-            // console.log(result);
+            console.log(result);
             setTableData(result); // Update the tableData state
         } catch (error) {
             console.error('Error fetching filtered data:', error);
