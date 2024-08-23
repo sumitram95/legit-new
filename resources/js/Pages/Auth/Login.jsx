@@ -7,6 +7,7 @@ import TextInput from "@/Components/TextInput";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Head, Link, useForm } from "@inertiajs/react";
 import LogoImage from "@/assets/images/ai_dark_logo.png";
+import LogoImageSquare from "@/assets/images/ai-square.png";
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
@@ -135,7 +136,11 @@ export default function Login({ status, canResetPassword }) {
                     {/* left */}
                     <div class="w-[50%] p-4 py-6 text-white   md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly rounded-md h-screen pr-9">
                         <div className="bg-blue-500 w-full h-full flex items-center justify-center rounded-md">
-                            img
+                            {/* <img
+                                src={LogoImageSquare}
+                                alt="AI Policy Tracker"
+                                className="w-[127px] h-[80px]"
+                            /> */}
                         </div>
                     </div>
 
