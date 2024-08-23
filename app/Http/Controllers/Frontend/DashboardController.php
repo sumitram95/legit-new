@@ -15,8 +15,13 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $data['tableData'] = AiPolicyTracker::with(['country', 'status'])->paginate(15);
-        $data['news'] = News::with(['thumbnail', 'newsCategory'])->paginate(15);
+        $data['tableData'] = AiPolicyTracker::with(['country', 'status'])
+            ->paginate(15);
+
+        $data['news'] = News::with(['thumbnail', 'newsCategory'])
+            ->orderBy('created_at', 'DESC')
+            ->paginate(15);
+
 
         $data['aiPolicies'] = AiPolicyTracker::get()
             ->map(function ($aiPolicy) {
