@@ -14,7 +14,7 @@ export default function News({ news }) {
     return (
         <AppLayout>
             <Head title="News" />
-            <div className="relative top-[-50px] max-auto">
+            <div className="relative top-[-50px]">
                 <div className="border rounded-md w-full bg-white py-5">
                     <div className=" border-b-2 pb-4 px-5 flex justify-between items-center">
                         <div>
@@ -29,7 +29,8 @@ export default function News({ news }) {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex gap-3">
+                        {/* show filter */}
+                        {/* <div className="flex gap-3">
                             {visibleDiv && (
                                 <button
                                     type="button"
@@ -55,7 +56,7 @@ export default function News({ news }) {
                                     } ml-3`}
                                 ></i>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                     {visibleDiv && (
                         <div className="px-5 w-full mt-5">

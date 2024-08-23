@@ -19,7 +19,12 @@ class TimeLineController extends Controller
             : 'No records found';
 
         // Group data by announcement_year
-        $groupedData = AiPolicyTracker::all()->groupBy('announcement_year')->toArray();
+        $groupedData = AiPolicyTracker::all()
+            ->groupBy('announcement_year')
+            ->toArray();
+
+
+        krsort($groupedData);
 
         // Prepare data for Inertia view
         $data = [

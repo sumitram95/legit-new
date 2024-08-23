@@ -14,15 +14,17 @@ export default function News({ news }) {
     return (
         <AppLayout>
             <Head title="News" />
-            <div className="relative top-[-50px] max-auto flex justify-center">
+            <div className="relative top-[-50px] flex justify-center">
                 <div className="rounded-md w-3/4 bg-white py-5">
                     <div className="" style={{ minHeight: "500px" }}>
                         <div className="text-gray-900 font-bold text-xl mb-2 px-5">
-                            {news.title}
-                            <p className="text-sm text-gray-600 flex items-center gap-2 justify-center">
-                                <i className="fa-regular fa-clock"> </i>{" "}
-                                {news.upload_date ?? "-"}
-                            </p>
+                            <div className="flex justify-between align-items-center">
+                                {news.title}
+                                <p className="text-sm text-gray-600 flex items-center gap-2 justify-center">
+                                    <i className="fa-regular fa-clock"> </i>{" "}
+                                    {news.upload_date ?? "-"}
+                                </p>
+                            </div>
                         </div>
                         <div className=" bg-red-50 w-full h-[400px] overflow-hidden">
                             {news.thumbnail?.path ? (

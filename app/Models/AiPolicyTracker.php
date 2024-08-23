@@ -51,4 +51,9 @@ class AiPolicyTracker extends Model
     {
         return $this->hasMany(News::class, 'policy_tracker_id');
     }
+
+    public function aIPolicyActivityLogs()
+    {
+        return $this->hasMany(AIPolicyActivityLog::class, 'ai_policy_tracker_id');
+    }
 }

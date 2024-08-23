@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\AiPolicyTrackerPostRequest;
-use App\Models\AiPolicyTracker;
-use App\Models\Country;
-use App\Models\Status;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Status;
+use App\Models\Country;
+use Illuminate\Http\Request;
+use App\Models\AiPolicyTracker;
+use App\Http\Controllers\Controller;
+use App\Helpers\Logs\AiPolicyActivityLogHelper;
+use App\Http\Requests\AiPolicyTrackerPostRequest;
 
 class AiPolicyTrackerController extends Controller
 {
@@ -36,14 +37,12 @@ class AiPolicyTrackerController extends Controller
         $tableData = AiPolicyTracker::with(['country', 'status'])->paginate(15);
 
 
-        // dd($tableData);
 
         return Inertia::render("Backend/AiPolicyTracker/Index", [
             'countries' => $countries,
             'status' => $status,
             'tableData' => $tableData,
         ]);
-
     }
     public function store(AiPolicyTrackerPostRequest $request)
     {
@@ -52,6 +51,11 @@ class AiPolicyTrackerController extends Controller
 
         AiPolicyTracker::create($validated);
 
+
+        // Log the ai Policy activity Log
+        // $activity_name =   'Terms and Condition Created';
+        // $description = 'New terms and conditions';
+        // AiPolicyActivityLogHelper::createAiPolicyActivityLog($activity_name, $description);
 
         return to_route('backend.ai_policy_tracker.index')->with('success', 'Successfully Created');
     }
@@ -71,7 +75,6 @@ class AiPolicyTrackerController extends Controller
             $aiPolicyTracker->delete();
 
             return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Deleted');
-
         } catch (\Throwable $th) {
             report($th);
 
@@ -91,8 +94,6 @@ class AiPolicyTrackerController extends Controller
 
             // Return the updated tracker data
             return response()->json(['aiPolicyTracker' => $aiPolicyTracker]);
-
-
         } catch (\Throwable $th) {
             report($th);
 
@@ -113,7 +114,6 @@ class AiPolicyTrackerController extends Controller
             $aiPolicyTracker->update($validated);
 
             return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Updated');
-
         } catch (\Throwable $th) {
             report($th);
 

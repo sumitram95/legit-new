@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MapChart } from "./components/map/MapChart";
 import { AppLayout } from "@/Layouts/AppLayout";
 import SelectInput from "@/Components/SelectInput";
@@ -18,36 +18,38 @@ import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from '@inertiajs/react';
 import Input from "@/Components/Input";
-import TextInput from '@/Components/TextInput';
-import InputError from '@/Components/InputError';
-import PrimaryButton from '@/Components/PrimaryButton';
-export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData }) {
+import SearchComponent from "./components/search/Search";
+import Search from "./components/search/Search";
 
-    //   console.log(initialTableData);
-    const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
-    useEffect(() => {
-        // Update the state if the initialTableData prop changes
-        setTableData(initialTableData);
-    }, [initialTableData]);
 
+export default function Dashboard({ tableData, news, aiPolicies, countries, statuses }) {
     const SelectInputLists = {
         labels: [
             "AI Policy Name",
             "Country / Region",
             "Status",
+            // "Announcement year",
+            // "Technology partners",
         ],
         lists: [
             "AI_Policy_Name",
             "Country",
             "Status",
+            // "Announcement_year",
+            // "Technology_partners",
         ],
     };
-
+    // console.log(statuses);
     const FormFiled = {
         AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
         Country: countries.map(country => ({ value: country.value, label: country.label })),
         Status: statuses.map(status => ({ value: status.value, label: status.label })),
+
+        // Technology_partners: [
+        //     { value: 'partner1', label: 'Partner 1' },
+        //     { value: 'partner2', label: 'Partner 2' }
+        // ],
     };
 
     const [filters, setFilters] = useState({
@@ -59,62 +61,31 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
 
     const handleFilterChange = (name, selectedOptions) => {
         const value = selectedOptions ? selectedOptions.map(option => option.value) : [];
-        setFilters(prevFilters => {
-            const updatedFilters = {
-                ...prevFilters,
-                [name]: value,
-            };
-            fetchData(updatedFilters); // Fetch data after updating filters
-            return updatedFilters;
-        });
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: value,
+        }));
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFilters(prevFilters => {
-            const updatedFilters = {
-                ...prevFilters,
-                [name]: value,
-            };
-            fetchData(updatedFilters); // Fetch data after updating filters
-            return updatedFilters;
-        });
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: value,
+        }));
     };
 
-    const fetchData = async (updatedFilters) => {
-        try {
-            const queryParams = new URLSearchParams(updatedFilters).toString();
-            const response = await fetch(`${route('frontend.dashboard.filtered')}?${queryParams}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+    console.log(filters);
 
-            const result = await response.json();
-            console.log(result);
-            setTableData(result); // Update the tableData state
-        } catch (error) {
-            console.error('Error fetching filtered data:', error);
-        }
-    };
 
-    const handleClearFilters = () => {
-        const clearedFilters = {
-            AI_Policy_Name: [],
-            country_id: [],
-            status_id: [],
-            announcement_year: '',
-        };
-
-        setFilters(clearedFilters);
-        fetchData(clearedFilters); // Fetch data with cleared filters
-    };
 
     const [visibleDiv, setVisibleDiv] = useState(false);
     const [bookmarkCount, setBookmarkCount] = useState(0);
     const [watchListIds, setWatchListIds] = useState([]);
 
+    const { data, setData, post, processing, errors, reset } = useForm({
+        ids: '',
+    });
 
     const handleBookmarkChange = (count) => {
         setBookmarkCount(count);
@@ -131,29 +102,22 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
         });
     };
 
-    //--watch list ids
-    const { data, setData, post, processing, errors, reset } = useForm({
-        uuids: [],
-    });
-
     const submit = (e) => {
         e.preventDefault();
-        // Set the uuids value
-        setData('uuids', watchListIds);
+        post(route('frontend.watch_list.show'), {
+            data: { ids: data.ids }, // Use dynamic ids
+            onFinish: () => {
+                console.log('Submission finished');
+                reset(); // Reset the form data
+            },
+            onError: (error) => {
+                console.log('Submission error:', error);
+            }
+        });
     };
-
-    useEffect(() => {
-        // Perform the POST request
-        if (data.uuids.length > 0) {
-            post(route('frontend.watch_list.show'), {
-                onFinish: () => reset('uuids'),
-            });
-        }
-    }, [data.uuids]);
 
     return (
         <AppLayout>
-
             <Head title="Dashboard" />
             <div className="content-wrapper relative top-[-60px]">
                 <div className="flex gap-[30px]">
@@ -175,6 +139,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                             <span className="text-black ml-[4px]">Aug 2024</span>
                                         </p>
                                     </div>
+
                                 </div>
 
                                 {/* ********************** Status Comonent ********************** */}
@@ -225,12 +190,11 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                             </div>
                             <div className="flex justify-between mt-5 px-5">
                                 <form onSubmit={submit} className="text-primary bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2">
-                                    <button type="submit" className="flex items-center">
-                                        <i className={`fa ${bookmarkCount ? 'fa-star' : 'fa-regular fa-star'} mr-3`}></i>
+                                    <button type="submit" className="">
+                                        <i className="fa-regular fa-star mr-3"></i>
                                         <span>{processing ? 'Submitting...' : `Watchlist (${bookmarkCount})`}</span>
-                                        {processing && <i className="fa-solid fa-spinner fa-spin ml-3"></i>}
+                                        {processing && <i className="fa-solid fa-spinner fa-spin"></i>}
                                     </button>
-
                                 </form>
                                 <EditColumn EditColumnLists={EditColumnLists} />
                             </div>
@@ -238,13 +202,12 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                             {/* ********************** AI Policy Comonent ********************** */}
                             <Table
                                 columns={Columns}
-                                tableData={tableData.data} // Ensure this matches the structure of the data returned from fetchData
+                                tableData={tableData.data}
                                 btnName={"Edit Columns "}
                                 onBookmarkChange={handleBookmarkChange}
                                 onHandleBookmark={handleBookmark}
                                 watchListIds={watchListIds}
                             />
-
                         </div>
                     </div>
 
@@ -254,9 +217,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                             <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
                                 <div className="flex items-center justify-between w-full">
                                     <p className="font-bold text-primary text-lg leading-none">Filters</p>
-                                    <button className="button-wthout-border flex items-center gap-2"
-                                        onClick={handleClearFilters}
-                                    >
+                                    <button className="button-wthout-border flex items-center gap-2">
                                         <span className="ui-icon">
                                             <svg
                                                 viewBox="0 0 16 16"
@@ -280,7 +241,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                     </button>
                                 </div>
                             </div>
-                            <div className="px-[16px] my-5">
+                            <div className="px-[16px] mt-5">
                                 <form className="w-full" id="FormFiled">
                                     <div>
                                         <SelectInput
@@ -312,6 +273,8 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                             label="Announcement Year"
                                             type="date"
                                         />
+
+
                                     </div>
                                 </form>
                             </div>

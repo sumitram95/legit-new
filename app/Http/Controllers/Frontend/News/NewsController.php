@@ -23,7 +23,9 @@ class NewsController extends Controller
         //     9
         // ];
 
-        $data['news'] = News::with(['thumbnail', 'newsCategory'])->paginate(15);
+        $data['news'] = News::with(['thumbnail', 'newsCategory'])
+            ->orderBy('created_at', 'Desc')
+            ->paginate(15);
         return Inertia::render('Frontend/News/News', $data);
     }
 
@@ -41,6 +43,5 @@ class NewsController extends Controller
             report($th);
             return to_route('news.index')->with('error', 'Oops! Something went wrong');
         }
-
     }
 }
