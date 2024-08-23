@@ -85,9 +85,8 @@ class DashboardController extends Controller
                 'ai_policy_name' => $policy->ai_policy_name,
                 'country' => $policy->country,
                 'governing_body' => $policy->governing_body,
-                'announcement_year' => $policy->announcement_year,
-                'status' => $policy->status->name,
-                // Add other fields as needed
+                'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
+                'status' => $policy->status,
             ];
         });
 
