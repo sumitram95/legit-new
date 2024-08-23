@@ -35,7 +35,8 @@ export default function WatchList({ tableData, is_favorite }) {
                                 </Link>
                             </div>
                         </div>
-                        <div className="flex gap-3">
+                        {/* show filter */}
+                        {/* <div className="flex gap-3">
                             {visibleDiv && (
                                 <button
                                     type="button"
@@ -60,7 +61,7 @@ export default function WatchList({ tableData, is_favorite }) {
                                         } ml-3`}
                                 ></i>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                     {visibleDiv && (
                         <div className="px-5 w-full mt-5">
@@ -94,7 +95,7 @@ export default function WatchList({ tableData, is_favorite }) {
                 </div>
 
                 {/* Subscription */}
-                <Subscription className="" />
+                {/* <Subscription className="" /> */}
             </div>
         </AppLayout>
     );

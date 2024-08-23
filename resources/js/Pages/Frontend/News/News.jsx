@@ -29,7 +29,8 @@ export default function News({ news }) {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex gap-3">
+                        {/* show filter */}
+                        {/* <div className="flex gap-3">
                             {visibleDiv && (
                                 <button
                                     type="button"
@@ -55,7 +56,7 @@ export default function News({ news }) {
                                     } ml-3`}
                                 ></i>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                     {visibleDiv && (
                         <div className="px-5 w-full mt-5">

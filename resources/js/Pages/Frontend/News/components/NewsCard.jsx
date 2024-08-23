@@ -2,6 +2,8 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 
 export default function NewsCard({ newsLists = [] }) {
+
+   console.log(newsLists);
     return (
         <div className="">
             {newsLists.map((newsList, index) => (
