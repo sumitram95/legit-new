@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AIPolicyActivityLog extends Model
 {
@@ -15,4 +16,10 @@ class AIPolicyActivityLog extends Model
         "activity_name",
         "description",
     ];
+
+
+    public function aiPolicyTracker(): BelongsTo
+    {
+        return $this->belongsTo(AiPolicyTracker::class, 'ai_policy_tracker_id');
+    }
 }
