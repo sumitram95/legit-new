@@ -33,9 +33,9 @@ export default function Organization({ organizationLogo }) {
                 {/* {org.map((data, index) => ( */}
                     {/* <div className="mt-3" key={index}> */}
                     <div className="mt-3">
-                        <Link hre={"/logo"} className=" w-fit">
+                        <a href="https://t4dnepal.org.np/" className=" w-fit">
                             <img src={organizationLogo} alt="" />
-                        </Link>
+                        </a>
                     </div>
                 {/* ))} */}
             {/* </Slider> */}
