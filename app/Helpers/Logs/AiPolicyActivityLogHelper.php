@@ -5,7 +5,7 @@ namespace App\Helpers\Logs;
 use App\Models\AIPolicyActivityLog;
 use Illuminate\Support\Facades\Auth;
 
-class ActivityLogHelper
+class AiPolicyActivityLogHelper
 {
     /**
      * Create an activity log for a user.
@@ -29,4 +29,3 @@ class ActivityLogHelper
         }
     }
 }
-
