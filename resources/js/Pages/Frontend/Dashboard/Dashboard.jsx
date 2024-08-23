@@ -18,7 +18,9 @@ import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from '@inertiajs/react';
 import Input from "@/Components/Input";
-
+import TextInput from '@/Components/TextInput';
+import InputError from '@/Components/InputError';
+import PrimaryButton from '@/Components/PrimaryButton';
 export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData }) {
 
     //   console.log(initialTableData);
@@ -113,9 +115,6 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
     const [bookmarkCount, setBookmarkCount] = useState(0);
     const [watchListIds, setWatchListIds] = useState([]);
 
-    const { data, setData, post, processing, errors, reset } = useForm({
-        ids: '',
-    });
 
     const handleBookmarkChange = (count) => {
         setBookmarkCount(count);
@@ -132,22 +131,29 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
         });
     };
 
+    //--watch list ids
+    const { data, setData, post, processing, errors, reset } = useForm({
+        uuids: [],
+    });
+
     const submit = (e) => {
         e.preventDefault();
-        post(route('frontend.watch_list.show'), {
-            data: { ids: data.ids }, // Use dynamic ids
-            onFinish: () => {
-                console.log('Submission finished');
-                reset(); // Reset the form data
-            },
-            onError: (error) => {
-                console.log('Submission error:', error);
-            }
-        });
+        // Set the uuids value
+        setData('uuids', watchListIds);
     };
+
+    useEffect(() => {
+        // Perform the POST request
+        if (data.uuids.length > 0) {
+            post(route('frontend.watch_list.show'), {
+                onFinish: () => reset('uuids'),
+            });
+        }
+    }, [data.uuids]);
 
     return (
         <AppLayout>
+
             <Head title="Dashboard" />
             <div className="content-wrapper relative top-[-60px]">
                 <div className="flex gap-[30px]">
@@ -219,11 +225,12 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                             </div>
                             <div className="flex justify-between mt-5 px-5">
                                 <form onSubmit={submit} className="text-primary bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2">
-                                    <button type="submit" className="">
-                                        <i className="fa-regular fa-star mr-3"></i>
+                                    <button type="submit" className="flex items-center">
+                                        <i className={`fa ${bookmarkCount ? 'fa-star' : 'fa-regular fa-star'} mr-3`}></i>
                                         <span>{processing ? 'Submitting...' : `Watchlist (${bookmarkCount})`}</span>
-                                        {processing && <i className="fa-solid fa-spinner fa-spin"></i>}
+                                        {processing && <i className="fa-solid fa-spinner fa-spin ml-3"></i>}
                                     </button>
+
                                 </form>
                                 <EditColumn EditColumnLists={EditColumnLists} />
                             </div>

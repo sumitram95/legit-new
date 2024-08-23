@@ -8,7 +8,7 @@ import Columns from "@/Components/table/Columns";
 // import TableData from "@/Components/table/TableData";
 import Subscription from "./components/Subscription";
 
-export default function WatchList({ tableData }) {
+export default function WatchList({ tableData, is_favorite }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
 
     return (
@@ -54,11 +54,10 @@ export default function WatchList({ tableData }) {
                                     : "Hide filters"}
 
                                 <i
-                                    className={`fa-solid ${
-                                        visibleDiv
-                                            ? "fa-chevron-up"
-                                            : "fa-chevron-down"
-                                    } ml-3`}
+                                    className={`fa-solid ${visibleDiv
+                                        ? "fa-chevron-up"
+                                        : "fa-chevron-down"
+                                        } ml-3`}
                                 ></i>
                             </button>
                         </div>
@@ -78,7 +77,7 @@ export default function WatchList({ tableData }) {
                                                     label={label}
                                                     listName={
                                                         SelectInputLists.lists[
-                                                            index
+                                                        index
                                                         ]
                                                     }
                                                 />
@@ -91,7 +90,7 @@ export default function WatchList({ tableData }) {
                     )}
 
                     {/* table */}
-                    <Table columns={Columns} tableData={tableData.data} />
+                    <Table columns={Columns} tableData={tableData.data} favourite={is_favorite} />
                 </div>
 
                 {/* Subscription */}

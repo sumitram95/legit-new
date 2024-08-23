@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/react";
 import NoTableData from "./NoTableData";
 
 export default function Table({
+    favourite,
     columns = [],
     tableData = [],
     noTableDataTitle = "No Data",
@@ -12,7 +13,7 @@ export default function Table({
 }) {
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
-    console.log(tableData);
+    console.log(favourite);
     // console.log(watchListIds);
     return (
         <div className="relative overflow-x-auto px-5 mt-5">
@@ -36,9 +37,13 @@ export default function Table({
                                         className="text-primary"
                                         onClick={() => onHandleBookmark(list.id)}
                                     >
-                                        <i
-                                            className={`fa ${watchListIds.includes(list.id) ? 'fa-star A' : 'fa-regular fa-star B'}`}
-                                        ></i>
+                                        {favourite ? (
+                                            <i className="fa fa-star A"></i>
+                                        ) : (
+                                            <i
+                                                className={`fa ${watchListIds.includes(list.id) ? 'fa-star A' : 'fa-regular fa-star B'}`}
+                                            ></i>
+                                        )}
                                     </button>
                                     <Link
                                         href={route("frontend.single_ai_policy_tracker.index", { id: list.id })}

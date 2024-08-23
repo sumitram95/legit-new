@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Frontend\WatchList;
 
-use App\Http\Controllers\Controller;
-use App\Models\AiPolicyTracker;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Models\AiPolicyTracker;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class WatchListController extends Controller
 {
@@ -17,22 +18,19 @@ class WatchListController extends Controller
 
     public function show(Request $request)
     {
+        $uuids = $request->input('uuids');
+        if (is_array($uuids) && !empty($uuids)) {
 
-        return $this->index();
+            $data['tableData'] = AiPolicyTracker::whereIn('id', $uuids)
+                ->with(['country', 'status'])
+                ->paginate(15);
 
-        return ($request->all());
+            $data['is_favorite'] = true;
 
-        return 'true';
-        // Logic for handling the POST request with the given IDs
+            return Inertia::render('Frontend/WatchList/WatchList', $data);
+        }
 
-        // Assuming $ids is a comma-separated string of IDs
-        $idArray = explode(',', $ids);
-
-        // Example response
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Watchlist updated',
-            'ids' => $idArray,
-        ]);
+        // Handle case where 'uuids' is not an array or is empty
+        return redirect()->back()->with('error', 'Invalid UUIDs');
     }
 }
