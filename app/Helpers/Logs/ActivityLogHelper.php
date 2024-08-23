@@ -14,7 +14,7 @@ class ActivityLogHelper
      * @param  string  $activityName  The name of the activity.
      * @param  string|null  $description  The description of the activity (optional).
      */
-    public static function createActivityLog(
+    public static function createAiPolicyActivityLog(
         string $activityName,
         ?string $description = null
     ): void {
