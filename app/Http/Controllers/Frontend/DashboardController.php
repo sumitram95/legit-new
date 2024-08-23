@@ -51,21 +51,19 @@ class DashboardController extends Controller
 
     public function getFilteredData(Request $request)
     {
-
-        // return response()->json($request->AI_Policy_Name);
+        // return response()->json($request->all());
         $query = AiPolicyTracker::query(); // Base query for AI policies
 
         // Apply filters based on the request parameters
         if ($request->has('AI_Policy_Name') && !empty($request->AI_Policy_Name)) {
             $aiPolicyIds = explode(',', $request->AI_Policy_Name);
             $query->whereIn('id', $aiPolicyIds);
-            // $query->where('id', 'like', '%' . $request->AI_Policy_Name);
         }
 
-        // if ($request->has('country_id') && !empty($request->country_id)) {
-        //     $countryIds = explode(',', $request->country_id);
-        //     $query->whereIn('country_id', $countryIds);
-        // }
+        if ($request->has('country_id') && !empty($request->country_id)) {
+            $countryIds = explode(',', $request->country_id);
+            $query->whereIn('country_id', $countryIds);
+        }
 
         // if ($request->has('status_id') && !empty($request->status_id)) {
         //     $statusIds = explode(',', $request->status_id);
@@ -107,6 +105,4 @@ class DashboardController extends Controller
             'total' => $filteredData->total(),
         ]);
     }
-
-
 }
