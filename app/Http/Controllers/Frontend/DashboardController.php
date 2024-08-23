@@ -70,9 +70,9 @@ class DashboardController extends Controller
             $query->whereIn('status_id', $statusIds);
         }
 
-        // if ($request->has('announcement_year') && !empty($request->announcement_year)) {
-        //     $query->whereYear('announcement_date', $request->announcement_year);
-        // }
+        if ($request->has('announcement_year') && !empty($request->announcement_year)) {
+            $query->where('announcement_year', $request->announcement_year);
+        }
 
         // Apply pagination
         $perPage = $request->get('per_page', 15); // Default to 15 items per page if not provided
