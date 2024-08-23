@@ -51,6 +51,8 @@ class DashboardController extends Controller
 
     public function getFilteredData(Request $request)
     {
+
+        return response()->json($request->all());
         $query = AiPolicyTracker::query(); // Base query for AI policies
 
         // Apply filters based on the request parameters
@@ -64,10 +66,10 @@ class DashboardController extends Controller
         //     $query->whereIn('country_id', $countryIds);
         // }
 
-        // if ($request->has('status_id') && !empty($request->status_id)) {
-        //     $statusIds = explode(',', $request->status_id);
-        //     $query->whereIn('status_id', $statusIds);
-        // }
+        if ($request->has('status_id') && !empty($request->status_id)) {
+            $statusIds = explode(',', $request->status_id);
+            $query->whereIn('status_id', $statusIds);
+        }
 
         // if ($request->has('announcement_year') && !empty($request->announcement_year)) {
         //     $query->whereYear('announcement_date', $request->announcement_year);

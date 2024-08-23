@@ -14,7 +14,7 @@ export default function News({ news }) {
     return (
         <AppLayout>
             <Head title="News" />
-            <div className="relative top-[-50px] max-auto">
+            <div className="relative top-[-50px]">
                 <div className="border rounded-md w-full bg-white py-5">
                     <div className=" border-b-2 pb-4 px-5 flex justify-between items-center">
                         <div>
