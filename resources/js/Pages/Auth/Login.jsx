@@ -6,7 +6,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Head, Link, useForm } from "@inertiajs/react";
-import LogoImage from "@/assets/images/ai_logo.png";
+import LogoImage from "@/assets/images/ai_dark_logo.png";
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
@@ -191,18 +191,15 @@ export default function Login({ status, canResetPassword }) {
                                                 >
                                                     Password
                                                 </label>
-                                                <a
-                                                    href="#"
-                                                    class="text-sm text-blue-600 hover:underline focus:text-blue-800"
-                                                >
-                                                    Forgot Password?
-                                                </a>
+                                                {canResetPassword && (
+                                                    <Link
+                                                        href={route("password.request")}
+                                                        className="text-sm text-blue-600 hover:underline focus:text-blue-800"
+                                                    >
+                                                        Forgot your password?
+                                                    </Link>
+                                                )}
                                             </div>
-                                            {/* <input
-                                                type="password"
-                                                id="password"
-                                                class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
-                                            /> */}
                                             <TextInput
                                                 id="password"
                                                 type="password"
