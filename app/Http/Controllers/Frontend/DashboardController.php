@@ -83,9 +83,10 @@ class DashboardController extends Controller
             return [
                 'id' => $policy->id,
                 'ai_policy_name' => $policy->ai_policy_name,
-                'country' => $policy->country->name,
+                'country' => $policy->country,
+                'governing_body' => $policy->governing_body,
+                'announcement_year' => $policy->announcement_year,
                 'status' => $policy->status->name,
-                'announcement_date' => $policy->announcement_date,
                 // Add other fields as needed
             ];
         });

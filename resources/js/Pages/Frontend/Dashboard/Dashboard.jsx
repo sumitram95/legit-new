@@ -289,7 +289,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                             onChange={handleInputChange}
                                             htmlFor="announcement_year"
                                             label="Announcement Year"
-                                            type="number"
+                                            type="date"
                                         />
                                     </div>
                                 </form>
