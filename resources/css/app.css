@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-ai {
+/* .bg-ai {
     background: url("../js/assets/images/ai.gif");
     background-repeat: no-repeat;
     background-size: contain;
@@ -13,7 +13,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right bottom;
-}
+} */
 
 .blur-ai {
     backdrop-filter: blur(4px);
