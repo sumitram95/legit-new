@@ -29,6 +29,10 @@ Route::controller(NewsController::class)->group(function () {
 Route::as('frontend.')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'dashboard')->name('dashboard');
+
+        Route::get('/dashboard/filtered', 'getFilteredData')->name('dashboard.filtered');
+
+
     });
     Route::controller(WatchListController::class)
         ->as('watch_list.')

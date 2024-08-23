@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MapChart } from "./components/map/MapChart";
 import { AppLayout } from "@/Layouts/AppLayout";
 import SelectInput from "@/Components/SelectInput";
@@ -22,6 +22,7 @@ import SearchComponent from "./components/search/Search";
 import Search from "./components/search/Search";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+
 
 
 
@@ -63,22 +64,51 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
 
     const handleFilterChange = (name, selectedOptions) => {
         const value = selectedOptions ? selectedOptions.map(option => option.value) : [];
-        setFilters(prevFilters => ({
-            ...prevFilters,
-            [name]: value,
-        }));
+        setFilters(prevFilters => {
+            const updatedFilters = {
+                ...prevFilters,
+                [name]: value,
+            };
+            fetchData(updatedFilters); // Fetch data after updating filters
+            return updatedFilters;
+        });
     };
 
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFilters(prevFilters => ({
-            ...prevFilters,
-            [name]: value,
-        }));
+        setFilters(prevFilters => {
+            const updatedFilters = {
+                ...prevFilters,
+                [name]: value,
+            };
+            fetchData(updatedFilters); // Fetch data after updating filters
+            return updatedFilters;
+        });
     };
 
     console.log(filters);
+
+
+    const fetchData = async (updatedFilters) => {
+        try {
+            const queryParams = new URLSearchParams(updatedFilters).toString();
+            const response = await fetch(`${route('frontend.dashboard.filtered')}?${queryParams}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const result = await response.json();
+            alert (result);
+            setTableData(result.tableData);
+        } catch (error) {
+            console.error('Error fetching filtered data:', error);
+        }
+    };
+
+
 
 
 
@@ -276,8 +306,6 @@ export default function Dashboard({ tableData, news, aiPolicies, countries, stat
                                             label="Announcement Year"
                                             type="date"
                                         />
-
-
                                     </div>
                                 </form>
                             </div>
