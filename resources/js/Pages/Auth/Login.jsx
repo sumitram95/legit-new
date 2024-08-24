@@ -148,7 +148,7 @@ export default function Login({ status, canResetPassword }) {
                     <div class="w-[50%]">
                         <div className="">
                             <div className="flex items-center h-screen">
-                                <div className="w-full m-12">
+                                <div className="w-[60%] ml-12 ">
                                     <img
                                         src={LogoImage}
                                         alt="AI Policy Tracker"
