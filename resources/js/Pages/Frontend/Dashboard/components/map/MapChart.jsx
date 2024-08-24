@@ -51,16 +51,15 @@ export function MapChart() {
         let polygonTemplate = polygonSeries.mapPolygons.template;
         polygonTemplate.tooltipText = "{name}";
         polygonTemplate.tooltipHTML = `
-
-                <div style="width: 18rem; border: 1px solid #dee2e6; border-radius: 0.25rem; box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);">
-                    <div style="padding: 0.75rem 1.25rem; border-bottom: 1px solid #dee2e6; background-color: #f8f9fa; border-radius: 0.25rem 0.25rem 0 0;">
-                         <p>{name}</p><br>
+                     <div style="width: 18rem;  border-radius: 0.25rem;  padding: 0;">
+                        <div style="padding: 0.75rem 1.25rem; border-bottom: 1px solid #dee2e6; border-bottom: 2px solid #f8f9fa; border-radius: 0.25rem 0.25rem 0 0; margin: 0;">
+                            <h2 style="margin: 0; color:#007bff; font-size: 1rem; font-weight: 400;">{name}</h2>
+                        </div>
+                        <div style="padding: 12px; margin: 0;">
+                        <i class="fa fa-regular fa-star mr-3"></i>
+                            <a href="#" style="display: inline-block; font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff;">Digital</a>
+                        </div>
                     </div>
-                    <div style="padding: 1.25rem; background-color: #fff;">
-                        <a href="#" style="display: inline-block; font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none;   transparent;">DIgital</a>
-                    </div>
-                </div>
-
         `;
         polygonTemplate.adapter.add("fill", (fill, target) => {
             const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
@@ -86,6 +85,14 @@ export function MapChart() {
         chart.zoomControl = new am4maps.ZoomControl();
 
         // Set URLs in tooltips
+        polygonTemplate.adapter.add("tooltipHTML", (html, target) => {
+            const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
+            if (countryId && URL_MAP[countryId]) {
+                return html.replace("{url}", URL_MAP[countryId]);
+            }
+            return html;
+        });
+
         polygonTemplate.adapter.add("tooltipHTML", (html, target) => {
             const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
             if (countryId && URL_MAP[countryId]) {
