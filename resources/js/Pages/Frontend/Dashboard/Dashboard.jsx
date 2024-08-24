@@ -249,7 +249,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                     </div>
 
                     {/* ********************** Search Comonent (desktop) ********************** */}
-                    <div className="hidden lg:block">
+                    <div className="hidden lg:block lg:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
                                 <div className="flex items-center justify-between w-full">
