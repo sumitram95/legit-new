@@ -14,12 +14,19 @@ const COLORS = {
     launched: "#67A8EF"
 };
 
-// Define countries and their associated colors
+// Define countries and their associated colors and links
 const COLOR_MAP = {
     'CA': COLORS.research, // Canada
     'US': COLORS.research, // USA
     'MX': COLORS.development, // Mexico
     'NP': COLORS.development, // Nepal
+};
+
+const URL_MAP = {
+    'CA': 'https://example.com/canada', // URL for Canada
+    'US': 'https://example.com/usa', // URL for USA
+    'MX': 'https://example.com/mexico', // URL for Mexico
+    'NP': 'https://example.com/nepal', // URL for Nepal
 };
 
 export function MapChart() {
@@ -43,8 +50,12 @@ export function MapChart() {
         // Configure series
         let polygonTemplate = polygonSeries.mapPolygons.template;
         polygonTemplate.tooltipText = "{name}";
-
-        // Apply color based on country ID
+        polygonTemplate.tooltipHTML = `
+            <div>
+                <b>{name}</b><br>
+                <a href="{url}" target="_blank" style="color: #007bff; text-decoration: none;">More Info</a>
+            </div>
+        `;
         polygonTemplate.adapter.add("fill", (fill, target) => {
             const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
             if (countryId) {
@@ -53,12 +64,29 @@ export function MapChart() {
             return fill; // Fallback to default color
         });
 
+        // Enable tooltip interaction and keep target hovered
+        polygonSeries.tooltip.label.interactionsEnabled = true;
+        polygonSeries.tooltip.keepTargetHover = true;
+
+        // Fix tooltip position and enable visual center calculation
+        polygonSeries.calculateVisualCenter = true;
+        polygonTemplate.tooltipPosition = "fixed";
+
         // Create hover state and set alternative fill color
         let hs = polygonTemplate.states.create("hover");
         hs.properties.fill = am4core.color("#367B25");
 
         // Zoom control
         chart.zoomControl = new am4maps.ZoomControl();
+
+        // Set URLs in tooltips
+        polygonTemplate.adapter.add("tooltipHTML", (html, target) => {
+            const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
+            if (countryId && URL_MAP[countryId]) {
+                return html.replace("{url}", URL_MAP[countryId]);
+            }
+            return html;
+        });
 
         return () => {
             if (chart) {
