@@ -11,7 +11,7 @@ export default function PaginationPage({ paginator }) {
 
     const currentPage = paginator.current_page;
     const lastPage = paginator.last_page;
-    const maxButtons = 2;
+    const maxButtons = 4;
 
     // Determine the range of pages to display
     const getPaginationRange = () => {
