@@ -65,20 +65,21 @@ export function createPolygonSeries(chart) {
         {
             id: "NP",
             name: "Nepal",
-            infoHTML: `
-            <div>
-                <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
-                   <div>AI Policy Name</div>
-                    <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
-                    <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
-                </div>
-                 <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
-                   <div>AI Policy Name</div>
-                    <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
-                    <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
-                </div>
-            </div>
-            `,
+            // -- Not We can also customize tool tips like this
+            // infoHTML: `
+            // <div>
+            //     <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
+            //        <div>AI Policy Name</div>
+            //         <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
+            //         <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
+            //     </div>
+            //      <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
+            //        <div>AI Policy Name</div>
+            //         <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
+            //         <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
+            //     </div>
+            // </div>
+            // `,
             polygonSettings: {
                 fill: am5.color(0x3498db),
             },
