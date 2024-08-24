@@ -21,6 +21,9 @@ import Input from "@/Components/Input";
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
+import Pagination from "@/Components/Pagination";
+import PaginationPage from "@/Components/table/PaginationPage";
+
 export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData }) {
 
     //   console.log(initialTableData);
@@ -92,12 +95,12 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
             });
 
             const result = await response.json();
-            console.log(result);
             setTableData(result); // Update the tableData state
         } catch (error) {
             console.error('Error fetching filtered data:', error);
         }
     };
+
 
     const handleClearFilters = () => {
         const clearedFilters = {
@@ -150,6 +153,42 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
             });
         }
     }, [data.uuids]);
+
+    const renderPaginationLinks = () => {
+        const pages = [];
+        const { current_page, last_page } = tableData;
+
+        if (current_page > 1) {
+            pages.push(
+                <button key="first" onClick={() => handlePageChange(tableData.first_page_url)}>&laquo;</button>,
+                <button key="prev" onClick={() => handlePageChange(tableData.prev_page_url)}>&lsaquo;</button>
+            );
+        }
+
+        for (let i = 1; i <= last_page; i++) {
+            if (i === current_page) {
+                pages.push(<span key={i} className="current-page">{i}</span>);
+            } else if (i === 1 || i === last_page || (i >= current_page - 1 && i <= current_page + 1)) {
+                pages.push(
+                    <button key={i} onClick={() => handlePageChange(`${tableData.path}?page=${i}`)}>
+                        {i}
+                    </button>
+                );
+            } else if (i === current_page - 2 || i === current_page + 2) {
+                pages.push(<span key={i}>…</span>);
+            }
+        }
+
+        if (current_page < last_page) {
+            pages.push(
+                <button key="next" onClick={() => handlePageChange(tableData.next_page_url)}>&rsaquo;</button>,
+                <button key="last" onClick={() => handlePageChange(tableData.last_page_url)}>&raquo;</button>
+            );
+        }
+
+        return pages;
+    };
+
 
     return (
         <AppLayout>
@@ -245,6 +284,14 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                 watchListIds={watchListIds}
                             />
 
+                            {/* Pagination */}
+                            {/* <div className="pagination">
+                                {renderPaginationLinks()}
+                            </div> */}
+
+
+                            {/* <Pagination paginator={tableData} /> */}
+                            <PaginationPage paginator={tableData} />
                         </div>
                     </div>
 

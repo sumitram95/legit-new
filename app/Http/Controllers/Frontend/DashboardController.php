@@ -16,12 +16,11 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $data['tableData'] = AiPolicyTracker::with(['country', 'status'])
-            ->paginate(15);
+            ->paginate(10); // This line adds pagination
 
         $data['news'] = News::with(['thumbnail', 'newsCategory'])
             ->orderBy('created_at', 'DESC')
             ->paginate(15);
-
 
         $data['aiPolicies'] = AiPolicyTracker::get()
             ->map(function ($aiPolicy) {
@@ -32,10 +31,10 @@ class DashboardController extends Controller
             });
 
         $data['countries'] = Country::get()
-            ->map(function ($aiPolicy) {
+            ->map(function ($country) {
                 return [
-                    'value' => $aiPolicy->id,
-                    'label' => $aiPolicy->name,
+                    'value' => $country->id,
+                    'label' => $country->name,
                 ];
             });
 
@@ -47,11 +46,9 @@ class DashboardController extends Controller
                 ];
             });
 
-
-
-
         return Inertia::render('Frontend/Dashboard/Dashboard', $data);
     }
+
 
 
     public function getFilteredData(Request $request)
