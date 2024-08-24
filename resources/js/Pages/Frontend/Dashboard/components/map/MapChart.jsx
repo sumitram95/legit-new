@@ -51,10 +51,16 @@ export function MapChart() {
         let polygonTemplate = polygonSeries.mapPolygons.template;
         polygonTemplate.tooltipText = "{name}";
         polygonTemplate.tooltipHTML = `
-            <div>
-                <b>{name}</b><br>
-                <a href="{url}" target="_blank" style="color: #007bff; text-decoration: none;">More Info</a>
-            </div>
+
+                <div style="width: 18rem; border: 1px solid #dee2e6; border-radius: 0.25rem; box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);">
+                    <div style="padding: 0.75rem 1.25rem; border-bottom: 1px solid #dee2e6; background-color: #f8f9fa; border-radius: 0.25rem 0.25rem 0 0;">
+                         <p>{name}</p><br>
+                    </div>
+                    <div style="padding: 1.25rem; background-color: #fff;">
+                        <a href="#" style="display: inline-block; font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none;   transparent;">DIgital</a>
+                    </div>
+                </div>
+
         `;
         polygonTemplate.adapter.add("fill", (fill, target) => {
             const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
@@ -73,8 +79,8 @@ export function MapChart() {
         polygonTemplate.tooltipPosition = "fixed";
 
         // Create hover state and set alternative fill color
-        let hs = polygonTemplate.states.create("hover");
-        hs.properties.fill = am4core.color("#367B25");
+        // let hs = polygonTemplate.states.create("hover");
+        // hs.properties.fill = am4core.color("#367B25");
 
         // Zoom control
         chart.zoomControl = new am4maps.ZoomControl();
