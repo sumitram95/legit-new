@@ -19,28 +19,36 @@ export function createPolygonSeries(chart) {
         })
     );
 
-    //************************* # Tooltips configuration ***************************** */
+    // Enable interactivity and set tooltip HTML
     polygonSeries.mapPolygons.template.setAll({
-        tooltipText: "", // Disable default tooltip text
         tooltipHTML: `
             <div style="font-size: 15px; color: #fff;">
-                {name}
                 {name}
             </div>
             <div style="font-size: 15px; color: #fff;">
                 {infoHTML}
             </div>
         `,
-        templateField: "polygonSettings",
+        tooltipPosition: "fixed",
         interactive: true,
     });
 
-    //************************* # Map(Countries) configuration ***************************** */
+    // Enable tooltip interactivity
+    polygonSeries.set("tooltip", am5.Tooltip.new(chart.root, {
+        labelText: "{name}\n{infoHTML}",
+        interactionsEnabled: true,
+        keepTargetHover: true,
+    }));
+
+    // Enable visual center calculation for better positioning
+    polygonSeries.set("calculateVisualCenter", true);
+
+    // Define your data with clickable links
     const data = [
         {
             id: "US",
             name: "United States",
-            infoHTML: "Country Name: United States",
+            infoHTML: `<a href="http://www.example.com" target="_blank" style="color: #fff;">More Info</a>`,
             polygonSettings: {
                 fill: am5.color(0xff3c38),
             },
@@ -48,16 +56,15 @@ export function createPolygonSeries(chart) {
         {
             id: "CA",
             name: "Canada",
-            infoHTML: "Country Name: Canada",
+            infoHTML: `<a href="http://www.example.com" target="_blank" style="color: #fff;">More Info</a>`,
             polygonSettings: {
                 fill: am5.color(0xa23e48),
             },
-            value: 100,
         },
         {
             id: "MX",
             name: "Mexico",
-            infoHTML: "Country Name: Mexico",
+            infoHTML: `<a href="http://www.example.com" target="_blank" style="color: #fff;">More Info</a>`,
             polygonSettings: {
                 fill: am5.color(0xff8c42),
             },
@@ -65,21 +72,7 @@ export function createPolygonSeries(chart) {
         {
             id: "NP",
             name: "Nepal",
-            // -- Not We can also customize tool tips like this
-            // infoHTML: `
-            // <div>
-            //     <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
-            //        <div>AI Policy Name</div>
-            //         <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
-            //         <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
-            //     </div>
-            //      <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
-            //        <div>AI Policy Name</div>
-            //         <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
-            //         <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
-            //     </div>
-            // </div>
-            // `,
+            infoHTML: `<a href="http://www.example.com" target="_blank" style="color: #fff;">More Info</a>`,
             polygonSettings: {
                 fill: am5.color(0x3498db),
             },
@@ -93,6 +86,17 @@ export function createPolygonSeries(chart) {
     polygonSeries.mapPolygons.template.states.create("hover", {
         fill: am5.color("#7997C3"),
         fillOpacity: 0.8,
+    });
+
+    // Add click event listener to handle link navigation
+    polygonSeries.mapPolygons.template.events.on("hit", function (ev) {
+        const dataItem = ev.target.dataItem;
+        if (dataItem) {
+            const urlMatch = dataItem.dataContext.infoHTML.match(/href="([^"]*)"/);
+            if (urlMatch && urlMatch[1]) {
+                window.open(urlMatch[1], "_blank");
+            }
+        }
     });
 
     return polygonSeries;
