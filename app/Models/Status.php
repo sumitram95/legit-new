@@ -15,4 +15,9 @@ class Status extends Model
     protected $fillable = [
         "name",
     ];
+
+    public function news()
+    {
+        return $this->hasMany(News::class, 'status_id', 'id');
+    }
 }

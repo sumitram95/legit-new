@@ -13,8 +13,8 @@ class News extends Model
 
     protected $fillable = [
         'title',
-        'category_id',
         'policy_tracker_id',
+        'status_id',
         'upload_date',
         'description',
     ];
@@ -39,9 +39,9 @@ class News extends Model
         return $this->hasOne(NewsFutureImage::class);
     }
 
-    public function newsCategory()
+    public function status()
     {
-        return $this->belongsTo(NewsCategory::class, 'category_id', 'id');
+        return $this->belongsTo(Status::class, 'category_id', 'id');
     }
 
     public function policyTracker()
