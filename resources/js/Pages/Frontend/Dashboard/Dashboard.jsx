@@ -248,6 +248,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                         </div>
                     </div>
 
+
                     {/* ********************** Search Comonent (desktop) ********************** */}
                     <div className="hidden lg:block lg:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
