@@ -11,18 +11,6 @@ class NewsController extends Controller
 {
     public function index()
     {
-        // $data['newsLists'] = [
-        //     1,
-        //     2,
-        //     3,
-        //     4,
-        //     5,
-        //     6,
-        //     7,
-        //     8,
-        //     9
-        // ];
-
         $data['news'] = News::with(['thumbnail', 'status'])
             ->orderBy('created_at', 'Desc')
             ->paginate(15);
