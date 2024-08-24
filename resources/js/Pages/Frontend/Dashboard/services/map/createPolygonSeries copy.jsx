@@ -19,12 +19,11 @@ export function createPolygonSeries(chart) {
         })
     );
 
-    //************************* # Tooltips configuration ***************************** */
+    // Configure the template for polygons
     polygonSeries.mapPolygons.template.setAll({
         tooltipText: "", // Disable default tooltip text
         tooltipHTML: `
             <div style="font-size: 15px; color: #fff;">
-                {name}
                 {name}
             </div>
             <div style="font-size: 15px; color: #fff;">
@@ -35,7 +34,28 @@ export function createPolygonSeries(chart) {
         interactive: true,
     });
 
-    //************************* # Map(Countries) configuration ***************************** */
+    // Custom styling for the tooltip
+    // let tooltip = polygonSeries.mapPolygons.template.get("tooltip");
+    // if (tooltip) {
+    //     tooltip.get("background").setAll({
+    //         fill: am5.color("#7997C3"), // Background color
+    //         fillOpacity: 0.8,
+    //         stroke: am5.color(0xffffff),
+    //         strokeWidth: 1,
+    //         cornerRadius: 5,
+    //         paddingTop: 0,
+    //         paddingBottom: 10,
+    //         paddingLeft: 10,
+    //         paddingRight: 10,
+    //     });
+
+    //     tooltip.get("label").setAll({
+    //         fontSize: "16px",
+    //         color: "#fff",
+    //     });
+    // }
+
+    // Data for the Countries
     const data = [
         {
             id: "US",
