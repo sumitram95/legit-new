@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $data['tableData'] = AiPolicyTracker::with(['country', 'status'])
             ->paginate(10); // This line adds pagination
 
-        $data['news'] = News::with(['thumbnail', 'newsCategory'])
+        $data['news'] = News::with(['thumbnail', 'status'])
             ->orderBy('created_at', 'DESC')
             ->paginate(15);
 
