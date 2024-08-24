@@ -51,7 +51,7 @@ export function MapChart() {
         let polygonTemplate = polygonSeries.mapPolygons.template;
         polygonTemplate.tooltipText = "{name}";
         polygonTemplate.tooltipHTML = `
-            <div style=" border-radius: 0.25rem; padding: 0;">
+            <div style="width: 18rem; border-radius: 0.25rem; padding: 0;">
                 <div style="padding: 0.75rem 1.25rem; border-bottom: 2px solid #f8f9fa; border-radius: 0.25rem 0.25rem 0 0; margin: 0;">
                     <h2 style="margin: 0; color: #007bff; font-size: 1rem; font-weight: 400;">{name}</h2>
                 </div>
