@@ -29,7 +29,7 @@ export default function PaginationPage({ paginator }) {
     const pages = [...Array(end - start + 1).keys()].map((num) => start + num);
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col mt-2 mb-5">
             {/* Pagination Controls */}
             <div className="flex mt-4 justify-center">
                 <div className="flex">
@@ -38,11 +38,11 @@ export default function PaginationPage({ paginator }) {
                         onClick={() => handlePageChange(`?page=1`)}
                         disabled={currentPage === 1}
                         className={`py-2 px-5 rounded-md ${currentPage === 1
-                                ? "bg-gray-200 text-black"
-                                : "bg-secondary hover:bg-blue-100"
+                            ? "text-black"
+                            : "hover:bg-blue-100"
                             }`}
                     >
-                        &laquo;&laquo;
+                        &laquo;
                     </Button>
 
                     {/* Previous Page Button */}
@@ -50,11 +50,11 @@ export default function PaginationPage({ paginator }) {
                         onClick={() => handlePageChange(paginator.prev_page_url)}
                         disabled={!paginator.prev_page_url}
                         className={`py-2 px-5 rounded-md ${currentPage === 1
-                                ? "bg-gray-200 text-black"
-                                : "bg-secondary hover:bg-blue-100"
+                            ? "text-black"
+                            : "hover:bg-blue-100"
                             }`}
                     >
-                        &laquo;
+                        &#x3C;
                     </Button>
 
                     {/* Page Numbers */}
@@ -80,8 +80,8 @@ export default function PaginationPage({ paginator }) {
                                 key={page}
                                 onClick={() => handlePageChange(`?page=${page}`)}
                                 className={`py-2 px-4 ${currentPage === page
-                                        ? "bg-secondary text-black"
-                                        : "bg-gray-200 text-black hover:bg-blue-100"
+                                    ? "bg-secondary text-black"
+                                    : "bg-gray-200 text-black hover:bg-blue-100"
                                     }`}
                             >
                                 {page}
@@ -112,11 +112,11 @@ export default function PaginationPage({ paginator }) {
                         onClick={() => handlePageChange(paginator.next_page_url)}
                         disabled={!paginator.next_page_url}
                         className={`py-2 px-5 rounded-md ${currentPage === lastPage
-                                ? "bg-gray-200 text-black"
-                                : "bg-secondary hover:bg-blue-100"
+                            ? " text-black"
+                            : "hover:bg-blue-100"
                             }`}
                     >
-                        &raquo;
+                        &gt;
                     </Button>
 
                     {/* Last Page Button */}
@@ -124,11 +124,11 @@ export default function PaginationPage({ paginator }) {
                         onClick={() => handlePageChange(`?page=${lastPage}`)}
                         disabled={currentPage === lastPage}
                         className={`py-2 px-5 rounded-md ${currentPage === lastPage
-                                ? "bg-gray-200 text-black"
-                                : "bg-secondary hover:bg-blue-100"
+                            ? " text-black"
+                            : "hover:bg-blue-100"
                             }`}
                     >
-                        &raquo;&raquo;
+                        &raquo;
                     </Button>
                 </div>
             </div>
