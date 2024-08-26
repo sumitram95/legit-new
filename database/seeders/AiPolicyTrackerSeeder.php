@@ -143,23 +143,26 @@ class AiPolicyTrackerSeeder extends Seeder
         ];
 
         // Real news data related to each policy
+        $statusId = Status::inRandomOrder()->first()->id;
+
+
         $newsData = [
             'Act of AI Regulation' => [
                 [
                     'title' => 'FTC Announces New AI Regulations',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-05-01',
                     'description' => 'The FTC has announced new regulations to enhance AI transparency.',
                 ],
                 [
                     'title' => 'Impact of AI Regulation on Tech Companies',
-                    'status_id' => 'business',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-06-10',
                     'description' => 'Tech companies react to the new AI regulations from the FTC.',
                 ],
                 [
                     'title' => 'Public Response to AI Regulation Act',
-                    'status_id' => 'public',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-07-20',
                     'description' => 'Public opinion on the FTC’s new AI regulations.',
                 ],
@@ -167,19 +170,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Ethics Act' => [
                 [
                     'title' => 'European Commission Introduces AI Ethics Act',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-01-15',
                     'description' => 'The European Commission has introduced new ethical guidelines for AI.',
                 ],
                 [
                     'title' => 'AI Ethics Act to Affect EU AI Developers',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-02-05',
                     'description' => 'EU AI developers prepare for the new ethics regulations.',
                 ],
                 [
                     'title' => 'How the AI Ethics Act Impacts Consumers',
-                    'status_id' => 'consumer',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-03-10',
                     'description' => 'Exploring the impact of the AI Ethics Act on consumers in the EU.',
                 ],
@@ -187,19 +190,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Surveillance Regulation' => [
                 [
                     'title' => 'China’s AI Surveillance Regulation Announced',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2022-03-01',
                     'description' => 'China introduces new AI surveillance regulations aimed at enhancing public security.',
                 ],
                 [
                     'title' => 'Implications of AI Surveillance Regulation in China',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2022-04-15',
                     'description' => 'Analysis of how AI surveillance regulation will impact privacy and security in China.',
                 ],
                 [
                     'title' => 'Public Debate on AI Surveillance Regulation',
-                    'status_id' => 'public',
+                    'status_id' => $statusId,
                     'upload_date' => '2022-05-20',
                     'description' => 'Public reactions and debates over the new AI surveillance regulations in China.',
                 ],
@@ -207,19 +210,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Innovation Act' => [
                 [
                     'title' => 'South Korea’s AI Innovation Act Launched',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-01-10',
                     'description' => 'South Korea introduces the AI Innovation Act to support AI startups.',
                 ],
                 [
                     'title' => 'Impact of AI Innovation Act on Korean Startups',
-                    'status_id' => 'business',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-02-20',
                     'description' => 'How the AI Innovation Act is expected to boost AI startups in South Korea.',
                 ],
                 [
                     'title' => 'AI Innovation Act: What It Means for Investors',
-                    'status_id' => 'finance',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-03-15',
                     'description' => 'The implications of the AI Innovation Act for investors in South Korea.',
                 ],
@@ -227,19 +230,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Accountability Framework' => [
                 [
                     'title' => 'India’s New AI Accountability Framework',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-06-01',
                     'description' => 'India introduces a new framework to ensure accountability in AI systems.',
                 ],
                 [
                     'title' => 'AI Accountability Framework: Key Points',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-07-15',
                     'description' => 'Key points of the AI Accountability Framework and its impact on tech companies.',
                 ],
                 [
                     'title' => 'How AI Accountability Framework Will Affect Businesses',
-                    'status_id' => 'business',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-08-20',
                     'description' => 'Impact of the new AI Accountability Framework on Indian businesses.',
                 ],
@@ -247,19 +250,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Fairness Act' => [
                 [
                     'title' => 'Australia’s AI Fairness Act Unveiled',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-02-01',
                     'description' => 'The Australian Government introduces the AI Fairness Act to ensure equity in AI systems.',
                 ],
                 [
                     'title' => 'Impact of AI Fairness Act on AI Developers',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-03-10',
                     'description' => 'How the AI Fairness Act will influence AI development in Australia.',
                 ],
                 [
                     'title' => 'Public Response to AI Fairness Act',
-                    'status_id' => 'public',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-04-05',
                     'description' => 'Public opinion and reactions to the AI Fairness Act in Australia.',
                 ],
@@ -267,19 +270,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Safety Protocol' => [
                 [
                     'title' => 'Japan Introduces AI Safety Protocol',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-04-10',
                     'description' => 'Japan’s new protocol aims to ensure safe deployment of AI technologies.',
                 ],
                 [
                     'title' => 'AI Safety Protocol: What You Need to Know',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-05-25',
                     'description' => 'Overview of Japan’s AI Safety Protocol and its implications.',
                 ],
                 [
                     'title' => 'Impact of AI Safety Protocol on Tech Industry',
-                    'status_id' => 'business',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-06-30',
                     'description' => 'How Japan’s AI Safety Protocol will impact the technology industry.',
                 ],
@@ -287,19 +290,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Transparency Act' => [
                 [
                     'title' => 'Canada’s AI Transparency Act Enforced',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-02-15',
                     'description' => 'Canada introduces the AI Transparency Act to increase decision-making transparency.',
                 ],
                 [
                     'title' => 'AI Transparency Act: Key Details',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-03-05',
                     'description' => 'Details and key points of Canada’s AI Transparency Act.',
                 ],
                 [
                     'title' => 'Impact of AI Transparency Act on Businesses',
-                    'status_id' => 'business',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-04-01',
                     'description' => 'How Canadian businesses are adapting to the AI Transparency Act.',
                 ],
@@ -307,19 +310,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Ethics and Governance Framework' => [
                 [
                     'title' => 'India’s AI Ethics and Governance Framework Introduced',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-07-01',
                     'description' => 'India introduces a new framework for AI ethics and governance.',
                 ],
                 [
                     'title' => 'How AI Ethics and Governance Framework Affects AI Development',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-08-15',
                     'description' => 'Impact of India’s AI Ethics and Governance Framework on AI development.',
                 ],
                 [
                     'title' => 'Public Reaction to India’s AI Ethics Framework',
-                    'status_id' => 'public',
+                    'status_id' => $statusId,
                     'upload_date' => '2023-09-20',
                     'description' => 'Public response and opinions on the AI Ethics and Governance Framework in India.',
                 ],
@@ -327,19 +330,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Impact Assessment Act' => [
                 [
                     'title' => 'Brazil Launches AI Impact Assessment Act',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-03-01',
                     'description' => 'Brazil introduces the AI Impact Assessment Act to mitigate AI’s societal impact.',
                 ],
                 [
                     'title' => 'Impact of AI Impact Assessment Act on Brazilian Tech Sector',
-                    'status_id' => 'business',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-04-10',
                     'description' => 'How the AI Impact Assessment Act will influence the tech sector in Brazil.',
                 ],
                 [
                     'title' => 'AI Impact Assessment Act: Key Implications',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-05-15',
                     'description' => 'Overview of the key implications of Brazil’s AI Impact Assessment Act.',
                 ],
@@ -347,19 +350,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'Global AI Collaboration Framework' => [
                 [
                     'title' => 'UN Announces Global AI Collaboration Framework',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-04-01',
                     'description' => 'The UN introduces a framework to foster global AI collaboration.',
                 ],
                 [
                     'title' => 'Global AI Collaboration Framework: What It Means',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-05-10',
                     'description' => 'Implications of the UN’s Global AI Collaboration Framework for international AI research.',
                 ],
                 [
                     'title' => 'Global Response to AI Collaboration Framework',
-                    'status_id' => 'public',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-06-15',
                     'description' => 'How different countries are responding to the UN’s Global AI Collaboration Framework.',
                 ],
@@ -367,19 +370,19 @@ class AiPolicyTrackerSeeder extends Seeder
             'AI Research and Development Act' => [
                 [
                     'title' => 'US National Science Foundation Unveils AI Research and Development Act',
-                    'status_id' => 'policy',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-05-01',
                     'description' => 'The US NSF introduces the AI Research and Development Act to support AI innovation.',
                 ],
                 [
                     'title' => 'Impact of AI Research and Development Act on US Tech Industry',
-                    'status_id' => 'technology',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-06-20',
                     'description' => 'How the AI Research and Development Act will affect the US tech industry.',
                 ],
                 [
                     'title' => 'Funding Opportunities under AI Research and Development Act',
-                    'status_id' => 'business',
+                    'status_id' => $statusId,
                     'upload_date' => '2024-07-15',
                     'description' => 'Funding opportunities and grants available through the AI Research and Development Act.',
                 ],
