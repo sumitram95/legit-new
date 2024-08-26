@@ -33,7 +33,6 @@ class AiPolicyTrackerController extends Controller
                 ];
             });
 
-
         $tableData = AiPolicyTracker::with(['country', 'status'])->orderBy('created_at', 'desc')->paginate(10);
 
         return Inertia::render("Backend/AiPolicyTracker/Index", [
@@ -44,11 +43,8 @@ class AiPolicyTrackerController extends Controller
     }
     public function store(AiPolicyTrackerPostRequest $request)
     {
-
         $validated = $request->validated();
-
         AiPolicyTracker::create($validated);
-
 
         // Log the ai Policy activity Log
         // $activity_name =   'Terms and Condition Created';
@@ -57,8 +53,6 @@ class AiPolicyTrackerController extends Controller
 
         return to_route('backend.ai_policy_tracker.index')->with('success', 'Successfully Created');
     }
-
-
 
     public function delete($id)
     {
