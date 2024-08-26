@@ -14,22 +14,36 @@ const COLORS = {
     launched: "#67A8EF"
 };
 
-// Define countries and their associated colors and links
-const COLOR_MAP = {
-    'CA': COLORS.research, // Canada
-    'US': COLORS.research, // USA
-    'MX': COLORS.development, // Mexico
-    'NP': COLORS.launched, // Nepal
-};
 
-const URL_MAP = {
-    'CA': 'https://example.com/canada', // URL for Canada
-    'US': 'https://example.com/usa', // URL for USA
-    'MX': 'https://example.com/mexico', // URL for Mexico
-    'NP': 'https://example.com/nepal', // URL for Nepal
-};
 
-export function MapChart() {
+export function MapChart({ countrywithStatus, countrywithMap }) {
+
+    // Update URL_MAP with new URLs
+    // const URL_MAP = {
+    //     'CA': 'https://example.com/canada', // URL for Canada
+    //     'US': 'https://example.com/usa', // URL for USA
+    //     'MX': 'https://example.com/mexico', // URL for Mexico
+    //     'NP': 'https://example.com/nepal', // URL for Nepal
+    // };
+
+    // Define countries and their associated colors and links
+    // const COLOR_MAP = {
+    //     'CA': COLORS.research, // Canada
+    //     'US': COLORS.research, // USA
+    //     'MX': COLORS.development, // Mexico
+    //     'NP': COLORS.launched, // Nepal
+    // }
+
+    //***************** Define countries and their associated colors ****************** */
+    const COLOR_MAP = Object.keys(countrywithStatus).reduce((acc, countryCode) => {
+        const status = countrywithStatus[countryCode];
+        acc[countryCode] = COLORS[status] || '#FFFFFF'; // Default color if status not found
+        return acc;
+    }, {});
+
+    //***************** Define countries and their associated Url Links ****************** */
+    const URL_MAP = countrywithMap;
+
     useLayoutEffect(() => {
         // Apply themes
         am4core.useTheme(am4themes_animated);

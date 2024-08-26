@@ -22,6 +22,27 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate(15);
 
+        ///////////////
+        $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::with(['country', 'status'])->get();
+
+        $URL_MAP = [];
+        $STATUS_MAP = [];
+
+        foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {
+            $countrySymbol = $tracker->country->symbol;  // Assuming the 'symbol' field exists in the Country model
+
+            $URL_MAP[$countrySymbol] = $tracker->whitepaper_document_link;
+            $STATUS_MAP[$countrySymbol] = $tracker->status->name;
+        }
+
+        $data['countrywithStatus'] = $STATUS_MAP;
+        $data['countrywithMap'] = $URL_MAP;
+
+        // Debug the maps
+        // dd($URL_MAP, $STATUS_MAP);
+
+
+
         $data['aiPolicies'] = AiPolicyTracker::get()
             ->map(function ($aiPolicy) {
                 return [

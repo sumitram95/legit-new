@@ -5,41 +5,38 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
-
 
 class AiPolicyTracker extends Model
 {
     use SoftDeletes, HasUuids;
 
-    // Define a custom attribute for formatted creation date
-    //note:- $appends property on a model allows you to include additional attributes in the model's JSON representation
     protected $appends = ['formatted_created_at'];
-    protected $fillable =
-    [
-        "country_id",
-        "status_id",
-        "ai_policy_name",
-        "governing_body",
-        "announcement_year",
-        "whitepaper_document_link",
-        "technology_partners",
-        "governance_structure",
-        "main_motivation",
-        "description",
+
+    protected $fillable = [
+        'country_id',
+        'status_id',
+        'ai_policy_name',
+        'governing_body',
+        'announcement_year',
+        'whitepaper_document_link',
+        'technology_partners',
+        'governance_structure',
+        'main_motivation',
+        'description',
     ];
 
-    public function country(): HasOne
+    public function country(): BelongsTo
     {
-        return $this->hasOne(Country::class, 'id', 'country_id');
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
-
-    public function status(): HasOne
+    public function status(): BelongsTo
     {
-        return $this->hasOne(Status::class, 'id', 'status_id');
+        return $this->belongsTo(Status::class, 'status_id', 'id');
     }
 
     public function getFormattedCreatedAtAttribute()
@@ -47,12 +44,12 @@ class AiPolicyTracker extends Model
         return Carbon::parse($this->created_at)->format('M d, Y');
     }
 
-    public function news()
+    public function news(): HasMany
     {
         return $this->hasMany(News::class, 'policy_tracker_id');
     }
 
-    public function aIPolicyActivityLogs()
+    public function aIPolicyActivityLogs(): HasMany
     {
         return $this->hasMany(AIPolicyActivityLog::class, 'ai_policy_tracker_id');
     }

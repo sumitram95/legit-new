@@ -20,4 +20,9 @@ class Status extends Model
     {
         return $this->hasMany(News::class, 'status_id', 'id');
     }
+
+    public function aiPolicies()
+    {
+        return $this->hasMany(AiPolicyTracker::class, 'status_id', 'id');
+    }
 }

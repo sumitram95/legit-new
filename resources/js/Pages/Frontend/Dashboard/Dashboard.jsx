@@ -24,9 +24,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import Pagination from "@/Components/Pagination";
 import PaginationPage from "@/Components/table/PaginationPage";
 
-export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData }) {
+export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData, countrywithStatus, countrywithMap }) {
 
-    //   console.log(initialTableData);
+
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
     useEffect(() => {
@@ -166,7 +166,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                     </div>
                                 </div>
 
-                                {/* ********************** Status Comonent ********************** */}
+                                {/* ********************** Status Component ********************** */}
                                 <div className="flex justify-center items-center mb-3">
                                     <Status />
                                 </div>
@@ -206,7 +206,10 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
 
                             {/* ********************** MapChart Comonent ********************** */}
                             <div className="mt-5 px-4 map-chart-wrapper">
-                                <MapChart />
+                                <MapChart
+                                    countrywithStatus={countrywithStatus}
+                                    countrywithMap={countrywithMap}
+                                />
                             </div>
                             {/* ********************** HistoricState Comonent ********************** */}
                             <div className="px-5 mt-4">
