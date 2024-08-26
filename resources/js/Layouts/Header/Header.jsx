@@ -20,7 +20,7 @@ const NavBarLists = {
         url: route("frontend.time_line.index"),
     },
     community: {
-        name: "community",
+        name: "Community",
         url: "https://community.aipolicytracker.org/",
     },
     whitepaper: {

@@ -11,9 +11,11 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $data['news'] = News::with(['thumbnail', 'status'])
+        $data['news'] = News::query()
+            ->with(['thumbnail', 'status'])
             ->orderBy('created_at', 'Desc')
-            ->paginate(15);
+            ->paginate(10);
+
         return Inertia::render('Frontend/News/News', $data);
     }
 
