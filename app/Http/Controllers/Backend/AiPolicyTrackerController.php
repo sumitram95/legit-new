@@ -48,7 +48,7 @@ class AiPolicyTrackerController extends Controller
         $validated = $request->validated();
         $aiPolicyTracker = AiPolicyTracker::create($validated);
 
-        // Log the AI policy activity
+        //-- Log the AI policy activity (Create)
         $activity_name = 'Added data';
         $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been added.';
         AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
@@ -82,9 +82,12 @@ class AiPolicyTrackerController extends Controller
             $aiPolicyTracker = AiPolicyTracker::find($id);
 
             if (!$aiPolicyTracker) {
-
                 return to_route('backend.ai_policy_tracker.index')->with('error', 'Not founded (AI) policy tracker');
             }
+
+            $activity_name = 'Updated data';
+            $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been Updated.';
+            AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
             // Return the updated tracker data
             return response()->json(['aiPolicyTracker' => $aiPolicyTracker]);
