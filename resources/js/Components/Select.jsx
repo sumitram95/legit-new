@@ -1,5 +1,4 @@
-import { forwardRef, useEffect, useRef } from "react";
-import SelectInputLists from "./map/SelectInputList";
+import { useEffect, useRef } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
