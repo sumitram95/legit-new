@@ -399,7 +399,7 @@ class AiPolicyTrackerSeeder extends Seeder
 
             // Log the AI policy activity
             $activity_name = 'Added data';
-            $description = 'New AI Policy added'.$createdPolicy->ai_policy_name;
+            $description = 'New AI Policy added '. $createdPolicy->ai_policy_name;
             AIPolicyActivityLog::create([
                 // 'id'=> Str::uuid(),
                 'user_id' => 1,
