@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\News;
 use App\Models\Status;
 use App\Models\Country;
@@ -23,7 +24,7 @@ class AiPolicyTrackerSeeder extends Seeder
             [
                 'ai_policy_name' => 'Act of AI Regulation',
                 'governing_body' => 'Federal Trade Commission (FTC)',
-                'announcement_year' =>'2023-05-01',
+                'announcement_year' => '2023-05-01',
                 'whitepaper_document_link' => 'http://www.ftc.gov/ai-regulation',
                 'technology_partners' => 'TechSafe Inc.',
                 'governance_structure' => 'Federal AI Oversight Board',
@@ -63,7 +64,7 @@ class AiPolicyTrackerSeeder extends Seeder
             [
                 'ai_policy_name' => 'AI Accountability Framework',
                 'governing_body' => 'Ministry of Electronics and IT',
-                'announcement_year' =>'1995-05-01',
+                'announcement_year' => '1995-05-01',
                 'whitepaper_document_link' => 'http://www.meit.gov.in/ai-accountability',
                 'technology_partners' => 'IndoTech Innovations',
                 'governance_structure' => 'AI Accountability Task Force',
@@ -93,7 +94,7 @@ class AiPolicyTrackerSeeder extends Seeder
             [
                 'ai_policy_name' => 'AI Transparency Act',
                 'governing_body' => 'Canadian Government',
-                'announcement_year' =>'2013-05-01',
+                'announcement_year' => '2013-05-01',
                 'whitepaper_document_link' => 'http://www.canada.ca/ai-transparency',
                 'technology_partners' => 'CanadaAI Innovations',
                 'governance_structure' => 'Canadian AI Transparency Authority',
@@ -133,7 +134,7 @@ class AiPolicyTrackerSeeder extends Seeder
             [
                 'ai_policy_name' => 'AI Research and Development Act',
                 'governing_body' => 'US National Science Foundation',
-                'announcement_year' =>'2020-05-01',
+                'announcement_year' => '2020-05-01',
                 'whitepaper_document_link' => 'http://www.nsf.gov/ai-research',
                 'technology_partners' => 'ResearchTech Labs',
                 'governance_structure' => 'AI Research Advisory Board',
@@ -399,17 +400,26 @@ class AiPolicyTrackerSeeder extends Seeder
                 ]
             ));
 
-            // Log the AI policy activity
+            // Log create the AI policy activity
             $activity_name = 'Added data';
-            $description = 'New AI Policy added '. $createdPolicy->ai_policy_name;
+            $description = 'A new AI policy, <b>' . $createdPolicy->ai_policy_name . '</b>, has been added.';
             AIPolicyActivityLog::create([
-                // 'id'=> Str::uuid(),
+                'user_id' => 1,
+                'ai_policy_tracker_id' => $createdPolicy->id,
+                'activity_name' => $activity_name,
+                'description' => $description,
+                'created_at' => Carbon::parse('2020-09-10')
+            ]);
+
+            // Log update the AI policy activity
+            $activity_name = 'Updated data';
+            $description = 'A new AI policy, <b>' . $createdPolicy->ai_policy_name . '</b>, has been updated.';
+            AIPolicyActivityLog::create([
                 'user_id' => 1,
                 'ai_policy_tracker_id' => $createdPolicy->id,
                 'activity_name' => $activity_name,
                 'description' => $description,
             ]);
-
 
             // Fetch the related news articles for the policy
             if (isset($newsData[$policy['ai_policy_name']])) {

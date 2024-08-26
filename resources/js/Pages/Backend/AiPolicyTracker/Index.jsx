@@ -164,6 +164,15 @@ export default function Index({
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">
+                                                    {/* View Action */}
+                                                    <Link
+                                                        href="#"
+                                                        className="underline text-blue-950"
+                                                    >
+                                                        <ViewIcon />
+                                                    </Link>
+
+                                                    {/* Edit Action */}
                                                     <Button
                                                         type="button"
                                                         onClick={() =>
@@ -174,13 +183,10 @@ export default function Index({
                                                     >
                                                         <EditIcon />
                                                     </Button>
-                                                    <Link
-                                                        href="#"
-                                                        className="underline text-blue-950"
-                                                    >
-                                                        <ViewIcon />
-                                                    </Link>
-                                                    <Button
+
+
+                                                    {/* Delete Action */}
+                                                    {/* <Button
                                                         type="button"
                                                         onClick={() =>
                                                             toggleDeleteModal(
@@ -189,7 +195,7 @@ export default function Index({
                                                         }
                                                     >
                                                         <DeleteIcon />
-                                                    </Button>
+                                                    </Button> */}
                                                 </div>
                                             </td>
                                         </tr>
@@ -205,7 +211,7 @@ export default function Index({
                 </div>
             </div>
 
-            {/* add model */}
+            {/* ******************************* Add Model *****************************/}
             <Model
                 isOpen={isAddModalOpen}
                 onClose={toggleAddModal}
@@ -215,7 +221,7 @@ export default function Index({
                 <Add countries={countries} status={status} />
             </Model>
 
-            {/* edit model */}
+            {/* ******************************* Edit Model *****************************/}
             <Model
                 isOpen={isEditModalOpen}
                 onClose={openEditModal}
@@ -231,6 +237,7 @@ export default function Index({
                 />
             </Model>
 
+            {/* ******************************* Delete Model *****************************/}
             <DeleteModel
                 title={"Are you sure you want to delete this (AI) policy tracker?"}
                 routePath={"/backend/aipolicytracker/delete/"}

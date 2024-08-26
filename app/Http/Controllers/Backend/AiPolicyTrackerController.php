@@ -48,9 +48,9 @@ class AiPolicyTrackerController extends Controller
         $validated = $request->validated();
         $aiPolicyTracker = AiPolicyTracker::create($validated);
 
-        // Log the AI policy activity
+        //-- Log the AI policy activity (Create)
         $activity_name = 'Added data';
-        $description = 'A new AI policy, '.$aiPolicyTracker->ai_policy_name.', has been added.';
+        $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been added.';
         AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
         return to_route('backend.ai_policy_tracker.index')->with('success', 'Successfully Created');
@@ -82,9 +82,13 @@ class AiPolicyTrackerController extends Controller
             $aiPolicyTracker = AiPolicyTracker::find($id);
 
             if (!$aiPolicyTracker) {
-
                 return to_route('backend.ai_policy_tracker.index')->with('error', 'Not founded (AI) policy tracker');
             }
+
+            //-- Log the AI policy activity (Update)
+            $activity_name = 'Updated data';
+            $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been Updated.';
+            AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
             // Return the updated tracker data
             return response()->json(['aiPolicyTracker' => $aiPolicyTracker]);
@@ -106,6 +110,11 @@ class AiPolicyTrackerController extends Controller
                 return to_route('backend.ai_policy_tracker.index')->with('error', 'Not founded (AI) policy tracker');
             }
             $aiPolicyTracker->update($validated);
+
+            //-- Log the AI policy activity (Update)
+            $activity_name = 'Delete data';
+            $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been Deleted.';
+            AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
             return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Updated');
         } catch (\Throwable $th) {
