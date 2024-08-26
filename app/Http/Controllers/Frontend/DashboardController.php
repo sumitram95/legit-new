@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $data['tableData'] = AiPolicyTracker::with(['country', 'status'])
-            ->paginate(10); // This line adds pagination
+            ->paginate(10);
 
         $data['news'] = News::with(['thumbnail', 'status'])
             ->orderBy('created_at', 'DESC')
@@ -49,12 +49,9 @@ class DashboardController extends Controller
         return Inertia::render('Frontend/Dashboard/Dashboard', $data);
     }
 
-
-
     public function getFilteredData(Request $request)
     {
-        // return response()->json($request->all());
-        $query = AiPolicyTracker::query(); // Base query for AI policies
+        $query = AiPolicyTracker::query();
 
         // Apply filters based on the request parameters
         if ($request->has('AI_Policy_Name') && !empty($request->AI_Policy_Name)) {
