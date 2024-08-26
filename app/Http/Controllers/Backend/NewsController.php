@@ -61,7 +61,7 @@ class NewsController extends Controller
     {
         $validate = $request->validate([
             'title' => 'required|string|max:255',
-            'category_id' => 'required|string',
+            'status_id' => 'required|string',
             'policy_tracker_id' => 'required|string',
             'upload_date' => 'required|date',
             'description' => 'sometimes|nullable|string',
@@ -118,7 +118,7 @@ class NewsController extends Controller
     {
         $validate = $request->validate([
             'title' => 'required|string|max:255',
-            'category_id' => 'required|string',
+            'status_id' => 'required|string',
             'upload_date' => 'required|date',
             'description' => 'sometimes|nullable|string',
             'policy_tracker_id' => 'required|string',

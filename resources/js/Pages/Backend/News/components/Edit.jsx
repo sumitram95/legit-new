@@ -17,7 +17,7 @@ export default function Edit({
 
     const formAiPolicy = useForm({
         title: updatedData.title || '',
-        category_id: updatedData.category_id || '',
+        status_id: updatedData.status_id || '',
         policy_tracker_id: updatedData.policy_tracker_id || '',
         upload_date: updatedData.upload_date || defaultDate,
         description: updatedData.description || '',
@@ -60,18 +60,18 @@ export default function Edit({
                     <Select
                         onChange={(option) =>
                             handleChange({
-                                name: "category_id",
+                                name: "status_id",
                                 value: option.value,
                             })
                         }
-                        name="category_id"
+                        name="status_id"
                         value={categories.find(
                             (list) =>
-                                list.value === formAiPolicy.data.category_id
+                                list.value === formAiPolicy.data.status_id
                         )}
                         label="Category"
                         options={categories}
-                        errorMsg={formAiPolicy.errors.category_id}
+                        errorMsg={formAiPolicy.errors.status_id}
                     />
 
                     {/* dropdown ai policy tracker */}

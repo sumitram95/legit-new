@@ -41,7 +41,7 @@ class News extends Model
 
     public function status()
     {
-        return $this->belongsTo(Status::class, 'category_id', 'id');
+        return $this->belongsTo(Status::class, 'status_id', 'id');
     }
 
     public function policyTracker()

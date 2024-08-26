@@ -17,7 +17,7 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
 
     const formAiPolicy = useForm({
         title: "",
-        category_id: "",
+        status_id: "",
         policy_tracker_id: "",
         upload_date: defaultDate,
         description: "",
@@ -91,18 +91,18 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
                     <Select
                         onChange={(option) =>
                             handleChange({
-                                name: "category_id",
+                                name: "status_id",
                                 value: option.value,
                             })
                         }
-                        name="category_id"
+                        name="status_id"
                         value={categories.find(
                             (list) =>
-                                list.value === formAiPolicy.data.category_id
+                                list.value === formAiPolicy.data.status_id
                         )}
                         label="Category"
                         options={categories}
-                        errorMsg={formAiPolicy.errors.category_id}
+                        errorMsg={formAiPolicy.errors.status_id}
                     />
 
                     {/* dropdown ai policy tracker */}
