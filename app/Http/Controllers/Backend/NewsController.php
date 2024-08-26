@@ -36,6 +36,8 @@ class NewsController extends Controller
                 ];
             });
 
+
+
         $aiPolicyTrackers = AiPolicyTracker::select("id", "ai_policy_name")
             ->get()
             ->map(function ($value) {
@@ -48,6 +50,8 @@ class NewsController extends Controller
         $tableData = News::with(['thumbnail', 'status','policyTracker'])
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
+
+            // dd($tableData);
 
         return Inertia::render("Backend/News/Index", [
             'countries' => $countries,

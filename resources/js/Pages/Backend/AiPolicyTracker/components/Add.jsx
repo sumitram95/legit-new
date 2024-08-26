@@ -57,7 +57,7 @@ export default function Add({ countries = null, status = null }) {
                         onChange={(option) =>
                             handleChange({
                                 name: "country_id",
-                                value: option.value,
+                                value: option.value ?? null,
                             })
                         }
                         name="country_id"
@@ -66,7 +66,7 @@ export default function Add({ countries = null, status = null }) {
                                 country.value === formAiPolicy.data.country_id
                         )}
                         label={"Country"}
-                        options={countries}
+                        options={[{ label: "Select any country", value: '0' }, ...countries]}
                         errorMsg={formAiPolicy.errors.country_id}
                     />
 
@@ -102,7 +102,8 @@ export default function Add({ countries = null, status = null }) {
                                 formAiPolicy.data.status_id
                         )}
                         label={"Status"}
-                        options={status}
+
+                        options={[{ label: "Select any status", value: '0' }, ...status]}
                         errorMsg={formAiPolicy.errors.status_id}
                     />
 
