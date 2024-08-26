@@ -30,14 +30,14 @@ export default function Dashboard({
     countries,
     statuses,
     tableData: initialTableData,
-    countrywithStatus: initialCountrywithStatus,
+    countrywithStatus,
     countrywithMap,
     aiPolicyLastUpdate,
     newsLastUpdate
 
 }) {
 
-    const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
+console.log(countrywithStatus);
 
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
@@ -180,7 +180,7 @@ export default function Dashboard({
 
                                 {/* ********************** Status Component ********************** */}
                                 <div className="flex justify-center items-center mb-3">
-                                    <Status countrywithStatus={countrywithStatus} setCountrywithStatus={setCountrywithStatus} />
+                                    <Status />
                                 </div>
                                 <div className="flex gap-3 lg:hidden">
                                     {visibleDiv && (

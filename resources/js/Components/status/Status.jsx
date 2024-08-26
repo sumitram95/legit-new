@@ -1,46 +1,26 @@
 import React, { useState } from "react";
 import StatusLists from "./StatusLists";
 
-export default function Status({ className = "", ...props }) {
-    const [checkedStatus, setCheckedStatus] = useState(() => {
-        const initialStatus = {};
-        StatusLists.forEach(status => {
-            initialStatus[status] = false;
-        });
-        return initialStatus;
-    });
+export default function Status(
+    {
+        countrywithStatus
+    }) {
 
-    const handleCheckboxChange = (event) => {
-        const { id, checked } = event.target;
-        setCheckedStatus(prevState => ({
-            ...prevState,
-            [id]: checked,
-        }));
-    };
+    console.log(countrywithStatus);
 
-    const handleShowAllChecked = () => {
-        const allChecked = Object.values(checkedStatus).some(status => !status);
-        const newStatus = {};
-        StatusLists.forEach(status => {
-            newStatus[status] = allChecked;
-        });
-        setCheckedStatus(newStatus);
-    };
 
     return (
         <div className="flex gap-5 border p-2 rounded-md flex-wrap">
             {StatusLists.map((status, index) => (
                 <div className="flex gap-2 items-center" key={index}>
                     <input
-                        {...props}
                         type="checkbox"
-                        id={status}
-                        checked={checkedStatus[status]}
-                        onChange={handleCheckboxChange}
-                        className={`rounded ${status} focus:ring-0 ${className}`}
+
+                        // className={`rounded ${status} focus:ring-0 ${className}`}
+                        className={`rounded focus:ring-0`}
                     />
                     <label htmlFor={status} className="capitalize"
-                    style={{ fontSize: '12px' }}
+                        style={{ fontSize: '12px' }}
                     >
                         {status}
                     </label>
@@ -51,8 +31,8 @@ export default function Status({ className = "", ...props }) {
                 <button
                     type="button"
                     className="text-blue-400 hover:underline"
-                    onClick={handleShowAllChecked}
-                    style={{fontSize:'12px'}}
+                    // onClick={handleShowAllChecked}
+                    style={{ fontSize: '12px' }}
                 >
                     Show all
                 </button>
