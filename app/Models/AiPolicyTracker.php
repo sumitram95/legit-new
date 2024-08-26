@@ -13,6 +13,7 @@ use Carbon\Carbon;
 class AiPolicyTracker extends Model
 {
     use SoftDeletes, HasUuids;
+    use HasUuids;
 
     protected $appends = ['formatted_created_at'];
 

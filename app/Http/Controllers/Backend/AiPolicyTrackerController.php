@@ -8,6 +8,7 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\AiPolicyTracker;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Helpers\Logs\AiPolicyActivityLogHelper;
 use App\Http\Requests\AiPolicyTrackerPostRequest;
 
@@ -41,15 +42,16 @@ class AiPolicyTrackerController extends Controller
             'tableData' => $tableData,
         ]);
     }
+
     public function store(AiPolicyTrackerPostRequest $request)
     {
         $validated = $request->validated();
-        AiPolicyTracker::create($validated);
+        $aiPolicyTracker = AiPolicyTracker::create($validated);
 
-        // Log the ai Policy activity Log
-        // $activity_name =   'Terms and Condition Created';
-        // $description = 'New terms and conditions';
-        // AiPolicyActivityLogHelper::createAiPolicyActivityLog($activity_name, $description);
+        // Log the AI policy activity
+        $activity_name = 'Added data';
+        $description = 'A new AI policy, ' . $aiPolicyTracker->ai_policy_name . ', has been added.';
+        AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
         return to_route('backend.ai_policy_tracker.index')->with('success', 'Successfully Created');
     }

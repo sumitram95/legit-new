@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('a_i_policy_activity_logs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
+            $table->foreignId('user_id')->nullable()->index();
             $table->uuid('ai_policy_tracker_id');
             $table->text('activity_name');
-            $table->longText('description')->nullable()->default(null);
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
