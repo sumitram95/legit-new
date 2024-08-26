@@ -205,7 +205,7 @@ export default function Index({
                 </div>
             </div>
 
-            {/* add model */}
+            {/* ******************************* Add Model *****************************/}
             <Model
                 isOpen={isAddModalOpen}
                 onClose={toggleAddModal}
@@ -215,7 +215,7 @@ export default function Index({
                 <Add countries={countries} status={status} />
             </Model>
 
-            {/* edit model */}
+            {/* ******************************* Edit Model *****************************/}
             <Model
                 isOpen={isEditModalOpen}
                 onClose={openEditModal}
@@ -231,6 +231,7 @@ export default function Index({
                 />
             </Model>
 
+            {/* ******************************* Delete Model *****************************/}
             <DeleteModel
                 title={"Are you sure you want to delete this (AI) policy tracker?"}
                 routePath={"/backend/aipolicytracker/delete/"}
