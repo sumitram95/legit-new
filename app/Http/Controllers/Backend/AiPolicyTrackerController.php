@@ -34,7 +34,7 @@ class AiPolicyTrackerController extends Controller
             });
 
 
-        $tableData = AiPolicyTracker::with(['country', 'status'])->paginate(10);
+        $tableData = AiPolicyTracker::with(['country', 'status'])->orderBy('created_at', 'desc')->paginate(10);
 
         return Inertia::render("Backend/AiPolicyTracker/Index", [
             'countries' => $countries,
