@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AppLayout } from "@/Layouts/AppLayout";
-import SelectInput from "@/Components/SelectInput";
+// import SelectInput from "@/Components/SelectInput";
 import SelectInputLists from "@/Components/map/SelectInputList";
 import { Head, Link } from "@inertiajs/react";
 import Table from "@/Components/table/Table";

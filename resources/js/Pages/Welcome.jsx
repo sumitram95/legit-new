@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "@/Layouts/Header/Header";
 import { Head } from "@inertiajs/react";
-import { MapChart } from "@/Components/map/MapChart";
+// import { MapChart } from "@/Components/map/MapChart";
 // import WorldMap from "@/Components/map/WorldMap";
 
 export default function Welcome() {
