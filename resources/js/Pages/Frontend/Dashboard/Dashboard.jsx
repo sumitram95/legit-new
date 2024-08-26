@@ -34,24 +34,6 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
         setTableData(initialTableData);
     }, [initialTableData]);
 
-    const SelectInputLists = {
-        labels: [
-            "AI Policy Name",
-            "Country / Region",
-            "Status",
-        ],
-        lists: [
-            "AI_Policy_Name",
-            "Country",
-            "Status",
-        ],
-    };
-
-    const FormFiled = {
-        AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
-        Country: countries.map(country => ({ value: country.value, label: country.label })),
-        Status: statuses.map(status => ({ value: status.value, label: status.label })),
-    };
 
     const [filters, setFilters] = useState({
         AI_Policy_Name: [],
@@ -102,6 +84,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
     };
 
 
+    //****************** Clear Filter ******************* */
     const handleClearFilters = () => {
         const clearedFilters = {
             AI_Policy_Name: [],
@@ -118,6 +101,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
     const [bookmarkCount, setBookmarkCount] = useState(0);
     const [watchListIds, setWatchListIds] = useState([]);
 
+    //****************** BookMark ******************* */
 
     const handleBookmarkChange = (count) => {
         setBookmarkCount(count);
@@ -134,10 +118,12 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
         });
     };
 
-    //--watch list ids
+
+    //****************** Form Submit ******************* */
     const { data, setData, post, processing, errors, reset } = useForm({
         uuids: [],
     });
+
 
     const submit = (e) => {
         e.preventDefault();
