@@ -50,7 +50,7 @@ class AiPolicyTrackerController extends Controller
 
         // Log the AI policy activity
         $activity_name = 'Added data';
-        $description = 'A new AI policy, ' . $aiPolicyTracker->ai_policy_name . ', has been added.';
+        $description = 'A new AI policy, '.$aiPolicyTracker->ai_policy_name.', has been added.';
         AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
         return to_route('backend.ai_policy_tracker.index')->with('success', 'Successfully Created');

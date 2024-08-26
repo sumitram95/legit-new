@@ -23,9 +23,10 @@ class AiPolicyActivityLogHelper
         $authUser = Auth::user();
 
         if ($authUser) {
+
             AIPolicyActivityLog::create([
                 // 'id'=> Str::uuid(),
-                'user_id' => $authUser->id,
+                'user_id' => $authUser->id ?? 1,
                 'ai_policy_tracker_id' => $ai_policy_tracker_id,
                 'activity_name' => $activityName,
                 'description' => $description,
