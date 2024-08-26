@@ -24,11 +24,10 @@ class DashboardController extends Controller
             ->paginate(15);
 
         $latestNews = News::orderBy('updated_at', 'DESC')->first();
-        $data['newsLastUpdate'] = Carbon::parse($latestNews->updated_at)->format('F Y');
+        $data['newsLastUpdate'] = $latestNews ? Carbon::parse($latestNews->updated_at)->format('F Y') : '';
 
         $latestAiPolicy = AiPolicyTracker::orderBy('updated_at', 'DESC')->first();
-        $data['aiPolicyLastUpdate'] = Carbon::parse($latestAiPolicy->updated_at)->format('F Y');
-
+        $data['aiPolicyLastUpdate'] = $latestAiPolicy ? Carbon::parse($latestAiPolicy->updated_at)->format('F Y') : '';
 
         //-- Ai Policy tracker country with status and Link
         $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::with(['country', 'status'])->get();
