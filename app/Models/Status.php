@@ -15,4 +15,14 @@ class Status extends Model
     protected $fillable = [
         "name",
     ];
+
+    public function news()
+    {
+        return $this->hasMany(News::class, 'status_id', 'id');
+    }
+
+    public function aiPolicies()
+    {
+        return $this->hasMany(AiPolicyTracker::class, 'status_id', 'id');
+    }
 }

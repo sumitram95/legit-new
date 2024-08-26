@@ -7,6 +7,7 @@ import Table from "@/Components/table/Table";
 import Columns from "@/Components/table/Columns";
 // import TableData from "@/Components/table/TableData";
 import Subscription from "./components/Subscription";
+import PaginationPage from "@/Components/table/PaginationPage";
 
 export default function WatchList({ tableData, is_favorite }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -92,6 +93,7 @@ export default function WatchList({ tableData, is_favorite }) {
 
                     {/* table */}
                     <Table columns={Columns} tableData={tableData.data} favourite={is_favorite} />
+                    <PaginationPage paginator={tableData} />
                 </div>
 
                 {/* Subscription */}

@@ -1,20 +1,17 @@
-import * as am5 from "@amcharts/amcharts5";
-import * as am5map from "@amcharts/amcharts5/map";
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4maps from "@amcharts/amcharts4/maps";
 
-export function setZoomControl(chart, root) {
-    // Create a new ZoomControl
-    let zoomControl = am5map.ZoomControl.new(root, {
-        layout: root.verticalLayout
-    });
-
-    // Add the zoom control to the chart
-    chart.set("zoomControl", zoomControl);
+export function setZoomControl(chart) {
+    // Create a new ZoomControl and add it to the chart
+    let zoomControl = new am4maps.ZoomControl();
+    chart.zoomControl = zoomControl;
 
     // Position the zoom control in the top right corner
-    zoomControl.setAll({
-        x: am5.percent(100), // Position from the left
-        y: am5.percent(10), // Position from the top
-        centerX: am5.p100,  // Center horizontally
-        centerY: am5.p50    // Center vertically
-    });
+    zoomControl.align = "right";
+    zoomControl.valign = "top";
+    zoomControl.marginRight = 15;
+    zoomControl.marginTop = 15;
+
+    // Customize the appearance if needed
+    zoomControl.slider.height = 100;
 }

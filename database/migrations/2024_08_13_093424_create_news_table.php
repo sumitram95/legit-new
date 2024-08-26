@@ -14,7 +14,7 @@ class CreateNewsTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('policy_tracker_id')->nullable();
-            $table->uuid('category_id')->nullable();
+            $table->uuid('status_id')->nullable();
             $table->string('title');
             $table->longText('description')->nullable();
             $table->date('upload_date');

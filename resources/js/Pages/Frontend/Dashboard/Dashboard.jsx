@@ -24,9 +24,20 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import Pagination from "@/Components/Pagination";
 import PaginationPage from "@/Components/table/PaginationPage";
 
-export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData }) {
+export default function Dashboard({
+    news,
+    aiPolicies,
+    countries,
+    statuses,
+    tableData: initialTableData,
+    countrywithStatus,
+    countrywithMap,
+    aiPolicyLastUpdate,
+    newsLastUpdate
 
-    //   console.log(initialTableData);
+}) {
+
+
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
     useEffect(() => {
@@ -34,24 +45,6 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
         setTableData(initialTableData);
     }, [initialTableData]);
 
-    const SelectInputLists = {
-        labels: [
-            "AI Policy Name",
-            "Country / Region",
-            "Status",
-        ],
-        lists: [
-            "AI_Policy_Name",
-            "Country",
-            "Status",
-        ],
-    };
-
-    const FormFiled = {
-        AI_Policy_Name: aiPolicies.map(policy => ({ value: policy.value, label: policy.label })),
-        Country: countries.map(country => ({ value: country.value, label: country.label })),
-        Status: statuses.map(status => ({ value: status.value, label: status.label })),
-    };
 
     const [filters, setFilters] = useState({
         AI_Policy_Name: [],
@@ -102,6 +95,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
     };
 
 
+    //****************** Clear Filter ******************* */
     const handleClearFilters = () => {
         const clearedFilters = {
             AI_Policy_Name: [],
@@ -118,6 +112,7 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
     const [bookmarkCount, setBookmarkCount] = useState(0);
     const [watchListIds, setWatchListIds] = useState([]);
 
+    //****************** BookMark ******************* */
 
     const handleBookmarkChange = (count) => {
         setBookmarkCount(count);
@@ -134,10 +129,12 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
         });
     };
 
-    //--watch list ids
+
+    //****************** Form Submit ******************* */
     const { data, setData, post, processing, errors, reset } = useForm({
         uuids: [],
     });
+
 
     const submit = (e) => {
         e.preventDefault();
@@ -153,42 +150,6 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
             });
         }
     }, [data.uuids]);
-
-    const renderPaginationLinks = () => {
-        const pages = [];
-        const { current_page, last_page } = tableData;
-
-        if (current_page > 1) {
-            pages.push(
-                <button key="first" onClick={() => handlePageChange(tableData.first_page_url)}>&laquo;</button>,
-                <button key="prev" onClick={() => handlePageChange(tableData.prev_page_url)}>&lsaquo;</button>
-            );
-        }
-
-        for (let i = 1; i <= last_page; i++) {
-            if (i === current_page) {
-                pages.push(<span key={i} className="current-page">{i}</span>);
-            } else if (i === 1 || i === last_page || (i >= current_page - 1 && i <= current_page + 1)) {
-                pages.push(
-                    <button key={i} onClick={() => handlePageChange(`${tableData.path}?page=${i}`)}>
-                        {i}
-                    </button>
-                );
-            } else if (i === current_page - 2 || i === current_page + 2) {
-                pages.push(<span key={i}>…</span>);
-            }
-        }
-
-        if (current_page < last_page) {
-            pages.push(
-                <button key="next" onClick={() => handlePageChange(tableData.next_page_url)}>&rsaquo;</button>,
-                <button key="last" onClick={() => handlePageChange(tableData.last_page_url)}>&raquo;</button>
-            );
-        }
-
-        return pages;
-    };
-
 
     return (
         <AppLayout>
@@ -206,17 +167,17 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                     <div className="flex items-center mt-[0.5rem] text-sm">
                                         <p className="text-sm leading-normal text-primary-light">
                                             Database Update:
-                                            <span className="text-black ml-[4px]">July 2022</span>
+                                            <span className="text-black ml-[4px]">{aiPolicyLastUpdate}</span>
                                         </p>
                                         <span className="date-separator"></span>
                                         <p className="text-sm leading-normal text-primary-light">
                                             News Update:
-                                            <span className="text-black ml-[4px]">Aug 2024</span>
+                                            <span className="text-black ml-[4px]">{newsLastUpdate}</span>
                                         </p>
                                     </div>
                                 </div>
 
-                                {/* ********************** Status Comonent ********************** */}
+                                {/* ********************** Status Component ********************** */}
                                 <div className="flex justify-center items-center mb-3">
                                     <Status />
                                 </div>
@@ -256,7 +217,10 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
 
                             {/* ********************** MapChart Comonent ********************** */}
                             <div className="mt-5 px-4 map-chart-wrapper">
-                                <MapChart />
+                                <MapChart
+                                    countrywithStatus={countrywithStatus}
+                                    countrywithMap={countrywithMap}
+                                />
                             </div>
                             {/* ********************** HistoricState Comonent ********************** */}
                             <div className="px-5 mt-4">

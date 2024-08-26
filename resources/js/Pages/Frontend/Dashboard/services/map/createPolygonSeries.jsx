@@ -1,110 +1,81 @@
-import * as am5 from "@amcharts/amcharts5";
-import * as am5map from "@amcharts/amcharts5/map";
-import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4maps from "@amcharts/amcharts4/maps";
+import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 
 export function createPolygonSeries(chart) {
     // Create the MapPolygonSeries
-    let polygonSeries = chart.series.push(
-        am5map.MapPolygonSeries.new(chart.root, {
-            geoJSON: am5geodata_worldLow,
-            exclude: ["AQ"], // Exclude Antarctica
-        })
-    );
+    let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
 
-    // Configure the template for polygons
-    polygonSeries.mapPolygons.template.setAll({
-        tooltipText: "", // Disable default tooltip text
-        tooltipHTML: `
-            <div style="font-size: 15px; color: #fff;">
-                {name}
-            </div>
-            <div style="font-size: 15px; color: #fff;">
-                {infoHTML}
-            </div>
-        `,
-        templateField: "polygonSettings",
-        interactive: true,
-    });
+    // Define the map polygon template
+    let polygonTemplate = polygonSeries.mapPolygons.template;
 
-    // Custom styling for the tooltip
-    let tooltip = polygonSeries.mapPolygons.template.get("tooltip");
-    if (tooltip) {
-        tooltip.get("background").setAll({
-            fill: am5.color("#7997C3"), // Background color
-            fillOpacity: 0.8,
-            stroke: am5.color(0xffffff),
-            strokeWidth: 1,
-            cornerRadius: 5,
-            paddingTop: 0,
-            paddingBottom: 10,
-            paddingLeft: 10,
-            paddingRight: 10,
-        });
+    // Set up the tooltip
+    polygonTemplate.tooltipText = "{name}\n[font-size: 15px; color: #fff;]{infoHTML}[/]";
+    polygonTemplate.tooltipHTML = `
+        <div style="font-size: 15px; color: #fff;">
+            {name}
+        </div>
+        <div style="font-size: 15px; color: #fff;">
+            <a href="{infoURL}" target="_blank" style="color: #fff;">More Info</a>
+        </div>
+    `;
+    polygonTemplate.tooltip.pointerOrientation = "vertical";
+    polygonTemplate.tooltip.background.fill = am4core.color("#000");
+    polygonTemplate.tooltip.background.strokeWidth = 0;
+    polygonTemplate.tooltip.label.interactionsEnabled = true;
+    polygonTemplate.tooltip.keepTargetHover = true;
 
-        tooltip.get("label").setAll({
-            fontSize: "16px",
-            color: "#fff",
-        });
-    }
+    // Enable visual center calculation for better positioning
+    polygonSeries.calculateVisualCenter = true;
 
-    // Data for the polygons
+    // Define your data with clickable links
     const data = [
         {
             id: "US",
             name: "United States",
-            infoHTML: "Country Name: United States",
+            infoURL: "http://www.example.com",
             polygonSettings: {
-                fill: am5.color(0xff3c38),
+                fill: am4core.color(0xff3c38),
             },
         },
         {
             id: "CA",
             name: "Canada",
-            infoHTML: "Country Name: Canada",
+            infoURL: "http://www.example.com",
             polygonSettings: {
-                fill: am5.color(0xa23e48),
+                fill: am4core.color(0xa23e48),
             },
-            value: 100,
         },
         {
             id: "MX",
             name: "Mexico",
-            infoHTML: "Country Name: Mexico",
+            infoURL: "http://www.example.com",
             polygonSettings: {
-                fill: am5.color(0xff8c42),
+                fill: am4core.color(0xff8c42),
             },
         },
         {
             id: "NP",
             name: "Nepal",
-            infoHTML: `
-            <div>
-                <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
-                   <div>AI Policy Name</div>
-                    <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
-                    <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
-                </div>
-                 <div style="display:flex;justify-content: space-between;gap:50px; margin-top:10px;">
-                   <div>AI Policy Name</div>
-                    <div className="text-white border border-red-300 rounded-md p-1 capitalize">development</div>
-                    <div><a href="http://www.google.com"><i className="fa-solid fa-circle-arrow-right"></i></a></div>
-                </div>
-            </div>
-            `,
+            infoURL: "http://www.example.com",
             polygonSettings: {
-                fill: am5.color(0x3498db),
+                fill: am4core.color(0x3498db),
             },
         },
     ];
 
     // Set data to the series
-    polygonSeries.data.setAll(data);
+    polygonSeries.data = data;
 
     // Add hover state
-    polygonSeries.mapPolygons.template.states.create("hover", {
-        fill: am5.color("#7997C3"),
-        fillOpacity: 0.8,
-    });
+    let hoverState = polygonTemplate.states.create("hover");
+    hoverState.properties.fill = am4core.color("#7997C3");
+    hoverState.properties.fillOpacity = 0.8;
+
+    // Configure map polygon settings
+    polygonTemplate.propertyFields.fill = "fill"; // Ensure the fill color is applied from data
+    polygonSeries.useGeodata = true;
+    polygonSeries.geodata = am4geodata_worldLow;
 
     return polygonSeries;
 }

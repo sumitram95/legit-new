@@ -13,7 +13,7 @@ const News = ({ news }) => {
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: false,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 4000,
         pauseOnHover: true,
         adaptiveHeight: false,
         arrows: false,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Log;
+use Carbon\Carbon;
 use App\Models\News;
 use Inertia\Inertia;
 use App\Models\Status;
@@ -16,11 +17,31 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $data['tableData'] = AiPolicyTracker::with(['country', 'status'])
-            ->paginate(10); // This line adds pagination
+            ->paginate(10);
 
-        $data['news'] = News::with(['thumbnail', 'newsCategory'])
+        $data['news'] = News::with(['thumbnail', 'status'])
             ->orderBy('created_at', 'DESC')
             ->paginate(15);
+
+        $latestNews = News::orderBy('updated_at', 'DESC')->first();
+        $data['newsLastUpdate'] = $latestNews ? Carbon::parse($latestNews->updated_at)->format('F Y') : '';
+
+        $latestAiPolicy = AiPolicyTracker::orderBy('updated_at', 'DESC')->first();
+        $data['aiPolicyLastUpdate'] = $latestAiPolicy ? Carbon::parse($latestAiPolicy->updated_at)->format('F Y') : '';
+
+        //-- Ai Policy tracker country with status and Link
+        $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::with(['country', 'status'])->get();
+        $URL_MAP = [];
+        $STATUS_MAP = [];
+        foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {
+            $countrySymbol = $tracker->country->symbol;
+            $URL_MAP[$countrySymbol] = $tracker->whitepaper_document_link;
+            $STATUS_MAP[$countrySymbol] = $tracker->status->name;
+        }
+
+        $data['countrywithStatus'] = $STATUS_MAP;
+        $data['countrywithMap'] = $URL_MAP;
+        //-- End Ai Policy tracker country with status
 
         $data['aiPolicies'] = AiPolicyTracker::get()
             ->map(function ($aiPolicy) {
@@ -49,12 +70,9 @@ class DashboardController extends Controller
         return Inertia::render('Frontend/Dashboard/Dashboard', $data);
     }
 
-
-
     public function getFilteredData(Request $request)
     {
-        // return response()->json($request->all());
-        $query = AiPolicyTracker::query(); // Base query for AI policies
+        $query = AiPolicyTracker::query();
 
         // Apply filters based on the request parameters
         if ($request->has('AI_Policy_Name') && !empty($request->AI_Policy_Name)) {

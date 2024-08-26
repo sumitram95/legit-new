@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\AiPolicyTracker;
 use App\Models\Country;
 use App\Models\News;
-use App\Models\NewsCategory;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +27,7 @@ class NewsController extends Controller
             });
 
         //-- get news Categories
-        $newsCategories = NewsCategory::select("id", "name")
+        $newsCategories = Status::select("id", "name")
             ->get()
             ->map(function ($value) {
                 return [
@@ -46,7 +45,7 @@ class NewsController extends Controller
                 ];
             });
 
-        $tableData = News::with(['thumbnail', 'newsCategory','policyTracker'])
+        $tableData = News::with(['thumbnail', 'status','policyTracker'])
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 

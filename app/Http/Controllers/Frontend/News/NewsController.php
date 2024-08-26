@@ -11,21 +11,11 @@ class NewsController extends Controller
 {
     public function index()
     {
-        // $data['newsLists'] = [
-        //     1,
-        //     2,
-        //     3,
-        //     4,
-        //     5,
-        //     6,
-        //     7,
-        //     8,
-        //     9
-        // ];
-
-        $data['news'] = News::with(['thumbnail', 'newsCategory'])
+        $data['news'] = News::query()
+            ->with(['thumbnail', 'status'])
             ->orderBy('created_at', 'Desc')
-            ->paginate(15);
+            ->paginate(10);
+
         return Inertia::render('Frontend/News/News', $data);
     }
 
@@ -33,7 +23,7 @@ class NewsController extends Controller
     {
 
         try {
-            $data['news'] = News::with(['thumbnail', 'newsCategory'])->find($id);
+            $data['news'] = News::with(['thumbnail', 'status'])->find($id);
             if (!$data['news']) {
                 return to_route('news.index')->with('error', 'News Not Founded');
             }

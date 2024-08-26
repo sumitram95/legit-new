@@ -5,6 +5,7 @@ import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
 import React, { useState } from "react";
 import NewsCard from "./components/NewsCard";
+import PaginationPage from "@/Components/table/PaginationPage";
 
 export default function News({ news }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -72,7 +73,7 @@ export default function News({ news }) {
                                                 label={label}
                                                 listName={
                                                     SelectInputLists.lists[
-                                                        index
+                                                    index
                                                     ]
                                                 }
                                             />
@@ -85,6 +86,7 @@ export default function News({ news }) {
 
                     <div className="mt-5" style={{ minHeight: "500px" }}>
                         <NewsCard newsLists={news.data} />
+                        <PaginationPage paginator={news} />
                     </div>
                 </div>
             </div>
