@@ -19,7 +19,7 @@ const COLOR_MAP = {
     'CA': COLORS.research, // Canada
     'US': COLORS.research, // USA
     'MX': COLORS.development, // Mexico
-    'NP': COLORS.development, // Nepal
+    'NP': COLORS.launched, // Nepal
 };
 
 const URL_MAP = {

@@ -154,42 +154,6 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
         }
     }, [data.uuids]);
 
-    const renderPaginationLinks = () => {
-        const pages = [];
-        const { current_page, last_page } = tableData;
-
-        if (current_page > 1) {
-            pages.push(
-                <button key="first" onClick={() => handlePageChange(tableData.first_page_url)}>&laquo;</button>,
-                <button key="prev" onClick={() => handlePageChange(tableData.prev_page_url)}>&lsaquo;</button>
-            );
-        }
-
-        for (let i = 1; i <= last_page; i++) {
-            if (i === current_page) {
-                pages.push(<span key={i} className="current-page">{i}</span>);
-            } else if (i === 1 || i === last_page || (i >= current_page - 1 && i <= current_page + 1)) {
-                pages.push(
-                    <button key={i} onClick={() => handlePageChange(`${tableData.path}?page=${i}`)}>
-                        {i}
-                    </button>
-                );
-            } else if (i === current_page - 2 || i === current_page + 2) {
-                pages.push(<span key={i}>…</span>);
-            }
-        }
-
-        if (current_page < last_page) {
-            pages.push(
-                <button key="next" onClick={() => handlePageChange(tableData.next_page_url)}>&rsaquo;</button>,
-                <button key="last" onClick={() => handlePageChange(tableData.last_page_url)}>&raquo;</button>
-            );
-        }
-
-        return pages;
-    };
-
-
     return (
         <AppLayout>
 
