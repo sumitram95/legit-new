@@ -9,6 +9,7 @@ const name = "Act Ai";
 
 export default function SingleAiPolicyTracker({
     aiPolicyTrackerWithRelatedNews,
+    latestDateOfUpdateAiPolicyTracker = null
 }) {
 
     return (
@@ -31,7 +32,7 @@ export default function SingleAiPolicyTracker({
                     </div>
 
                     <div className="w-1/3 ">
-                        <AiTimeLine timeLines={aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs} />
+                        <AiTimeLine timeLines={aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs} latestDateOfUpdateAiPolicyTracker={latestDateOfUpdateAiPolicyTracker} />
                     </div>
                 </div>
             </div>

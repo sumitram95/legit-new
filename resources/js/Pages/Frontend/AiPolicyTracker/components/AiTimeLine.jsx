@@ -1,7 +1,7 @@
 import TimeLine from "@/Pages/Frontend/TimeLine/TimeLine";
 import React from "react";
 
-export default function AiTimeLine({ timeLines = [] }) {
+export default function AiTimeLine({ timeLines = [], latestDateOfUpdateAiPolicyTracker = null }) {
 
     console.log(timeLines);
     return (
@@ -12,7 +12,7 @@ export default function AiTimeLine({ timeLines = [] }) {
                 </div>
                 <div className="flex gap-5 mt-3 text-sm">
                     <p className=" text-sm font-thin text-primary">
-                        Last update: <span>November 2022</span>
+                        Last update: <span>{latestDateOfUpdateAiPolicyTracker}</span>
                     </p>
                 </div>
             </div>

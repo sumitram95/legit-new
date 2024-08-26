@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Frontend\AiPolicyTracker;
 
-use App\Http\Controllers\Controller;
-use App\Models\AiPolicyTracker;
+use Carbon\Carbon;
 use App\Models\News;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Models\AiPolicyTracker;
+use App\Http\Controllers\Controller;
 
 class SinglePolicyTackerControlle extends Controller
 {
@@ -23,6 +24,9 @@ class SinglePolicyTackerControlle extends Controller
             ])
             ->where('id', $id)
             ->first();
+
+        $latestAIPolicyTracker = AiPolicyTracker::orderBy('updated_at', 'DESC')->first();
+        $data['latestDateOfUpdateAiPolicyTracker'] = $latestAIPolicyTracker ? Carbon::parse($latestAIPolicyTracker->updated_at)->format('F Y') : '';
 
         return Inertia::render("Frontend/AiPolicyTracker/SingleAiPolicyTracker", $data);
     }
