@@ -12,13 +12,16 @@ class SinglePolicyTackerControlle extends Controller
 {
     public function index($id)
     {
-        $data['aiPolicyTrackerWithRelatedNews'] = AiPolicyTracker::with([
-            'news' => function ($query) {
-                $query->with(['thumbnail']);
-            },
-            'country',
-            'news'
-        ])->where('id', $id)
+        $data['aiPolicyTrackerWithRelatedNews'] = AiPolicyTracker::query()
+            ->with([
+                'news' => function ($query) {
+                    $query->with(['thumbnail']);
+                },
+                'country',
+                'news',
+                'aIPolicyActivityLogs'
+            ])
+            ->where('id', $id)
             ->first();
 
         return Inertia::render("Frontend/AiPolicyTracker/SingleAiPolicyTracker", $data);

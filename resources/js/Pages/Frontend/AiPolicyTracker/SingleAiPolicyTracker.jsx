@@ -21,9 +21,9 @@ export default function SingleAiPolicyTracker({
                             <SingleAiInfo aiPolicyTrackerdetail={aiPolicyTrackerWithRelatedNews} />
                         </div>
 
-                        <div className="hidden ">
+                        {/* <div className="hidden ">
                             <AiTimeLine timeLines={aiPolicyTrackerWithRelatedNews} />
-                        </div>
+                        </div> */}
                     </div>
                     {/* Ai News */}
                     <div className="w-2/3 ">
@@ -31,7 +31,7 @@ export default function SingleAiPolicyTracker({
                     </div>
 
                     <div className="w-1/3 ">
-                        <AiTimeLine timeLines={aiPolicyTrackerWithRelatedNews} />
+                        <AiTimeLine timeLines={aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs} />
                     </div>
                 </div>
             </div>
