@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Log;
+use Carbon\Carbon;
 use App\Models\News;
 use Inertia\Inertia;
 use App\Models\Status;
@@ -21,6 +22,13 @@ class DashboardController extends Controller
         $data['news'] = News::with(['thumbnail', 'status'])
             ->orderBy('created_at', 'DESC')
             ->paginate(15);
+
+        $latestNews = News::orderBy('updated_at', 'DESC')->first();
+        $data['newsLastUpdate'] = Carbon::parse($latestNews->updated_at)->format('F Y');
+
+        $latestAiPolicy = AiPolicyTracker::orderBy('updated_at', 'DESC')->first();
+        $data['aiPolicyLastUpdate'] = Carbon::parse($latestAiPolicy->updated_at)->format('F Y');
+
 
         //-- Ai Policy tracker country with status and Link
         $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::with(['country', 'status'])->get();

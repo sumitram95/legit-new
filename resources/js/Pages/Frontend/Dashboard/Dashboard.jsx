@@ -24,7 +24,18 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import Pagination from "@/Components/Pagination";
 import PaginationPage from "@/Components/table/PaginationPage";
 
-export default function Dashboard({ news, aiPolicies, countries, statuses, tableData: initialTableData, countrywithStatus, countrywithMap }) {
+export default function Dashboard({
+    news,
+    aiPolicies,
+    countries,
+    statuses,
+    tableData: initialTableData,
+    countrywithStatus,
+    countrywithMap,
+    aiPolicyLastUpdate,
+    newsLastUpdate
+
+}) {
 
 
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
@@ -156,12 +167,12 @@ export default function Dashboard({ news, aiPolicies, countries, statuses, table
                                     <div className="flex items-center mt-[0.5rem] text-sm">
                                         <p className="text-sm leading-normal text-primary-light">
                                             Database Update:
-                                            <span className="text-black ml-[4px]">July 2022</span>
+                                            <span className="text-black ml-[4px]">{aiPolicyLastUpdate}</span>
                                         </p>
                                         <span className="date-separator"></span>
                                         <p className="text-sm leading-normal text-primary-light">
                                             News Update:
-                                            <span className="text-black ml-[4px]">Aug 2024</span>
+                                            <span className="text-black ml-[4px]">{newsLastUpdate}</span>
                                         </p>
                                     </div>
                                 </div>
