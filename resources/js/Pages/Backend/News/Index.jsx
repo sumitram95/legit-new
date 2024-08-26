@@ -151,9 +151,9 @@ export default function Index({
                                                 {list.policy_tracker ? list.policy_tracker.ai_policy_name : ''}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.news_category ? (
+                                                {list.status ? (
                                                     <span className="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">
-                                                        {list.news_category.name}
+                                                        {list.status.name}
                                                     </span>
                                                 ) : (
                                                     ' '
