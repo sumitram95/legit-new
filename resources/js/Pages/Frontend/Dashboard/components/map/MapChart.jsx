@@ -59,7 +59,7 @@ export function MapChart() {
                 <div style="padding: 12px; display: flex; align-items: center; justify-content: space-between;">
                     <a href="{url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff; margin-right: 0.75rem; transition: text-decoration 0.3s ease;" target="_blank">
                         <i class="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
-                        Digital
+                        View AI Policy Policy
                     </a>
                     <div style="display: flex; align-items: center;">
                         <a href="{url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff;" target="_blank">
