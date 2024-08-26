@@ -12,7 +12,10 @@ class WatchListController extends Controller
 {
     public function index()
     {
-        $data['tableData'] = AiPolicyTracker::with(['country', 'status'])->paginate(15);
+        $data['tableData'] = AiPolicyTracker::query()
+            ->with(['country', 'status'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return Inertia::render("Frontend/WatchList/WatchList", $data);
     }
 
