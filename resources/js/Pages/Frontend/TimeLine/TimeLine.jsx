@@ -30,10 +30,10 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                         <div className="table-auto title_line_action mb-2 w-full">
                             <div>
                                 <div className="flex">
-                                    <div className="status-action" style={{ width: '25%' }}>Status update</div>
-                                    <div className="add-action" style={{ width: '25%' }}>Added data</div>
-                                    <div className="update-action" style={{ width: '25%' }}>Updated data</div>
-                                    <div className="delete-action" style={{ width: '25%' }}>Deleted data</div>
+                                    <div className="timeline-action status-action" style={{ width: '25%' }}>Status update</div>
+                                    <div className="timeline-action add-action" style={{ width: '25%' }}>Added data</div>
+                                    <div className="timeline-action update-action" style={{ width: '25%' }}>Updated data</div>
+                                    <div className="timeline-action delete-action" style={{ width: '25%' }}>Deleted data</div>
                                 </div>
                             </div>
                             <div>
@@ -89,12 +89,22 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
                                                                             key={log.id}
                                                                         >
-                                                                            <div className="w-full">
+                                                                            {/* <div className="w-full">
                                                                                 <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h3>
                                                                                 <h2 className="text-lg font-semibold">{log.activity_name}</h2>
                                                                                 <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                            </div> */}
+                                                                            <div
+                                                                                class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                                                <h5
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-3 text-sm font-medium leading-tight dark:border-white/10 add-action text-dark">
+                                                                                    {item.ai_policy_name || `Item ${item.id}`}
+                                                                                </h5>
+                                                                                <div class="px-6 status-action-item">
+                                                                                    <div className="text-sm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     ))
@@ -116,12 +126,24 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
                                                                             key={log.id}
                                                                         >
-                                                                            <div className="w-full">
+                                                                            {/* <div className="w-full">
                                                                                 <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h3>
                                                                                 <h2 className="text-lg font-semibold">{log.activity_name}</h2>
                                                                                 <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                            </div> */}
+
+                                                                            {/* /// */}
+                                                                            <div
+                                                                                class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                                                <h5
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-3 text-sm font-medium leading-tight dark:border-white/10 add-action text-dark">
+                                                                                    {item.ai_policy_name || `Item ${item.id}`}
+                                                                                </h5>
+                                                                                <div class="px-6 status-action-item">
+                                                                                    <div className="text-sm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     ))
@@ -133,6 +155,8 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                         </div>
                                                                     </div>
                                                                 )}
+
+
                                                             </div>
 
 
@@ -143,12 +167,22 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             className={` ${index === 0 ? 'w-full' : 'w-full mt-2'} p-2`}
                                                                             key={log.id}
                                                                         >
-                                                                            <div className="w-full">
+                                                                            {/* <div className="w-full">
                                                                                 <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h3>
                                                                                 <h2 className="text-lg font-semibold">{log.activity_name}</h2>
                                                                                 <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                            </div> */}
+                                                                            <div
+                                                                                class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                                                <h5
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-3 text-sm font-medium leading-tight dark:border-white/10 update-action text-dark">
+                                                                                    {item.ai_policy_name || `Item ${item.id}`}
+                                                                                </h5>
+                                                                                <div class="px-6 update-action-item">
+                                                                                    <div className="text-sm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     ))
@@ -169,12 +203,22 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
                                                                             key={log.id}
                                                                         >
-                                                                            <div className="w-full">
+                                                                            {/* <div className="w-full">
                                                                                 <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h3>
                                                                                 <h2 className="text-lg font-semibold">{log.activity_name}</h2>
                                                                                 <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                            </div> */}
+                                                                            <div
+                                                                                class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                                                <h5
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-3 text-sm font-medium leading-tight dark:border-white/10 add-action text-dark">
+                                                                                    {item.ai_policy_name || `Item ${item.id}`}
+                                                                                </h5>
+                                                                                <div class="px-6 status-action-item">
+                                                                                    <div className="text-sm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     ))

@@ -329,7 +329,7 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
 }
 
 // -- Action color
-.title_line_action tr>th {
+.timeline-action {
     height: 40px;
     // width: 25%;
     line-height: 40px;
@@ -338,22 +338,43 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
     padding-left: 16px;
 }
 
-.title_line_action .status-action {
+.status-action {
     background-color: #e7e4f4;
     color: #8f81c7;
 }
+.status-action-item {
+    background-color: #f3f1f9;
+    color: #8f81c7;
+}
 
-.title_line_action .add-action {
+.add-action {
     background-color: #e9f5f3;
     color: #6bbeaf;
 }
+.add-action-item {
+    background-color: #e8f2fd;
+    color: #6bbeaf;
+}
 
-.title_line_action .update-action {
+.update-action {
     background-color: #d1e5fa;
     color: #4e87d3;
 }
+.update-action-item {
+    background-color: #e8f2fd;
+    color: #4e87d3;
+}
 
-.title_line_action .delete-action {
+.delete-action {
     background-color: #f9dae0;
     color: #d53e45;
+}
+
+.delete-action-item {
+    background-color: #e7cdd2;
+    color: #d53e45;
+}
+
+.text-dark{
+    color: #0b2041;
 }
