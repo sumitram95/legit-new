@@ -75,7 +75,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                             });
 
                                             return (
-                                                <div className="mb-10 ms-6 relative" key={item.id}>
+                                                <div className="mb-10 relative" key={item.id}>
 
 
                                                     {/* Check if item.a_i_policy_activity_logs exists and is an array */}
