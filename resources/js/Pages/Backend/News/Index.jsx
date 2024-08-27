@@ -121,9 +121,9 @@ export default function Index({
                                             S.N
                                         </th>
                                         <th className="px-6 py-3">Title</th>
-                                        <th className="px-6 py-3">AI Policy Tracker</th>
+                                        <th className="px-6 py-3" style={{ width: '25%' }}>AI Policy Tracker</th>
                                         <th className="px-6 py-3">Category</th>
-                                        <th className="px-6 py-3">
+                                        <th className="px-6 py-3" style={{ width: '13%' }}>
                                             uploaded At
                                         </th>
 
