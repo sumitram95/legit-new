@@ -49,7 +49,7 @@ class AiPolicyTrackerController extends Controller
         $aiPolicyTracker = AiPolicyTracker::create($validated);
 
         //-- Log the AI policy activity (Create)
-        $activity_name = 'Added data';
+        $activity_name = 'added data';
         $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been added.';
         AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
@@ -77,18 +77,25 @@ class AiPolicyTrackerController extends Controller
     public function update(AiPolicyTrackerPostRequest $request, $id)
     {
         $validated = $request->validated();
+
         try {
             $aiPolicyTracker = AiPolicyTracker::find($id);
 
             if (!$aiPolicyTracker) {
-
                 return to_route('backend.ai_policy_tracker.index')->with('error', 'Not founded (AI) policy tracker');
+            }
+
+            //-- Log the AI policy activity (only status Update)
+            if ($validated['status_id'] !== $aiPolicyTracker->status_id) {
+                $activity_name = 'status update';
+                $description = 'AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, status has been updated.';
+                AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
             }
             $aiPolicyTracker->update($validated);
 
             //-- Log the AI policy activity (Update)
-            $activity_name = 'Delete data';
-            $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been Deleted.';
+            $activity_name = 'updated data';
+            $description = 'AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been Updated.';
             AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
             return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Updated');

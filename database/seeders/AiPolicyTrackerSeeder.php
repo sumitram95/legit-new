@@ -401,7 +401,7 @@ class AiPolicyTrackerSeeder extends Seeder
             ));
 
             // Log create the AI policy activity
-            $activity_name = 'Added data';
+            $activity_name = 'added data';
             $description = 'A new AI policy, <b>' . $createdPolicy->ai_policy_name . '</b>, has been added.';
             AIPolicyActivityLog::create([
                 'user_id' => 1,
@@ -412,7 +412,7 @@ class AiPolicyTrackerSeeder extends Seeder
             ]);
 
             // Log update the AI policy activity
-            $activity_name = 'Updated data';
+            $activity_name = 'updated data';
             $description = 'A new AI policy, <b>' . $createdPolicy->ai_policy_name . '</b>, has been updated.';
             AIPolicyActivityLog::create([
                 'user_id' => 1,
