@@ -1,9 +1,10 @@
+import React from "react";
 import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Select from "@/Components/Select";
-import TextArea from "@/Components/TextArea";
 import { useForm } from "@inertiajs/react";
-import React from "react";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default function Add({ countries = null, status = null }) {
     const defaultDate = new Date().toISOString().substring(0, 10);
@@ -102,7 +103,6 @@ export default function Add({ countries = null, status = null }) {
                                 formAiPolicy.data.status_id
                         )}
                         label={"Status"}
-
                         options={[{ label: "Select any status", value: '0' }, ...status]}
                         errorMsg={formAiPolicy.errors.status_id}
                     />
@@ -145,17 +145,31 @@ export default function Add({ countries = null, status = null }) {
                         placeholder="Eg. InnoSafe AI Guidelines"
                     />
                 </div>
-                <TextArea
-                    onChange={handleChange}
-                    name="description"
-                    htmlFor="description"
-                    label="Description"
-                    value={formAiPolicy.data.description}
-                    rows={8}
-                    cols={30}
-                />
 
-                <div className=" float-end">
+                <div className="mb-6">
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={formAiPolicy.data.description}
+                        onChange={(event, editor) => {
+                            const data = editor.getData();
+                            handleChange({
+                                target: {
+                                    name: "description",
+                                    value: data,
+                                },
+                            });
+                        }}
+                    />
+                    {formAiPolicy.errors.description && (
+                        <div className="text-red-600 text-sm mt-1">
+                            {formAiPolicy.errors.description}
+                        </div>
+                    )}
+                </div>
+
+
+
+                <div className="float-end">
                     <Button
                         type="submit"
                         disabled={formAiPolicy.processing}

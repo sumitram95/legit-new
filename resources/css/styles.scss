@@ -322,3 +322,9 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
     display: flex;
     flex-direction: column;
 }
+
+
+// ck editor
+.ck-editor__editable_inline {
+    min-height: 200px;
+}
