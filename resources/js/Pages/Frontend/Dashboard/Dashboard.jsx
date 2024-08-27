@@ -179,7 +179,7 @@ export default function Dashboard({
                                 </div>
 
                                 {/* ********************** Status Component ********************** */}
-                                <div className="flex justify-center items-center mb-3">
+                                <div className="flex justify-center items-center">
                                     <Status countrywithStatus={countrywithStatus} setCountrywithStatus={setCountrywithStatus} />
                                 </div>
                                 <div className="flex gap-3 lg:hidden">

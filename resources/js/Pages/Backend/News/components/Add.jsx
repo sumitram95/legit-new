@@ -1,19 +1,16 @@
-// Add.jsx
 import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Select from "@/Components/Select";
-import TextArea from "@/Components/TextArea";
 import { Head, useForm } from "@inertiajs/react";
 import React, { useState } from "react";
 import ImageUpload from "@/Components/ImageUpload";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default function Add({ countries = null, categories = null, aiPolicyTrackers = null, onClose }) {
     const defaultDate = new Date().toISOString().substring(0, 10);
     const [thumbnails, setThumbnails] = useState([]);
     const [featureImages, setFeatureImages] = useState([]);
-
-
-    console.log(aiPolicyTrackers);
 
     const formAiPolicy = useForm({
         title: "",
@@ -27,17 +24,14 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
 
     const handleChange = (e) => {
         if (e && e.target) {
-            // Handle regular inputs
             const { name, value } = e.target;
             formAiPolicy.setData(name, value);
         } else if (e && e.name && e.value) {
-            // Handle react-select
             formAiPolicy.setData(e.name, e.value);
         }
     };
 
     const handleImageChange = (images, type) => {
-        // Update the state and form data based on the image type
         if (type === "thumbnail") {
             setThumbnails(images);
             formAiPolicy.setData("thumbnails", images);
@@ -50,7 +44,6 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Create FormData instance
         const formData = new FormData();
         Object.keys(formAiPolicy.data).forEach((key) => {
             if (key === "thumbnails" || key === "future_images") {
@@ -105,7 +98,6 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
                         errorMsg={formAiPolicy.errors.status_id}
                     />
 
-                    {/* dropdown ai policy tracker */}
                     <Select
                         onChange={(option) =>
                             handleChange({
@@ -123,7 +115,6 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
                         errorMsg={formAiPolicy.errors.policy_tracker_id}
                     />
 
-
                     <Input
                         onChange={handleChange}
                         name="upload_date"
@@ -133,7 +124,7 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
                         type="date"
                     />
                 </div>
-                {/* Drag and drop upload image */}
+
                 <div className="grid gap-6 md:grid-cols-2 mt-5">
                     <ImageUpload
                         onImageChange={(images) =>
@@ -152,16 +143,30 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
                         title="Drag & drop multiple feature image"
                     />
                 </div>
-                <TextArea
-                    onChange={handleChange}
-                    name="description"
-                    htmlFor="description"
-                    label="Description"
-                    value={formAiPolicy.data.description}
-                    rows={8}
-                    cols={30}
-                />
-                <div className=" float-end">
+
+                <div className="mt-5">
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={formAiPolicy.data.description}
+                        onChange={(event, editor) => {
+                            const data = editor.getData();
+                            handleChange({
+                                target: {
+                                    name: "description",
+                                    value: data,
+                                },
+                            });
+                        }}
+                        className="custom-ckeditor"
+                    />
+                    {formAiPolicy.errors.description && (
+                        <div className="text-red-600 text-sm mt-1">
+                            {formAiPolicy.errors.description}
+                        </div>
+                    )}
+                </div>
+
+                <div className=" float-end mt-5">
                     <Button
                         type="submit"
                         disabled={formAiPolicy.processing}

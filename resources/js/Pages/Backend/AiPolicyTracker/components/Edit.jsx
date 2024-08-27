@@ -1,9 +1,10 @@
+import React from "react";
 import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Select from "@/Components/Select";
-import TextArea from "@/Components/TextArea";
 import { useForm } from "@inertiajs/react";
-import React from "react";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default function Edit({
     countries = null,
@@ -26,11 +27,9 @@ export default function Edit({
 
     const handleChange = (e) => {
         if (e && e.target) {
-            // Handle regular inputs
             const { name, value } = e.target;
             formAiPolicy.setData(name, value);
         } else if (e && e.name && e.value) {
-            // Handle react-select
             formAiPolicy.setData(e.name, e.value);
         }
     };
@@ -146,16 +145,30 @@ export default function Edit({
                         placeholder="Eg. InnoSafe AI Guidelines"
                     />
                 </div>
-                <TextArea
-                    onChange={handleChange}
-                    name="description"
-                    htmlFor="description"
-                    label="Description"
-                    value={formAiPolicy.data.description}
-                    rows={8}
-                    cols={30}
-                />
-                <div className=" float-end">
+
+                <div className="mb-6">
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={formAiPolicy.data.description}
+                        onChange={(event, editor) => {
+                            const data = editor.getData();
+                            handleChange({
+                                target: {
+                                    name: "description",
+                                    value: data,
+                                },
+                            });
+                        }}
+                        className="custom-ckeditor" // Apply custom class
+                    />
+                    {formAiPolicy.errors.description && (
+                        <div className="text-red-600 text-sm mt-1">
+                            {formAiPolicy.errors.description}
+                        </div>
+                    )}
+                </div>
+
+                <div className="float-end">
                     <Button
                         type="submit"
                         disabled={formAiPolicy.processing}

@@ -6,11 +6,11 @@ import Footer from "./footer/Footer";
 
 export function AppLayout({ children }) {
     return (
-        <main>
+        <main className="container-wrapper">
             {/* header */}
             <Header />
             {/* content here */}
-            <section className="px-[64px] pb-[16px] container-wrapper">
+            <section className="px-[64px] pb-[16px] flex-1">
                     {children}
             </section>
 

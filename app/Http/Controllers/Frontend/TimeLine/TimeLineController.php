@@ -13,17 +13,24 @@ class TimeLineController extends Controller
     public function index()
     {
         // Fetch the most recent record and format the date
-        $lastUpdateDate = AiPolicyTracker::latest('created_at')->first();
+        $lastUpdateDate = AiPolicyTracker::query()
+            ->withTrashed()
+            ->latest('created_at')
+            ->first();
+
         $formattedLastDate = $lastUpdateDate
-            ? Carbon::parse($lastUpdateDate->created_at)->format('M Y')
-            : 'No records found';
+            ? Carbon::parse($lastUpdateDate->updated_at)->format('M Y')
+            : '';
 
         // Group data by announcement_year
-        $groupedData = AiPolicyTracker::all()
+        $groupedData = AiPolicyTracker::query()
+            ->withTrashed()
+            ->with('aIPolicyActivityLogs')
+            ->get()
             ->groupBy('announcement_year')
             ->toArray();
 
-
+        // ksort($groupedData);
         krsort($groupedData);
 
         // Prepare data for Inertia view
@@ -31,6 +38,9 @@ class TimeLineController extends Controller
             'timeLines' => $groupedData,
             'lastUpdateDate' => $formattedLastDate,
         ];
+
+
+
         return Inertia::render("Frontend/TimeLine/TimeLine", $data);
     }
 }

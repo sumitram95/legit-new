@@ -1,9 +1,10 @@
 import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Select from "@/Components/Select";
-import TextArea from "@/Components/TextArea";
 import { Head, useForm } from "@inertiajs/react";
 import React from "react";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default function Edit({
     countries = [],
@@ -25,18 +26,16 @@ export default function Edit({
 
     const handleChange = (e) => {
         if (e && e.target) {
-            // Handle regular inputs
             const { name, value } = e.target;
             formAiPolicy.setData(name, value);
         } else if (e && e.name && e.value) {
-            // Handle react-select
             formAiPolicy.setData(e.name, e.value);
         }
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onClose(); // Call onClose as a function
+        onClose();
         formAiPolicy.put(route("backend.news.update", aiId));
     };
 
@@ -74,7 +73,6 @@ export default function Edit({
                         errorMsg={formAiPolicy.errors.status_id}
                     />
 
-                    {/* dropdown ai policy tracker */}
                     <Select
                         onChange={(option) =>
                             handleChange({
@@ -101,16 +99,30 @@ export default function Edit({
                         type="date"
                     />
                 </div>
-                <TextArea
-                    onChange={handleChange}
-                    name="description"
-                    htmlFor="description"
-                    label="Description"
-                    value={formAiPolicy.data.description}
-                    rows={8}
-                    cols={30}
-                />
-                <div className="float-end">
+
+                <div className="mt-5">
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={formAiPolicy.data.description}
+                        onChange={(event, editor) => {
+                            const data = editor.getData();
+                            handleChange({
+                                target: {
+                                    name: "description",
+                                    value: data,
+                                },
+                            });
+                        }}
+                        className="custom-ckeditor"
+                    />
+                    {formAiPolicy.errors.description && (
+                        <div className="text-red-600 text-sm mt-1">
+                            {formAiPolicy.errors.description}
+                        </div>
+                    )}
+                </div>
+
+                <div className="float-end mt-5">
                     <Button
                         type="submit"
                         disabled={formAiPolicy.processing}

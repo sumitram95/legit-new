@@ -316,6 +316,65 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
     background-color: rgb(184 192 247 / 90%) !important;
 }
 
-// .container-wrapper{
-//     height: calc(100vh - 187px);
-// }
+.container-wrapper {
+    background-color: #f3f6f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+// ck editor
+.ck-editor__editable_inline {
+    min-height: 200px;
+}
+
+// -- Action color
+.timeline-action {
+    height: 40px;
+    // width: 25%;
+    line-height: 40px;
+    font-weight: 700;
+    font-size: 12px;
+    padding-left: 16px;
+}
+
+.status-action {
+    background-color: #e7e4f4;
+    color: #8f81c7;
+}
+.status-action-item {
+    background-color: #f3f1f9;
+    color: #8f81c7;
+}
+
+.add-action {
+    background-color: #e9f5f3;
+    color: #6bbeaf;
+}
+.add-action-item {
+    background-color: #e8f2fd;
+    color: #6bbeaf;
+}
+
+.update-action {
+    background-color: #d1e5fa;
+    color: #4e87d3;
+}
+.update-action-item {
+    background-color: #e8f2fd;
+    color: #4e87d3;
+}
+
+.delete-action {
+    background-color: #f9dae0;
+    color: #d53e45;
+}
+
+.delete-action-item {
+    background-color: #e7cdd2;
+    color: #d53e45;
+}
+
+.text-dark{
+    color: #0b2041;
+}

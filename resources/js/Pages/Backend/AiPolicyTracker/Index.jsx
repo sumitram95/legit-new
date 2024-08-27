@@ -186,7 +186,7 @@ export default function Index({
 
 
                                                     {/* Delete Action */}
-                                                    {/* <Button
+                                                    <Button
                                                         type="button"
                                                         onClick={() =>
                                                             toggleDeleteModal(
@@ -195,7 +195,7 @@ export default function Index({
                                                         }
                                                     >
                                                         <DeleteIcon />
-                                                    </Button> */}
+                                                    </Button>
                                                 </div>
                                             </td>
                                         </tr>
