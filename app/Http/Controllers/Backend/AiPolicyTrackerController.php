@@ -56,27 +56,7 @@ class AiPolicyTrackerController extends Controller
         return to_route('backend.ai_policy_tracker.index')->with('success', 'Successfully Created');
     }
 
-    public function delete($id)
-    {
-        try {
-            $aiPolicyTracker = AiPolicyTracker::find($id);
-
-            if (!$aiPolicyTracker) {
-
-                return to_route('backend.ai_policy_tracker.index')->with('error', 'Not founded (AI) policy tracker');
-            }
-
-            $aiPolicyTracker->delete();
-
-            return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Deleted');
-        } catch (\Throwable $th) {
-            report($th);
-
-            return to_route('backend.ai_policy_tracker.index')->with('error', 'Oops! Somethings went wrong');
-        }
-    }
-
-    public function updateData($id)
+    public function edit($id)
     {
         try {
             $aiPolicyTracker = AiPolicyTracker::find($id);
@@ -84,11 +64,6 @@ class AiPolicyTrackerController extends Controller
             if (!$aiPolicyTracker) {
                 return to_route('backend.ai_policy_tracker.index')->with('error', 'Not founded (AI) policy tracker');
             }
-
-            //-- Log the AI policy activity (Update)
-            $activity_name = 'Updated data';
-            $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been Updated.';
-            AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
             // Return the updated tracker data
             return response()->json(['aiPolicyTracker' => $aiPolicyTracker]);
@@ -117,6 +92,26 @@ class AiPolicyTrackerController extends Controller
             AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
             return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Updated');
+        } catch (\Throwable $th) {
+            report($th);
+
+            return to_route('backend.ai_policy_tracker.index')->with('error', 'Oops! Somethings went wrong');
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $aiPolicyTracker = AiPolicyTracker::find($id);
+
+            if (!$aiPolicyTracker) {
+
+                return to_route('backend.ai_policy_tracker.index')->with('error', 'Not founded (AI) policy tracker');
+            }
+
+            $aiPolicyTracker->delete();
+
+            return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Deleted');
         } catch (\Throwable $th) {
             report($th);
 
