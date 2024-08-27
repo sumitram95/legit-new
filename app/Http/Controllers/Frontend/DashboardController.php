@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         $data['news'] = News::with(['thumbnail', 'status'])
             ->orderBy('created_at', 'DESC')
-            ->paginate(15);
+            ->paginate(10);
 
         $latestNews = News::orderBy('updated_at', 'DESC')->first();
         $data['newsLastUpdate'] = $latestNews ? Carbon::parse($latestNews->updated_at)->format('F Y') : '';

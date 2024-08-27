@@ -44,6 +44,7 @@ export function MapChart({ countrywithStatus, countrywithMap }) {
     //***************** Define countries and their associated Url Links ****************** */
     const URL_MAP = countrywithMap;
 
+    console.log(URL_MAP);
     useLayoutEffect(() => {
         // Apply themes
         am4core.useTheme(am4themes_animated);
