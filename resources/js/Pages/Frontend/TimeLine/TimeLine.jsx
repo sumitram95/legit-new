@@ -16,7 +16,7 @@ export default function TimeLine({ timeLines, lastUpdateDate  }) {
                                 </p>
                             </div>
                             <div className="flex gap-5 mt-3 text-sm">
-                                <p className=" text-sm font-thin text-primary">
+                                <p className=" text-sm">
                                     Last update: <span>{lastUpdateDate}</span>
                                 </p>
                             </div>
