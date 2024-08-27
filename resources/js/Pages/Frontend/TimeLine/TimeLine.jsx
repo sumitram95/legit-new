@@ -99,11 +99,11 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             <div
                                                                                 class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-3 text-sm font-medium leading-tight dark:border-white/10 add-action text-dark">
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 add-action text-dark">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
                                                                                 <div class="px-6 status-action-item">
-                                                                                    <div className="text-sm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                    <div className="text-xs text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -138,11 +138,11 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             <div
                                                                                 class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-3 text-sm font-medium leading-tight dark:border-white/10 add-action text-dark">
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 add-action text-dark">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
                                                                                 <div class="px-6 status-action-item">
-                                                                                    <div className="text-sm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                    <div className="text-xs text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -177,11 +177,11 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             <div
                                                                                 class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-3 text-sm font-medium leading-tight dark:border-white/10 update-action text-dark">
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 update-action text-dark">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
                                                                                 <div class="px-6 update-action-item">
-                                                                                    <div className="text-sm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                    <div className="text-xs text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -213,11 +213,11 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             <div
                                                                                 class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-3 text-sm font-medium leading-tight dark:border-white/10 add-action text-dark">
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-sm font-medium leading-tight dark:border-white/10 add-action text-dark">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
                                                                                 <div class="px-6 status-action-item">
-                                                                                    <div className="text-sm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                    <div className="text-xm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
