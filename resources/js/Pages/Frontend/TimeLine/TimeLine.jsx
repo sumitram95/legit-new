@@ -2,7 +2,7 @@ import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
 
-export default function TimeLine({ timeLines, lastUpdateDate  }) {
+export default function TimeLine({ timeLines, lastUpdateDate }) {
     return (
         <AppLayout>
             <Head title="Timeline" />
@@ -24,6 +24,15 @@ export default function TimeLine({ timeLines, lastUpdateDate  }) {
                     </div>
 
                     <div className="mt-5 px-5 bg-white py-5 text-wrap md:py-0 rounded-md md:rounded-none">
+
+                        <div className="titleline-status">
+                            <ul>
+                                <li> Status update </li>
+                                <li> Added data </li>
+                                <li> Updated data </li>
+                                <li> Deleted data </li>
+                            </ul>
+                        </div>
                         {Object.entries(timeLines).map(([year, items]) => (
                             <ol className="relative border-s-4 border-blue-100">
                                 <div>
