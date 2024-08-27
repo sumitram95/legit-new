@@ -37,6 +37,8 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                 </div>
                             </div>
                             <div>
+
+
                                 {Object.entries(timeLines).map(([year, items]) => (
                                     <div key={year}>
                                         <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize ml-6">
@@ -50,6 +52,8 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                             const updatedLogs = [];
                                             const deletedLogs = [];
 
+
+
                                             // Categorize logs based on activity_name
                                             item.a_i_policy_activity_logs.forEach((log) => {
                                                 switch (log.activity_name) {
@@ -62,7 +66,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                     case 'updated data':
                                                         updatedLogs.push(log);
                                                         break;
-                                                    case 'deleted data':
+                                                    case 'delete data':
                                                         deletedLogs.push(log);
                                                         break;
                                                     default:
@@ -77,43 +81,60 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                     {/* Check if item.a_i_policy_activity_logs exists and is an array */}
                                                     <div>
                                                         <div className="flex flex-wrap">
-                                                            {statusLogs.length > 0 ? (
-                                                                statusLogs.map((log) => (
-                                                                    <div className="flex basis-1/4 p-2" key={log.id}>
-                                                                        <div className="w-full">
-                                                                            <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
-                                                                                {item.ai_policy_name || `Item ${item.id}`}
-                                                                            </h3>
-                                                                            <h2 className="text-lg font-semibold">{log.activity_name}</h2>
-                                                                            <div dangerouslySetInnerHTML={{ __html: log.description }} />
-                                                                        </div>
-                                                                    </div>
-                                                                ))
-                                                            ) : (
-                                                                <div className="flex basis-1/4 p-2">
-                                                                    <div className="w-full"></div>
-                                                                    {/* <div className="w-full">Status update</div> */}
-                                                                </div>
-                                                            )}
 
-                                                            {addedLogs.length > 0 ? (
-                                                                addedLogs.map((log) => (
-                                                                    <div className="flex basis-1/4 p-2" key={log.id}>
-                                                                        <div className="w-full">
-                                                                            <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
-                                                                                {item.ai_policy_name || `Item ${item.id}`}
-                                                                            </h3>
-                                                                            <h2 className="text-lg font-semibold">{log.activity_name}</h2>
-                                                                            <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                            <div className="flex flex-wrap basis-1/4">
+                                                                {statusLogs.length > 0 ? (
+                                                                    statusLogs.map((log, index) => (
+                                                                        <div
+                                                                            className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
+                                                                            key={log.id}
+                                                                        >
+                                                                            <div className="w-full">
+                                                                                <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
+                                                                                    {item.ai_policy_name || `Item ${item.id}`}
+                                                                                </h3>
+                                                                                <h2 className="text-lg font-semibold">{log.activity_name}</h2>
+                                                                                <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                            </div>
+                                                                        </div>
+                                                                    ))
+                                                                ) : (
+                                                                    <div className="flex basis-1/4 p-2">
+                                                                        <div className="w-full text-center text-gray-500">
+                                                                            {/* Optional placeholder for empty state */}
+
                                                                         </div>
                                                                     </div>
-                                                                ))
-                                                            ) : (
-                                                                <div className="flex basis-1/4 p-2">
-                                                                    <div className="w-full"></div>
-                                                                    {/* <div className="w-full">Added data</div> */}
-                                                                </div>
-                                                            )}
+                                                                )}
+                                                            </div>
+
+                                                            <div className="flex flex-wrap basis-1/4">
+                                                                {/* Added Logs */}
+                                                                {addedLogs.length > 0 ? (
+                                                                    addedLogs.map((log, index) => (
+                                                                        <div
+                                                                            className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
+                                                                            key={log.id}
+                                                                        >
+                                                                            <div className="w-full">
+                                                                                <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
+                                                                                    {item.ai_policy_name || `Item ${item.id}`}
+                                                                                </h3>
+                                                                                <h2 className="text-lg font-semibold">{log.activity_name}</h2>
+                                                                                <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                            </div>
+                                                                        </div>
+                                                                    ))
+                                                                ) : (
+                                                                    <div className="flex basis-1/4 p-2">
+                                                                        <div className="w-full text-center text-gray-500">
+                                                                            {/* Optional placeholder for empty state */}
+
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
 
                                                             <div className="flex flex-wrap basis-1/4">
                                                                 {updatedLogs.length > 0 ? (
@@ -141,24 +162,32 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                             </div>
 
 
-                                                            {deletedLogs.length > 0 ? (
-                                                                deletedLogs.map((log) => (
-                                                                    <div className="flex basis-1/4 p-2" key={log.id}>
-                                                                        <div className="w-full">
-                                                                            <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
-                                                                                {item.ai_policy_name || `Item ${item.id}`}
-                                                                            </h3>
-                                                                            <h2 className="text-lg font-semibold">{log.activity_name}</h2>
-                                                                            <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                            <div className="flex flex-wrap basis-1/4">
+                                                                {deletedLogs.length > 0 ? (
+                                                                    deletedLogs.map((log, index) => (
+                                                                        <div
+                                                                            className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
+                                                                            key={log.id}
+                                                                        >
+                                                                            <div className="w-full">
+                                                                                <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
+                                                                                    {item.ai_policy_name || `Item ${item.id}`}
+                                                                                </h3>
+                                                                                <h2 className="text-lg font-semibold">{log.activity_name}</h2>
+                                                                                <div dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                            </div>
+                                                                        </div>
+                                                                    ))
+                                                                ) : (
+                                                                    <div className="flex basis-1/4 p-2">
+                                                                        <div className="w-full text-center text-gray-500">
+                                                                            {/* Optional placeholder for empty state */}
+
                                                                         </div>
                                                                     </div>
-                                                                ))
-                                                            ) : (
-                                                                <div className="flex basis-1/4 p-2">
-                                                                    <div className="w-full"></div>
-                                                                    {/* <div className="w-full">Deleted data</div> */}
-                                                                </div>
-                                                            )}
+                                                                )}
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div>

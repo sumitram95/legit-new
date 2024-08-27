@@ -14,6 +14,7 @@ class TimeLineController extends Controller
     {
         // Fetch the most recent record and format the date
         $lastUpdateDate = AiPolicyTracker::query()
+            ->withTrashed()
             ->latest('created_at')
             ->first();
 
@@ -23,6 +24,7 @@ class TimeLineController extends Controller
 
         // Group data by announcement_year
         $groupedData = AiPolicyTracker::query()
+            ->withTrashed()
             ->with('aIPolicyActivityLogs')
             ->get()
             ->groupBy('announcement_year')
