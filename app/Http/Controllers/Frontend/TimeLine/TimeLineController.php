@@ -16,7 +16,7 @@ class TimeLineController extends Controller
         $lastUpdateDate = AiPolicyTracker::latest('created_at')->first();
         $formattedLastDate = $lastUpdateDate
             ? Carbon::parse($lastUpdateDate->created_at)->format('M Y')
-            : 'No records found';
+            : '';
 
         // Group data by announcement_year
         $groupedData = AiPolicyTracker::all()
