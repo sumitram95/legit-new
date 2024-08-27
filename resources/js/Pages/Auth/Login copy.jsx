@@ -136,15 +136,15 @@ export default function Login({ status, canResetPassword }) {
             <div class="flex items-center min-h-screen bg-gray-100 lg:justify-center">
                 <div class="flex flex-col overflow-hidden max md:flex-row md:flex-1 ">
                     {/* logo and image side */}
-                    <div class="w-[50%] p-4 py-6 text-white md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly rounded-md h-screen pr-9">
+                    <div class="w-[50%] p-4 py-6 text-white   md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly rounded-md h-screen pr-9">
                         <div className="bg-blue-500 w-full h-full flex items-center justify-center rounded-md">
-                            {/* <div className="bg-white/20 rounded-[16px] shadow-lg backdrop-blur-sm border border-white/30 h-[400px] w-[360px] flex items-center  justify-center"> */}
+                            <div className="bg-white/20 rounded-[16px] shadow-lg backdrop-blur-sm border border-white/30 h-[400px] w-[360px] flex items-center  justify-center">
                                 <img
-                                    src={AuthLoginImage}
+                                    src={AuthLogo}
                                     alt="AI Policy Tracker"
-                                    className="h-full w-full rounded-md"
+                                    className=""
                                 />
-                            {/* </div> */}
+                            </div>
                         </div>
                     </div>
 
