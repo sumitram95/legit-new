@@ -323,8 +323,37 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
     flex-direction: column;
 }
 
-
 // ck editor
 .ck-editor__editable_inline {
     min-height: 200px;
+}
+
+// -- Action color
+.title_line_action tr>th {
+    height: 40px;
+    // width: 25%;
+    line-height: 40px;
+    font-weight: 700;
+    font-size: 12px;
+    padding-left: 16px;
+}
+
+.title_line_action .status-action {
+    background-color: #e7e4f4;
+    color: #8f81c7;
+}
+
+.title_line_action .add-action {
+    background-color: #e9f5f3;
+    color: #6bbeaf;
+}
+
+.title_line_action .update-action {
+    background-color: #d1e5fa;
+    color: #4e87d3;
+}
+
+.title_line_action .delete-action {
+    background-color: #f9dae0;
+    color: #d53e45;
 }
