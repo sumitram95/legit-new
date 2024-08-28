@@ -6,7 +6,7 @@ export default function Status(
         countrywithStatus
     }) {
 
-    console.log(countrywithStatus);
+    // console.log(countrywithStatus);
 
 
     return (

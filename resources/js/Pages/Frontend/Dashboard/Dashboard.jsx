@@ -33,12 +33,10 @@ export default function Dashboard({
     countrywithStatus: initialCountrywithStatus,
     countrywithMap,
     aiPolicyLastUpdate,
-    newsLastUpdate
-
+    newsLastUpdate,
+    countryWithAiPolicies
 }) {
-
     const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
-
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
     useEffect(() => {
@@ -95,7 +93,6 @@ export default function Dashboard({
         }
     };
 
-
     //****************** Clear Filter ******************* */
     const handleClearFilters = () => {
         const clearedFilters = {
@@ -130,12 +127,10 @@ export default function Dashboard({
         });
     };
 
-
     //****************** Form Submit ******************* */
     const { data, setData, post, processing, errors, reset } = useForm({
         uuids: [],
     });
-
 
     const submit = (e) => {
         e.preventDefault();
@@ -221,6 +216,7 @@ export default function Dashboard({
                                 <MapChart
                                     countrywithStatus={countrywithStatus}
                                     countrywithMap={countrywithMap}
+                                    countryWithAiPolicies={countryWithAiPolicies}
                                 />
                             </div>
                             {/* ********************** HistoricState Comonent ********************** */}
