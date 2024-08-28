@@ -20,6 +20,8 @@ export function MapChart({
     countryWithAiPolicies
 }) {
 
+        // console.log(countrywithStatus);
+
     // Update URL_MAP with new URLs
     // const URL_MAP = {
     //     'CA': 'https://example.com/canada', // URL for Canada
@@ -43,6 +45,7 @@ export function MapChart({
         return acc;
     }, {});
 
+    // console.log(COLOR_MAP);
     //***************** Define countries and their associated Url Links ****************** */
     const URL_MAP = countrywithMap;
 
@@ -56,7 +59,6 @@ export function MapChart({
         }
         return text;
     };
-
 
     // console.log(COUNTRY_WITH_AI_POLICY_MAP);
     useLayoutEffect(() => {
@@ -131,7 +133,6 @@ export function MapChart({
                     </div>
                     <div style="padding: 12px;">
                         <div>
-
                             ${policyLinks}
                         </div>
                     </div>

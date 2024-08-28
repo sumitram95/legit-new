@@ -39,7 +39,7 @@ export default function Dashboard({
     const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
-    console.log(countrywithStatus);
+    // console.log(countrywithStatus);
 
     useEffect(() => {
         // Update the state if the initialTableData prop changes
