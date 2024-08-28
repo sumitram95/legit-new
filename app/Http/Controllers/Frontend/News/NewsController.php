@@ -62,6 +62,13 @@ class NewsController extends Controller
             $query->whereIn('policy_tracker_id', $aiPolicyIds);
         }
 
+        if ($request->has('country_id') && !empty($request->country_id)) {
+            $countryId = $request->country_id;
+            $query->whereHas('policyTracker', function ($subQuery) use ($countryId) {
+                $subQuery->where('country_id', $countryId);
+            });
+        }
+
         // Apply pagination
         $perPage = $request->get('per_page', 10); // Default to 15 items per page if not provided
         $filteredData = $query->paginate($perPage);
