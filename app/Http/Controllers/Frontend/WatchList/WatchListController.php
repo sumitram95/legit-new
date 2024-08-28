@@ -55,6 +55,30 @@ class WatchListController extends Controller
 
             $data['is_favorite'] = true;
 
+
+            $data['aiPolicies'] = AiPolicyTracker::get()
+            ->map(function ($aiPolicy) {
+                return [
+                    'value' => $aiPolicy->id,
+                    'label' => $aiPolicy->ai_policy_name,
+                ];
+            });
+        $data['countries'] = Country::get()
+            ->map(function ($country) {
+                return [
+                    'value' => $country->id,
+                    'label' => $country->name,
+                ];
+            });
+
+        $data['statuses'] = Status::get()
+            ->map(function ($status) {
+                return [
+                    'value' => $status->id,
+                    'label' => $status->name,
+                ];
+            });
+
             return Inertia::render('Frontend/WatchList/WatchList', $data);
         }
 

@@ -209,7 +209,10 @@ export default function WatchList({
                                 favourite={is_favorite}
                                 checkedColWithData={checkedColumns}
                             />
-                            <PaginationPage paginator={tableData} />
+
+                            {tableData.data.length > 10 && (
+                                <PaginationPage paginator={tableData} />
+                            )}
                         </div>
                     </div>
 
