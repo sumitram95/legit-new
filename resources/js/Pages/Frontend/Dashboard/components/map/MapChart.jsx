@@ -58,7 +58,7 @@ export function MapChart({
     };
 
 
-    console.log(COUNTRY_WITH_AI_POLICY_MAP);
+    // console.log(COUNTRY_WITH_AI_POLICY_MAP);
     useLayoutEffect(() => {
         // Apply themes
         am4core.useTheme(am4themes_animated);

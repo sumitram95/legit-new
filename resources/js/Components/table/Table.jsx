@@ -13,7 +13,7 @@ export default function Table({
 }) {
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
-    console.log(favourite);
+    // console.log(favourite);
     // console.log(watchListIds);
     return (
         <div className="relative overflow-x-auto px-5 mt-5">
