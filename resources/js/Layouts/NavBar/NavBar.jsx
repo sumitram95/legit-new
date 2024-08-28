@@ -1,75 +1,51 @@
+import { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
 
 export function NavBar({ NavBarLists }) {
+    const [activeItem, setActiveItem] = useState(null);
+    const { url } = usePage();
+
+    const handleClick = (key) => {
+        setActiveItem(key);
+    };
+
+    const currentUrl = new URL(url, window.location.origin).pathname;
+
     return (
         <nav className="flex gap-12 font-bold">
             {Object.keys(NavBarLists).map((key) => {
-                const targetAttrValue =
-                    NavBarLists[key].name === "whitepaper"
-                        ? "_blank"
-                        : undefined;
+                const item = NavBarLists[key];
+                const itemUrl = new URL(item.url, window.location.origin);
+                const isActive = activeItem === key || itemUrl.pathname === currentUrl;
 
-                // Extract URL like 127.0.0.1:8000/news from get /news
-                const url = new URL(
-                    NavBarLists[key].url,
-                    window.location.origin
-                );
+                // Determine if it's an external link
+                const isExternal = item.name === "whitepaper" || item.name === "Community";
+                const targetAttrValue = isExternal ? "_blank" : undefined;
 
-                // Get page current URL
-                const currentUrl = window.location.pathname;
-
-                // Check if current URL and link URL pathname match
-                const isActive = url.pathname === currentUrl;
-
-                // If it's an external link (Google Docs), use a standard <a> tag
-                if (NavBarLists[key].name === "whitepaper") {
-                    return (
-                        // remove of cors policy
-                        <a
-                            href={NavBarLists[key].url}
-                            key={key}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`capitalize ${
-                                isActive ? "nav-active" : ""
-                            }`}
-                        >
-                            {NavBarLists[key].name}
-                        </a>
-                    );
-                }
-
-                if (NavBarLists[key].name === "community") {
-                    return (
-                        // remove of cors policy
-                        <a
-                            href={NavBarLists[key].url}
-                            key={key}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            // className={`capitalize ${
-                            //     isActive ? "nav-active" : ""
-                            // }`}
-                        >
-                            {NavBarLists[key].name}
-                        </a>
-                    );
-                }
-
-                return (
-                    <Link
-                        href={NavBarLists[key].url}
+                return isExternal ? (
+                    <a
+                        href={item.url}
                         key={key}
                         target={targetAttrValue}
-                        rel={
-                            targetAttrValue ? "noopener noreferrer" : undefined
-                        }
-                        className={`capitalize ${isActive ? "nav-active" : ""}`}
+                        rel={targetAttrValue ? "noopener noreferrer" : undefined}
+                        onClick={() => handleClick(key)}
                     >
-                        {NavBarLists[key].name}
+                        {item.name}
+                    </a>
+                ) : (
+                    <Link
+                        href={item.url}
+                        key={key}
+                        target={targetAttrValue}
+                        rel={targetAttrValue ? "noopener noreferrer" : undefined}
+                        className={`capitalize ${isActive ? "nav-active" : ""}`}
+                        onClick={() => handleClick(key)}
+                    >
+                        {item.name}
                     </Link>
                 );
             })}
         </nav>
     );
 }
+

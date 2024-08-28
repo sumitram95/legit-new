@@ -57,7 +57,7 @@ class News extends Model
     public function getUploadDateAttribute()
     {
         return $this->attributes['upload_date']
-            ? \Carbon\Carbon::parse($this->attributes['upload_date'])->format('Y-m-d')
+            ? \Carbon\Carbon::parse($this->attributes['upload_date'])->format('M d, Y')
             : null;
     }
 

@@ -71,7 +71,7 @@ class NewsController extends Controller
 
         // Apply pagination
         $perPage = $request->get('per_page', 10); // Default to 15 items per page if not provided
-        $filteredData = $query->paginate($perPage);
+        $filteredData = $query->orderBy('created_at', 'Desc')->paginate($perPage);
 
         // Format the data as needed
         $news = $filteredData->getCollection()->map(function ($policy) {
