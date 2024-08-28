@@ -35,6 +35,7 @@ class AiPolicyTracker extends Model
         return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
+
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id', 'id');
@@ -54,4 +55,5 @@ class AiPolicyTracker extends Model
     {
         return $this->hasMany(AIPolicyActivityLog::class, 'ai_policy_tracker_id');
     }
+
 }

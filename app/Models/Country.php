@@ -16,4 +16,9 @@ class Country extends Model
         'name',
         'status',
     ];
+
+    public function aiPolicyTrackers()
+    {
+        return $this->hasMany(AiPolicyTracker::class, 'country_id', 'id');
+    }
 }

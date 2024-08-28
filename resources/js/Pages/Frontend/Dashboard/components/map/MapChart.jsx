@@ -14,9 +14,13 @@ const COLORS = {
     launched: "#67A8EF"
 };
 
+export function MapChart({
+    countrywithStatus,
+    countrywithMap,
+    countryWithAiPolicies
+}) {
 
-
-export function MapChart({ countrywithStatus, countrywithMap }) {
+        // console.log(countrywithStatus);
 
     // Update URL_MAP with new URLs
     // const URL_MAP = {
@@ -41,10 +45,22 @@ export function MapChart({ countrywithStatus, countrywithMap }) {
         return acc;
     }, {});
 
+    // console.log(COLOR_MAP);
     //***************** Define countries and their associated Url Links ****************** */
     const URL_MAP = countrywithMap;
 
-    console.log(URL_MAP);
+    //***************** Define countries and their associated Url Links ****************** */
+    const COUNTRY_WITH_AI_POLICY_MAP = countryWithAiPolicies;
+
+    const truncateText = (text, wordLimit) => {
+        const words = text.split(' ');
+        if (words.length > wordLimit) {
+            return words.slice(0, wordLimit).join(' ') + '...';
+        }
+        return text;
+    };
+
+    // console.log(COUNTRY_WITH_AI_POLICY_MAP);
     useLayoutEffect(() => {
         // Apply themes
         am4core.useTheme(am4themes_animated);
@@ -69,26 +85,7 @@ export function MapChart({ countrywithStatus, countrywithMap }) {
         let polygonTemplate = polygonSeries.mapPolygons.template;
         polygonTemplate.tooltipText = "{name}";
 
-        polygonTemplate.tooltipHTML = `
-            <div style="width: 18rem; border-radius: 0.25rem; padding: 0;">
-                <div style="padding: 0.75rem 1.25rem; border-bottom: 2px solid #f8f9fa; border-radius: 0.25rem 0.25rem 0 0; margin: 0;">
-                    <h2 style="margin: 0; color: #007bff; font-size: 1rem; font-weight: 400;">{name}</h2>
-                </div>
-                <div style="padding: 12px; display: flex; align-items: center; justify-content: space-between;">
-                    <a href="{url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff; margin-right: 0.75rem; transition: text-decoration 0.3s ease;" target="_blank">
-                        <i class="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
-                        View AI Policy Policy
-                    </a>
-                    <div style="display: flex; align-items: center;">
-                        <a href="{url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff;" target="_blank">
-                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        // Set colors
+        // Add colors to countries
         polygonTemplate.adapter.add("fill", (fill, target) => {
             const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
             return COLOR_MAP[countryId] || fill; // Use predefined color or default fill color
@@ -105,11 +102,42 @@ export function MapChart({ countrywithStatus, countrywithMap }) {
         // Zoom control
         chart.zoomControl = new am4maps.ZoomControl();
 
-        // Set URLs in tooltips
+        // Set URLs in tooltips and dynamically generate the HTML for policy links
         polygonTemplate.adapter.add("tooltipHTML", (html, target) => {
             const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
-            const url = URL_MAP[countryId] || '#';
-            return html.replace(/{url}/g, url);
+            const policies = COUNTRY_WITH_AI_POLICY_MAP[countryId] || [];
+
+            let policyLinks = policies.map(policy => `
+                <div style="padding: 8px; display: flex; align-items: center; justify-content: space-between;">
+                    <a href="${policy.url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                     <i class="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
+                       ${truncateText(policy.name, 3)}
+                    </a>
+
+                    <div style="display: flex; align-items: center;">
+                        <a href="${policy.url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff;" target="_blank">
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            if (!policyLinks) {
+                policyLinks = "<div style='padding: 8px;'>No policies available</div>";
+            }
+
+            return `
+                <div style="width: 18rem; border-radius: 0.25rem; padding: 0;">
+                    <div style="padding: 0.75rem 1.25rem; border-bottom: 2px solid #f8f9fa; border-radius: 0.25rem 0.25rem 0 0; margin: 0;">
+                        <h2 style="margin: 0; color: #007bff; font-size: 1rem; font-weight: 400;">{name}</h2>
+                    </div>
+                    <div style="padding: 12px;">
+                        <div>
+                            ${policyLinks}
+                        </div>
+                    </div>
+                </div>
+            `;
         });
 
         return () => {
@@ -118,6 +146,7 @@ export function MapChart({ countrywithStatus, countrywithMap }) {
             }
         };
     }, []);
+
 
     return (
         <div id="chartdiv" className="map-chart-wrapper" style={{ width: "100%", height: "500px" }}></div>

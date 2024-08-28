@@ -35,17 +35,23 @@ export default function Dashboard({
     countrywithMap,
     aiPolicyLastUpdate,
     newsLastUpdate,
+    countryWithAiPolicies
 }) {
-    const [countrywithStatus, setCountrywithStatus] = useState(
-        initialCountrywithStatus
-    );
-
+    const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
+
+    // console.log(countrywithStatus);
 
     useEffect(() => {
         // Update the state if the initialTableData prop changes
         setTableData(initialTableData);
     }, [initialTableData]);
+
+    // Callback function to update countrywithStatus
+    const handleStatusChange = (updatedCountrywithStatus) => {
+        setCountrywithStatus(updatedCountrywithStatus);
+    };
+
 
     const [filters, setFilters] = useState({
         AI_Policy_Name: [],
@@ -202,11 +208,10 @@ export default function Dashboard({
 
                                 {/* ********************** Status Component ********************** */}
                                 <div className="flex justify-center items-center">
+                                    {/* <Status countrywithStatus={countrywithStatus} setCountrywithStatus={setCountrywithStatus} /> */}
                                     <Status
                                         countrywithStatus={countrywithStatus}
-                                        setCountrywithStatus={
-                                            setCountrywithStatus
-                                        }
+                                        setCountrywithStatus={handleStatusChange} // Pass the callback function
                                     />
                                 </div>
                                 <div className="flex gap-3 lg:hidden">
@@ -258,6 +263,7 @@ export default function Dashboard({
                                 <MapChart
                                     countrywithStatus={countrywithStatus}
                                     countrywithMap={countrywithMap}
+                                    countryWithAiPolicies={countryWithAiPolicies}
                                 />
                             </div>
                             {/* ********************** HistoricState Comonent ********************** */}
