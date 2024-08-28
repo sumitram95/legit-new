@@ -123,6 +123,10 @@ class WatchListController extends Controller
                 'governing_body' => $policy->governing_body,
                 'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
                 'status' => $policy->status,
+                'technology_partners'=>$policy->technology_partners,
+                'governance_structure'=>$policy->governance_structure,
+                'main_motivation'=>$policy->main_motivation,
+                'description'=>$policy->description,
             ];
         });
 

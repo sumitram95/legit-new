@@ -1,9 +1,9 @@
+import NoTableData from "@/Components/table/NoTableData";
 import { Link } from "@inertiajs/react";
 import React from "react";
 
 export default function NewsCard({ newsLists = [] }) {
-
-   console.log(newsLists);
+    console.log(newsLists);
     return (
         <div className="">
             {newsLists.map((newsList, index) => (
@@ -62,20 +62,27 @@ export default function NewsCard({ newsLists = [] }) {
                                     {newsList.title ?? ""}
                                 </Link>
                             </div>
-                            <p className="text-gray-700 text-base">
+                            {/* <p className="text-gray-700 text-base">
                                 {newsList.description ?? ""}
-                            </p>
+                            </p> */}
+                            <div
+                                className="text-gray-700 text-base"
+                                dangerouslySetInnerHTML={{
+                                    __html: newsList.description ?? "",
+                                }}
+                            ></div>
                         </div>
                     </div>
                 </div>
             ))}
 
             {newsLists.length == 0 && (
-                <div className="flex items-center h-full w-full justify-center mt-5">
-                    <h1 className=" text-xl text-primary">
-                        There are no news lists
-                    </h1>
-                </div>
+                // <div className="flex items-center h-full w-full justify-center mt-5 pb-5">
+                //     <h1 className=" text-xl text-primary">
+                //         There are no news lists
+                //     </h1>
+                // </div>
+                <NoTableData noTableDataTitle={"no data found"} />
             )}
         </div>
     );
