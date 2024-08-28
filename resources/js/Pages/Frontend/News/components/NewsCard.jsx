@@ -62,9 +62,8 @@ export default function NewsCard({ newsLists = [] }) {
                                     {newsList.title ?? ""}
                                 </Link>
                             </div>
-                            <p className="text-gray-700 text-base">
-                                {newsList.description ?? ""}
-                            </p>
+                            <p className="text-gray-700 text-base" dangerouslySetInnerHTML={{ __html: newsList.description ?? "" }} />
+
                         </div>
                     </div>
                 </div>
