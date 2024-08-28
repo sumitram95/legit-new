@@ -62,6 +62,9 @@ export function MapChart({ countrywithStatus, countrywithMap }) {
         let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
         polygonSeries.useGeodata = true;
 
+        // Exclude Antarctica
+        polygonSeries.exclude = ["AQ"];
+
         // Configure series
         let polygonTemplate = polygonSeries.mapPolygons.template;
         polygonTemplate.tooltipText = "{name}";
