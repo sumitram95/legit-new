@@ -49,6 +49,15 @@ export function MapChart({
     //***************** Define countries and their associated Url Links ****************** */
     const COUNTRY_WITH_AI_POLICY_MAP = countryWithAiPolicies;
 
+    const truncateText = (text, wordLimit) => {
+        const words = text.split(' ');
+        if (words.length > wordLimit) {
+            return words.slice(0, wordLimit).join(' ') + '...';
+        }
+        return text;
+    };
+
+
     console.log(COUNTRY_WITH_AI_POLICY_MAP);
     useLayoutEffect(() => {
         // Apply themes
@@ -99,8 +108,15 @@ export function MapChart({
             let policyLinks = policies.map(policy => `
                 <div style="padding: 8px; display: flex; align-items: center; justify-content: space-between;">
                     <a href="${policy.url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        ${policy.name}
+                     <i class="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
+                       ${truncateText(policy.name, 3)}
                     </a>
+
+                    <div style="display: flex; align-items: center;">
+                        <a href="${policy.url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff;" target="_blank">
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             `).join('');
 
@@ -114,7 +130,10 @@ export function MapChart({
                         <h2 style="margin: 0; color: #007bff; font-size: 1rem; font-weight: 400;">{name}</h2>
                     </div>
                     <div style="padding: 12px;">
-                        ${policyLinks}
+                        <div>
+
+                            ${policyLinks}
+                        </div>
                     </div>
                 </div>
             `;
