@@ -41,7 +41,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
             // Convert filters object to query string
             const queryParams = new URLSearchParams(updatedFilters).toString();
 
-            // Make the GET request using Axios
+            // Make the post request using Axios
             const response = await axios.post(
                 `${route("frontend.news.filtered")}?${queryParams}`,
                 {
@@ -138,10 +138,11 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                             )}
                             <div
                                 className="mt-5"
-                                style={{ minHeight: "500px" }}
                             >
                                 <NewsCard newsLists={news.data} />
-                                <PaginationPage paginator={news} />
+                                {news.data.length > 10 && (
+                                    <PaginationPage paginator={news} />
+                                )}
                             </div>
                         </div>
                     </div>
