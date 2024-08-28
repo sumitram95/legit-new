@@ -41,6 +41,7 @@ class NewsController extends Controller
 
         try {
             $data['news'] = News::with(['thumbnail', 'status'])->find($id);
+            
             if (!$data['news']) {
                 return to_route('news.index')->with('error', 'News Not Founded');
             }
