@@ -23,9 +23,9 @@ export default function WatchList({
 }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
 
-    const [countrywithStatus, setCountrywithStatus] = useState(
-        initialCountrywithStatus
-    );
+    // const [countrywithStatus, setCountrywithStatus] = useState(
+    //     initialCountrywithStatus
+    // );
 
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
