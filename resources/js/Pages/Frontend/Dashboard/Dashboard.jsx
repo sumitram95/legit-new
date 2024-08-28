@@ -174,7 +174,7 @@ export default function Dashboard({
     // Combine OriginalColumns with checkedColumns
     const Columns = [...OriginalColumns, ...checkedColumns];
 
-    useEffect(() => {}, [Columns]);
+    useEffect(() => { }, [Columns]);
 
     return (
         <AppLayout>
@@ -237,11 +237,10 @@ export default function Dashboard({
                                             ? "Show filters"
                                             : "Hide filters"}
                                         <i
-                                            className={`fa-solid ${
-                                                visibleDiv
-                                                    ? "fa-chevron-up"
-                                                    : "fa-chevron-down"
-                                            } ml-3`}
+                                            className={`fa-solid ${visibleDiv
+                                                ? "fa-chevron-up"
+                                                : "fa-chevron-down"
+                                                } ml-3`}
                                         ></i>
                                     </button>
                                 </div>
@@ -258,7 +257,7 @@ export default function Dashboard({
                                 </div>
                             )}
 
-                            {/* ********************** MapChart Comonent ********************** */}
+                            {/* ********************** MapChart Component ********************** */}
                             <div className="mt-5 px-4 map-chart-wrapper">
                                 <MapChart
                                     countrywithStatus={countrywithStatus}
@@ -266,7 +265,7 @@ export default function Dashboard({
                                     countryWithAiPolicies={countryWithAiPolicies}
                                 />
                             </div>
-                            {/* ********************** HistoricState Comonent ********************** */}
+                            {/* ********************** HistoricState Component ********************** */}
                             <div className="px-5 mt-4">
                                 <HistoricState date={"August 2024"} />
                             </div>
@@ -280,11 +279,10 @@ export default function Dashboard({
                                         className="flex items-center"
                                     >
                                         <i
-                                            className={`fa ${
-                                                bookmarkCount
-                                                    ? "fa-star"
-                                                    : "fa-regular fa-star"
-                                            } mr-3`}
+                                            className={`fa ${bookmarkCount
+                                                ? "fa-star"
+                                                : "fa-regular fa-star"
+                                                } mr-3`}
                                         ></i>
                                         <span>
                                             {processing
@@ -302,7 +300,7 @@ export default function Dashboard({
                                 />
                             </div>
 
-                            {/* ********************** AI Policy Comonent ********************** */}
+                            {/* ********************** AI Policy Component ********************** */}
                             <Table
                                 columns={Columns}
                                 checkedColWithData={checkedColumns}
@@ -323,7 +321,7 @@ export default function Dashboard({
                         </div>
                     </div>
 
-                    {/* ********************** Search Comonent (desktop) ********************** */}
+                    {/* ********************** Search Component (desktop) ********************** */}
                     <div className="hidden lg:block lg:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
@@ -427,17 +425,18 @@ export default function Dashboard({
                     </div>
                 </div>
 
-                {/* ********************** News Comonent ********************** */}
-                <News news={news.data} />
+                {/* ********************** News Component ********************** */}
+                <News news={news} />
 
-                {/* ********************** Description Comonent ********************** */}
+
+                {/* ********************** Description Component ********************** */}
                 <Description
                     descriptionData={DescriptionData}
                     contributorLists={ContributorLists}
                     contactLists={ContactLists}
                 />
 
-                {/* ********************** Organization/Client Comonent ********************** */}
+                {/* ********************** Organization/Client Component ********************** */}
                 <Organization organizationLogo={organizationLogo} />
             </div>
         </AppLayout>

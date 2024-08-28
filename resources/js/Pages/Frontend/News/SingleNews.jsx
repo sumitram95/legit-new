@@ -59,9 +59,8 @@ export default function News({ news }) {
                         </div>
 
                         <div className="px-5 mt-5">
-                            <p className="text-gray-500 text-xl">
-                                {news.description ?? ""}
-                            </p>
+
+                            <p className="text-gray-500 text-xl" dangerouslySetInnerHTML={{ __html: news.description }}></p>
                         </div>
                     </div>
                 </div>

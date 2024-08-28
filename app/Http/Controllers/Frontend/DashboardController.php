@@ -16,14 +16,17 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $data['tableData'] = AiPolicyTracker::with(['country', 'status'])
+        $data['tableData'] = AiPolicyTracker::query()
+            ->with(['country', 'status'])
             ->paginate(10);
 
-        $data['news'] = News::with(['thumbnail', 'status'])
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
+        $data['news'] = News::query()
+            ->with(['thumbnail', 'status'])
+            ->latest()
+            ->get();
 
-        $latestNews = News::orderBy('updated_at', 'DESC')->first();
+        $latestNews = News::query()
+            ->latest()->first();
         $data['newsLastUpdate'] = $latestNews ? Carbon::parse($latestNews->updated_at)->format('F Y') : '';
 
         $latestAiPolicy = AiPolicyTracker::orderBy('updated_at', 'DESC')->first();
@@ -42,7 +45,10 @@ class DashboardController extends Controller
         $data['countrywithMap'] = $URL_MAP;
 
         //-- get individual country
-        $data['countrywiseAiPolicyTracker'] = Country::whereHas('aiPolicyTrackers')->with('aiPolicyTrackers')->get();
+        $data['countrywiseAiPolicyTracker'] = Country::query()
+            ->withWhereHas('aiPolicyTrackers')
+            ->get();
+
         $COUNTRY_WITH_AIPOLICYTRACKER_MAP = [];
         foreach ($data['countrywiseAiPolicyTracker'] as $country) {
             $countrySymbol = $country->symbol;
@@ -59,30 +65,13 @@ class DashboardController extends Controller
 
 
         //-- End Ai Policy tracker country with status
-        $data['aiPolicies'] = AiPolicyTracker::get()
-            ->map(function ($aiPolicy) {
-                return [
-                    'value' => $aiPolicy->id,
-                    'label' => $aiPolicy->ai_policy_name,
-                ];
-            });
+        $data['aiPolicies'] = AiPolicyTracker::select('id as value', 'ai_policy_name as label')->get();
 
-        $data['countries'] = Country::get()
-            ->map(function ($country) {
-                return [
-                    'value' => $country->id,
-                    'label' => $country->name,
-                ];
-            });
+        $data['countries'] = Country::select('id as value', 'name as label')->get();
 
-        $data['statuses'] = Status::get()
-            ->map(function ($status) {
-                return [
-                    'value' => $status->id,
-                    'label' => $status->name,
-                ];
-            });
+        $data['statuses'] = Status::select('id as value', 'name as label')->get();
 
+        // dd($data['news']);
         return Inertia::render('Frontend/Dashboard/Dashboard', $data);
     }
 
@@ -123,10 +112,10 @@ class DashboardController extends Controller
                 'governing_body' => $policy->governing_body,
                 'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
                 'status' => $policy->status,
-                'technology_partners'=>$policy->technology_partners,
-                'governance_structure'=>$policy->governance_structure,
-                'main_motivation'=>$policy->main_motivation,
-                'description'=>$policy->description,
+                'technology_partners' => $policy->technology_partners,
+                'governance_structure' => $policy->governance_structure,
+                'main_motivation' => $policy->main_motivation,
+                'description' => $policy->description,
             ];
         });
 
