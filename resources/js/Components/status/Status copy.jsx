@@ -17,16 +17,30 @@ export default function Status({ countrywithStatus: initialCountrywithStatus, se
 
         setSelectedStatuses(updatedStatuses);
 
-        // Update countrywithStatus and notify parent
-        const updatedCountrywithStatus = Object.fromEntries(
+        // Update status and notify parent
+        const updatedStatus = Object.fromEntries(
             Object.entries(initialCountrywithStatus).map(([countryCode, currentStatus]) => [
                 countryCode,
-                updatedStatuses.includes(currentStatus) ? currentStatus : null, // Set to null if not selected
-            ]).filter(([_, status]) => status !== null) // Filter out entries with null status
+                updatedStatuses.includes(currentStatus) ? currentStatus : currentStatus,
+            ])
         );
 
-        setCountrywithStatus(updatedCountrywithStatus); // Notify parent of status update
+        setCountrywithStatus(updatedStatus); // Notify parent of status update
     };
+
+    const getFilteredCountries = () => {
+        if (selectedStatuses.length === 0) return initialCountrywithStatus;
+        return Object.fromEntries(
+            Object.entries(initialCountrywithStatus).filter(([_, value]) =>
+                selectedStatuses.includes(value)
+            )
+        );
+    };
+
+    const filteredCountries = getFilteredCountries();
+
+    // Log selected statuses and filtered countries
+    console.log("Filtered Countries:", filteredCountries);
 
     return (
         <div className="flex gap-5 border p-2 rounded-md flex-wrap">
@@ -57,6 +71,21 @@ export default function Status({ countrywithStatus: initialCountrywithStatus, se
                 >
                     Show all
                 </button>
+            </div>
+
+            <div className="mt-4">
+                {selectedStatuses.length > 0 && (
+                    <div>
+                        <h3 className="font-bold">Countries with selected statuses:</h3>
+                        <ul>
+                            {Object.keys(filteredCountries).map(countryCode => (
+                                <li key={countryCode}>
+                                    {countryCode} - {filteredCountries[countryCode]}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
         </div>
     );
