@@ -1,7 +1,6 @@
 import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
-
 export default function TimeLine({ timeLines, lastUpdateDate }) {
     return (
         <AppLayout>
@@ -23,10 +22,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                         </div>
                     </div>
 
-                    {/* ////////////// */}
                     <div className="bg-white py-5 text-wrap md:py-0 rounded-md md:rounded-none">
-
-
                         <div className="table-auto title_line_action mb-2 w-full">
                             <div>
                                 <div className="flex">
@@ -49,8 +45,6 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                 </div>
                             </div>
                             <div>
-
-
                                 {Object.entries(timeLines).map(([year, items]) => (
                                     <div key={year}>
                                         <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize ml-6">
@@ -63,8 +57,6 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                             const addedLogs = [];
                                             const updatedLogs = [];
                                             const deletedLogs = [];
-
-
 
                                             // Categorize logs based on activity_name
                                             item.a_i_policy_activity_logs.forEach((log) => {
@@ -88,8 +80,6 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
 
                                             return (
                                                 <div className="mb-10 relative" key={item.id}>
-
-
                                                     {/* Check if item.a_i_policy_activity_logs exists and is an array */}
                                                     <div>
                                                         <div className="flex flex-wrap">
@@ -101,17 +91,10 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
                                                                             key={log.id}
                                                                         >
-                                                                            {/* <div className="w-full">
-                                                                                <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
-                                                                                    {item.ai_policy_name || `Item ${item.id}`}
-                                                                                </h3>
-                                                                                <h2 className="text-lg font-semibold">{log.activity_name}</h2>
-                                                                                <div dangerouslySetInnerHTML={{ __html: log.description }} />
-                                                                            </div> */}
                                                                             <div
                                                                                 class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 status-action text-dark">
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 status-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
                                                                                 <div class="px-6 status-action-item">
@@ -138,19 +121,10 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
                                                                             key={log.id}
                                                                         >
-                                                                            {/* <div className="w-full">
-                                                                                <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
-                                                                                    {item.ai_policy_name || `Item ${item.id}`}
-                                                                                </h3>
-                                                                                <h2 className="text-lg font-semibold">{log.activity_name}</h2>
-                                                                                <div dangerouslySetInnerHTML={{ __html: log.description }} />
-                                                                            </div> */}
-
-                                                                            {/* /// */}
                                                                             <div
                                                                                 class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 add-action text-dark">
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 add-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
                                                                                 <div class="px-6 add-action-item">
@@ -167,10 +141,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                         </div>
                                                                     </div>
                                                                 )}
-
-
                                                             </div>
-
 
                                                             <div className="flex flex-wrap basis-1/4">
                                                                 {updatedLogs.length > 0 ? (
@@ -179,17 +150,10 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             className={` ${index === 0 ? 'w-full' : 'w-full mt-2'} p-2`}
                                                                             key={log.id}
                                                                         >
-                                                                            {/* <div className="w-full">
-                                                                                <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
-                                                                                    {item.ai_policy_name || `Item ${item.id}`}
-                                                                                </h3>
-                                                                                <h2 className="text-lg font-semibold">{log.activity_name}</h2>
-                                                                                <div dangerouslySetInnerHTML={{ __html: log.description }} />
-                                                                            </div> */}
                                                                             <div
                                                                                 class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 update-action text-dark">
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 update-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
                                                                                 <div class="px-6 update-action-item">
@@ -215,21 +179,14 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             className={`w-full p-2 ${index === 0 ? 'mt-0' : 'mt-2'}`}
                                                                             key={log.id}
                                                                         >
-                                                                            {/* <div className="w-full">
-                                                                                <h3 className="flex items-center mb-1 text-xs mt-2 font-bold text-primary capitalize">
-                                                                                    {item.ai_policy_name || `Item ${item.id}`}
-                                                                                </h3>
-                                                                                <h2 className="text-lg font-semibold">{log.activity_name}</h2>
-                                                                                <div dangerouslySetInnerHTML={{ __html: log.description }} />
-                                                                            </div> */}
                                                                             <div
                                                                                 class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-sm font-medium leading-tight dark:border-white/10 delete-action text-dark">
+                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-medium leading-tight dark:border-white/10 delete-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
                                                                                 <div class="px-6 delete-action-item">
-                                                                                    <div className="text-xm text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
+                                                                                    <div className="text-xs text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -249,13 +206,11 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                 </div>
                                             );
                                         })}
-
                                         <hr />
                                     </div>
                                 ))}
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
