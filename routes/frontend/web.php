@@ -24,9 +24,13 @@ Route::middleware('auth')->group(function () {
 Route::controller(NewsController::class)->group(function () {
     Route::get("/news", "index")->name("news.index");
     Route::get("/news/{id}", "singleNews")->name("news.single");
+    Route::post('/news/filtered', [NewsController::class, 'getFilteredData'])->name('frontend.news.filtered');
+
 });
 
-Route::as('frontend.')->group(function () {
+// Route::post('/news/filtered', [NewsController::class, 'getFilteredData'])->name('frontend.news.filtered');
+
+Route:: as('frontend.')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'dashboard')->name('dashboard');
 
@@ -38,6 +42,7 @@ Route::as('frontend.')->group(function () {
         ->group(function () {
             Route::get('/watchlist', 'index')->name('index');
             Route::post('/watchlist/show', 'show')->name('show');
+            Route::get('/watchlist/filtered', 'getFilteredData')->name('filtered');
         });
 
     // time line controller

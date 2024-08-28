@@ -9,22 +9,77 @@ export default function Table({
     noTableDataTitle = "No Data",
     onHandleBookmark, // Callback function to handle bookmark logic
     watchListIds = [], // Array of bookmarked IDs
+    checkedColWithData,
     ...props
 }) {
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
-    console.log(favourite);
+    // console.log(favourite);
     // console.log(watchListIds);
     return (
         <div className="relative overflow-x-auto px-5 mt-5">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead className="text-xs text-primary uppercase bg-secondary">
                     <tr>
-                        {columns.map((column, index) => (
+                        {/* {columns.map((column, index) => (
                             <th scope="col" className="px-6 py-3" key={index}>
                                 {column}
                             </th>
-                        ))}
+                        ))} */}
+                        <th scope="col" className="px-6 py-3">
+                            AI Policy Name
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Country / Region
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Governing Body
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Announcement Year
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Whitepaper / Document Link
+                        </th>
+                        {/* after show when checked editColumn */}
+                        {checkedColWithData.includes("Technology partners") && (
+                            <th scope="col" className="px-6 py-3">
+                                Technology partners
+                            </th>
+                        )}
+
+                        {checkedColWithData.includes(
+                            "Governance structure"
+                        ) && (
+                            <th scope="col" className="px-6 py-3">
+                                Governance structure
+                            </th>
+                        )}
+
+                        {checkedColWithData.includes(
+                            "Main motivation/goals of the AI policy"
+                        ) && (
+                            <th scope="col" className="px-6 py-3">
+                                Main motivation/goals of the AI policy
+                            </th>
+                        )}
+
+                        {checkedColWithData.includes("Description") && (
+                            <th scope="col" className="px-6 py-3">
+                                description
+                            </th>
+                        )}
+
+                        {checkedColWithData.includes(
+                            "Link to announcement"
+                        ) && (
+                            <th scope="col" className="px-6 py-3">
+                                Link to announcement
+                            </th>
+                        )}
                     </tr>
                 </thead>
                 <tbody>
@@ -35,18 +90,29 @@ export default function Table({
                                     <button
                                         type="button"
                                         className="text-primary"
-                                        onClick={() => onHandleBookmark(list.id)}
+                                        onClick={() =>
+                                            onHandleBookmark(list.id)
+                                        }
                                     >
                                         {favourite ? (
                                             <i className="fa fa-star A"></i>
                                         ) : (
                                             <i
-                                                className={`fa ${watchListIds.includes(list.id) ? 'fa-star A' : 'fa-regular fa-star B'}`}
+                                                className={`fa ${
+                                                    watchListIds.includes(
+                                                        list.id
+                                                    )
+                                                        ? "fa-star A"
+                                                        : "fa-regular fa-star B"
+                                                }`}
                                             ></i>
                                         )}
                                     </button>
                                     <Link
-                                        href={route("frontend.single_ai_policy_tracker.index", { id: list.id })}
+                                        href={route(
+                                            "frontend.single_ai_policy_tracker.index",
+                                            { id: list.id }
+                                        )}
                                         className="text-primary hover:underline"
                                     >
                                         {list.ai_policy_name}
@@ -69,6 +135,33 @@ export default function Table({
                                     open
                                 </a>
                             </td>
+
+                            {/* after checked editColumn */}
+                            {checkedColWithData.includes(
+                                "Technology partners"
+                            ) && (
+                                <td className="px-6 py-4">
+                                    {list.technology_partners}
+                                </td>
+                            )}
+                            {checkedColWithData.includes(
+                                "Governance structure"
+                            ) && (
+                                <td className="px-6 py-4">
+                                    {list.governance_structure}
+                                </td>
+                            )}
+                            {checkedColWithData.includes(
+                                "Main motivation/goals of the AI policy"
+                            ) && (
+                                <td className="px-6 py-4">
+                                    {list.main_motivation}
+                                </td>
+                            )}
+                            {checkedColWithData.includes("Description") && (
+                              <td className="px-6 py-4" dangerouslySetInnerHTML={{ __html: list.description }} />
+
+                            )}
                         </tr>
                     ))}
                 </tbody>
