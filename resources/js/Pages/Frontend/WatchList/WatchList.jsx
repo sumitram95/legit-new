@@ -11,6 +11,9 @@ import PaginationPage from "@/Components/table/PaginationPage";
 import SelectInput from "@/Components/SelectInput";
 import { useEffect } from "react";
 import Input from "@/Components/Input";
+import EditColumn from "../Dashboard/components/EditColumn";
+import EditColumnLists from "../Dashboard/components/EditColumnLists";
+import OriginalColumns from "@/Components/table/Columns";
 
 export default function WatchList({
     // tableData,
@@ -100,6 +103,14 @@ export default function WatchList({
         fetchData(clearedFilters); // Fetch data with cleared filters
     };
 
+    // edit column
+    const [checkedColumns, setCheckedColumns] = useState([]);
+
+    // Callback function to handle checkbox changes
+    const handleCheckboxChange = (checkedItems) => {
+        setCheckedColumns(checkedItems);
+    };
+
     return (
         <AppLayout>
             <Head title="Watch List" />
@@ -184,11 +195,19 @@ export default function WatchList({
                                 </div>
                             )}
 
+                            <div className="mt-5 flex justify-end px-5">
+                                <EditColumn
+                                    EditColumnLists={EditColumnLists}
+                                    onCheckboxChange={handleCheckboxChange}
+                                />
+                            </div>
+
                             {/* table */}
                             <Table
                                 columns={Columns}
                                 tableData={tableData.data}
                                 favourite={is_favorite}
+                                checkedColWithData={checkedColumns}
                             />
                             <PaginationPage paginator={tableData} />
                         </div>
