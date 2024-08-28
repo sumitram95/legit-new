@@ -159,9 +159,8 @@ export default function Table({
                                 </td>
                             )}
                             {checkedColWithData.includes("Description") && (
-                                <td className="px-6 py-4">
-                                    {list.description}
-                                </td>
+                              <td className="px-6 py-4" dangerouslySetInnerHTML={{ __html: list.description }} />
+
                             )}
                         </tr>
                     ))}
