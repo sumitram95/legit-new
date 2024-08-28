@@ -7,6 +7,7 @@ import { Head } from "@inertiajs/react";
 import HistoricState from "./components/HistoricState";
 import Table from "@/Components/table/Table";
 import Columns from "@/Components/table/Columns";
+import OriginalColumns from "@/Components/table/Columns";
 import EditColumn from "./components/EditColumn";
 import EditColumnLists from "./components/EditColumnLists";
 import News from "./components/new/News";
@@ -16,11 +17,11 @@ import ContributorLists from "@/Components/contributor/ContributorList";
 import ContactLists from "@/Components/contact/ContactLists";
 import Organization from "./components/organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
-import { useForm } from '@inertiajs/react';
+import { useForm } from "@inertiajs/react";
 import Input from "@/Components/Input";
-import TextInput from '@/Components/TextInput';
-import InputError from '@/Components/InputError';
-import PrimaryButton from '@/Components/PrimaryButton';
+import TextInput from "@/Components/TextInput";
+import InputError from "@/Components/InputError";
+import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
 import PaginationPage from "@/Components/table/PaginationPage";
 
@@ -33,11 +34,11 @@ export default function Dashboard({
     countrywithStatus: initialCountrywithStatus,
     countrywithMap,
     aiPolicyLastUpdate,
-    newsLastUpdate
-
+    newsLastUpdate,
 }) {
-
-    const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
+    const [countrywithStatus, setCountrywithStatus] = useState(
+        initialCountrywithStatus
+    );
 
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
@@ -46,17 +47,18 @@ export default function Dashboard({
         setTableData(initialTableData);
     }, [initialTableData]);
 
-
     const [filters, setFilters] = useState({
         AI_Policy_Name: [],
         country_id: [],
         status_id: [],
-        announcement_year: '',
+        announcement_year: "",
     });
 
     const handleFilterChange = (name, selectedOptions) => {
-        const value = selectedOptions ? selectedOptions.map(option => option.value) : [];
-        setFilters(prevFilters => {
+        const value = selectedOptions
+            ? selectedOptions.map((option) => option.value)
+            : [];
+        setFilters((prevFilters) => {
             const updatedFilters = {
                 ...prevFilters,
                 [name]: value,
@@ -68,7 +70,7 @@ export default function Dashboard({
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFilters(prevFilters => {
+        setFilters((prevFilters) => {
             const updatedFilters = {
                 ...prevFilters,
                 [name]: value,
@@ -81,20 +83,22 @@ export default function Dashboard({
     const fetchData = async (updatedFilters) => {
         try {
             const queryParams = new URLSearchParams(updatedFilters).toString();
-            const response = await fetch(`${route('frontend.dashboard.filtered')}?${queryParams}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+            const response = await fetch(
+                `${route("frontend.dashboard.filtered")}?${queryParams}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
             const result = await response.json();
             setTableData(result); // Update the tableData state
         } catch (error) {
-            console.error('Error fetching filtered data:', error);
+            console.error("Error fetching filtered data:", error);
         }
     };
-
 
     //****************** Clear Filter ******************* */
     const handleClearFilters = () => {
@@ -102,7 +106,7 @@ export default function Dashboard({
             AI_Policy_Name: [],
             country_id: [],
             status_id: [],
-            announcement_year: '',
+            announcement_year: "",
         };
 
         setFilters(clearedFilters);
@@ -120,9 +124,9 @@ export default function Dashboard({
     };
 
     const handleBookmark = (id) => {
-        setWatchListIds(prevIds => {
+        setWatchListIds((prevIds) => {
             const updatedIds = prevIds.includes(id)
-                ? prevIds.filter(existingId => existingId !== id)
+                ? prevIds.filter((existingId) => existingId !== id)
                 : [...prevIds, id];
 
             handleBookmarkChange(updatedIds.length);
@@ -130,31 +134,44 @@ export default function Dashboard({
         });
     };
 
-
     //****************** Form Submit ******************* */
     const { data, setData, post, processing, errors, reset } = useForm({
         uuids: [],
     });
 
-
     const submit = (e) => {
         e.preventDefault();
         // Set the uuids value
-        setData('uuids', watchListIds);
+        setData("uuids", watchListIds);
     };
 
     useEffect(() => {
         // Perform the POST request
         if (data.uuids.length > 0) {
-            post(route('frontend.watch_list.show'), {
-                onFinish: () => reset('uuids'),
+            post(route("frontend.watch_list.show"), {
+                onFinish: () => reset("uuids"),
             });
         }
     }, [data.uuids]);
 
+
+    // edit column
+    const [checkedColumns, setCheckedColumns] = useState([]);
+
+    // Callback function to handle checkbox changes
+    const handleCheckboxChange = (checkedItems) => {
+        setCheckedColumns(checkedItems);
+    };
+
+    // console.log("dashboard checked column", checkedColumns);
+
+    // Combine OriginalColumns with checkedColumns
+    const Columns = [...OriginalColumns, ...checkedColumns];
+
+    useEffect(() => {}, [Columns]);
+
     return (
         <AppLayout>
-
             <Head title="Dashboard" />
             <div className="content-wrapper relative top-[-60px]">
                 <div className="flex gap-[30px]">
@@ -163,24 +180,34 @@ export default function Dashboard({
                             <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
                                 <div>
                                     <p className="font-bold text-primary text-lg leading-none">
-                                        Global Artificial Intelligence (AI) Policy Status
+                                        Global Artificial Intelligence (AI)
+                                        Policy Status
                                     </p>
                                     <div className="flex items-center mt-[0.5rem] text-sm">
                                         <p className="text-sm leading-normal text-primary-light">
                                             Database Update:
-                                            <span className="text-black ml-[4px]">{aiPolicyLastUpdate}</span>
+                                            <span className="text-black ml-[4px]">
+                                                {aiPolicyLastUpdate}
+                                            </span>
                                         </p>
                                         <span className="date-separator"></span>
                                         <p className="text-sm leading-normal text-primary-light">
                                             News Update:
-                                            <span className="text-black ml-[4px]">{newsLastUpdate}</span>
+                                            <span className="text-black ml-[4px]">
+                                                {newsLastUpdate}
+                                            </span>
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* ********************** Status Component ********************** */}
                                 <div className="flex justify-center items-center">
-                                    <Status countrywithStatus={countrywithStatus} setCountrywithStatus={setCountrywithStatus} />
+                                    <Status
+                                        countrywithStatus={countrywithStatus}
+                                        setCountrywithStatus={
+                                            setCountrywithStatus
+                                        }
+                                    />
                                 </div>
                                 <div className="flex gap-3 lg:hidden">
                                     {visibleDiv && (
@@ -190,16 +217,26 @@ export default function Dashboard({
                                             onClick={() => setVisibleDiv(false)}
                                         >
                                             <i className="fa-solid fa-square-xmark"></i>
-                                            <span className="ml-2">Clear filters</span>
+                                            <span className="ml-2">
+                                                Clear filters
+                                            </span>
                                         </button>
                                     )}
                                     <button
-                                        onClick={() => setVisibleDiv(!visibleDiv)}
+                                        onClick={() =>
+                                            setVisibleDiv(!visibleDiv)
+                                        }
                                         className="text-sm text-secondary hover:text-blue-300 lg:hidden"
                                     >
-                                        {!visibleDiv ? "Show filters" : "Hide filters"}
+                                        {!visibleDiv
+                                            ? "Show filters"
+                                            : "Hide filters"}
                                         <i
-                                            className={`fa-solid ${visibleDiv ? "fa-chevron-up" : "fa-chevron-down"} ml-3`}
+                                            className={`fa-solid ${
+                                                visibleDiv
+                                                    ? "fa-chevron-up"
+                                                    : "fa-chevron-down"
+                                            } ml-3`}
                                         ></i>
                                     </button>
                                 </div>
@@ -228,20 +265,41 @@ export default function Dashboard({
                                 <HistoricState date={"August 2024"} />
                             </div>
                             <div className="flex justify-between mt-5 px-5">
-                                <form onSubmit={submit} className="text-primary bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2">
-                                    <button type="submit" className="flex items-center">
-                                        <i className={`fa ${bookmarkCount ? 'fa-star' : 'fa-regular fa-star'} mr-3`}></i>
-                                        <span>{processing ? 'Submitting...' : `Watchlist (${bookmarkCount})`}</span>
-                                        {processing && <i className="fa-solid fa-spinner fa-spin ml-3"></i>}
+                                <form
+                                    onSubmit={submit}
+                                    className="text-primary bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
+                                >
+                                    <button
+                                        type="submit"
+                                        className="flex items-center"
+                                    >
+                                        <i
+                                            className={`fa ${
+                                                bookmarkCount
+                                                    ? "fa-star"
+                                                    : "fa-regular fa-star"
+                                            } mr-3`}
+                                        ></i>
+                                        <span>
+                                            {processing
+                                                ? "Submitting..."
+                                                : `Watchlist (${bookmarkCount})`}
+                                        </span>
+                                        {processing && (
+                                            <i className="fa-solid fa-spinner fa-spin ml-3"></i>
+                                        )}
                                     </button>
-
                                 </form>
-                                <EditColumn EditColumnLists={EditColumnLists} />
+                                <EditColumn
+                                    EditColumnLists={EditColumnLists}
+                                    onCheckboxChange={handleCheckboxChange}
+                                />
                             </div>
 
                             {/* ********************** AI Policy Comonent ********************** */}
                             <Table
                                 columns={Columns}
+                                checkedColWithData={checkedColumns}
                                 tableData={tableData.data} // Ensure this matches the structure of the data returned from fetchData
                                 btnName={"Edit Columns "}
                                 onBookmarkChange={handleBookmarkChange}
@@ -254,20 +312,21 @@ export default function Dashboard({
                                 {renderPaginationLinks()}
                             </div> */}
 
-
                             {/* <Pagination paginator={tableData} /> */}
                             <PaginationPage paginator={tableData} />
                         </div>
                     </div>
-
 
                     {/* ********************** Search Comonent (desktop) ********************** */}
                     <div className="hidden lg:block lg:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
                                 <div className="flex items-center justify-between w-full">
-                                    <p className="font-bold text-primary text-lg leading-none">Filters</p>
-                                    <button className="button-wthout-border flex items-center gap-2"
+                                    <p className="font-bold text-primary text-lg leading-none">
+                                        Filters
+                                    </p>
+                                    <button
+                                        className="button-wthout-border flex items-center gap-2"
                                         onClick={handleClearFilters}
                                     >
                                         <span className="ui-icon">
@@ -289,7 +348,9 @@ export default function Dashboard({
                                                 </g>
                                             </svg>
                                         </span>
-                                        <span className="ui-clear-button_text">Clear</span>
+                                        <span className="ui-clear-button_text">
+                                            Clear
+                                        </span>
                                     </button>
                                 </div>
                             </div>
@@ -298,23 +359,51 @@ export default function Dashboard({
                                     <div>
                                         <SelectInput
                                             label="AI Policy Name"
-                                            options={aiPolicies.map(policy => ({ value: policy.value, label: policy.label }))}
+                                            options={aiPolicies.map(
+                                                (policy) => ({
+                                                    value: policy.value,
+                                                    label: policy.label,
+                                                })
+                                            )}
                                             value={filters.AI_Policy_Name}
-                                            onChange={(selectedOptions) => handleFilterChange('AI_Policy_Name', selectedOptions)}
+                                            onChange={(selectedOptions) =>
+                                                handleFilterChange(
+                                                    "AI_Policy_Name",
+                                                    selectedOptions
+                                                )
+                                            }
                                         />
 
                                         <SelectInput
                                             label="Country / Region"
-                                            options={countries.map(country => ({ value: country.value, label: country.label }))}
+                                            options={countries.map(
+                                                (country) => ({
+                                                    value: country.value,
+                                                    label: country.label,
+                                                })
+                                            )}
                                             value={filters.country_id}
-                                            onChange={(selectedOptions) => handleFilterChange('country_id', selectedOptions)}
+                                            onChange={(selectedOptions) =>
+                                                handleFilterChange(
+                                                    "country_id",
+                                                    selectedOptions
+                                                )
+                                            }
                                         />
 
                                         <SelectInput
                                             label="Status"
-                                            options={statuses.map(status => ({ value: status.value, label: status.label }))}
+                                            options={statuses.map((status) => ({
+                                                value: status.value,
+                                                label: status.label,
+                                            }))}
                                             value={filters.status_id}
-                                            onChange={(selectedOptions) => handleFilterChange('status_id', selectedOptions)}
+                                            onChange={(selectedOptions) =>
+                                                handleFilterChange(
+                                                    "status_id",
+                                                    selectedOptions
+                                                )
+                                            }
                                         />
 
                                         <Input

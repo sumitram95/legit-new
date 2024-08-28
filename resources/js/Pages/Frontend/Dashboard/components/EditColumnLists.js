@@ -52,16 +52,16 @@ const EditColumnLists = [
         title: "Description",
         status: false
     },
-    {
-        name: "link_to_announcement",
-        title: "Link to announcement",
-        status: false
-    },
-    {
-        name: "link_to_whitepaper",
-        title: "Link to whitepaper",
-        status: false
-    },
+    // {
+    //     name: "link_to_announcement",
+    //     title: "Link to announcement",
+    //     status: false
+    // },
+    // {
+    //     name: "link_to_whitepaper",
+    //     title: "Link to whitepaper",
+    //     status: false
+    // },
 ];
 
 export default EditColumnLists;
