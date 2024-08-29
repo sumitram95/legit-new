@@ -15,12 +15,12 @@ export default function NewsCard({ newsLists = [] }) {
                 >
                     {newsList.thumbnail?.path ? (
                         <div className="lg:max-w-48">
-                            <img className="w-full h-full" src={`/storage/${newsList.thumbnail?.path}`} alt="" srcset="" />
+                            <img className="w-full h-full object-cover" src={`/storage/${newsList.thumbnail?.path}`} alt="" srcset="" />
 
                         </div>
                     ) : (
                         <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden flex justify-center items-center">
-                            <img src={NoImage} alt="" srcset="" className="h-[100px] w-[80px]" />
+                            <img src={NoImage} alt="" srcset="" className="h-[100px] w-[80px] object-cover" />
                         </div>
                     )}
 
