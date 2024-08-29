@@ -21,6 +21,8 @@ const News = ({ news }) => {
         arrows: false,
     };
 
+
+
     return (
         <div className="bg-white h-fit pt-[16px] px-[15px] pb-[60px] rounded-md w-full mt-6">
             <div className="flex justify-between items-center border-b-2 pb-4">

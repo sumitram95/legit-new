@@ -72,51 +72,51 @@ body {
     text-decoration: none;
 }
 
-.header nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 4px;
-    height: 3.5px;
-    background-color: rgba(217, 233, 244, 0.636);
-    border-radius: 3.5px;
-    transition: transform 0.3s ease;
-    transform: scaleX(0);
-    transform-origin: right;
-}
+// .header nav a::after {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     right: 0;
+//     bottom: 4px;
+//     height: 3.5px;
+//     background-color: rgba(217, 233, 244, 0.636);
+//     border-radius: 3.5px;
+//     transition: transform 0.3s ease;
+//     transform: scaleX(0);
+//     transform-origin: right;
+// }
 
-.header nav a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
+// .header nav a:hover::after {
+//     transform: scaleX(1);
+//     transform-origin: left;
+// }
 
-.header nav a:hover::before {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 4px;
-    height: 3.5px;
-    width: 3.5px;
-    background-color: $status-launched-primary-color;
-    border-radius: 3.5px;
-}
+// .header nav a:hover::before {
+//     content: "";
+//     position: absolute;
+//     right: 0;
+//     bottom: 4px;
+//     height: 3.5px;
+//     width: 3.5px;
+//     background-color: $status-launched-primary-color;
+//     border-radius: 3.5px;
+// }
 
-.nav-active::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 4px;
-    height: 3.5px;
-    background-color: rgba(217, 233, 244, 0.636);
-    border-radius: 3.5px;
-    transition: transform 0.3s ease;
-    transform: scaleX(0);
-    transform-origin: right;
-    transform: scaleX(1);
-    transform-origin: left;
-}
+// .nav-active::before {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     right: 0;
+//     bottom: 4px;
+//     height: 3.5px;
+//     background-color: rgba(217, 233, 244, 0.636);
+//     border-radius: 3.5px;
+//     transition: transform 0.3s ease;
+//     transform: scaleX(0);
+//     transform-origin: right;
+//     transform: scaleX(1);
+//     transform-origin: left;
+// }
 
 // Fonts
 $default-font-color: #0b2041;
