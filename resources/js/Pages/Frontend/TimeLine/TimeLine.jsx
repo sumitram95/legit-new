@@ -92,7 +92,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             key={log.id}
                                                                         >
                                                                             <div
-                                                                                class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                                                class="bg-white border border-gray-200 rounded-lg shadow">
                                                                                 <h5
                                                                                     class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 status-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
@@ -122,7 +122,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             key={log.id}
                                                                         >
                                                                             <div
-                                                                                class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                                                class="bg-white border border-gray-200 rounded-lg shadow">
                                                                                 <h5
                                                                                     class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 add-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
@@ -151,7 +151,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             key={log.id}
                                                                         >
                                                                             <div
-                                                                                class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                                                class="bg-white border border-gray-200 rounded-lg shadow ">
                                                                                 <h5
                                                                                     class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 update-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
@@ -180,7 +180,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             key={log.id}
                                                                         >
                                                                             <div
-                                                                                class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                                                class="bg-white border border-gray-200 rounded-lg shadow">
                                                                                 <h5
                                                                                     class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-medium leading-tight dark:border-white/10 delete-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}

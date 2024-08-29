@@ -11,7 +11,8 @@ const COLORS = {
     whitepaper: "#F4F8FC",
     pilot: "#F1CDB2",
     development: "#AFA3DA",
-    launched: "#67A8EF"
+    launched: "#667A91"
+    // launched: "#67A8EF"
 };
 
 export function MapChart({
