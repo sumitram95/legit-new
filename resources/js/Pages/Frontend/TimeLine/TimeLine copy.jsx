@@ -6,7 +6,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
     return (
         <AppLayout>
             <Head title="Timeline" />
-            <div className="block md:relative top-[-50px] w-full ">
+            <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="md:border rounded-md w-full md:bg-white py-5">
                     <div className=" md:border-b-2 pb-4 px-5 flex justify-between items-center">
                         <div>

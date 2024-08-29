@@ -16,7 +16,7 @@ export default function News({ news }) {
     return (
         <AppLayout>
             <Head title="News" />
-            <div className="relative top-[-50px] flex justify-center">
+            <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="rounded-md w-3/4 bg-white py-5">
                     <div className="" style={{ minHeight: "500px" }}>
                         <div className="text-gray-900 font-bold text-xl mb-2 px-5">

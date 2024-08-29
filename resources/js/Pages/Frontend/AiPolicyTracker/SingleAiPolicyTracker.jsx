@@ -15,7 +15,7 @@ export default function SingleAiPolicyTracker({
     return (
         <AppLayout>
             <Head title={name} />
-            <div className="relative top-[-50px]">
+            <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="w-full flex gap-8">
                     <div className="w-1/3">
                         <div className="">

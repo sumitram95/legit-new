@@ -114,7 +114,7 @@ export default function WatchList({
     return (
         <AppLayout>
             <Head title="Watch List" />
-            <div className="content-wrapper relative top-[-60px]">
+            <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="flex gap-[30px]">
                     <div className="w-full lg:w-[83.33%]">
                         <div className="w-full border rounded-md bg-white">

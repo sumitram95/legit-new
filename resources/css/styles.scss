@@ -54,13 +54,19 @@ body {
     padding-bottom: 80px;
 }
 
+@media only screen and (max-width: 767px) {
+    .header {
+        padding-bottom: 0.8125rem;
+    }
+}
+
 .header-logo {
     width: fit-content;
     height: 30px;
 }
 
 .header nav a {
-    color: #ffffff;
+    // color: #ffffff;
     position: relative;
     display: inline-block;
     text-decoration: none;
@@ -145,7 +151,7 @@ $default-font-color: #0b2041;
     // max-height: 100vh;
 }
 
-#chartdiv{
+#chartdiv {
     min-height: 500px !important;
 }
 
@@ -273,7 +279,7 @@ $input-min-height: 46px;
 // Card
 $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
 
-.custom-input{
+.custom-input {
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -391,9 +397,6 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
     color: #d53e45;
 }
 
-.text-dark{
+.text-dark {
     color: #0b2041;
 }
-
-
-
