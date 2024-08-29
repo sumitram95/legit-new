@@ -3,8 +3,10 @@ import Input from "@/Components/Input";
 import Select from "@/Components/Select";
 import { Head, useForm } from "@inertiajs/react";
 import React from "react";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import ImageUpload from "@/Components/ImageUpload";
+import { useState } from "react";
 
 export default function Edit({
     countries = [],
@@ -14,15 +16,20 @@ export default function Edit({
     updatedData = {},
     onClose,
 }) {
-    const defaultDate = new Date().toISOString().substring(0, 10);
+    const defaultDate = new Date(updatedData.upload_date).toISOString().substring(0, 10);
+
+    const [thumbnails, setThumbnails] = useState([]);
 
     const formAiPolicy = useForm({
-        title: updatedData.title || '',
-        status_id: updatedData.status_id || '',
-        policy_tracker_id: updatedData.policy_tracker_id || '',
-        upload_date: updatedData.upload_date || defaultDate,
-        description: updatedData.description || '',
+        title: updatedData.title || "",
+        status_id: updatedData.status_id || "",
+        policy_tracker_id: updatedData.policy_tracker_id || "",
+        upload_date: defaultDate,
+        description: updatedData.description || "",
+        thumbnail: "",
     });
+
+    console.log('upload date : ', updatedData.upload_date )
 
     const handleChange = (e) => {
         if (e && e.target) {
@@ -33,10 +40,17 @@ export default function Edit({
         }
     };
 
+    const handleImageChange = (images, type) => {
+        if (type === "thumbnail") {
+            setThumbnails(images);
+            formAiPolicy.setData("thumbnail", images);
+        }
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         onClose();
-        formAiPolicy.put(route("backend.news.update", aiId));
+        formAiPolicy.post(route("backend.news.update", aiId));
     };
 
     return (
@@ -65,8 +79,7 @@ export default function Edit({
                         }
                         name="status_id"
                         value={categories.find(
-                            (list) =>
-                                list.value === formAiPolicy.data.status_id
+                            (list) => list.value === formAiPolicy.data.status_id
                         )}
                         label="Category"
                         options={categories}
@@ -83,7 +96,8 @@ export default function Edit({
                         name="policy_tracker_id"
                         value={aiPolicyTrackers.find(
                             (list) =>
-                                list.value === formAiPolicy.data.policy_tracker_id
+                                list.value ===
+                                formAiPolicy.data.policy_tracker_id
                         )}
                         label="AI Policy Tracker"
                         options={aiPolicyTrackers}
@@ -97,6 +111,18 @@ export default function Edit({
                         htmlFor="upload_date"
                         label="Created At"
                         type="date"
+                    />
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-2 mt-5">
+                    <div className="bg-red-50 w-44 h-44"></div>
+
+                    <ImageUpload
+                        onImageChange={(images) =>
+                            handleImageChange(images, "thumbnail")
+                        }
+                        name="thumbnail"
+                        title="Drag & drop thumbnail"
                     />
                 </div>
 
