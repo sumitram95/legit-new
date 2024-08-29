@@ -47,11 +47,11 @@ class NewsController extends Controller
                 ];
             });
 
-        $tableData = News::with(['thumbnail', 'status','policyTracker'])
+        $tableData = News::with(['thumbnail', 'status', 'policyTracker'])
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
-            // dd($tableData);
+        // dd($tableData);
 
         return Inertia::render("Backend/News/Index", [
             'countries' => $countries,
@@ -106,7 +106,7 @@ class NewsController extends Controller
     public function updateData($id)
     {
         try {
-            $news = News::find($id);
+            $news = News::with('thumbnail')->find($id);
             if (!$news) {
 
                 return to_route('backend.news.index')->with('error', 'Not founded');
@@ -127,13 +127,11 @@ class NewsController extends Controller
             'upload_date' => 'required|date',
             'description' => 'sometimes|nullable|string',
             'policy_tracker_id' => 'required|string',
-            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'thumbnail.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             // 'future_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
 
-
-        dd($validate);
 
         try {
             $news = News::find($id);
@@ -141,9 +139,22 @@ class NewsController extends Controller
                 return to_route('backend.news.index')->with('error', 'Not founded');
             }
 
-            if ($request->hasFile('thumbnails')) {
-                $thumbnails = $request->thumbnails[0];
-                $this->fileUpload($thumbnails, "thumbnails", $news);
+            if ($request->hasFile('thumbnail')) {
+                $thumbnails = $request->thumbnail[0];
+                // $this->fileUpload($thumbnails, "thumbnails", $news);
+
+                $fileName = time() . '-' . $thumbnails->getClientOriginalName();
+
+                $filePath = $thumbnails->storeAs("thumbnails", $fileName, 'public');
+
+                // Get the path relative to storage/
+                $relativePath = str_replace('public/', '', $filePath);
+
+                $news->thumbnail()->update([
+                    'type' => $thumbnails->getMimeType(),
+                    'name' => $thumbnails->getClientOriginalName(),
+                    'path' => $relativePath,
+                ]);
             }
 
 

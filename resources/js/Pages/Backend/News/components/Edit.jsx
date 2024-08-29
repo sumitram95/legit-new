@@ -7,6 +7,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import ImageUpload from "@/Components/ImageUpload";
 import { useState } from "react";
+import NoImg from "@/assets/images/no-image/no-image.png";
 
 export default function Edit({
     countries = [],
@@ -16,7 +17,9 @@ export default function Edit({
     updatedData = {},
     onClose,
 }) {
-    const defaultDate = new Date(updatedData.upload_date).toISOString().substring(0, 10);
+    const defaultDate = new Date(updatedData.upload_date)
+        .toISOString()
+        .substring(0, 10);
 
     const [thumbnails, setThumbnails] = useState([]);
 
@@ -29,7 +32,7 @@ export default function Edit({
         thumbnail: "",
     });
 
-    console.log('upload date : ', updatedData.upload_date )
+    console.log("upload date : ", updatedData);
 
     const handleChange = (e) => {
         if (e && e.target) {
@@ -115,7 +118,23 @@ export default function Edit({
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2 mt-5">
-                    <div className="bg-red-50 w-44 h-44"></div>
+                    {updatedData.thumbnail?.path.length > 0 ? (
+                        <div className="border overflow-hidden w-44 h-44">
+                            <img
+                                src={`/storage/${updatedData.thumbnail?.path}`}
+                                alt="okkkkk"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    ) : (
+                        <div className="border overflow-hidden w-44 h-44">
+                            <img
+                                src={NoImg}
+                                alt="nooooooo"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    )}
 
                     <ImageUpload
                         onImageChange={(images) =>
