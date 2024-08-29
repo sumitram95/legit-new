@@ -273,6 +273,18 @@ $input-min-height: 46px;
 // Card
 $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
 
+.custom-input{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 14px;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 2px;
+    margin-right: 9px;
+}
+
 .cancelled {
     color: $status-cancelled-secondary-color;
     background-color: $status-cancelled-secondary-color;
@@ -382,3 +394,6 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
 .text-dark{
     color: #0b2041;
 }
+
+
+

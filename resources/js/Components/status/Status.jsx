@@ -11,7 +11,7 @@ export default function Status({ statuses, statusState, handleStatusChange1, han
                         id={status.value}
                         checked={statusState[status.value] || false}
                         onChange={(e) => handleStatusChange1(status.value, e.target.checked)}
-                        className="rounded focus:ring-0"
+                        className={`rounded focus:ring-transparent focus:border-0 custom-input ${status.label}`}
                     />
                     <label htmlFor={status.value} className="capitalize" style={{ fontSize: '12px' }}>
                         {status.label}
