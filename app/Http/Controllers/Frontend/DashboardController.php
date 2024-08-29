@@ -130,4 +130,43 @@ class DashboardController extends Controller
             'total' => $filteredData->total(),
         ]);
     }
+
+
+    // In your Controller
+    public function updateStatus(Request $request)
+    {
+
+        return $request->all();
+
+        $statuses = $request->query('statuses', []);
+        return $statuses;
+        // Validate the request
+        $validated = $request->validate([
+            'status_id' => 'required|integer|exists:statuses,id',
+            'is_checked' => 'required|boolean',
+        ]);
+
+        // Retrieve the status and update its value
+        $statusId = $validated['status_id'];
+        $isChecked = $validated['is_checked'];
+
+        // Example logic for updating a status
+        // Assuming you have a Status model and a status table
+        $status = Status::find($statusId);
+
+        if ($status) {
+            $status->is_checked = $isChecked;
+            $status->save();
+
+            // Optionally, return the updated status or other relevant data
+            return response()->json([
+                'message' => 'Status updated successfully',
+                'status' => $status,
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Status not found',
+            ], 404);
+        }
+    }
 }

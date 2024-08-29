@@ -24,6 +24,8 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
 import PaginationPage from "@/Components/table/PaginationPage";
+import StatusLists from "@/Components/status/StatusLists";
+
 
 export default function Dashboard({
     news,
@@ -31,23 +33,22 @@ export default function Dashboard({
     countries,
     statuses,
     tableData: initialTableData,
-    countrywithStatus: initialCountrywithStatus,
     aiPolicyLastUpdate,
     newsLastUpdate,
+    countrywithStatus: initialCountrywithStatus,
     countryWithAiPolicies
 }) {
     const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
+    const [statusState, setStatusState] = useState({});
+
+    // console.log(countrywithStatus);
     useEffect(() => {
         // Update the state if the initialTableData prop changes
         setTableData(initialTableData);
     }, [initialTableData]);
 
-    // Callback function to update countrywithStatus
-    const handleStatusChange = (updatedCountrywithStatus) => {
-        setCountrywithStatus(updatedCountrywithStatus);
-    };
 
 
     const [filters, setFilters] = useState({
@@ -102,6 +103,8 @@ export default function Dashboard({
             console.error("Error fetching filtered data:", error);
         }
     };
+
+
 
     //****************** Clear Filter ******************* */
     const handleClearFilters = () => {
@@ -173,6 +176,75 @@ export default function Dashboard({
 
     useEffect(() => { }, [Columns]);
 
+
+
+
+    ///////////////
+    // Function to handle status change
+
+    const handleStatusChange1 = async (statusId, isChecked) => {
+        try {
+            // Update the local state first
+            setStatusState(prevState => {
+                const updatedState = {
+                    ...prevState,
+                    [statusId]: isChecked
+                };
+
+                // Prepare the query parameters by filtering out the boolean values
+                const filteredState = Object.keys(updatedState).reduce((acc, key) => {
+                    // Add only those statuses that are checked (or true)
+                    if (updatedState[key]) {
+                        acc[key] = true;
+                    }
+                    return acc;
+                }, {});
+
+                // Prepare the query parameters
+                const queryParams = new URLSearchParams({
+                    status_state: JSON.stringify(filteredState) // Pass the filtered state as a JSON string
+                }).toString();
+
+                // Fetch CSRF token
+                const csrfMetaTag = document.querySelector('meta[name="csrf-token"]');
+                const csrfToken = csrfMetaTag ? csrfMetaTag.getAttribute('content') : '';
+
+                // Perform the request with the updated state
+                axios.get(`${route('frontend.dashboard.updateStatus')}?${queryParams}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken,
+                    },
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        console.log(response.data);
+                        const updatedCountrywithStatus = response.data;
+                        setCountrywithStatus(updatedCountrywithStatus); // Update the state with the new data
+                    } else {
+                        alert('Failed to update status');
+                        console.error("Failed to update status");
+                    }
+                })
+                .catch(error => {
+                    alert('Failed to update status');
+                    console.error("Error updating status:", error);
+                });
+
+                // Return the updated state
+                return updatedState;
+            });
+        } catch (error) {
+            alert('Failed to update status');
+            console.error("Error updating status:", error);
+        }
+    };
+
+
+
+
+
+
     return (
         <AppLayout>
             <Head title="Dashboard" />
@@ -204,12 +276,47 @@ export default function Dashboard({
                                 </div>
 
                                 {/* ********************** Status Component ********************** */}
+                                {/* ********************** Status Component ********************** */}
+                                {/* ********************** Status Component ********************** */}
                                 <div className="flex justify-center items-center">
                                     {/* <Status countrywithStatus={countrywithStatus} setCountrywithStatus={setCountrywithStatus} /> */}
-                                    <Status
+                                    {/* <Status
                                         countrywithStatus={countrywithStatus}
                                         setCountrywithStatus={handleStatusChange} // Pass the callback function
-                                    />
+                                    /> */}
+
+                                    <div className="flex gap-5 border p-2 rounded-md flex-wrap">
+
+
+                                        {StatusLists.map((status, index) => (
+                                            <div className="flex gap-2 items-center" key={index}>
+                                                <input
+                                                    type="checkbox"
+                                                    id={status}
+                                                    checked={statusState[status] || false}
+                                                    onChange={(e) => handleStatusChange1(status, e.target.checked)}
+                                                    className="rounded focus:ring-0"
+                                                />
+                                                <label htmlFor={status} className="capitalize" style={{ fontSize: '12px' }}>
+                                                    {status} {/* Assuming `status` has a `label` property */}
+                                                </label>
+                                            </div>
+                                        ))}
+
+
+
+
+                                        <div>
+                                            <button
+                                                type="button"
+                                                className="text-blue-400 hover:underline"
+
+                                                style={{ fontSize: '12px' }}
+                                            >
+                                                Show all
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="flex gap-3 lg:hidden">
                                     {visibleDiv && (

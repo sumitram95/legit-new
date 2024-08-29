@@ -5,27 +5,7 @@ export default function Status({ countrywithStatus: initialCountrywithStatus, se
     const [selectedStatuses, setSelectedStatuses] = useState([]);
 
     const handleCheckboxChange = (status) => {
-        let updatedStatuses;
-
-        if (selectedStatuses.includes(status)) {
-            // If the status is already selected, remove it
-            updatedStatuses = selectedStatuses.filter(s => s !== status);
-        } else {
-            // Otherwise, add the new status to the list
-            updatedStatuses = [...selectedStatuses, status];
-        }
-
-        setSelectedStatuses(updatedStatuses);
-
-        // Update countrywithStatus and notify parent
-        const updatedCountrywithStatus = Object.fromEntries(
-            Object.entries(initialCountrywithStatus).map(([countryCode, currentStatus]) => [
-                countryCode,
-                updatedStatuses.includes(currentStatus) ? currentStatus : null, // Set to null if not selected
-            ]).filter(([_, status]) => status !== null) // Filter out entries with null status
-        );
-
-        setCountrywithStatus(updatedCountrywithStatus); // Notify parent of status update
+       alert(status);
     };
 
     return (
@@ -49,10 +29,7 @@ export default function Status({ countrywithStatus: initialCountrywithStatus, se
                 <button
                     type="button"
                     className="text-blue-400 hover:underline"
-                    onClick={() => {
-                        setSelectedStatuses([]); // Reset selected statuses
-                        setCountrywithStatus(initialCountrywithStatus); // Reset to initial status
-                    }}
+
                     style={{ fontSize: '12px' }}
                 >
                     Show all
