@@ -74,7 +74,15 @@ export function MapChart({
         polygonTemplate.tooltipPosition = "fixed";
 
         // Zoom control
-        chart.zoomControl = new am4maps.ZoomControl();
+        let zoomControl = new am4maps.ZoomControl();
+        chart.zoomControl = zoomControl;
+
+        // Position the zoom control at the top right
+        zoomControl.layout = "vertical";
+        zoomControl.valign = "top";
+        zoomControl.align = "right";
+        zoomControl.marginRight = 15; // Adjust as needed
+        zoomControl.marginTop = 15;   // Adjust as needed
 
         // Set URLs in tooltips and dynamically generate the HTML for policy links
         polygonTemplate.adapter.add("tooltipHTML", (html, target) => {

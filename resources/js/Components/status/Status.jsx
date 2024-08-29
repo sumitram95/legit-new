@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import StatusLists from "./StatusLists";
 
 export default function Status({ statuses, statusState, handleStatusChange1, handleShowAll }) {
     return (
