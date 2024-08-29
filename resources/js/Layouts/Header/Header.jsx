@@ -32,10 +32,11 @@ const NavBarLists = {
 export function Header() {
     return (
         <header className="header">
-            <div className="flex justify-between ">
-                <HeaderLogo />
+            {/* <div className="flex justify-between "> */}
+                {/* <HeaderLogo /> */}
                 <NavBar NavBarLists={NavBarLists} />
-            </div>
+
+            {/* </div> */}
         </header>
     );
 }
