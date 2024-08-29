@@ -1,40 +1,32 @@
 import React, { useState } from "react";
 import StatusLists from "./StatusLists";
 
-export default function Status({ countrywithStatus: initialCountrywithStatus, setCountrywithStatus }) {
-    const [selectedStatuses, setSelectedStatuses] = useState([]);
-
-    const handleCheckboxChange = (status) => {
-       alert(status);
-    };
-
+export default function Status({ statuses, statusState, handleStatusChange1, handleShowAll }) {
     return (
         <div className="flex gap-5 border p-2 rounded-md flex-wrap">
-            {StatusLists.map((status, index) => (
+            {statuses.map((status, index) => (
                 <div className="flex gap-2 items-center" key={index}>
                     <input
                         type="checkbox"
-                        id={status}
-                        checked={selectedStatuses.includes(status)}
-                        onChange={() => handleCheckboxChange(status)}
+                        id={status.value}
+                        checked={statusState[status.value] || false}
+                        onChange={(e) => handleStatusChange1(status.value, e.target.checked)}
                         className="rounded focus:ring-0"
                     />
-                    <label htmlFor={status} className="capitalize" style={{ fontSize: '12px' }}>
-                        {status}
+                    <label htmlFor={status.value} className="capitalize" style={{ fontSize: '12px' }}>
+                        {status.label}
                     </label>
                 </div>
             ))}
 
-            <div>
-                <button
-                    type="button"
-                    className="text-blue-400 hover:underline"
-
-                    style={{ fontSize: '12px' }}
-                >
-                    Show all
-                </button>
-            </div>
+            <button
+                type="button"
+                className="text-blue-400 hover:underline"
+                style={{ fontSize: '12px' }}
+                onClick={handleShowAll} // Add onClick handler
+            >
+                Show all
+            </button>
         </div>
     );
 }

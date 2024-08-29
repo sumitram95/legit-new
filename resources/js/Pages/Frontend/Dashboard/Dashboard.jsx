@@ -293,43 +293,16 @@ export default function Dashboard({
                                 </div>
 
                                 {/* ********************** Status Component ********************** */}
-                                {/* ********************** Status Component ********************** */}
-                                {/* ********************** Status Component ********************** */}
                                 <div className="flex justify-center items-center">
-                                    {/* <Status countrywithStatus={countrywithStatus} setCountrywithStatus={setCountrywithStatus} /> */}
-                                    {/* <Status
-                                        countrywithStatus={countrywithStatus}
-                                        setCountrywithStatus={handleStatusChange} // Pass the callback function
-                                    /> */}
-
-                                    <div className="flex gap-5 border p-2 rounded-md flex-wrap">
-
-                                        {/* {JSON.stringify(statuses)} */}
-                                        {statuses.map((status, index) => (
-                                            <div className="flex gap-2 items-center" key={index}>
-                                                <input
-                                                    type="checkbox"
-                                                    id={status.value}
-                                                    checked={statusState[status.value] || false}
-                                                    onChange={(e) => handleStatusChange1(status.value, e.target.checked)}
-                                                    className="rounded focus:ring-0"
-                                                />
-                                                <label htmlFor={status.value} className="capitalize" style={{ fontSize: '12px' }}>
-                                                    {status.label}
-                                                </label>
-                                            </div>
-                                        ))}
-
-                                        <button
-                                            type="button"
-                                            className="text-blue-400 hover:underline"
-                                            style={{ fontSize: '12px' }}
-                                            onClick={handleShowAll} // Add onClick handler
-                                        >
-                                            Show all
-                                        </button>
-                                    </div>
+                                    <Status
+                                        statuses={statuses}
+                                        statusState={statusState}
+                                        handleStatusChange1={handleStatusChange1}
+                                        handleShowAll={handleShowAll}
+                                    />
                                 </div>
+
+                                {/* **********************  Clear filters ********************** */}
                                 <div className="flex gap-3 lg:hidden">
                                     {visibleDiv && (
                                         <button
