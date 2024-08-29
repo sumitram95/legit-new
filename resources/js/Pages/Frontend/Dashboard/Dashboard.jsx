@@ -223,20 +223,20 @@ export default function Dashboard({
                             setCountrywithStatus(updatedCountrywithStatus); // Update the state with the new data
 
                         } else {
-                            alert('Failed to update status');
-                            console.error("Failed to update status");
+                            // alert('Failed to update status');
+                            // console.error("Failed to update status");
                         }
                     })
                     .catch(error => {
-                        alert('Failed to update status');
-                        console.error("Error updating status:", error);
+                        // alert('Failed to update status');
+                        // console.error("Error updating status:", error);
                     });
 
                 // Return the updated state
                 return updatedState;
             });
         } catch (error) {
-            alert('Failed to update status');
+            // alert('Failed to update status');
             console.error("Error updating status:", error);
         }
     };
