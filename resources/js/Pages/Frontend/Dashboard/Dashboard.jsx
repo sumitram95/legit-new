@@ -193,18 +193,14 @@ export default function Dashboard({
                 };
 
                 // Prepare the query parameters by filtering out the boolean values
-                const filteredState = Object.keys(updatedState).reduce((acc, key) => {
-                    // Add only those statuses that are checked (or true)
-                    if (updatedState[key]) {
-                        acc[key] = true;
-                    }
-                    return acc;
-                }, {});
+                // Prepare the query parameters by filtering out the boolean values
+                const filteredState = Object.keys(updatedState).filter(key => updatedState[key]);
 
-                // Prepare the query parameters
-                const queryParams = new URLSearchParams({
-                    status_state: JSON.stringify(filteredState) // Pass the filtered state as a JSON string
-                }).toString();
+                // Convert the filteredState into query parameters for array format
+                const queryParams = new URLSearchParams();
+                filteredState.forEach(statusId => {
+                    queryParams.append('status_state[]', statusId);
+                });
 
                 // Fetch CSRF token
                 const csrfMetaTag = document.querySelector('meta[name="csrf-token"]');

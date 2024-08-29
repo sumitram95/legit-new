@@ -135,26 +135,14 @@ class DashboardController extends Controller
     // In your Controller
     public function updateStatus(Request $request)
     {
-
-        // $statuses =  $request->status_state;
-        $statuses = $request->input('status_state', []);
+        $statusIds = $request->input('status_state', '[]');
 
 
-        return $statuses;
-
+        // return $request->input('status_state');
         $aiPolicies = AiPolicyTracker::whereIn('status_id', $statusIds)->get();
-
         return $aiPolicies;
 
 
-
-        // Retrieve the status and update its value
-        $statusId = $validated['status_id'];
-        $isChecked = $validated['is_checked'];
-
-        // Example logic for updating a status
-        // Assuming you have a Status model and a status table
-        $status = Status::find($statusId);
 
         if ($status) {
             $status->is_checked = $isChecked;
