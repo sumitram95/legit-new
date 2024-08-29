@@ -42,7 +42,7 @@ class DashboardController extends Controller
             $STATUS_MAP[$countrySymbol] = $tracker->status->name;
         }
         $data['countrywithStatus'] = $STATUS_MAP;
-        $data['countrywithMap'] = $URL_MAP;
+
 
         //-- get individual country
         $data['countrywiseAiPolicyTracker'] = Country::query()
@@ -60,9 +60,6 @@ class DashboardController extends Controller
             }
         }
         $data['countryWithAiPolicies'] = $COUNTRY_WITH_AIPOLICYTRACKER_MAP;
-
-        // dd($data['countryWithAiPolicies']);
-
 
         //-- End Ai Policy tracker country with status
         $data['aiPolicies'] = AiPolicyTracker::select('id as value', 'ai_policy_name as label')->get();
@@ -133,5 +130,30 @@ class DashboardController extends Controller
             'to' => $filteredData->lastItem(),
             'total' => $filteredData->total(),
         ]);
+    }
+
+
+    // In your Controller
+    public function updateStatus(Request $request)
+    {
+        $statusIds = $request->input('status_state', '[]');
+
+        // return [
+        //     'CA' => 'research',
+        //     'US' => 'research',
+        // ];
+
+        //-- Ai Policy tracker country with status and Link
+        $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::whereIn('status_id', $statusIds)->with(['country', 'status'])->get();
+        $URL_MAP = [];
+        $STATUS_MAP = [];
+        foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {
+            $countrySymbol = $tracker->country->symbol;
+            $URL_MAP[$countrySymbol] = $tracker->whitepaper_document_link;
+            $STATUS_MAP[$countrySymbol] = $tracker->status->name;
+        }
+        $data['countrywithStatus'] = $STATUS_MAP;
+
+        return ($data['countrywithStatus']);
     }
 }

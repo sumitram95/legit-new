@@ -25,33 +25,34 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
 import PaginationPage from "@/Components/table/PaginationPage";
 
+
+
 export default function Dashboard({
     news,
     aiPolicies,
     countries,
     statuses,
     tableData: initialTableData,
-    countrywithStatus: initialCountrywithStatus,
-    countrywithMap,
     aiPolicyLastUpdate,
     newsLastUpdate,
+    countrywithStatus: initialCountrywithStatus,
     countryWithAiPolicies
 }) {
-    const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
+    var [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
-    // console.log(countrywithStatus);
+    const [statusState, setStatusState] = useState([]);
 
+    // countrywithStatus = [];
+
+    console.log(countrywithStatus);
     useEffect(() => {
         // Update the state if the initialTableData prop changes
         setTableData(initialTableData);
     }, [initialTableData]);
 
-    // Callback function to update countrywithStatus
-    const handleStatusChange = (updatedCountrywithStatus) => {
-        setCountrywithStatus(updatedCountrywithStatus);
-    };
 
+    // console.log(statuses);
 
     const [filters, setFilters] = useState({
         AI_Policy_Name: [],
@@ -105,6 +106,8 @@ export default function Dashboard({
             console.error("Error fetching filtered data:", error);
         }
     };
+
+
 
     //****************** Clear Filter ******************* */
     const handleClearFilters = () => {
@@ -176,6 +179,91 @@ export default function Dashboard({
 
     useEffect(() => { }, [Columns]);
 
+
+
+
+    ///////////////
+    // Function to handle status change
+
+    const handleStatusChange1 = async (statusId, isChecked) => {
+        try {
+            // Update the local state first
+            setStatusState(prevState => {
+                const updatedState = {
+                    ...prevState,
+                    [statusId]: isChecked
+                };
+
+                // Prepare the query parameters by filtering out the boolean values
+                // Prepare the query parameters by filtering out the boolean values
+                const filteredState = Object.keys(updatedState).filter(key => updatedState[key]);
+
+                // Convert the filteredState into query parameters for array format
+                const queryParams = new URLSearchParams();
+                filteredState.forEach(statusId => {
+                    queryParams.append('status_state[]', statusId);
+                });
+
+                // Fetch CSRF token
+                const csrfMetaTag = document.querySelector('meta[name="csrf-token"]');
+                const csrfToken = csrfMetaTag ? csrfMetaTag.getAttribute('content') : '';
+
+                // Perform the request with the updated state
+                axios.get(`${route('frontend.dashboard.updateStatus')}?${queryParams}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken,
+                    },
+                })
+                    .then(response => {
+                        if (response.status === 200) {
+                            // i want to update countrywithStatus
+                            const updatedCountrywithStatus = response.data;
+                            // console.log(updatedCountrywithStatus);
+                            setCountrywithStatus(updatedCountrywithStatus); // Update the state with the new data
+
+                        } else {
+
+                            // alert('Failed to update status');
+                            // console.error("Failed to update status");
+                        }
+                    })
+                    .catch(error => {
+                        setCountrywithStatus(initialCountrywithStatus);
+
+                        // console.error("Error updating status:", error);
+                    });
+
+                // Return the updated state
+                return updatedState;
+            });
+        } catch (error) {
+            // alert('Failed to update status');
+            console.error("Error updating status:", error);
+        }
+    };
+
+
+    // Function to handle the "Show all" button click
+    const handleShowAll = () => {
+        const allCheckedState = statuses.reduce((acc, status) => {
+            acc[status.value] = true; // Set all checkboxes to true (checked)
+            return acc;
+        }, {});
+
+        // Update the status state for all checkboxes
+        setStatusState(allCheckedState);
+
+        // Optionally, trigger the handleStatusChange1 for each status to reflect this change in the backend
+        statuses.forEach(status => {
+            handleStatusChange1(status.value, true);
+        });
+    };
+
+
+
+
+
     return (
         <AppLayout>
             <Head title="Dashboard" />
@@ -208,12 +296,15 @@ export default function Dashboard({
 
                                 {/* ********************** Status Component ********************** */}
                                 <div className="flex justify-center items-center">
-                                    {/* <Status countrywithStatus={countrywithStatus} setCountrywithStatus={setCountrywithStatus} /> */}
                                     <Status
-                                        countrywithStatus={countrywithStatus}
-                                        setCountrywithStatus={handleStatusChange} // Pass the callback function
+                                        statuses={statuses}
+                                        statusState={statusState}
+                                        handleStatusChange1={handleStatusChange1}
+                                        handleShowAll={handleShowAll}
                                     />
                                 </div>
+
+                                {/* **********************  Clear filters ********************** */}
                                 <div className="flex gap-3 lg:hidden">
                                     {visibleDiv && (
                                         <button
@@ -261,7 +352,7 @@ export default function Dashboard({
                             <div className="mt-5 px-4 map-chart-wrapper">
                                 <MapChart
                                     countrywithStatus={countrywithStatus}
-                                    countrywithMap={countrywithMap}
+
                                     countryWithAiPolicies={countryWithAiPolicies}
                                 />
                             </div>

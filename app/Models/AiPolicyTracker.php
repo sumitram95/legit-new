@@ -43,7 +43,7 @@ class AiPolicyTracker extends Model
 
     public function getFormattedCreatedAtAttribute()
     {
-        return Carbon::parse($this->created_at)->format('M d, Y');
+        return Carbon::parse($this->announcement_year)->format('M d, Y');
     }
 
     public function news(): HasMany

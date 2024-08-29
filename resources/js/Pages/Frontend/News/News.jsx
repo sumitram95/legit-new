@@ -76,7 +76,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                 <div className="flex gap-[30px]">
                     <div className="w-full lg:w-[83.33%]">
                         <div className="w-full border rounded-md bg-white">
-                            <div className="border-b-2 pb-4 px-5 flex justify-between items-center">
+                            <div className="border-b-2  p-[16px] pb-4 flex justify-between items-center">
                                 <div>
                                     <p className="font-bold text-primary text-lg">
                                         News

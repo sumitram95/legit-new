@@ -1,63 +1,31 @@
 import React, { useState } from "react";
-import StatusLists from "./StatusLists";
 
-export default function Status({ countrywithStatus: initialCountrywithStatus, setCountrywithStatus }) {
-    const [selectedStatuses, setSelectedStatuses] = useState([]);
-
-    const handleCheckboxChange = (status) => {
-        let updatedStatuses;
-
-        if (selectedStatuses.includes(status)) {
-            // If the status is already selected, remove it
-            updatedStatuses = selectedStatuses.filter(s => s !== status);
-        } else {
-            // Otherwise, add the new status to the list
-            updatedStatuses = [...selectedStatuses, status];
-        }
-
-        setSelectedStatuses(updatedStatuses);
-
-        // Update countrywithStatus and notify parent
-        const updatedCountrywithStatus = Object.fromEntries(
-            Object.entries(initialCountrywithStatus).map(([countryCode, currentStatus]) => [
-                countryCode,
-                updatedStatuses.includes(currentStatus) ? currentStatus : null, // Set to null if not selected
-            ]).filter(([_, status]) => status !== null) // Filter out entries with null status
-        );
-
-        setCountrywithStatus(updatedCountrywithStatus); // Notify parent of status update
-    };
-
+export default function Status({ statuses, statusState, handleStatusChange1, handleShowAll }) {
     return (
         <div className="flex gap-5 border p-2 rounded-md flex-wrap">
-            {StatusLists.map((status, index) => (
+            {statuses.map((status, index) => (
                 <div className="flex gap-2 items-center" key={index}>
                     <input
                         type="checkbox"
-                        id={status}
-                        checked={selectedStatuses.includes(status)}
-                        onChange={() => handleCheckboxChange(status)}
-                        className="rounded focus:ring-0"
+                        id={status.value}
+                        checked={statusState[status.value] || false}
+                        onChange={(e) => handleStatusChange1(status.value, e.target.checked)}
+                        className={`rounded focus:ring-transparent focus:border-0 custom-input ${status.label}`}
                     />
-                    <label htmlFor={status} className="capitalize" style={{ fontSize: '12px' }}>
-                        {status}
+                    <label htmlFor={status.value} className="capitalize" style={{ fontSize: '12px' }}>
+                        {status.label}
                     </label>
                 </div>
             ))}
 
-            <div>
-                <button
-                    type="button"
-                    className="text-blue-400 hover:underline"
-                    onClick={() => {
-                        setSelectedStatuses([]); // Reset selected statuses
-                        setCountrywithStatus(initialCountrywithStatus); // Reset to initial status
-                    }}
-                    style={{ fontSize: '12px' }}
-                >
-                    Show all
-                </button>
-            </div>
+            <button
+                type="button"
+                className="text-blue-400 hover:underline"
+                style={{ fontSize: '12px' }}
+                onClick={handleShowAll} // Add onClick handler
+            >
+                Show all
+            </button>
         </div>
     );
 }
