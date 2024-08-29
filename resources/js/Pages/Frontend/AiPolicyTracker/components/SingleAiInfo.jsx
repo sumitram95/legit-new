@@ -53,7 +53,9 @@ export default function SingleAiInfo({ aiPolicyTrackerdetail }) {
                 </div>
                 <div className="px-5 mt-4">
                     <p className="capitalize text-xs">Description</p>
-                    <p className="text-gray-600">{description ?? ''}</p>
+                    <p className="text-gray-600" dangerouslySetInnerHTML={{
+                                    __html: description ?? "",
+                                }} ></p>
                 </div>
 
                 <div className="px-5 mt-4 border-t-2 pt-4">
@@ -65,7 +67,7 @@ export default function SingleAiInfo({ aiPolicyTrackerdetail }) {
                         className="text-gray-600"
                     >
                         <i className="fa-solid fa-link text-xs"></i>
-                        <span className="ml-1 hover">{whitepaper_document_link ?? 'No link available'}</span>
+                        <span className="ml-1 hover break-words">{whitepaper_document_link ?? 'No link available'}</span>
                     </a>
                 </div>
             </div>
