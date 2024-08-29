@@ -38,12 +38,14 @@ export default function Dashboard({
     countrywithStatus: initialCountrywithStatus,
     countryWithAiPolicies
 }) {
-    const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
+    var [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
     const [statusState, setStatusState] = useState([]);
 
-    // console.log(countrywithStatus);
+    // countrywithStatus = [];
+
+    console.log(countrywithStatus);
     useEffect(() => {
         // Update the state if the initialTableData prop changes
         setTableData(initialTableData);
@@ -215,9 +217,11 @@ export default function Dashboard({
                 })
                     .then(response => {
                         if (response.status === 200) {
-                            console.log(response.data);
+                            // i want to update countrywithStatus
                             const updatedCountrywithStatus = response.data;
+                            // console.log(updatedCountrywithStatus);
                             setCountrywithStatus(updatedCountrywithStatus); // Update the state with the new data
+
                         } else {
                             alert('Failed to update status');
                             console.error("Failed to update status");
@@ -237,6 +241,22 @@ export default function Dashboard({
         }
     };
 
+
+    // Function to handle the "Show all" button click
+    const handleShowAll = () => {
+        const allCheckedState = statuses.reduce((acc, status) => {
+            acc[status.value] = true; // Set all checkboxes to true (checked)
+            return acc;
+        }, {});
+
+        // Update the status state for all checkboxes
+        setStatusState(allCheckedState);
+
+        // Optionally, trigger the handleStatusChange1 for each status to reflect this change in the backend
+        statuses.forEach(status => {
+            handleStatusChange1(status.value, true);
+        });
+    };
 
 
 
@@ -300,20 +320,14 @@ export default function Dashboard({
                                             </div>
                                         ))}
 
-
-
-
-
-                                        <div>
-                                            <button
-                                                type="button"
-                                                className="text-blue-400 hover:underline"
-
-                                                style={{ fontSize: '12px' }}
-                                            >
-                                                Show all
-                                            </button>
-                                        </div>
+                                        <button
+                                            type="button"
+                                            className="text-blue-400 hover:underline"
+                                            style={{ fontSize: '12px' }}
+                                            onClick={handleShowAll} // Add onClick handler
+                                        >
+                                            Show all
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="flex gap-3 lg:hidden">
