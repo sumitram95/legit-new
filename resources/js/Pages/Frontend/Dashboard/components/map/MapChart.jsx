@@ -20,15 +20,6 @@ export function MapChart({
     countryWithAiPolicies
 }) {
 
-        // console.log(countrywithStatus);
-
-    // Update URL_MAP with new URLs
-    // const URL_MAP = {
-    //     'CA': 'https://example.com/canada', // URL for Canada
-    //     'US': 'https://example.com/usa', // URL for USA
-    //     'MX': 'https://example.com/mexico', // URL for Mexico
-    //     'NP': 'https://example.com/nepal', // URL for Nepal
-    // };
 
     // Define countries and their associated colors and links
     // const COLOR_MAP = {
@@ -45,9 +36,9 @@ export function MapChart({
         return acc;
     }, {});
 
-    // console.log(COLOR_MAP);
+
     //***************** Define countries and their associated Url Links ****************** */
-    const URL_MAP = countrywithMap;
+
 
     //***************** Define countries and their associated Url Links ****************** */
     const COUNTRY_WITH_AI_POLICY_MAP = countryWithAiPolicies;

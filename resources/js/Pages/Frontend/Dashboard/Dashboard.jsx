@@ -32,15 +32,12 @@ export default function Dashboard({
     statuses,
     tableData: initialTableData,
     countrywithStatus: initialCountrywithStatus,
-    countrywithMap,
     aiPolicyLastUpdate,
     newsLastUpdate,
     countryWithAiPolicies
 }) {
     const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
-
-    // console.log(countrywithStatus);
 
     useEffect(() => {
         // Update the state if the initialTableData prop changes
@@ -261,7 +258,7 @@ export default function Dashboard({
                             <div className="mt-5 px-4 map-chart-wrapper">
                                 <MapChart
                                     countrywithStatus={countrywithStatus}
-                                    countrywithMap={countrywithMap}
+
                                     countryWithAiPolicies={countryWithAiPolicies}
                                 />
                             </div>

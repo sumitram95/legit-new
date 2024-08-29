@@ -42,7 +42,6 @@ class DashboardController extends Controller
             $STATUS_MAP[$countrySymbol] = $tracker->status->name;
         }
         $data['countrywithStatus'] = $STATUS_MAP;
-        $data['countrywithMap'] = $URL_MAP;
 
         //-- get individual country
         $data['countrywiseAiPolicyTracker'] = Country::query()
@@ -60,9 +59,6 @@ class DashboardController extends Controller
             }
         }
         $data['countryWithAiPolicies'] = $COUNTRY_WITH_AIPOLICYTRACKER_MAP;
-
-        // dd($data['countryWithAiPolicies']);
-
 
         //-- End Ai Policy tracker country with status
         $data['aiPolicies'] = AiPolicyTracker::select('id as value', 'ai_policy_name as label')->get();
