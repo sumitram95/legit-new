@@ -25,6 +25,7 @@ const News = ({ news }) => {
                 <div>
                     <h1 className=" text-xl font-bold mb-2">News</h1>
                     <Link href={"/news"} className="hover:underline">
+
                         Go to news
                         <i className="fa-regular fa-circle-right ml-2"></i>
                     </Link>
@@ -46,7 +47,7 @@ const News = ({ news }) => {
                         <div className="max-w-sm bg-white border border-gray-200" key={index}>
                             {list.thumbnail?.path ? (
                                 <img
-                                    className="h-50 w-full object-cover" 
+                                    className="h-50 w-full object-cover"
                             src={`/storage/${list.thumbnail?.path}`}
                             alt="News Thumbnail"
                                 />
