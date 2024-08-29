@@ -136,15 +136,17 @@ class DashboardController extends Controller
     public function updateStatus(Request $request)
     {
 
-        return $request->all();
+        // $statuses =  $request->status_state;
+        $statuses = $request->input('status_state', []);
 
-        $statuses = $request->query('statuses', []);
+
         return $statuses;
-        // Validate the request
-        $validated = $request->validate([
-            'status_id' => 'required|integer|exists:statuses,id',
-            'is_checked' => 'required|boolean',
-        ]);
+
+        $aiPolicies = AiPolicyTracker::whereIn('status_id', $statusIds)->get();
+
+        return $aiPolicies;
+
+
 
         // Retrieve the status and update its value
         $statusId = $validated['status_id'];

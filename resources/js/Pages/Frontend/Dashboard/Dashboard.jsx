@@ -24,7 +24,7 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
 import PaginationPage from "@/Components/table/PaginationPage";
-import StatusLists from "@/Components/status/StatusLists";
+
 
 
 export default function Dashboard({
@@ -41,7 +41,7 @@ export default function Dashboard({
     const [countrywithStatus, setCountrywithStatus] = useState(initialCountrywithStatus);
     const [tableData, setTableData] = useState(initialTableData); // Initialize with the prop data
 
-    const [statusState, setStatusState] = useState({});
+    const [statusState, setStatusState] = useState([]);
 
     // console.log(countrywithStatus);
     useEffect(() => {
@@ -50,6 +50,7 @@ export default function Dashboard({
     }, [initialTableData]);
 
 
+    // console.log(statuses);
 
     const [filters, setFilters] = useState({
         AI_Policy_Name: [],
@@ -216,20 +217,20 @@ export default function Dashboard({
                         "X-CSRF-TOKEN": csrfToken,
                     },
                 })
-                .then(response => {
-                    if (response.status === 200) {
-                        console.log(response.data);
-                        const updatedCountrywithStatus = response.data;
-                        setCountrywithStatus(updatedCountrywithStatus); // Update the state with the new data
-                    } else {
+                    .then(response => {
+                        if (response.status === 200) {
+                            console.log(response.data);
+                            const updatedCountrywithStatus = response.data;
+                            setCountrywithStatus(updatedCountrywithStatus); // Update the state with the new data
+                        } else {
+                            alert('Failed to update status');
+                            console.error("Failed to update status");
+                        }
+                    })
+                    .catch(error => {
                         alert('Failed to update status');
-                        console.error("Failed to update status");
-                    }
-                })
-                .catch(error => {
-                    alert('Failed to update status');
-                    console.error("Error updating status:", error);
-                });
+                        console.error("Error updating status:", error);
+                    });
 
                 // Return the updated state
                 return updatedState;
@@ -287,21 +288,22 @@ export default function Dashboard({
 
                                     <div className="flex gap-5 border p-2 rounded-md flex-wrap">
 
-
-                                        {StatusLists.map((status, index) => (
+                                        {/* {JSON.stringify(statuses)} */}
+                                        {statuses.map((status, index) => (
                                             <div className="flex gap-2 items-center" key={index}>
                                                 <input
                                                     type="checkbox"
-                                                    id={status}
-                                                    checked={statusState[status] || false}
-                                                    onChange={(e) => handleStatusChange1(status, e.target.checked)}
+                                                    id={status.value}
+                                                    checked={statusState[status.value] || false}
+                                                    onChange={(e) => handleStatusChange1(status.value, e.target.checked)}
                                                     className="rounded focus:ring-0"
                                                 />
-                                                <label htmlFor={status} className="capitalize" style={{ fontSize: '12px' }}>
-                                                    {status} {/* Assuming `status` has a `label` property */}
+                                                <label htmlFor={status.value} className="capitalize" style={{ fontSize: '12px' }}>
+                                                    {status.label}
                                                 </label>
                                             </div>
                                         ))}
+
 
 
 
