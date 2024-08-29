@@ -19,13 +19,18 @@ export default function NewsCard({ newsLists = [] }) {
                         //     src={`/storage/${newsList.thumbnail?.path}`}
                         //     alt="no-image"
                         // />
-                        <div
+                        <div>
+
+                            <img className="lg:max-w-48"  src={`/storage/${newsList.thumbnail?.path}`} alt="" srcset="" />
+                        {/* <div
                             className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
                             style={{
                                 backgroundImage: `url("/storage/${newsList.thumbnail?.path}")`,
                             }}
                             title="Woman holding a mug"
-                        ></div>
+                        > */}
+
+                        </div>
                     ) : (
                         <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden flex justify-center items-center">
                              <img src={NoImage} alt="" srcset="" className="h-[100px] w-[80px]" />
