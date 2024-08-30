@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Status({ statuses, statusState, handleStatusChange1, handleShowAll }) {
     return (
-        <div className="flex gap-5 border p-2 rounded-md flex-wrap">
+        <div className="flex gap-3 border p-2 rounded-md flex-wrap">
             {statuses.map((status, index) => (
-                <div className="flex gap-2 items-center" key={index}>
+                <div className="flex gap-0 items-center" key={index}>
                     <input
                         type="checkbox"
                         id={status.value}
