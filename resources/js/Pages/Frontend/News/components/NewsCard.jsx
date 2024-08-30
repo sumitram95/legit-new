@@ -22,8 +22,10 @@ export default function NewsCard({ newsLists = [] }) {
                         </div>
                     ) : (
                         <div className="lg:w-[25%]">
-                            <div className="h-48">
-                                <img src={NoImage} alt="" srcset="" className="max-h-[200px] max-w-[90px] object-cover" />
+                            <div className="h-48 ">
+                                <div className="flex justify-center">
+                                    <img src={NoImage} alt="" srcset="" className="max-h-[200px] max-w-[90px] object-cover" />
+                                </div>
                             </div>
                         </div>
                     )}
