@@ -103,6 +103,14 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
         <AppLayout>
             <Head title="News" />
             <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
+                <div className="md:border-b flex md:hidden border-light-border  p-[16px] pb-4 justify-between items-center">
+                    <div>
+                        <p className="font-bold text-primary text-lg">News</p>
+                        <p className="mt-3 text-sm text-primary font-thin">
+                            Sorted by date
+                        </p>
+                    </div>
+                </div>
                 <div className="block sm:block md:block xl:flex gap-[30px]">
                     {/* Sidebar for filters */}
                     <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:hidden md:block sm:block xl:block xl:w-[16.67%]">
@@ -192,7 +200,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
 
                     <div className="w-full order-2 xl:order-1 xl:w-[83.33%]">
                         <div className="w-full  md:border rounded-md bg-transparent md:bg-white sm:bg-white">
-                            <div className="border-b-2  p-[16px] pb-4 flex justify-between items-center">
+                            <div className="md:border-b hidden md:flex border-light-border  p-[16px] pb-4 justify-between items-center">
                                 <div>
                                     <p className="font-bold text-primary text-lg">
                                         News
