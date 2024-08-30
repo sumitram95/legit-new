@@ -28,8 +28,8 @@ const News = ({ news }) => {
     };
 
     return (
-        <div className="bg-white h-fit pt-4 px-4 pb-15 rounded-md w-full mt-6">
-            <div className="flex justify-between items-center border-b-2 pb-4">
+        <div className="bg-white h-fit pb-15 rounded-md w-full mt-6">
+            <div className="flex justify-between items-center border-b border-light-border p-[16px]">
                 <div>
                     <h1 className="text-xl font-bold mb-2">News</h1>
                     <Link href="/news" className="hover:underline">
@@ -49,7 +49,7 @@ const News = ({ news }) => {
                 </div>
             </div>
             <div className="text" style={{ margin: '0 -10px' }}>
-                <Slider ref={sliderRef} {...settings} className="flex gap-6 mt-5">
+                <Slider ref={sliderRef} {...settings} className="flex gap-6 mt-5 px-[16px]">
                     {Array.isArray(news) && news.length > 0 ? (
                         news.map((list, index) => (
                             <div className="max-w-sm bg-white min-h-[470px]" key={index}>
@@ -64,7 +64,7 @@ const News = ({ news }) => {
                                         <img src={NoImage} alt="No Image" className="h-[100px] w-[80px]" />
                                     </div>
                                 )}
-                                <div className="p-5">
+                                <div className="py-5">
                                     <p className="text-xs mb-3 text-gray-500">
                                         <i className="fa-regular fa-clock"></i> {list.upload_date}
                                     </p>

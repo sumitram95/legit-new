@@ -77,7 +77,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                     {/* Sidebar for filters */}
                     <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:hidden md:block sm:block xl:block xl:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
-                            <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
+                            <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <p className="font-bold text-primary text-lg">
                                     Filters
                                 </p>
