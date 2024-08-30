@@ -36,7 +36,7 @@ export default function EditColumn({
                 id="dropdownDefaultButton"
                 onClick={toggleDropdown}
                 data-dropdown-toggle="dropdown"
-                className="text-primary bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+                className="text-primary-light bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
                 type="button"
             >
                 {btnName}

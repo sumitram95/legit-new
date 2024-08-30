@@ -14,18 +14,11 @@ export default function Table({
 }) {
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
-    // console.log(favourite);
-    // console.log(watchListIds);
     return (
         <div className="relative overflow-x-auto px-5 mt-5">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead className="text-xs text-primary uppercase bg-secondary">
                     <tr>
-                        {/* {columns.map((column, index) => (
-                            <th scope="col" className="px-6 py-3" key={index}>
-                                {column}
-                            </th>
-                        ))} */}
                         <th scope="col" className="px-6 py-3">
                             AI Policy Name
                         </th>
@@ -89,7 +82,7 @@ export default function Table({
                                 <div className="flex gap-x-2 items-center">
                                     <button
                                         type="button"
-                                        className="text-primary"
+                                        className="text-primary-light"
                                         onClick={() =>
                                             onHandleBookmark(list.id)
                                         }
