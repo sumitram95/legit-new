@@ -260,10 +260,6 @@ export default function Dashboard({
         });
     };
 
-
-
-
-
     return (
         <AppLayout>
             <Head title="Dashboard" />
@@ -271,21 +267,21 @@ export default function Dashboard({
                 <div className="flex gap-[30px]">
                     <div className="w-full lg:w-[83.33%]">
                         <div className="w-full border rounded-md bg-white">
-                            <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
+                            <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <div>
-                                    <p className="font-bold text-primary text-lg leading-none">
+                                    <p className="font-bold text-primary-light text-lg leading-none">
                                         Global Artificial Intelligence (AI)
                                         Policy Status
                                     </p>
                                     <div className="flex items-center mt-[0.5rem] text-sm">
-                                        <p className="text-sm leading-normal text-primary-light">
+                                        <p className="text-sm leading-normal text-light-blue">
                                             Database Update:
                                             <span className="text-black ml-[4px]">
                                                 {aiPolicyLastUpdate}
                                             </span>
                                         </p>
                                         <span className="date-separator"></span>
-                                        <p className="text-sm leading-normal text-primary-light">
+                                        <p className="text-sm leading-normal text-light-blue">
                                             News Update:
                                             <span className="text-black ml-[4px]">
                                                 {newsLastUpdate}
@@ -367,7 +363,7 @@ export default function Dashboard({
                                 >
                                     <button
                                         type="submit"
-                                        className="flex items-center"
+                                        className="flex items-center text-primary-light"
                                     >
                                         <i
                                             className={`fa ${bookmarkCount
@@ -415,13 +411,13 @@ export default function Dashboard({
                     {/* ********************** Search Component (desktop) ********************** */}
                     <div className="hidden lg:block lg:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
-                            <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
+                            <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <div className="flex items-center justify-between w-full">
-                                    <p className="font-bold text-primary text-lg leading-none">
+                                    <p className="font-bold text-primary-light text-lg leading-none">
                                         Filters
                                     </p>
                                     <button
-                                        className="button-wthout-border flex items-center gap-2"
+                                        className="button-wthout-border flex items-center gap-2 text-light-blue"
                                         onClick={handleClearFilters}
                                     >
                                         <span className="ui-icon">
@@ -433,7 +429,7 @@ export default function Dashboard({
                                                 role="img"
                                                 aria-label="x square"
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor"
+                                                fill="#7997c4"
                                                 className="bi-x-square b-icon bi"
                                             >
                                                 <title>Clear</title>
@@ -454,6 +450,7 @@ export default function Dashboard({
                                     <div>
                                         <SelectInput
                                             label="AI Policy Name"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={aiPolicies.map(
                                                 (policy) => ({
                                                     value: policy.value,
@@ -471,6 +468,7 @@ export default function Dashboard({
 
                                         <SelectInput
                                             label="Country / Region"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={countries.map(
                                                 (country) => ({
                                                     value: country.value,
@@ -488,6 +486,7 @@ export default function Dashboard({
 
                                         <SelectInput
                                             label="Status"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={statuses.map((status) => ({
                                                 value: status.value,
                                                 label: status.label,
@@ -502,6 +501,7 @@ export default function Dashboard({
                                         />
 
                                         <Input
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             name="announcement_year"
                                             value={filters.announcement_year}
                                             onChange={handleInputChange}

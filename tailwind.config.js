@@ -1,6 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
-const flowbite = require("flowbite-react/tailwind");
+const flowbite = require("flowbite/plugin");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -20,7 +20,7 @@ export default {
             },
             colors: {
                 primary: {
-                    light: '#7997c3',
+                    light: '#002147',
                     DEFAULT: '#0f4698',
                     dark: '#4c1d95',
                 },
@@ -29,8 +29,14 @@ export default {
                     DEFAULT: '#2563eb',
                     dark: '#1d4ed8',
                 },
-                // Add more custom colors as needed
+                light:{
+                    blue: '#7997c4',
+                },
+                'light-color': 'rgba(205, 224, 241, 0.5)',
             },
+            borderColor: (theme) => ({
+                'light-border': theme('colors.light-color'),
+            }),
             aspectRatio: {
                 '1/1': '1 / 1',
             },
@@ -45,6 +51,9 @@ export default {
 
     plugins: [
         forms,
-        require('flowbite/plugin')
+        flowbite
     ],
 };
+
+
+// 002147

@@ -200,14 +200,14 @@ export default function Login({ status, canResetPassword }) {
                                                 >
                                                     Password
                                                 </label>
-                                                {canResetPassword && (
+                                                {/* {canResetPassword && (
                                                     <Link
                                                         href={route("password.request")}
                                                         className="text-sm text-blue-600 hover:underline focus:text-blue-800"
                                                     >
                                                         Forgot your password?
                                                     </Link>
-                                                )}
+                                                )} */}
                                             </div>
                                             <TextInput
                                                 id="password"
