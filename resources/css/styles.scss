@@ -68,8 +68,8 @@ body {
 ul li {
     // color: #ffffff;
     position: relative;
-    display: inline-block;
     text-decoration: none;
+    width: fit-content;
 }
 
 ul li::after {

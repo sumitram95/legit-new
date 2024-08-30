@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import NewsCard from "./components/NewsCard";
 import PaginationPage from "@/Components/table/PaginationPage";
 import axios from "axios";
+import { isDraftable } from "immer";
 
 export default function News({ news: initialNewsData, aiPolicies, countries }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -69,6 +70,13 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
         fetchData(clearedFilters);
     };
 
+    // for mobile view (filter box)
+    const { isDropDown, setDropDown } = useState(false);
+
+    const toggleDropDown = () => {
+        setDropDown(!isDropDown);
+    };
+
     return (
         <AppLayout>
             <Head title="News" />
@@ -81,25 +89,39 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                 <p className="font-bold text-primary text-lg">
                                     Filters
                                 </p>
-                                <button
-                                    className="button-wthout-border flex items-center gap-2"
-                                    onClick={handleClearFilters}
-                                >
-                                    <svg
-                                        viewBox="0 0 16 16"
-                                        width="1em"
-                                        height="1em"
-                                        fill="currentColor"
-                                        className="bi-x-square b-icon bi"
+                                <div className="flex">
+                                    {/* {isDropDown && ()} */}
+                                    <button
+                                        className="button-wthout-border hover:underline flex items-center gap-2"
+                                        onClick={handleClearFilters}
                                     >
-                                        <title>Clear</title>
-                                        <g>
-                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
-                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                                        </g>
-                                    </svg>
-                                    <span>Clear</span>
-                                </button>
+                                        <svg
+                                            viewBox="0 0 16 16"
+                                            width="1em"
+                                            height="1em"
+                                            fill="currentColor"
+                                            className="bi-x-square b-icon bi"
+                                        >
+                                            <title>Clear</title>
+                                            <g>
+                                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                                            </g>
+                                        </svg>
+                                        <span>Clear</span>
+                                    </button>
+                                    <button
+                                        // id="dropdownDefaultButton"
+                                        onClick={toggleDropDown}
+                                        // data-dropdown-toggle="dropdown"
+                                        className="text-primary font-medium rounded-lg text-sm block md:hidden sm:hidden"
+                                        type="button"
+                                    >
+                                        <i class="fa-solid ms-3 text-primary fa-angle-down"></i>
+
+                                        {/* <i class="fa-solid fa-angle-up"></i> */}
+                                    </button>
+                                </div>
                             </div>
                             <div className="px-[16px] my-5">
                                 <form className="w-full" id="FormFiled">

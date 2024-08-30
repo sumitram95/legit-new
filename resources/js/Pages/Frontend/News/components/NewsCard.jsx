@@ -36,7 +36,7 @@ export default function NewsCard({ newsLists = [] }) {
                                 <i className="fa-regular fa-clock"> </i>{" "}
                                 {newsList.upload_date}
                             </p>
-                            <div className="text-gray-900 font-bold text-xl mb-2">
+                            <div className="text-gray-900 font-bold text-xl mb-2 truncate">
                                 <Link
                                     href={route("news.single", newsList.id)}
                                     className="hover:underline"
@@ -45,7 +45,7 @@ export default function NewsCard({ newsLists = [] }) {
                                 </Link>
                             </div>
                             <div
-                                className="text-gray-700 text-base"
+                                className="text-gray-700 text-base truncate"
                                 dangerouslySetInnerHTML={{
                                     __html: newsList.description ?? "",
                                 }}
