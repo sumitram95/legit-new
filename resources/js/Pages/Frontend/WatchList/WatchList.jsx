@@ -5,9 +5,9 @@ import Desktop from "./components/resopsive/Desktop";
 import Mobile from "./components/resopsive/Mobile";
 
 const breakpoints = {
-    md: 768,     // mobile
-    lg: 1024,    // tablet
-    xl: 1280,    // desktop
+    md: 768, // mobile
+    lg: 1024, // tablet
+    xl: 1280, // desktop
     double_xl: 1536, // max desktop
 };
 
@@ -65,7 +65,7 @@ export default function WatchList({
                     aiPolicies={aiPolicies}
                     countries={countries}
                     statuses={statuses}
-                    tableData={tableData}
+                    tableData={tableData.data}
                     countrywithStatus={countrywithStatus}
                 />
             )}

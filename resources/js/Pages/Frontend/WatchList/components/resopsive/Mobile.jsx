@@ -260,8 +260,8 @@ export default function Mobile({
                 </div>
 
                 {/* content */}
-                {/* {tableData.data.map((list) => (
-                    <div className="bg-white rounded-md py-3" key={list.id}>
+                {tableData.map((list) => (
+                    <div className="bg-white rounded-md py-3 mb-5" key={list.id}>
                         <div className="border-b-2 pb-4 px-5">
                             <div>
                                 <p className="font-bold text-primary text-lg">
@@ -277,7 +277,7 @@ export default function Mobile({
                                         </p>
                                     </div>
                                     <div className="mt-1">
-                                        <p>{list.country_name}</p>
+                                        <p>{list.country?.name}</p>
                                     </div>
                                 </div>
                                 <div className="w-1/2">
@@ -287,7 +287,7 @@ export default function Mobile({
                                         </p>
                                     </div>
                                     <div className="mt-1">
-                                        <p>{list.status}</p>
+                                        <p>{list.status?.name}</p>
                                     </div>
                                 </div>
                             </div>
@@ -323,7 +323,8 @@ export default function Mobile({
                             </div>
                         </div>
                     </div>
-                ))} */}
+
+                ))}
             </div>
         </div>
     );
