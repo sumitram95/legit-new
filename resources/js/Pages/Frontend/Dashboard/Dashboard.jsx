@@ -267,7 +267,7 @@ export default function Dashboard({
                 <div className="flex gap-[30px]">
                     <div className="w-full lg:w-[83.33%]">
                         <div className="w-full border rounded-md bg-white">
-                        <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
+                            <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <div>
                                     <p className="font-bold text-primary-light text-lg leading-none">
                                         Global Artificial Intelligence (AI)
@@ -450,6 +450,7 @@ export default function Dashboard({
                                     <div>
                                         <SelectInput
                                             label="AI Policy Name"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={aiPolicies.map(
                                                 (policy) => ({
                                                     value: policy.value,
@@ -467,6 +468,7 @@ export default function Dashboard({
 
                                         <SelectInput
                                             label="Country / Region"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={countries.map(
                                                 (country) => ({
                                                     value: country.value,
@@ -484,6 +486,7 @@ export default function Dashboard({
 
                                         <SelectInput
                                             label="Status"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={statuses.map((status) => ({
                                                 value: status.value,
                                                 label: status.label,
@@ -498,6 +501,7 @@ export default function Dashboard({
                                         />
 
                                         <Input
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             name="announcement_year"
                                             value={filters.announcement_year}
                                             onChange={handleInputChange}
