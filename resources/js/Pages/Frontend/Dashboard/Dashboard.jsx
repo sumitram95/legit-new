@@ -260,10 +260,6 @@ export default function Dashboard({
         });
     };
 
-
-
-
-
     return (
         <AppLayout>
             <Head title="Dashboard" />
@@ -273,19 +269,19 @@ export default function Dashboard({
                         <div className="w-full border rounded-md bg-white">
                         <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <div>
-                                    <p className="font-bold text-primary text-lg leading-none">
+                                    <p className="font-bold text-primary-light text-lg leading-none">
                                         Global Artificial Intelligence (AI)
                                         Policy Status
                                     </p>
                                     <div className="flex items-center mt-[0.5rem] text-sm">
-                                        <p className="text-sm leading-normal text-primary-light">
+                                        <p className="text-sm leading-normal text-light-blue">
                                             Database Update:
                                             <span className="text-black ml-[4px]">
                                                 {aiPolicyLastUpdate}
                                             </span>
                                         </p>
                                         <span className="date-separator"></span>
-                                        <p className="text-sm leading-normal text-primary-light">
+                                        <p className="text-sm leading-normal text-light-blue">
                                             News Update:
                                             <span className="text-black ml-[4px]">
                                                 {newsLastUpdate}
