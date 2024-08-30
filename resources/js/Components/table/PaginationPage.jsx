@@ -37,9 +37,9 @@ export default function PaginationPage({ paginator }) {
                     <Button
                         onClick={() => handlePageChange(`?page=1`)}
                         disabled={currentPage === 1}
-                        className={`py-2 px-5 rounded-md ${currentPage === 1
-                            ? "text-black"
-                            : "hover:bg-blue-100"
+                        className={`py-2 px-3 rounded-md  ${currentPage === 1
+                            ? "text-light-blue"
+                            : "text-light-blue hover:bg-blue-100"
                             }`}
                     >
                         &laquo;
@@ -49,9 +49,9 @@ export default function PaginationPage({ paginator }) {
                     <Button
                         onClick={() => handlePageChange(paginator.prev_page_url)}
                         disabled={!paginator.prev_page_url}
-                        className={`py-2 px-5 rounded-md ${currentPage === 1
-                            ? "text-black"
-                            : "hover:bg-blue-100"
+                        className={`py-2 px-3 rounded-md ${currentPage === 1
+                            ? "text-light-blue"
+                            : "text-light-blue hover:bg-blue-100"
                             }`}
                     >
                         &#x3C;
@@ -63,12 +63,12 @@ export default function PaginationPage({ paginator }) {
                             <>
                                 <Button
                                     onClick={() => handlePageChange(`?page=1`)}
-                                    className="py-2 px-4 bg-gray-200 text-black hover:bg-blue-100"
+                                    className="py-2 px-3 bg-gray-200 text-light-blue hover:bg-blue-100"
                                 >
                                     1
                                 </Button>
                                 {start > 2 && (
-                                    <Button className="py-2 px-4 bg-gray-200 text-black">
+                                    <Button className="py-2 px-3 bg-gray-200 text-light-blue">
                                         ...
                                     </Button>
                                 )}
@@ -79,9 +79,9 @@ export default function PaginationPage({ paginator }) {
                             <Button
                                 key={page}
                                 onClick={() => handlePageChange(`?page=${page}`)}
-                                className={`py-2 px-4 ${currentPage === page
-                                    ? "bg-secondary text-black"
-                                    : "bg-gray-200 text-black hover:bg-blue-100"
+                                className={`py-2 px-3 ${currentPage === page
+                                    ? "bg-secondary text-light-blue"
+                                    : "bg-gray-200 text-light-blue hover:bg-blue-100"
                                     }`}
                             >
                                 {page}
@@ -91,7 +91,7 @@ export default function PaginationPage({ paginator }) {
                         {end < lastPage && (
                             <>
                                 {end < lastPage - 1 && (
-                                    <Button className="py-2 px-4 bg-gray-200 text-black">
+                                    <Button className="py-2 px-3 bg-gray-200 text-light-blue">
                                         ...
                                     </Button>
                                 )}
@@ -99,7 +99,7 @@ export default function PaginationPage({ paginator }) {
                                     onClick={() =>
                                         handlePageChange(`?page=${lastPage}`)
                                     }
-                                    className="py-2 px-4 bg-gray-200 text-black hover:bg-blue-100"
+                                    className="py-2 px-3 bg-gray-200 text-light-blue hover:bg-blue-100"
                                 >
                                     {lastPage}
                                 </Button>
@@ -111,9 +111,9 @@ export default function PaginationPage({ paginator }) {
                     <Button
                         onClick={() => handlePageChange(paginator.next_page_url)}
                         disabled={!paginator.next_page_url}
-                        className={`py-2 px-5 rounded-md ${currentPage === lastPage
-                            ? " text-black"
-                            : "hover:bg-blue-100"
+                        className={`py-2 px-3 rounded-md ${currentPage === lastPage
+                            ? " text-light-blue"
+                            : "text-light-blue hover:bg-blue-100"
                             }`}
                     >
                         &gt;
@@ -123,9 +123,9 @@ export default function PaginationPage({ paginator }) {
                     <Button
                         onClick={() => handlePageChange(`?page=${lastPage}`)}
                         disabled={currentPage === lastPage}
-                        className={`py-2 px-5 rounded-md ${currentPage === lastPage
-                            ? " text-black"
-                            : "hover:bg-blue-100"
+                        className={`py-2 px-3 rounded-md ${currentPage === lastPage
+                            ? " text-light-blue"
+                            : "text-light-blue hover:bg-blue-100"
                             }`}
                     >
                         &raquo;

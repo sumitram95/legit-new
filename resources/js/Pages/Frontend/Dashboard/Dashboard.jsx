@@ -363,7 +363,7 @@ export default function Dashboard({
                                 >
                                     <button
                                         type="submit"
-                                        className="flex items-center"
+                                        className="flex items-center text-primary-light"
                                     >
                                         <i
                                             className={`fa ${bookmarkCount
