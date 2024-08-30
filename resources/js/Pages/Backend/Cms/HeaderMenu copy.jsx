@@ -226,7 +226,7 @@ export default function HeaderMenu() {
                     <hr className="mt-3" />
 
                     <div className="mt-3">
-                        <p>AIPolicyTracker Project</p>
+                        <p className="text-primary-light">AIPolicyTracker Project</p>
                         <h1>Description</h1>
                         {aiPolicyTracker.map((item, index) => (
                             <div

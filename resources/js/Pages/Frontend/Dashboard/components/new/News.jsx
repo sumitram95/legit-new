@@ -33,7 +33,7 @@ const News = ({ news }) => {
                 <div>
                     <h1 className="text-xl font-bold mb-2 text-primary-light">News</h1>
                     <Link href="/news" className="hover:underline text-light-blue">
-                        Go to news
+                        Go to all news
                         <i className="fa-regular fa-circle-right ml-2"></i>
                     </Link>
                 </div>
