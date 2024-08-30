@@ -221,11 +221,11 @@ export default function WatchList({
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <div className="flex items-center justify-between w-full">
-                                    <p className="font-bold text-primary text-lg leading-none">
+                                    <p className="font-bold text-primary-light text-lg leading-none">
                                         Filters
                                     </p>
                                     <button
-                                        className="button-wthout-border flex items-center gap-2"
+                                        className="button-wthout-border flex items-center gap-2 text-light-blue"
                                         onClick={handleClearFilters}
                                     >
                                         <span className="ui-icon">
@@ -258,6 +258,7 @@ export default function WatchList({
                                     <div>
                                         <SelectInput
                                             label="AI Policy Name"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={aiPolicies.map(
                                                 (policy) => ({
                                                     value: policy.value,
@@ -275,6 +276,7 @@ export default function WatchList({
 
                                         <SelectInput
                                             label="Country / Region"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={countries.map(
                                                 (country) => ({
                                                     value: country.value,
@@ -292,6 +294,7 @@ export default function WatchList({
 
                                         <SelectInput
                                             label="Status"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={statuses.map((status) => ({
                                                 value: status.value,
                                                 label: status.label,
@@ -307,6 +310,7 @@ export default function WatchList({
 
                                         <Input
                                             name="announcement_year"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             value={filters.announcement_year}
                                             onChange={handleInputChange}
                                             htmlFor="announcement_year"
