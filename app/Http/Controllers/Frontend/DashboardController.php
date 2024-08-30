@@ -16,8 +16,11 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $data['tableData'] = AiPolicyTracker::query()
+        $aiPolicyTracker = AiPolicyTracker::query()
             ->with(['country', 'status'])
+            ->latest();
+
+        $data['tableData'] = $aiPolicyTracker
             ->paginate(10);
 
         $data['news'] = News::query()
@@ -29,11 +32,13 @@ class DashboardController extends Controller
             ->latest()->first();
         $data['newsLastUpdate'] = $latestNews ? Carbon::parse($latestNews->updated_at)->format('F Y') : '';
 
-        $latestAiPolicy = AiPolicyTracker::orderBy('updated_at', 'DESC')->first();
+        $latestAiPolicy = $aiPolicyTracker->first();
         $data['aiPolicyLastUpdate'] = $latestAiPolicy ? Carbon::parse($latestAiPolicy->updated_at)->format('F Y') : '';
 
         //-- Ai Policy tracker country with status and Link
-        $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::with(['country', 'status'])->get();
+        $data['aiPolicyTrackerWithStatus'] = $aiPolicyTracker
+            ->get();
+
         $URL_MAP = [];
         $STATUS_MAP = [];
         foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {
@@ -47,6 +52,7 @@ class DashboardController extends Controller
         //-- get individual country
         $data['countrywiseAiPolicyTracker'] = Country::query()
             ->withWhereHas('aiPolicyTrackers')
+            ->latest()
             ->get();
 
         $COUNTRY_WITH_AIPOLICYTRACKER_MAP = [];
