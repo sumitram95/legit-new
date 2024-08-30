@@ -413,11 +413,11 @@ export default function Dashboard({
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <div className="flex items-center justify-between w-full">
-                                    <p className="font-bold text-primary text-lg leading-none">
+                                    <p className="font-bold text-primary-light text-lg leading-none">
                                         Filters
                                     </p>
                                     <button
-                                        className="button-wthout-border flex items-center gap-2"
+                                        className="button-wthout-border flex items-center gap-2 text-light-blue"
                                         onClick={handleClearFilters}
                                     >
                                         <span className="ui-icon">
@@ -429,7 +429,7 @@ export default function Dashboard({
                                                 role="img"
                                                 aria-label="x square"
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor"
+                                                fill="#7997c4"
                                                 className="bi-x-square b-icon bi"
                                             >
                                                 <title>Clear</title>
