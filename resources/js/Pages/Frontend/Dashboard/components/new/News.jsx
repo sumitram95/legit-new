@@ -53,17 +53,19 @@ const News = ({ news }) => {
                     {Array.isArray(news) && news.length > 0 ? (
                         news.map((list, index) => (
                             <div className="max-w-sm bg-white min-h-[470px]" key={index}>
-                                {list.thumbnail?.path ? (
-                                    <img
-                                        className="h-50 w-full object-cover"
-                                        src={`/storage/${list.thumbnail.path}`}
-                                        alt="News Thumbnail"
-                                    />
-                                ) : (
-                                    <div className="w-full h-44 flex justify-center items-center bg-gray-100">
-                                        <img src={NoImage} alt="No Image" className="h-[100px] w-[80px]" />
-                                    </div>
-                                )}
+                                <div className="h-[200px]">
+                                    {list.thumbnail?.path ? (
+                                        <img
+                                            className="w-full h-full object-cover"
+                                            src={`/storage/${list.thumbnail.path}`}
+                                            alt="News Thumbnail"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex justify-center items-center bg-gray-100">
+                                            <img src={NoImage} alt="No Image" className="h-[100px] w-[80px]" />
+                                        </div>
+                                    )}
+                                </div>
                                 <div className="py-5">
                                     <p className="text-xs mb-3 text-light-blue flex items-center gap-[4px]">
                                         <span>
