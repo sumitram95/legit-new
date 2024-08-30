@@ -2,41 +2,75 @@ import NoTableData from "@/Components/table/NoTableData";
 import { Link } from "@inertiajs/react";
 import React from "react";
 import NoImage from "@/assets/images/no-image/no-image.png";
-
+import DOMPurify from "dompurify";
 
 export default function NewsCard({ newsLists = [] }) {
-    console.log(newsLists);
+    const limitWords = (html, limit) => {
+        const text = DOMPurify.sanitize(html).replace(/<[^>]+>/g, " "); // Remove HTML tags
+        const words = text.split(" ");
+        return (
+            words.slice(0, limit).join(" ") +
+            (words.length > limit ? "..." : "")
+        );
+    };
     return (
         <div className="">
             {newsLists.map((newsList, index) => (
                 <div
-                    className="px-[10%] lg:px-5 w-full lg:max-w-full lg:flex border-b border-gray-400 pb-5 lg:border-gray-300 bg-white mt-5"
+                    className="px-[5%] py-[5%] md:py-0 rounded md:px-[10%] lg:px-5 w-full lg:max-w-full lg:flex md:border-b md:border-gray-400 md:pb-5 lg:border-gray-300 bg-white mt-5"
                     key={index}
                 >
                     {newsList.thumbnail?.path ? (
                         <div className="lg:w-[25%]">
-                            <div className="max-h-[200px]">
-                                <img className="w-full h-full object-cover" src={`/storage/${newsList.thumbnail?.path}`} alt="" srcset="" />
+                            <div className="h-[200px]">
+                                <img
+                                    className="w-full h-full object-cover"
+                                    src={`/storage/${newsList.thumbnail?.path}`}
+                                    alt=""
+                                    srcset=""
+                                />
                             </div>
-
                         </div>
                     ) : (
                         <div className="lg:w-[25%]">
                             <div className="h-48 ">
                                 <div className="flex justify-center">
-                                    <img src={NoImage} alt="" srcset="" className="max-h-[200px] max-w-[90px] object-cover" />
+                                    <img
+                                        src={NoImage}
+                                        alt=""
+                                        srcset=""
+                                        className="max-h-[200px] max-w-[90px] object-cover"
+                                    />
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    <div className="lg:w-[75%] p-4 flex flex-col justify-between leading-normal">
-                        <div className="mb-8">
-                            <p className="text-sm text-gray-600 flex items-center gap-2">
-                                <i className="fa-regular fa-clock"> </i>{" "}
+                    <div className="lg:w-[75%] px-4 flex flex-col justify-between leading-normal">
+                        <div className="">
+                            <p className="text-xs mb-3 text-light-blue flex items-center gap-[4px]">
+                                <span>
+                                    <svg
+                                        viewBox="0 0 16 16"
+                                        width="1em"
+                                        height="1em"
+                                        focusable="false"
+                                        role="img"
+                                        aria-label="calendar week"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor"
+                                        class="bi-calendar-week b-icon bi"
+                                    >
+                                        <title>Date</title>
+                                        <g>
+                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"></path>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path>
+                                        </g>
+                                    </svg>
+                                </span>
                                 {newsList.upload_date}
                             </p>
-                            <div className="text-gray-900 font-bold text-xl mb-2 truncate">
+                            <div className="mb-2 text-sm font-bold tracking-tight text-primary truncate">
                                 <Link
                                     href={route("news.single", newsList.id)}
                                     className="hover:underline"
@@ -44,12 +78,16 @@ export default function NewsCard({ newsLists = [] }) {
                                     {newsList.title ?? ""}
                                 </Link>
                             </div>
-                            <div
+                            {/* <div
                                 className="text-gray-700 text-base truncate"
                                 dangerouslySetInnerHTML={{
                                     __html: newsList.description ?? "",
                                 }}
-                            ></div>
+                            ></div> */}
+
+                            <p className="mb-3 font-normal">
+                                {limitWords(newsList.description, 30)}
+                            </p>
                         </div>
                     </div>
                 </div>

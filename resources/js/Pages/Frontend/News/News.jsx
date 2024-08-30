@@ -108,13 +108,13 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                     <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:hidden md:block sm:block xl:block xl:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
-                                <p className="font-bold text-primary text-lg">
+                                <p className="font-bold text-primary-light text-lg leading-none">
                                     Filters
                                 </p>
                                 <div className="flex">
                                     {isDropdownOpen && (
                                         <button
-                                            className="button-wthout-border hover:underline flex items-center gap-2"
+                                            className="button-wthout-border flex items-center gap-2 text-light-blue"
                                             onClick={handleClearFilters}
                                         >
                                             <svg
@@ -152,6 +152,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                     <form className="w-full" id="FormFiled">
                                         <SelectInput
                                             label="AI Policy Name"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={aiPolicies.map(
                                                 (policy) => ({
                                                     value: policy.value,
@@ -168,6 +169,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                         />
                                         <SelectInput
                                             label="Country / Region"
+                                            className="mb-2 text-sm font-normal text-light-blue"
                                             options={countries.map(
                                                 (country) => ({
                                                     value: country.value,
@@ -189,7 +191,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                     </div>
 
                     <div className="w-full order-2 xl:order-1 xl:w-[83.33%]">
-                        <div className="w-full border rounded-md bg-white">
+                        <div className="w-full  md:border rounded-md bg-transparent md:bg-white sm:bg-white">
                             <div className="border-b-2  p-[16px] pb-4 flex justify-between items-center">
                                 <div>
                                     <p className="font-bold text-primary text-lg">
