@@ -29,6 +29,9 @@ export default {
                     DEFAULT: '#2563eb',
                     dark: '#1d4ed8',
                 },
+                light:{
+                    blue: '#7997c4',
+                },
                 'light-color': 'rgba(205, 224, 241, 0.5)',
             },
             borderColor: (theme) => ({
