@@ -78,7 +78,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
 
     // Function to check screen size and set dropdown open state
     const handleResize = () => {
-        if (window.innerWidth >= 770) {
+        if (window.innerWidth >= 768) {
             // Considering 'md' as 768px breakpoint
             setDropdownOpen(true);
         } else {
@@ -103,7 +103,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
         <AppLayout>
             <Head title="News" />
             <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
-                <div className="md:border-b flex md:hidden border-light-border  p-[16px] pb-4 justify-between items-center">
+                <div className="md:border-b flex md:hidden border-light-border pb-4 justify-between items-center">
                     <div>
                         <p className="font-bold text-primary-light text-lg">
                             News
@@ -115,7 +115,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                 </div>
                 <div className="block sm:block md:block xl:flex gap-[30px]">
                     {/* Sidebar for filters */}
-                    <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:hidden md:block sm:block xl:block xl:w-[16.67%]">
+                    <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:block md:block sm:block xl:block xl:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <p className="font-bold text-primary-light text-lg leading-none">

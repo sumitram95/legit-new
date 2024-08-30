@@ -10,7 +10,7 @@ export function AppLayout({ children }) {
             {/* header */}
             <Header />
             {/* content here */}
-            <section className="px-[64px] pb-[16px] flex-1">
+            <section className="px-[22px] md:px-[64px] pb-[16px] flex-1">
                     {children}
             </section>
 
