@@ -202,10 +202,10 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                         <div className="w-full  md:border rounded-md bg-transparent md:bg-white sm:bg-white">
                             <div className="md:border-b hidden md:flex border-light-border  p-[16px] pb-4 justify-between items-center">
                                 <div>
-                                    <p className="font-bold text-primary text-lg">
+                                    <p className="font-bold text-primary-light text-lg">
                                         News
                                     </p>
-                                    <p className="mt-3 text-sm text-primary font-thin">
+                                    <p className="mt-3 text-sm text-light-blue">
                                         Sorted by date
                                     </p>
                                 </div>
