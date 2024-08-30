@@ -71,11 +71,33 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
     };
 
     // for mobile view (filter box)
-    const { isDropDown, setDropDown } = useState(false);
-
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
     const toggleDropDown = () => {
-        setDropDown(!isDropDown);
+        setDropdownOpen(!isDropdownOpen);
     };
+
+    // Function to check screen size and set dropdown open state
+    const handleResize = () => {
+        if (window.innerWidth >= 768) {
+            // Considering 'md' as 768px breakpoint
+            setDropdownOpen(true);
+        } else {
+            setDropdownOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        // Set dropdown state based on initial screen size
+        handleResize();
+
+        // Listen for window resize events
+        window.addEventListener("resize", handleResize);
+
+        // Cleanup listener on component unmount
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     return (
         <AppLayout>
@@ -90,26 +112,28 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                     Filters
                                 </p>
                                 <div className="flex">
-                                    {/* {isDropDown && ()} */}
-                                    <button
-                                        className="button-wthout-border hover:underline flex items-center gap-2"
-                                        onClick={handleClearFilters}
-                                    >
-                                        <svg
-                                            viewBox="0 0 16 16"
-                                            width="1em"
-                                            height="1em"
-                                            fill="currentColor"
-                                            className="bi-x-square b-icon bi"
+                                    {isDropdownOpen && (
+                                        <button
+                                            className="button-wthout-border hover:underline flex items-center gap-2"
+                                            onClick={handleClearFilters}
                                         >
-                                            <title>Clear</title>
-                                            <g>
-                                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
-                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                                            </g>
-                                        </svg>
-                                        <span>Clear</span>
-                                    </button>
+                                            <svg
+                                                viewBox="0 0 16 16"
+                                                width="1em"
+                                                height="1em"
+                                                fill="currentColor"
+                                                className="bi-x-square b-icon bi"
+                                            >
+                                                <title>Clear</title>
+                                                <g>
+                                                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                                                </g>
+                                            </svg>
+                                            <span>Clear</span>
+                                        </button>
+                                    )}
+
                                     <button
                                         // id="dropdownDefaultButton"
                                         onClick={toggleDropDown}
@@ -123,38 +147,44 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                     </button>
                                 </div>
                             </div>
-                            <div className="px-[16px] my-5">
-                                <form className="w-full" id="FormFiled">
-                                    <SelectInput
-                                        label="AI Policy Name"
-                                        options={aiPolicies.map((policy) => ({
-                                            value: policy.value,
-                                            label: policy.label,
-                                        }))}
-                                        value={filters.AI_Policy_Name}
-                                        onChange={(selectedOptions) =>
-                                            handleFilterChange(
-                                                "AI_Policy_Name",
-                                                selectedOptions
-                                            )
-                                        }
-                                    />
-                                    <SelectInput
-                                        label="Country / Region"
-                                        options={countries.map((country) => ({
-                                            value: country.value,
-                                            label: country.label,
-                                        }))}
-                                        value={filters.country_id}
-                                        onChange={(selectedOptions) =>
-                                            handleFilterChange(
-                                                "country_id",
-                                                selectedOptions
-                                            )
-                                        }
-                                    />
-                                </form>
-                            </div>
+                            {isDropdownOpen && (
+                                <div className="px-[16px] my-5">
+                                    <form className="w-full" id="FormFiled">
+                                        <SelectInput
+                                            label="AI Policy Name"
+                                            options={aiPolicies.map(
+                                                (policy) => ({
+                                                    value: policy.value,
+                                                    label: policy.label,
+                                                })
+                                            )}
+                                            value={filters.AI_Policy_Name}
+                                            onChange={(selectedOptions) =>
+                                                handleFilterChange(
+                                                    "AI_Policy_Name",
+                                                    selectedOptions
+                                                )
+                                            }
+                                        />
+                                        <SelectInput
+                                            label="Country / Region"
+                                            options={countries.map(
+                                                (country) => ({
+                                                    value: country.value,
+                                                    label: country.label,
+                                                })
+                                            )}
+                                            value={filters.country_id}
+                                            onChange={(selectedOptions) =>
+                                                handleFilterChange(
+                                                    "country_id",
+                                                    selectedOptions
+                                                )
+                                            }
+                                        />
+                                    </form>
+                                </div>
+                            )}
                         </div>
                     </div>
 
