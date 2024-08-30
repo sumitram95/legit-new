@@ -31,19 +31,19 @@ const News = ({ news }) => {
         <div className="bg-white h-fit pb-15 rounded-md w-full mt-6">
             <div className="flex justify-between items-center border-b border-light-border p-[16px]">
                 <div>
-                    <h1 className="text-xl font-bold mb-2">News</h1>
-                    <Link href="/news" className="hover:underline">
+                    <h1 className="text-xl font-bold mb-2 text-primary-light">News</h1>
+                    <Link href="/news" className="hover:underline text-light-blue">
                         Go to news
                         <i className="fa-regular fa-circle-right ml-2"></i>
                     </Link>
                 </div>
                 <div className="flex gap-6">
                     <i
-                        className="fa-solid fa-left-long hover:cursor-pointer"
+                        className="fa-solid fa-left-long hover:cursor-pointer text-light-blue"
                         onClick={() => sliderRef.current.slickPrev()}
                     ></i>
                     <i
-                        className="fa-solid fa-right-long hover:cursor-pointer"
+                        className="fa-solid fa-right-long hover:cursor-pointer text-light-blue"
                         onClick={() => sliderRef.current.slickNext()}
                     ></i>
                 </div>
@@ -74,7 +74,7 @@ const News = ({ news }) => {
                                         {list.upload_date}
                                     </p>
                                     <h5 className="mb-2 text-sm font-bold tracking-tight text-primary truncate">
-                                        <Link href={route("news.single", list.id)}>
+                                        <Link href={route("news.single", list.id)} className="hover:underline">
                                             {list.title}
                                         </Link>
                                     </h5>

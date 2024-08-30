@@ -13,7 +13,7 @@ export default function ({
         <div className={className}>
             <label
                 htmlFor={htmlFor}
-                className="block tracking-wide text-gray-500 text-sm font-bold mb-2"
+                className={`block tracking-wide text-gray-500 text-sm font-bold mb-2 ${className}`}
             >
                 {label}
             </label>
@@ -25,7 +25,7 @@ export default function ({
                 {...props}
             />
             {errorMsg && (
-                <p className=" text-red-500 text-xs mt-1">{errorMsg}</p>
+                <p className="text-red-500 text-xs mt-1">{errorMsg}</p>
             )}
         </div>
     );
