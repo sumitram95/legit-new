@@ -4,7 +4,7 @@ export default function Status({ statuses, statusState, handleStatusChange1, han
 
     console.log(statuses);
     return (
-        <div className="flex gap-3 border p-2 rounded-md flex-wrap">
+        <div className="flex gap-[24px] border px-[12px] py-[8px] rounded-md flex-wrap">
             {statuses
                 .filter(status => status.label !== 'whitepaper' && status.label !== 'pilot')
                 .map((status, index) => (
@@ -16,7 +16,7 @@ export default function Status({ statuses, statusState, handleStatusChange1, han
                             onChange={(e) => handleStatusChange1(status.value, e.target.checked)}
                             className={`rounded focus:ring-transparent focus:border-0 custom-input ${status.label}`}
                         />
-                        <label htmlFor={status.value} className="capitalize" style={{ fontSize: '12px' }}>
+                        <label htmlFor={status.value} className="capitalize" style={{ fontSize: '14px' }}>
                             {status.label}
                         </label>
                     </div>
@@ -25,7 +25,7 @@ export default function Status({ statuses, statusState, handleStatusChange1, han
             <button
                 type="button"
                 className="text-blue-400 hover:underline"
-                style={{ fontSize: '12px' }}
+                style={{ fontSize: '14px' }}
                 onClick={handleShowAll} // Add onClick handler
             >
                 Show all
