@@ -114,7 +114,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                     </div>
                 </div>
                 <div className="block sm:block md:block xl:flex gap-[30px]">
-                    {/* Sidebar for filters */}
+                    {/* Search Comonent */}
                     <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:block md:block sm:block xl:block xl:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
