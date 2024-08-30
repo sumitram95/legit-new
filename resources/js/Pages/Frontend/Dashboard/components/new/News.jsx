@@ -52,7 +52,7 @@ const News = ({ news }) => {
                 <Slider ref={sliderRef} {...settings} className="flex gap-6 mt-5">
                     {Array.isArray(news) && news.length > 0 ? (
                         news.map((list, index) => (
-                            <div className="max-w-sm bg-white" key={index}>
+                            <div className="max-w-sm bg-white min-h-[470px]" key={index}>
                                 {list.thumbnail?.path ? (
                                     <img
                                         className="h-50 w-full object-cover"
