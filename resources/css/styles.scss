@@ -405,3 +405,14 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
 .text-dark {
     color: #0b2041;
 }
+
+.sticky-column {
+    position: sticky;
+    left: 0px;
+    background: #eef6fd;
+}
+.sticky-column-td {
+    position: sticky;
+    left: 0px;
+    background: #fff;
+}

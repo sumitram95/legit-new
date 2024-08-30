@@ -24,7 +24,7 @@ export default function Organization({ organizationLogo }) {
         <div className="bg-white h-fit p-5 rounded-md w-full mt-6">
             <div className="flex justify-between items-center pb-4">
                 <div>
-                    <h1 className=" text-xl font-bold mb-2">
+                    <h1 className=" text-xl font-bold mb-2 text-primary-light">
                         Contributing Organizations
                     </h1>
                 </div>

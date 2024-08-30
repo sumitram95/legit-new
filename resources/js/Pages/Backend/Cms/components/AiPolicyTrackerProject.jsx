@@ -7,7 +7,7 @@ import Button from "@/Components/Button";
 const AiPolicyTrackerProject = ({ aiPolicyTracker, handleAiPolicyTrackerChange, handleAddAiPolicyTracker, handleRemoveAiPolicyTracker }) => {
     return (
         <div className="mt-3">
-            <p>AIPolicyTracker Project</p>
+            <p className="text-primary-light">AIPolicyTracker Project</p>
             <h1>Description</h1>
             {aiPolicyTracker.map((item, index) => (
                 <div
