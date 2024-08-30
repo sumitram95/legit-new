@@ -14,17 +14,21 @@ export default function NewsCard({ newsLists = [] }) {
                     key={index}
                 >
                     {newsList.thumbnail?.path ? (
-                        <div className="lg:max-w-48">
-                            <img className="w-full h-full object-cover" src={`/storage/${newsList.thumbnail?.path}`} alt="" srcset="" />
+                        <div className="lg:w-[25%]">
+                            <div className="max-h-[200px]">
+                                <img className="w-full h-full object-cover" src={`/storage/${newsList.thumbnail?.path}`} alt="" srcset="" />
+                            </div>
 
                         </div>
                     ) : (
-                        <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden flex justify-center items-center">
-                            <img src={NoImage} alt="" srcset="" className="h-[100px] w-[80px] object-cover" />
+                        <div className="lg:w-[25%]">
+                            <div className="h-48">
+                                <img src={NoImage} alt="" srcset="" className="max-h-[200px] max-w-[90px] object-cover" />
+                            </div>
                         </div>
                     )}
 
-                    <div className=" p-4 flex flex-col justify-between leading-normal">
+                    <div className="lg:w-[75%] p-4 flex flex-col justify-between leading-normal">
                         <div className="mb-8">
                             <p className="text-sm text-gray-600 flex items-center gap-2">
                                 <i className="fa-regular fa-clock"> </i>{" "}
