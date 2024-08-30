@@ -78,16 +78,16 @@ export default function NewsCard({ newsLists = [] }) {
                                     {newsList.title ?? ""}
                                 </Link>
                             </div>
-                            {/* <div
+                            <div
                                 className="text-gray-700 text-base truncate"
                                 dangerouslySetInnerHTML={{
-                                    __html: newsList.description ?? "",
+                                    __html:    limitWords(newsList.description, 30) ?? "",
                                 }}
-                            ></div> */}
+                            ></div>
 
-                            <p className="mb-3 font-normal">
+                            {/* <p className="mb-3 font-normal">
                                 {limitWords(newsList.description, 30)}
-                            </p>
+                            </p> */}
                         </div>
                     </div>
                 </div>

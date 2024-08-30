@@ -78,7 +78,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
 
     // Function to check screen size and set dropdown open state
     const handleResize = () => {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth >= 770) {
             // Considering 'md' as 768px breakpoint
             setDropdownOpen(true);
         } else {
@@ -105,8 +105,10 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
             <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="md:border-b flex md:hidden border-light-border  p-[16px] pb-4 justify-between items-center">
                     <div>
-                        <p className="font-bold text-primary text-lg">News</p>
-                        <p className="mt-3 text-sm text-primary font-thin">
+                        <p className="font-bold text-primary-light text-lg">
+                            News
+                        </p>
+                        <p className="mt-3 text-sm text-gray-800">
                             Sorted by date
                         </p>
                     </div>
@@ -146,10 +148,10 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                         // id="dropdownDefaultButton"
                                         onClick={toggleDropDown}
                                         // data-dropdown-toggle="dropdown"
-                                        className="text-primary font-medium rounded-lg text-sm block md:hidden sm:hidden"
+                                        className="text-primary font-medium rounded-lg text-sm block md:hidden"
                                         type="button"
                                     >
-                                        <i class="fa-solid ms-3 text-primary fa-angle-down"></i>
+                                        <i className="fa-solid ms-3 text-primary fa-angle-down"></i>
 
                                         {/* <i class="fa-solid fa-angle-up"></i> */}
                                     </button>
@@ -205,7 +207,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                     <p className="font-bold text-primary-light text-lg">
                                         News
                                     </p>
-                                    <p className="mt-3 text-sm text-light-blue">
+                                    <p className="mt-3 text-sm text-gray-800">
                                         Sorted by date
                                     </p>
                                 </div>
