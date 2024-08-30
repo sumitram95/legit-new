@@ -271,7 +271,7 @@ export default function Dashboard({
                 <div className="flex gap-[30px]">
                     <div className="w-full lg:w-[83.33%]">
                         <div className="w-full border rounded-md bg-white">
-                            <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
+                        <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <div>
                                     <p className="font-bold text-primary text-lg leading-none">
                                         Global Artificial Intelligence (AI)
