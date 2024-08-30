@@ -50,7 +50,7 @@ export default function Index({
 
         try {
             // Make a GET request to fetch data by ID
-            const response = await axios.post(`/backend/news/update/${id}`);
+            const response = await axios.post(`/backend/news/edit/${id}`);
 
             const updatedData = response.data.news; // Adjust according to your response structure
 
