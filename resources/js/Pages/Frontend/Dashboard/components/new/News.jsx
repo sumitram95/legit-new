@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import NoImage from "@/assets/images/no-image/no-image.png";
 import DOMPurify from 'dompurify';
 
+import { limitWords } from '@/utils/limitWords';
+
 const News = ({ news }) => {
     const sliderRef = useRef(null);
 
@@ -19,12 +21,6 @@ const News = ({ news }) => {
         pauseOnHover: true,
         adaptiveHeight: true,
         arrows: false,
-    };
-
-    const limitWords = (html, limit) => {
-        const text = DOMPurify.sanitize(html).replace(/<[^>]+>/g, ' '); // Remove HTML tags
-        const words = text.split(' ');
-        return words.slice(0, limit).join(' ') + (words.length > limit ? '...' : '');
     };
 
     return (

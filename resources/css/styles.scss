@@ -221,7 +221,6 @@ $input-placeholder-color: #7997c3;
 $input-min-height: 46px;
 
 .ui-field-wrapper {
-
     .input-group-text,
     input,
     select {
@@ -244,7 +243,6 @@ $input-min-height: 46px;
     }
 
     &.is-invalid {
-
         .input-group-text,
         input,
         select {
@@ -415,4 +413,14 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
     position: sticky;
     left: 0px;
     background: #fff;
+}
+
+.status-state {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 2px;
+    margin-right: 9px;
 }
