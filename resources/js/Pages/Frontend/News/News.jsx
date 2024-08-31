@@ -104,8 +104,8 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
             <Head title="News" />
             <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="block sm:block md:block xl:flex gap-[30px]">
-                    {/* Sidebar for filters */}
-                    <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:hidden md:block sm:block xl:block xl:w-[16.67%]">
+                    {/* Sidebar for filters for both desktop  */}
+                    <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 hidden xl:block  xl:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <p className="font-bold text-primary-light text-lg leading-none">
