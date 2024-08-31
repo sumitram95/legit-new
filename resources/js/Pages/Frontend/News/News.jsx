@@ -197,7 +197,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                     <p className="font-bold text-primary text-lg">
                                         News
                                     </p>
-                                    <p className="mt-3 text-sm text-primary font-thin">
+                                    <p className="mt-3 text-sm text-primary">
                                         Sorted by date
                                     </p>
                                 </div>
