@@ -1,12 +1,13 @@
 import SelectInputLists from "@/Components/map/SelectInputList";
 import SelectInput from "@/Components/SelectInput";
 import { AppLayout } from "@/Layouts/AppLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import NewsCard from "./components/NewsCard";
 import PaginationPage from "@/Components/table/PaginationPage";
 import axios from "axios";
 import { isDraftable } from "immer";
+import PaginatorMobile from "@/Components/Paginations/PaginatorMobile";
 
 export default function News({ news: initialNewsData, aiPolicies, countries }) {
     const [visibleDiv, setVisibleDiv] = useState(false);
@@ -98,6 +99,28 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    const handlePageChange = async () => {
+        try {
+            const response = await axios.post(
+                route("frontend.showAdvancedInfoPaginate")
+            );
+            console.log("Response data:", response);
+
+            if (response.data && response.data.data) {
+                setNewsData((prevNews) => ({
+                    ...prevNews,
+                    data: [...prevNews.data, ...response.data.data],
+                }));
+            } else {
+                console.error(
+                    "Response data or response.data.data is undefined"
+                );
+            }
+        } catch (error) {
+            console.error("Error during page change:", error);
+        }
+    };
 
     return (
         <AppLayout>
@@ -264,8 +287,14 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                             )}
                             <div className="mt-5">
                                 <NewsCard newsLists={news.data} />
-                                {news.data.length > 10 && (
-                                    <PaginationPage paginator={news} />
+                                {news.data.length > 2 && (
+                                    // <PaginationPage paginator={news} />
+
+                                    // <PaginatorMobile paginator={news} />
+                                    <PaginatorMobile
+                                        paginator={news}
+                                        onPageChange={handlePageChange}
+                                    />
                                 )}
                             </div>
                         </div>

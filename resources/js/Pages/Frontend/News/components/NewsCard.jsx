@@ -46,7 +46,8 @@ export default function NewsCard({ newsLists = [] }) {
                         </div>
                     )}
 
-                    <div className="lg:w-[75%] px-4 flex flex-col justify-between leading-normal">
+                    <div className="lg:w-[75%] px-4 mt-4 flex flex-col justify-between leading-normal">
+
                         <div className="">
                             <p className="text-xs mb-3 text-light-blue flex items-center gap-[4px]">
                                 <span>

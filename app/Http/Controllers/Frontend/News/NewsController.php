@@ -41,7 +41,7 @@ class NewsController extends Controller
 
         try {
             $data['news'] = News::with(['thumbnail', 'status'])->find($id);
-            
+
             if (!$data['news']) {
                 return to_route('news.index')->with('error', 'News Not Founded');
             }
@@ -100,5 +100,16 @@ class NewsController extends Controller
             'to' => $filteredData->lastItem(),
             'total' => $filteredData->total(),
         ]);
+    }
+
+    public function showAdvancedInfoPaginate(Request $request){
+         // Define the number of items per page
+         $perPage = $request->input('perPage', 10); // Default to 10 items per page
+
+         // Fetch paginated news items
+         $news = News::paginate($perPage);
+
+         // Return the paginated data as JSON
+         return response()->json($news);
     }
 }
