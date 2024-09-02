@@ -4,6 +4,7 @@ import SelectInput from "@/Components/SelectInput";
 import Input from "@/Components/Input";
 import PaginationPage from "@/Components/table/PaginationPage";
 import Subscription from "../Subscription";
+import NoTableData from "@/Components/table/NoTableData";
 
 export default function Mobile({
     is_favorite,
@@ -131,7 +132,7 @@ export default function Mobile({
         };
     }, []);
 
-    console.log("table data of mobile view : ", tableData);
+    const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
 
     return (
         <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
@@ -269,10 +270,10 @@ export default function Mobile({
 
                 {/* content */}
                 {tableData.data.map((list) => (
-                    <div className="bg-white rounded pb-3 mb-5" key={list.id}>
-                        <div className="flex justify-between py-3 px-5 bg-blue-100">
+                    <div className="bg-white rounded pb-3 mb-5 " key={list.id}>
+                        <div className="flex flex-wrap justify-between py-3 px-5 bg-blue-100">
                             <div>
-                                <p className="font-bold text-primary-light text-lg leading-none">
+                                <p className="font-bold text-primary-light text-base w-full leading-none">
                                     {list.ai_policy_name}
                                     <i className="fa-regular fa-star ms-3"></i>
                                 </p>
@@ -402,6 +403,16 @@ export default function Mobile({
                         </div>
                     </div>
                 ))}
+
+                {tableData.data.length > 10 && (
+                    <PaginationPage paginator={tableData} />
+                )}
+
+                {!hasData && (
+                    <h1 className="font-bold text-primary text-lg text-center">
+                        Not Found
+                    </h1>
+                )}
             </div>
         </div>
     );
