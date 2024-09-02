@@ -100,6 +100,14 @@ export default function Mobile({
         setDropdownOpen(!isDropdownOpen);
     };
 
+    // State for showing advanced info
+    const [isShowAdvancedInfo, setShowAdvancedInfo] = useState(null);
+
+    // Function to toggle showing advanced info
+    const toggleDropDownShowAdvancedInfo = (id) => {
+        setShowAdvancedInfo((prevState) => (prevState === id ? null : id));
+    };
+
     // Function to check screen size and set dropdown open state
     const handleResize = () => {
         if (window.innerWidth >= 768) {
@@ -123,7 +131,7 @@ export default function Mobile({
         };
     }, []);
 
-    console.log("tableData : ", tableData);
+    console.log("table data of mobile view : ", tableData);
 
     return (
         <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
@@ -152,7 +160,7 @@ export default function Mobile({
                 {/* Search Component */}
                 <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:block md:block sm:block xl:block xl:w-[16.67%]">
                     <div className="border rounded-md w-full bg-white sticky top-0">
-                        <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
+                        <div className="border-b py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
                                 <p className="font-bold text-primary-light text-lg leading-none">
                                     Filters
@@ -260,39 +268,61 @@ export default function Mobile({
                 </div>
 
                 {/* content */}
-                {tableData.map((list) => (
-                    <div className="bg-white rounded-md py-3 mb-5" key={list.id}>
-                        <div className="border-b-2 pb-4 px-5">
+                {tableData.data.map((list) => (
+                    <div className="bg-white rounded pb-3 mb-5" key={list.id}>
+                        <div className="flex justify-between py-3 px-5 bg-blue-100">
                             <div>
-                                <p className="font-bold text-primary text-lg">
+                                <p className="font-bold text-primary-light text-lg leading-none">
                                     {list.ai_policy_name}
-                                    <i className="fa-regular fa-star"></i>
+                                    <i className="fa-regular fa-star ms-3"></i>
                                 </p>
+                                <p className="mt-2">{list.status?.name}</p>
                             </div>
-                            <div className="flex mt-3 gap-5 text-sm">
-                                <div className="w-1/2">
-                                    <div>
-                                        <p className="text-muted-light">
-                                            Country/Region
-                                        </p>
-                                    </div>
-                                    <div className="mt-1">
-                                        <p>{list.country?.name}</p>
-                                    </div>
-                                </div>
-                                <div className="w-1/2">
-                                    <div>
-                                        <p className="text-muted-light">
-                                            Status
-                                        </p>
-                                    </div>
-                                    <div className="mt-1">
-                                        <p>{list.status?.name}</p>
-                                    </div>
-                                </div>
+                            <div>
+                                <Link
+                                    href={route(
+                                        "frontend.single_ai_policy_tracker.index",
+                                        { id: list.id }
+                                    )}
+                                >
+                                    <i className="fa-regular fa-circle-right"></i>
+                                </Link>
                             </div>
                         </div>
+
                         <div className="px-5">
+                            <div className="py-3">
+                                <div>
+                                    <p className="text-muted-light text-sm">
+                                        Country
+                                    </p>
+                                </div>
+                                <div className="flex mt-1 gap-3 items-center text-sm">
+                                    <p>{list.country?.name}</p>
+                                </div>
+                            </div>
+                            <div className="py-3">
+                                <div>
+                                    <p className="text-muted-light text-sm">
+                                        Governing Body
+                                    </p>
+                                </div>
+                                <div className="flex mt-1 gap-3 items-center text-sm">
+                                    <p>{list.governing_body}</p>
+                                </div>
+                            </div>
+
+                            <div className="py-3">
+                                <div>
+                                    <p className="text-muted-light text-sm">
+                                        Announcement Year
+                                    </p>
+                                </div>
+                                <div className="flex mt-1 gap-3 items-center text-sm">
+                                    <p>{list.formatted_created_at}</p>
+                                </div>
+                            </div>
+
                             <div className="py-3">
                                 <div>
                                     <p className="text-muted-light text-sm">
@@ -303,27 +333,74 @@ export default function Mobile({
                                     <p>{list.technology_partners}</p>
                                 </div>
                             </div>
-                            <div className="py-3">
+
+                            {list.id == isShowAdvancedInfo && (
                                 <div>
-                                    <p className="text-muted-light text-sm">
-                                        Announcement Year
-                                    </p>
+                                    <div className="py-3">
+                                        <div>
+                                            <p className="text-muted-light text-sm">
+                                                Governance structure
+                                            </p>
+                                        </div>
+                                        <div className="flex mt-1 gap-3 items-center text-sm">
+                                            <p>{list.governance_structure}</p>
+                                        </div>
+                                    </div>
+                                    <div className="py-3">
+                                        <div>
+                                            <p className="text-muted-light text-sm">
+                                                Main motivation/goals of the AI
+                                                policy
+                                            </p>
+                                        </div>
+                                        <div className="flex mt-1 gap-3 items-center text-sm">
+                                            <p>{list.main_motivation}</p>
+                                        </div>
+                                    </div>
+                                    <div className="py-3">
+                                        <div>
+                                            <p className="text-muted-light text-sm">
+                                                Description
+                                            </p>
+                                        </div>
+                                        <div
+                                            className="mt-1 text-sm"
+                                            dangerouslySetInnerHTML={{
+                                                __html: list.description,
+                                            }}
+                                        ></div>
+                                    </div>
                                 </div>
-                                <div className="flex mt-1 gap-3 items-center text-sm">
-                                    <p>{list.announcement_year}</p>
-                                </div>
-                            </div>
-                            <div className="flex gap-3 mb-5">
-                                <button className="btn btn-light-primary text-primary flex gap-2 items-center">
-                                    <span>
-                                        <i className="fa-solid fa-file-circle-check"></i>
-                                    </span>
-                                    <span>View AI Policy</span>
-                                </button>
-                            </div>
+                            )}
+                        </div>
+
+                        {/* show advance info */}
+                        <div className="border-b"></div>
+                        <div className="pt-3 px-5 flex justify-center items-center">
+                            <button
+                                onClick={() =>
+                                    toggleDropDownShowAdvancedInfo(list.id)
+                                }
+                                className="text-primary"
+                                type="button"
+                            >
+                                <span>
+                                    <i
+                                        className={` fa-solid ms-3 ${
+                                            list.id == isShowAdvancedInfo
+                                                ? "fa-angle-up"
+                                                : "fa-angle-down"
+                                        }`}
+                                    ></i>
+                                </span>
+                                <span className="ms-1">
+                                    {list.id == isShowAdvancedInfo
+                                        ? "Hide adanced info"
+                                        : "    Show advanced info"}
+                                </span>
+                            </button>
                         </div>
                     </div>
-
                 ))}
             </div>
         </div>

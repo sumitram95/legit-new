@@ -65,7 +65,7 @@ export default function WatchList({
                     aiPolicies={aiPolicies}
                     countries={countries}
                     statuses={statuses}
-                    tableData={tableData.data}
+                    tableData={tableData}
                     countrywithStatus={countrywithStatus}
                 />
             )}

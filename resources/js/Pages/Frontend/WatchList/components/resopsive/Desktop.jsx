@@ -116,7 +116,7 @@ export default function Desktop({
 
     // Function to check screen size and set dropdown open state
     const handleResize = () => {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth >= 1024) {
             // Considering 'md' as 768px breakpoint
             setDropdownOpen(true);
         } else {
@@ -142,10 +142,10 @@ export default function Desktop({
             <div className="flex gap-[30px]">
                 <div className="w-full lg:w-[83.33%]">
                     <div className="w-full border rounded-md bg-white">
-                        <div className="border-b-2 p-[16px]  pb-4 px-5 flex justify-between items-center">
+                        <div className="border-b p-[16px]  pb-4 px-5 flex justify-between items-center">
                             <div>
                                 <div>
-                                    <p className="font-bold text-primary text-lg">
+                                    <p className="font-bold text-primary-light text-lg leading-none">
                                         WatchList
                                     </p>
                                 </div>
@@ -238,12 +238,12 @@ export default function Desktop({
                     </div>
                 </div>
 
-                {/* ********************** Search Comonent (desktop) ********************** */}
+                {/* ********************** Search Comonent ********************** */}
                 <div className="hidden lg:block lg:w-[16.67%]">
                     <div className="border rounded-md w-full bg-white sticky top-0">
-                        <div className="border-b-2 py-[16px] px-[16px] flex justify-between items-center">
+                        <div className="border-b py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
-                                <p className="font-bold text-primary text-lg leading-none">
+                                <p className="font-bold text-primary-light text-lg leading-none">
                                     Filters
                                 </p>
                                 <button
