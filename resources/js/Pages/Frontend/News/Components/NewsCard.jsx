@@ -32,7 +32,7 @@ export default function NewsCard({ newsLists = [] }) {
                                     className="w-full h-full object-cover"
                                     src={`/storage/${newsList.thumbnail?.path}`}
                                     alt=""
-                                    srcset=""
+                                    
                                 />
                             </div>
                         </div>
@@ -43,7 +43,7 @@ export default function NewsCard({ newsLists = [] }) {
                                     <img
                                         src={NoImage}
                                         alt=""
-                                        srcset=""
+                                        
                                         className="max-h-[200px] max-w-[90px] object-cover"
                                     />
                                 </div>

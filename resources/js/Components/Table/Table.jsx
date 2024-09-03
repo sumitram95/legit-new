@@ -120,7 +120,7 @@ export default function Table({
                                 {list.formatted_created_at}
                             </td>
                             <td width="15%" className="px-6 py-4">
-                                <span class={`status-state ${list.status?.name || ''}`}></span>
+                                <span className={`status-state ${list.status?.name || ''}`}></span>
                                 {list.status?.name}
                             </td>
                             <td width="10%" className="px-6 py-4">
