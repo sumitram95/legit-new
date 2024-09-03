@@ -40,7 +40,7 @@ export default function Dashboard({
                 countrywithStatus={countrywithStatus}
                 countryWithAiPolicies={countryWithAiPolicies}
             />
-            // ) : (
+            {/* // ) : (
                 // <Mobile
                 //     news={news}
                 //     aiPolicies={aiPolicies}
@@ -54,7 +54,7 @@ export default function Dashboard({
                 // />
 
                 // <div>test</div>
-            // )}
+            // )} */}
         </AppLayout>
     );
 }
