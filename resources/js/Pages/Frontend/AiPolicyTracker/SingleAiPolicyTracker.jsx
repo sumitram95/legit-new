@@ -27,7 +27,7 @@ export default function SingleAiPolicyTracker({
                     </div>
 
                     {/* Ai News */}
-                    <div className="w-full mt-0">
+                    <div className="w-full mt-5 lg:mt-0">
                         <AiNews
                             newsLists={aiPolicyTrackerWithRelatedNews.news}
                         />
