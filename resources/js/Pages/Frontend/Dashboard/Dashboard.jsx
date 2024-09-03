@@ -27,34 +27,20 @@ export default function Dashboard({
     return (
         <AppLayout>
             <Head title="Dashboard" />
-            {isDesktop ? (
-                <Desktop
-                    useDeviceSize={deviceSize}
-                    news={news}
-                    aiPolicies={aiPolicies}
-                    countries={countries}
-                    statuses={statuses}
-                    tableData={tableData}
-                    aiPolicyLastUpdate={aiPolicyLastUpdate}
-                    newsLastUpdate={newsLastUpdate}
-                    countrywithStatus={countrywithStatus}
-                    countryWithAiPolicies={countryWithAiPolicies}
-                />
-            ) : (
-                // <Mobile
-                //     news={news}
-                //     aiPolicies={aiPolicies}
-                //     countries={countries}
-                //     statuses={statuses}
-                //     tableData={tableData}
-                //     aiPolicyLastUpdate={aiPolicyLastUpdate}
-                //     newsLastUpdate={newsLastUpdate}
-                //     countrywithStatus={countrywithStatus}
-                //     countryWithAiPolicies={countryWithAiPolicies}
-                // />
 
-                <div>test</div>
-            )}
+            <Desktop
+                useDeviceSize={deviceSize}
+                news={news}
+                aiPolicies={aiPolicies}
+                countries={countries}
+                statuses={statuses}
+                tableData={tableData}
+                aiPolicyLastUpdate={aiPolicyLastUpdate}
+                newsLastUpdate={newsLastUpdate}
+                countrywithStatus={countrywithStatus}
+                countryWithAiPolicies={countryWithAiPolicies}
+            />
+
         </AppLayout>
     );
 }
