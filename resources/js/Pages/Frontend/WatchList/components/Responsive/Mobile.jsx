@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Head, Link } from "@inertiajs/react";
 import SelectInput from "@/Components/SelectInput";
 import Input from "@/Components/Input";
-import PaginationPage from "@/Components/table/PaginationPage";
+import PaginationPage from "@/Components/Table/PaginationPage";
 import Subscription from "../Subscription";
-import NoTableData from "@/Components/table/NoTableData";
+import NoTableData from "@/Components/Table/NoTableData";
 
 export default function Mobile({
     is_favorite,

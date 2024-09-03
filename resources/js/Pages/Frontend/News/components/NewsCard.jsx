@@ -1,4 +1,4 @@
-import NoTableData from "@/Components/table/NoTableData";
+import NoTableData from "@/Components/Table/NoTableData";
 import { Link } from "@inertiajs/react";
 import React from "react";
 import NoImage from "@/assets/images/no-image/no-image.png";

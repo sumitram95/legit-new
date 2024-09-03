@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import SelectInputLists from "@/Components/map/SelectInputList";
+import SelectInputLists from "@/Components/Map/SelectInputList";
 import { Head, Link } from "@inertiajs/react";
-import Table from "@/Components/table/Table";
-import Columns from "@/Components/table/Columns";
+import Table from "@/Components/Table/Table";
+import Columns from "@/Components/Table/Columns";
 
 import Subscription from "../Subscription";
-import PaginationPage from "@/Components/table/PaginationPage";
+import PaginationPage from "@/Components/Table/PaginationPage";
 import SelectInput from "@/Components/SelectInput";
 import { useEffect } from "react";
 import Input from "@/Components/Input";
-import EditColumn from "@/Pages/Frontend/Dashboard/components/EditColumn";
-import EditColumnLists from "@/Pages/Frontend/Dashboard/components/EditColumnLists";
+import EditColumn from "@/Pages/Frontend/Dashboard/Components/EditColumn";
+import EditColumnLists from "@/Pages/Frontend/Dashboard/Components/EditColumnLists";
 
 export default function Desktop({
     // tableData,

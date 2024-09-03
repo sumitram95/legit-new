@@ -3,15 +3,15 @@ import Button from "@/Components/Button";
 import DeleteIcon from "@/Components/DeleteIcon";
 import EditIcon from "@/Components/EditIcon";
 import Model from "@/Components/Model";
-import NoTableData from "@/Components/table/NoTableData";
+import NoTableData from "@/Components/Table/NoTableData";
 import ViewIcon from "@/Components/ViewIcon";
 import Layout from "@/Layouts/Backend/Layout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
-import Add from "./components/Add";
+import Add from "./Components/Add";
 import Pagination from "@/Components/Pagination";
 import DeleteModel from "@/Components/DeleteModel";
-import Edit from "./components/Edit";
+import Edit from "./Components/Edit";
 import axios from "axios";
 
 export default function Index({

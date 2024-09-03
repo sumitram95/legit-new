@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
-import Desktop from "./components/resopsive/Desktop";
-import Mobile from "./components/resopsive/Mobile";
+import Desktop from "./Components/Responsive/Desktop";
+import Mobile from "./Components/Responsive/Mobile";
 
 const breakpoints = {
     md: 768, // mobile

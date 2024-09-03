@@ -1,9 +1,9 @@
 import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
-import AiNews from "./components/AiNews";
-import SingleAiInfo from "./components/SingleAiInfo";
-import AiTimeLine from "./components/AiTimeLine";
+import AiNews from "./Components/AiNews";
+import SingleAiInfo from "./Components/SingleAiInfo";
+import AiTimeLine from "./Components/AiTimeLine";
 
 const name = "Act Ai";
 
