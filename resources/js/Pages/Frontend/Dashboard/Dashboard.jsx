@@ -18,11 +18,11 @@ export default function Dashboard({
 }) {
     // const deviceSize = useDeviceSize();
 
-    const isDesktop =
-        deviceSize === "smallLaptop" ||
-        deviceSize === "laptop" ||
-        deviceSize === "desktop" ||
-        deviceSize === "largeDesktop";
+    // const isDesktop =
+    //     deviceSize === "smallLaptop" ||
+    //     deviceSize === "laptop" ||
+    //     deviceSize === "desktop" ||
+    //     deviceSize === "largeDesktop";
 
     return (
         <AppLayout>
