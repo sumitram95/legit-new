@@ -258,7 +258,6 @@ export default function Desktop({
 
     const deviceSize = useDeviceSize();
 
-    console.log("device size : ", deviceSize);
     return (
         <div className="content-wrapper relative top-[-60px]">
             <div className="flex gap-[30px]">
@@ -431,20 +430,18 @@ export default function Desktop({
                         )}
 
                         {/* ********************** Status Component (desktop) ********************** */}
-                        {deviceSize == "smallLaptop" ||
-                            deviceSize == "laptop" ||
-                            (deviceSize == "desktop" && (
-                                <div className="flex justify-center mt-5 items-center">
-                                    <Status
-                                        statuses={statuses}
-                                        statusState={statusState}
-                                        handleStatusChange1={
-                                            handleStatusChange1
-                                        }
-                                        handleShowAll={handleShowAll}
-                                    />
-                                </div>
-                            ))}
+                        {(deviceSize === "desktop" ||
+                            deviceSize === "laptop" ||
+                            deviceSize === "smallLaptop") && (
+                            <div className="flex justify-center mt-5 items-center">
+                                <Status
+                                    statuses={statuses}
+                                    statusState={statusState}
+                                    handleStatusChange1={handleStatusChange1}
+                                    handleShowAll={handleShowAll}
+                                />
+                            </div>
+                        )}
 
                         {/* ********************** MapChart Component ********************** */}
                         <div className="mt-5 px-4 map-chart-wrapper">

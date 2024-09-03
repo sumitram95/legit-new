@@ -142,24 +142,32 @@ class DashboardController extends Controller
     // In your Controller
     public function updateStatus(Request $request)
     {
-        $statusIds = $request->input('status_state', '[]');
+        // Retrieve the status_state input
+        $statusIds = $request->input('status_state');
 
-        // return [
-        //     'CA' => 'research',
-        //     'US' => 'research',
-        // ];
-
-        //-- Ai Policy tracker country with status and Link
-        $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::whereIn('status_id', $statusIds)->with(['country', 'status'])->get();
-        $URL_MAP = [];
-        $STATUS_MAP = [];
-        foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {
-            $countrySymbol = $tracker->country->symbol;
-            $URL_MAP[$countrySymbol] = $tracker->whitepaper_document_link;
-            $STATUS_MAP[$countrySymbol] = $tracker->status->name;
+        // Convert $statusIds to an array if it's a string
+        if (is_string($statusIds)) {
+            $statusIds = explode(',', $statusIds);
         }
-        $data['countrywithStatus'] = $STATUS_MAP;
 
-        return ($data['countrywithStatus']);
+        // Ensure $statusIds is an array and not empty
+        if (is_array($statusIds) && count($statusIds) > 0) {
+            //-- Ai Policy tracker country with status and Link
+            $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::whereIn('status_id', $statusIds)->with(['country', 'status'])->get();
+            $URL_MAP = [];
+            $STATUS_MAP = [];
+            foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {
+                $countrySymbol = $tracker->country->symbol;
+                $URL_MAP[$countrySymbol] = $tracker->whitepaper_document_link;
+                $STATUS_MAP[$countrySymbol] = $tracker->status->name;
+            }
+            $data['countrywithStatus'] = $STATUS_MAP;
+
+            return response()->json($data['countrywithStatus']);
+        } else {
+            // Handle the case where $statusIds is not valid
+            return response()->json(['error' => 'Invalid status IDs'], 400);
+        }
     }
+
 }
