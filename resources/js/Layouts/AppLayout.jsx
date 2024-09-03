@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "./Header/Header";
 import { Link } from "@inertiajs/react";
-import Footer from "./footer/Footer";
+import Footer from "./Footer/Footer";
 
 
 export function AppLayout({ children }) {

@@ -11,8 +11,8 @@ import React, { useEffect, useState } from "react";
 import Add from "./Components/Add";
 import Pagination from "@/Components/Pagination";
 import DeleteModel from "@/Components/DeleteModel";
-import Edit from "./Components/Edit";
 import axios from "axios";
+import Edit from "./Components/Edit";
 
 export default function Index({
     tableData = [],
