@@ -1,14 +1,18 @@
 import SelectInputLists from "@/Components/map/SelectInputList";
 import SelectInput from "@/Components/SelectInput";
 import { AppLayout } from "@/Layouts/AppLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import NewsCard from "./components/NewsCard";
 import PaginationPage from "@/Components/table/PaginationPage";
 import axios from "axios";
-import { isDraftable } from "immer";
+import PaginatorMobile from "@/Components/Paginations/PaginatorMobile";
+import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function News({ news: initialNewsData, aiPolicies, countries }) {
+    // get device name (mobile, tablet, smalllaptop, laptop, desktop)
+    const deviceSize = useDeviceSize();
+
     const [visibleDiv, setVisibleDiv] = useState(false);
     const [news, setNewsData] = useState(initialNewsData); // Initialize with the prop data
 
@@ -99,13 +103,45 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
         };
     }, []);
 
+    const handlePageChange = async () => {
+        try {
+            const response = await axios.post(
+                route("frontend.showAdvancedInfoPaginate")
+            );
+            console.log("Response data:", response.data);
+
+            if (response.data && response.data.data) {
+                setNewsData((prevNews) => ({
+                    ...prevNews,
+                    data: [...prevNews.data, ...response.data.data],
+                }));
+            } else {
+                console.error(
+                    "Response data or response.data.data is undefined"
+                );
+            }
+        } catch (error) {
+            console.error("Error during page change:", error);
+        }
+    };
+
     return (
         <AppLayout>
             <Head title="News" />
             <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
+                <div className="md:border-b flex md:hidden border-light-border pb-4 justify-between items-center">
+                    <div>
+                        <p className="font-bold text-primary-light text-lg">
+                            News
+                        </p>
+                        <p className="mt-3 text-sm text-gray-800">
+                            Sorted by date
+                        </p>
+                    </div>
+                </div>
                 <div className="block sm:block md:block xl:flex gap-[30px]">
-                    {/* Sidebar for filters */}
-                    <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:hidden md:block sm:block xl:block xl:w-[16.67%]">
+                    {/* Search Comonent */}
+                    <div className="block order-1 mb-5 xl:mt-0 lg:mt-0 xl:order-2 lg:block md:block sm:block xl:block xl:w-[16.67%]">
                         <div className="border rounded-md w-full bg-white sticky top-0">
                             <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                                 <p className="font-bold text-primary-light text-lg leading-none">
@@ -138,10 +174,10 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                         // id="dropdownDefaultButton"
                                         onClick={toggleDropDown}
                                         // data-dropdown-toggle="dropdown"
-                                        className="text-primary font-medium rounded-lg text-sm block md:hidden sm:hidden"
+                                        className="text-primary font-medium rounded-lg text-sm block md:hidden"
                                         type="button"
                                     >
-                                        <i class="fa-solid ms-3 text-primary fa-angle-down"></i>
+                                        <i className="fa-solid ms-3 text-primary fa-angle-down"></i>
 
                                         {/* <i class="fa-solid fa-angle-up"></i> */}
                                     </button>
@@ -192,12 +228,12 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
 
                     <div className="w-full order-2 xl:order-1 xl:w-[83.33%]">
                         <div className="w-full  md:border rounded-md bg-transparent md:bg-white sm:bg-white">
-                            <div className="border-b border-light-border p-[16px] pb-4 flex justify-between items-center">
+                            <div className="md:border-b hidden md:flex border-light-border  p-[16px] pb-4 justify-between items-center">
                                 <div>
-                                    <p className="font-bold text-primary text-lg">
+                                    <p className="font-bold text-primary-light text-lg">
                                         News
                                     </p>
-                                    <p className="mt-3 text-sm text-primary font-thin">
+                                    <p className="mt-3 text-sm text-gray-800">
                                         Sorted by date
                                     </p>
                                 </div>
@@ -254,9 +290,15 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                             )}
                             <div className="mt-5">
                                 <NewsCard newsLists={news.data} />
-                                {news.data.length > 10 && (
-                                    <PaginationPage paginator={news} />
-                                )}
+                                {news.data.length > 9 &&
+                                    (deviceSize === "mobile" ? (
+                                        <PaginatorMobile
+                                            paginator={news}
+                                            onPageChange={handlePageChange}
+                                        />
+                                    ) : (
+                                        <PaginationPage paginator={news} />
+                                    ))}
                             </div>
                         </div>
                     </div>

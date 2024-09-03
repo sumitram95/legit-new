@@ -13,8 +13,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $data['news'] = News::query()
-            ->with(['thumbnail', 'status'])
+        $data['news'] = News::with(['thumbnail', 'status'])
             ->orderBy('created_at', 'Desc')
             ->paginate(10);
         $data['aiPolicies'] = AiPolicyTracker::get()
@@ -41,7 +40,7 @@ class NewsController extends Controller
 
         try {
             $data['news'] = News::with(['thumbnail', 'status'])->find($id);
-            
+
             if (!$data['news']) {
                 return to_route('news.index')->with('error', 'News Not Founded');
             }
@@ -101,4 +100,34 @@ class NewsController extends Controller
             'total' => $filteredData->total(),
         ]);
     }
+    public function showAdvancedInfoPaginate(Request $request)
+    {
+        $perPage = $request->input('perPage', 10);
+        $currentPage = $request->input('page', 1);
+
+        // Fetch paginated news items
+        $news = News::paginate($perPage);
+
+        // Check if the requested page is within the available pages
+        if ($currentPage > $news->lastPage()) {
+            return response()->json([
+                'message' => 'Requested page exceeds available pages.',
+                'data' => [],
+                'current_page' => $currentPage,
+                'total_pages' => $news->lastPage(),
+            ], 404);
+        }
+
+        // Return the paginated data as JSON
+        return response()->json([
+            'data' => $news->items(),
+            'current_page' => $news->currentPage(),
+            'last_page' => $news->lastPage(),
+            'per_page' => $news->perPage(),
+            'total' => $news->total(),
+        ]);
+    }
+
+
+
 }

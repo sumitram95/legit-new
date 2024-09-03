@@ -111,7 +111,7 @@ class WatchListController extends Controller
         }
 
         // Apply pagination
-        $perPage = $request->get('per_page', 15); // Default to 15 items per page if not provided
+        $perPage = $request->get('per_page', 10); // Default to 15 items per page if not provided
         $filteredData = $query->paginate($perPage);
 
         // Format the data as needed

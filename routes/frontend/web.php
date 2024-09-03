@@ -26,6 +26,9 @@ Route::controller(NewsController::class)->group(function () {
     Route::get("/news/{id}", "singleNews")->name("news.single");
     Route::post('/news/filtered', [NewsController::class, 'getFilteredData'])->name('frontend.news.filtered');
 
+    Route::post('/news/show-advanced-info', 'showAdvancedInfoPaginate')->name('frontend.showAdvancedInfoPaginate');
+
+
 });
 
 // Route::post('/news/filtered', [NewsController::class, 'getFilteredData'])->name('frontend.news.filtered');

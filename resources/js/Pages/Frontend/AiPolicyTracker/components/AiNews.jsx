@@ -4,7 +4,7 @@ import React from "react";
 export default function AiNews({ newsLists = [] }) {
     return (
         <div className="bg-white rounded-md py-3">
-            <div className="border-b-2 pb-4 px-5">
+            <div className="border-b pb-4 px-5">
                 <div>
                     <p className="font-bold text-primary text-lg">News</p>
                 </div>
