@@ -289,14 +289,14 @@ export default function Desktop({
                             {deviceSize == "desktop" ||
                                 (deviceSize == "largeDesktop" && (
                                     <div className="flex justify-center items-center">
-                                        {/* <Status
+                                        <Status
                                             statuses={statuses}
                                             statusState={statusState}
                                             handleStatusChange1={
                                                 handleStatusChange1
                                             }
                                             handleShowAll={handleShowAll}
-                                        /> */}
+                                        />
                                     </div>
                                 ))}
 
@@ -434,12 +434,12 @@ export default function Desktop({
                             deviceSize === "laptop" ||
                             deviceSize === "smallLaptop") && (
                             <div className="flex justify-center mt-5 items-center">
-                                {/* <Status
+                                <Status
                                     statuses={statuses}
                                     statusState={statusState}
                                     handleStatusChange1={handleStatusChange1}
                                     handleShowAll={handleShowAll}
-                                /> */}
+                                />
                             </div>
                         )}
 
