@@ -38,7 +38,7 @@ export default function Desktop({
     const [statusState, setStatusState] = useState([]);
 
     // countrywithStatus = [];
-
+console.log(countrywithStatus);
 
     useEffect(() => {
         // Update the state if the initialTableData prop changes
