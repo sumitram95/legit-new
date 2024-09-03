@@ -22,7 +22,8 @@ export default function NewsCard({ newsLists = [] }) {
         <div className="">
             {newsLists.map((newsList, index) => (
                 <div
-                    className="px-[5%] py-[5%] md:py-0 rounded md:px-[10%] lg:px-5 w-full lg:max-w-full lg:flex md:border-b md:border-gray-400 md:pb-5 lg:border-gray-300 bg-white mt-5"
+                    className="px-[5%] py-[5%] md:py-0 rounded md:px-[10%] lg:px-5 w-full lg:max-w-full
+                     lg:flex border-b border-light-border md:pb-5 bg-white mt-5"
                     key={index}
                 >
                     {newsList.thumbnail?.path ? (

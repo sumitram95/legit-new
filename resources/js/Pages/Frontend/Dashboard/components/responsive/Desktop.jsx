@@ -431,16 +431,20 @@ export default function Desktop({
                         )}
 
                         {/* ********************** Status Component (desktop) ********************** */}
-                        {deviceSize == "smallLaptop" && (
-                            <div className="flex justify-center mt-5 items-center">
-                                <Status
-                                    statuses={statuses}
-                                    statusState={statusState}
-                                    handleStatusChange1={handleStatusChange1}
-                                    handleShowAll={handleShowAll}
-                                />
-                            </div>
-                        )}
+                        {deviceSize == "smallLaptop" ||
+                            deviceSize == "laptop" ||
+                            (deviceSize == "desktop" && (
+                                <div className="flex justify-center mt-5 items-center">
+                                    <Status
+                                        statuses={statuses}
+                                        statusState={statusState}
+                                        handleStatusChange1={
+                                            handleStatusChange1
+                                        }
+                                        handleShowAll={handleShowAll}
+                                    />
+                                </div>
+                            ))}
 
                         {/* ********************** MapChart Component ********************** */}
                         <div className="mt-5 px-4 map-chart-wrapper">
