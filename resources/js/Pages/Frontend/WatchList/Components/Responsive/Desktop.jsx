@@ -114,28 +114,28 @@ export default function Desktop({
         setDropdownOpen(!isDropdownOpen);
     };
 
-    // Function to check screen size and set dropdown open state
-    const handleResize = () => {
-        if (window.innerWidth >= 1024) {
-            // Considering 'md' as 768px breakpoint
-            setDropdownOpen(true);
-        } else {
-            setDropdownOpen(false);
-        }
-    };
+    // // Function to check screen size and set dropdown open state
+    // const handleResize = () => {
+    //     if (window.innerWidth >= 1024) {
+    //         // Considering 'md' as 768px breakpoint
+    //         setDropdownOpen(true);
+    //     } else {
+    //         setDropdownOpen(false);
+    //     }
+    // };
 
-    useEffect(() => {
-        // Set dropdown state based on initial screen size
-        handleResize();
+    // useEffect(() => {
+    //     // Set dropdown state based on initial screen size
+    //     handleResize();
 
-        // Listen for window resize events
-        window.addEventListener("resize", handleResize);
+    //     // Listen for window resize events
+    //     window.addEventListener("resize", handleResize);
 
-        // Cleanup listener on component unmount
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+    //     // Cleanup listener on component unmount
+    //     return () => {
+    //         window.removeEventListener("resize", handleResize);
+    //     };
+    // }, []);
 
     return (
         <div className="content-wrapper relative top-[-60px]">
