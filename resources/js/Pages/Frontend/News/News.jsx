@@ -6,10 +6,13 @@ import React, { useState, useEffect } from "react";
 import NewsCard from "./components/NewsCard";
 import PaginationPage from "@/Components/table/PaginationPage";
 import axios from "axios";
-import { isDraftable } from "immer";
 import PaginatorMobile from "@/Components/Paginations/PaginatorMobile";
+import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function News({ news: initialNewsData, aiPolicies, countries }) {
+    // get device name (mobile, tablet, smalllaptop, laptop, desktop)
+    const deviceSize = useDeviceSize();
+
     const [visibleDiv, setVisibleDiv] = useState(false);
     const [news, setNewsData] = useState(initialNewsData); // Initialize with the prop data
 
@@ -105,7 +108,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
             const response = await axios.post(
                 route("frontend.showAdvancedInfoPaginate")
             );
-            console.log("Response data:", response);
+            console.log("Response data:", response.data);
 
             if (response.data && response.data.data) {
                 setNewsData((prevNews) => ({
@@ -287,15 +290,15 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                             )}
                             <div className="mt-5">
                                 <NewsCard newsLists={news.data} />
-                                {news.data.length > 2 && (
-                                    // <PaginationPage paginator={news} />
-
-                                    // <PaginatorMobile paginator={news} />
-                                    <PaginatorMobile
-                                        paginator={news}
-                                        onPageChange={handlePageChange}
-                                    />
-                                )}
+                                {news.data.length > 9 &&
+                                    (deviceSize === "mobile" ? (
+                                        <PaginatorMobile
+                                            paginator={news}
+                                            onPageChange={handlePageChange}
+                                        />
+                                    ) : (
+                                        <PaginationPage paginator={news} />
+                                    ))}
                             </div>
                         </div>
                     </div>
