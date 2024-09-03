@@ -17,6 +17,7 @@ import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from "@inertiajs/react";
 import Input from "@/Components/Input";
 import PaginationPage from "@/Components/table/PaginationPage";
+import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function Desktop({
     news,
@@ -254,6 +255,10 @@ export default function Desktop({
             handleStatusChange1(status.value, true);
         });
     };
+
+    const deviceSize = useDeviceSize();
+
+    console.log("device size : ", deviceSize);
     return (
         <div className="content-wrapper relative top-[-60px]">
             <div className="flex gap-[30px]">
@@ -281,28 +286,49 @@ export default function Desktop({
                                     </p>
                                 </div>
                             </div>
-
-                            {/* ********************** Status Component ********************** */}
-                            <div className="flex justify-center items-center">
-                                <Status
-                                    statuses={statuses}
-                                    statusState={statusState}
-                                    handleStatusChange1={handleStatusChange1}
-                                    handleShowAll={handleShowAll}
-                                />
-                            </div>
+                            {/* ********************** Status Component (desktop) ********************** */}
+                            {deviceSize == "desktop" ||
+                                (deviceSize == "largeDesktop" && (
+                                    <div className="flex justify-center items-center">
+                                        <Status
+                                            statuses={statuses}
+                                            statusState={statusState}
+                                            handleStatusChange1={
+                                                handleStatusChange1
+                                            }
+                                            handleShowAll={handleShowAll}
+                                        />
+                                    </div>
+                                ))}
 
                             {/* **********************  Clear filters ********************** */}
                             <div className="flex gap-3 lg:hidden">
                                 {visibleDiv && (
                                     <button
-                                        type="button"
-                                        className="hover:underline"
-                                        onClick={() => setVisibleDiv(false)}
+                                        className="button-wthout-border flex items-center gap-2 text-light-blue"
+                                        onClick={handleClearFilters}
                                     >
-                                        <i className="fa-solid fa-square-xmark"></i>
-                                        <span className="ml-2">
-                                            Clear filters
+                                        <span className="ui-icon">
+                                            <svg
+                                                viewBox="0 0 16 16"
+                                                width="1em"
+                                                height="1em"
+                                                focusable="false"
+                                                role="img"
+                                                aria-label="x square"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="#7997c4"
+                                                className="bi-x-square b-icon bi"
+                                            >
+                                                <title>Clear</title>
+                                                <g>
+                                                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                        <span className="ui-clear-button_text">
+                                            Clear
                                         </span>
                                     </button>
                                 )}
@@ -323,15 +349,96 @@ export default function Desktop({
                                 </button>
                             </div>
                         </div>
-                        {visibleDiv && (
+                        {visibleDiv && deviceSize == "smallLaptop" && (
                             <div className="px-5 w-full mt-5">
-                                {/* ********************** mobile ********************** */}
-                                {/* <Search
-                            SelectInputLists={SelectInputLists}
-                            FormFiled={FormFiled}
-                            filters={data}
-                            handleFilterChange={e => setData(e.target.name, e.target.value)}
-                        /> */}
+                                <form className="w-full" id="filterData">
+                                    <div className="flex flex-wrap -mx-3 mb-6">
+                                        <div className="w-full md:w-1/2 px-3">
+                                            <SelectInput
+                                                label="AI Policy Name"
+                                                className="mb-2 text-sm font-normal text-light-blue"
+                                                options={aiPolicies.map(
+                                                    (policy) => ({
+                                                        value: policy.value,
+                                                        label: policy.label,
+                                                    })
+                                                )}
+                                                value={filters.AI_Policy_Name}
+                                                onChange={(selectedOptions) =>
+                                                    handleFilterChange(
+                                                        "AI_Policy_Name",
+                                                        selectedOptions
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                        <div className="w-full md:w-1/2 px-3">
+                                            <SelectInput
+                                                label="Country / Region"
+                                                className="mb-2 text-sm font-normal text-light-blue"
+                                                options={countries.map(
+                                                    (country) => ({
+                                                        value: country.value,
+                                                        label: country.label,
+                                                    })
+                                                )}
+                                                value={filters.country_id}
+                                                onChange={(selectedOptions) =>
+                                                    handleFilterChange(
+                                                        "country_id",
+                                                        selectedOptions
+                                                    )
+                                                }
+                                            />
+                                        </div>
+
+                                        <div className="w-full md:w-1/2 px-3">
+                                            <SelectInput
+                                                label="Status"
+                                                className="mb-2 text-sm font-normal text-light-blue"
+                                                options={statuses.map(
+                                                    (status) => ({
+                                                        value: status.value,
+                                                        label: status.label,
+                                                    })
+                                                )}
+                                                value={filters.status_id}
+                                                onChange={(selectedOptions) =>
+                                                    handleFilterChange(
+                                                        "status_id",
+                                                        selectedOptions
+                                                    )
+                                                }
+                                            />
+                                        </div>
+
+                                        <div className="w-full md:w-1/2 px-3">
+                                            <Input
+                                                className="mb-2 text-sm font-normal text-light-blue"
+                                                name="announcement_year"
+                                                value={
+                                                    filters.announcement_year
+                                                }
+                                                onChange={handleInputChange}
+                                                htmlFor="announcement_year"
+                                                label="Announcement Year"
+                                                type="date"
+                                            />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        )}
+
+                        {/* ********************** Status Component (desktop) ********************** */}
+                        {deviceSize == "smallLaptop" && (
+                            <div className="flex justify-center mt-5 items-center">
+                                <Status
+                                    statuses={statuses}
+                                    statusState={statusState}
+                                    handleStatusChange1={handleStatusChange1}
+                                    handleShowAll={handleShowAll}
+                                />
                             </div>
                         )}
 
@@ -395,7 +502,11 @@ export default function Desktop({
                 </div> */}
 
                         {/* <Pagination paginator={tableData} /> */}
-                        <PaginationPage paginator={tableData} />
+                        {/* <PaginationPage paginator={tableData} /> */}
+
+                        {tableData.data.length > 9 && (
+                            <PaginationPage paginator={tableData} />
+                        )}
                     </div>
                 </div>
 

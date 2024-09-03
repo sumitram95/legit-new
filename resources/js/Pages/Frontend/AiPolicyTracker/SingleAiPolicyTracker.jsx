@@ -31,6 +31,7 @@ export default function SingleAiPolicyTracker({
                         <AiNews
                             newsLists={aiPolicyTrackerWithRelatedNews.news}
                         />
+
                     </div>
 
                     {/* Ai Timeline */}
