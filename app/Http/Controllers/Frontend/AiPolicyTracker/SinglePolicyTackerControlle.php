@@ -20,7 +20,8 @@ class SinglePolicyTackerControlle extends Controller
                 },
                 'country',
                 'news',
-                'aIPolicyActivityLogs'
+                'aIPolicyActivityLogs',
+                'status'
             ])
             ->where('id', $id)
             ->first();

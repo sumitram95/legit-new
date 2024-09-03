@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 import NoImage from "@/assets/images/no-image/no-image.png";
 import DOMPurify from "dompurify";
+import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function NewsCard({ newsLists = [] }) {
     const limitWords = (html, limit) => {
@@ -13,6 +14,10 @@ export default function NewsCard({ newsLists = [] }) {
             (words.length > limit ? "..." : "")
         );
     };
+
+    const deviceSize = useDeviceSize();
+
+    // console.log("device size : ", deviceSize);
     return (
         <div className="">
             {newsLists.map((newsList, index) => (
@@ -47,7 +52,6 @@ export default function NewsCard({ newsLists = [] }) {
                     )}
 
                     <div className="lg:w-[75%] px-4 mt-4 flex flex-col justify-between leading-normal">
-
                         <div className="">
                             <p className="text-xs mb-3 text-light-blue flex items-center gap-[4px]">
                                 <span>
@@ -82,7 +86,9 @@ export default function NewsCard({ newsLists = [] }) {
                             <div
                                 className="text-gray-700 text-base truncate"
                                 dangerouslySetInnerHTML={{
-                                    __html:    limitWords(newsList.description, 30) ?? "",
+                                    __html:
+                                        limitWords(newsList.description, 30) ??
+                                        "",
                                 }}
                             ></div>
 
@@ -94,9 +100,14 @@ export default function NewsCard({ newsLists = [] }) {
                 </div>
             ))}
 
-            {newsLists.length == 0 && (
-                <NoTableData noTableDataTitle={"no data found"} />
-            )}
+            {newsLists.length === 0 &&
+                (deviceSize === "mobile" || deviceSize === "tablet" ? (
+                    <h1 className="font-bold mt-2 text-primary text-lg text-center">
+                        No data found
+                    </h1>
+                ) : (
+                    <NoTableData noTableDataTitle={"No data found"} />
+                ))}
         </div>
     );
 }
