@@ -17,9 +17,10 @@ import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from "@inertiajs/react";
 import Input from "@/Components/Input";
 import PaginationPage from "@/Components/Table/PaginationPage";
-import { useDeviceSize } from "@/Services/useDeviceSize";
+// import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function Desktop({
+    useDeviceSize,
     news,
     aiPolicies,
     countries,
@@ -256,7 +257,7 @@ export default function Desktop({
         });
     };
 
-    const deviceSize = useDeviceSize();
+    const deviceSize = useDeviceSize;
 
     return (
         <div className="content-wrapper relative top-[-60px]">
