@@ -1,8 +1,8 @@
 import React from "react";
 import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
-import Desktop from "./Components/Responsive/Desktop";
-import Mobile from "./Components/Responsive/Mobile";
+// import Desktop from "./Components/Responsive/Desktop";
+// import Mobile from "./Components/Responsive/Mobile";
 import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function Dashboard({
@@ -27,7 +27,9 @@ export default function Dashboard({
     return (
         <AppLayout>
             <Head title="Dashboard" />
-            {isDesktop ? (
+
+            <h1>Home</h1>
+            {/* {isDesktop ? (
                 <Desktop
                     news={news}
                     aiPolicies={aiPolicies}
@@ -51,7 +53,7 @@ export default function Dashboard({
                     countrywithStatus={countrywithStatus}
                     countryWithAiPolicies={countryWithAiPolicies}
                 />
-            )}
+            )} */}
         </AppLayout>
     );
 }
