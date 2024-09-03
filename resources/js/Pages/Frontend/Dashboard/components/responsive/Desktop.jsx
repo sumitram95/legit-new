@@ -432,7 +432,7 @@ export default function Desktop({
 
                         {/* ********************** Status Component (desktop) ********************** */}
 
-                                <div className="flex lg:hidden justify-center mt-5 items-center">
+                                <div className="flex justify-center mt-5 items-center">
                                     <Status
                                         statuses={statuses}
                                         statusState={statusState}
