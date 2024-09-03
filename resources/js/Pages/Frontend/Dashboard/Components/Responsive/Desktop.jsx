@@ -20,7 +20,7 @@ import PaginationPage from "@/Components/Table/PaginationPage";
 // import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function Desktop({
-    useDeviceSize,
+    // useDeviceSize,
     news,
     aiPolicies,
     countries,
@@ -257,7 +257,7 @@ export default function Desktop({
         });
     };
 
-    const deviceSize = useDeviceSize;
+    // const deviceSize = useDeviceSize;
 
     return (
         <div className="content-wrapper relative top-[-60px]">

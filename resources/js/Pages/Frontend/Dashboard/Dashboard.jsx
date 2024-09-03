@@ -3,7 +3,7 @@ import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
 import Desktop from "./Components/Responsive/Desktop";
 // import Mobile from "./Components/Responsive/Mobile";
-import { useDeviceSize } from "@/Services/useDeviceSize";
+// import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function Dashboard({
     news = [],
@@ -16,7 +16,7 @@ export default function Dashboard({
     countrywithStatus = {},
     countryWithAiPolicies = {},
 }) {
-    const deviceSize = useDeviceSize();
+    // const deviceSize = useDeviceSize();
 
     const isDesktop =
         deviceSize === "smallLaptop" ||
@@ -27,9 +27,9 @@ export default function Dashboard({
     return (
         <AppLayout>
             <Head title="Dashboard" />
-
+            {/* {isDesktop ? ( */}
             <Desktop
-                useDeviceSize={deviceSize}
+                // useDeviceSize={deviceSize}
                 news={news}
                 aiPolicies={aiPolicies}
                 countries={countries}
@@ -40,7 +40,21 @@ export default function Dashboard({
                 countrywithStatus={countrywithStatus}
                 countryWithAiPolicies={countryWithAiPolicies}
             />
+            // ) : (
+                // <Mobile
+                //     news={news}
+                //     aiPolicies={aiPolicies}
+                //     countries={countries}
+                //     statuses={statuses}
+                //     tableData={tableData}
+                //     aiPolicyLastUpdate={aiPolicyLastUpdate}
+                //     newsLastUpdate={newsLastUpdate}
+                //     countrywithStatus={countrywithStatus}
+                //     countryWithAiPolicies={countryWithAiPolicies}
+                // />
 
+                // <div>test</div>
+            // )}
         </AppLayout>
     );
 }
