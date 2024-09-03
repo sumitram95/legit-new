@@ -18,7 +18,7 @@ export default function SingleAiPolicyTracker({
                 {/* Flexbox on large screens (lg and xl) */}
                 <div className="w-full block lg:flex gap-8">
                     {/* Single AI Info */}
-                    <div className="w-full lg:min-w-[25%]">
+                    <div className="w-full lg:max-w-[25%]">
                         <SingleAiInfo
                             aiPolicyTrackerdetail={
                                 aiPolicyTrackerWithRelatedNews
@@ -35,7 +35,7 @@ export default function SingleAiPolicyTracker({
                     </div>
 
                     {/* Ai Timeline */}
-                    <div className="w-full mt-5 lg:mt-0 lg:min-w-[25%]">
+                    <div className="w-full mt-5 lg:mt-0 lg:max-w-[25%]">
                         <AiTimeLine
                             timeLines={
                                 aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs
