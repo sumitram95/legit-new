@@ -14,28 +14,46 @@ export default function SingleAiPolicyTracker({
     return (
         <AppLayout>
             <Head title={name} />
-            <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
-                {/* Flexbox on large screens (lg and xl) */}
-                <div className="w-full block lg:flex gap-8">
-                    {/* Single AI Info */}
-                    <div className="w-full lg:max-w-[25%]">
+            <div className="flex flex-row gap-x-4 content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
+                <div className="w-1/4">   <SingleAiInfo
+                    aiPolicyTrackerdetail={
+                        aiPolicyTrackerWithRelatedNews
+                    }
+                /></div>
+                <div className="w-2/4">     <AiNews
+                    newsLists={aiPolicyTrackerWithRelatedNews.news}
+                /></div>
+                <div className="w-1/4"> <AiTimeLine
+                    timeLines={
+                        aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs
+                    }
+                    latestDateOfUpdateAiPolicyTracker={
+                        latestDateOfUpdateAiPolicyTracker
+                    }
+                /></div>
+            </div>
+
+            {/* <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]"> */}
+            {/* Flexbox on large screens (lg and xl) */}
+            {/* <div className="w-full block lg:flex gap-8"> */}
+            {/* Single AI Info */}
+            {/* <div className="w-full lg:max-w-[25%]">
                         <SingleAiInfo
                             aiPolicyTrackerdetail={
                                 aiPolicyTrackerWithRelatedNews
                             }
                         />
-                    </div>
+                    </div> */}
 
-                    {/* Ai News */}
-                    <div className="w-full mt-5 lg:mt-0">
+            {/* Ai News */}
+            {/* <div className="w-full mt-5 lg:mt-0">
                         <AiNews
                             newsLists={aiPolicyTrackerWithRelatedNews.news}
                         />
+                    </div> */}
 
-                    </div>
-
-                    {/* Ai Timeline */}
-                    <div className="w-full mt-5 lg:mt-0 lg:max-w-[25%]">
+            {/* Ai Timeline */}
+            {/* <div className="w-full mt-5 lg:mt-0 lg:max-w-[25%]">
                         <AiTimeLine
                             timeLines={
                                 aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs
@@ -46,7 +64,7 @@ export default function SingleAiPolicyTracker({
                         />
                     </div>
                 </div>
-            </div>
+            </div> */}
         </AppLayout>
     );
 }
