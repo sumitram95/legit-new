@@ -1,10 +1,10 @@
-import SelectInputLists from "@/Components/map/SelectInputList";
+import SelectInputLists from "@/Components/Map/SelectInputList";
 import SelectInput from "@/Components/SelectInput";
 import { AppLayout } from "@/Layouts/AppLayout";
 import { Head, router } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
-import NewsCard from "./components/NewsCard";
-import PaginationPage from "@/Components/table/PaginationPage";
+import NewsCard from "./Components/NewsCard";
+import PaginationPage from "@/Components/Table/PaginationPage";
 import axios from "axios";
 import PaginatorMobile from "@/Components/Paginations/PaginatorMobile";
 import { useDeviceSize } from "@/Services/useDeviceSize";

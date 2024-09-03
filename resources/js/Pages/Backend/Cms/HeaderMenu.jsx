@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react";
 import { Head, useForm } from "@inertiajs/react";
 import Layout from "@/Layouts/Backend/Layout";
 import Button from "@/Components/Button";
-import Navbar from "./components/Navbar";
-import AiPolicyTrackerProject from "./components/AiPolicyTrackerProject";
-import Contributor from "./components/Contributor";
+import Navbar from "./Components/Navbar";
+import AiPolicyTrackerProject from "./Components/AiPolicyTrackerProject";
+import Contributor from "./Components/Contributor";
 import Input from "@/Components/Input";
 
 export default function HeaderMenu() {

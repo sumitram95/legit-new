@@ -1,10 +1,10 @@
-import SelectInputLists from "@/Components/map/SelectInputList";
+import SelectInputLists from "@/Components/Map/SelectInputList";
 import SelectInput from "@/Components/SelectInput";
-import Status from "@/Components/status/Status";
+import Status from "@/Components/Status/Status";
 import { AppLayout } from "@/Layouts/AppLayout";
 import { Head } from "@inertiajs/react";
 import React, { useState } from "react";
-import NewsCard from "./components/NewsCard";
+import NewsCard from "./Components/NewsCard";
 import NoImage from "@/assets/images/no-image/no-image.png";
 
 

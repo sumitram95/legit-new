@@ -142,18 +142,35 @@ class DashboardController extends Controller
     // In your Controller
     public function updateStatus(Request $request)
     {
-        // Retrieve the status_state input
-        $statusIds = $request->input('status_state');
 
-        // Convert $statusIds to an array if it's a string
-        if (is_string($statusIds)) {
-            $statusIds = explode(',', $statusIds);
+        // $statusIds = $request->input('status_state');
+        // if (is_string($statusIds)) {
+        //     $statusIds = explode(',', $statusIds);
+        // }
+
+        $statusIds = $request->input('status_state', []);
+
+        // If $statusIds is a string, convert it to an array
+        if (!is_array($statusIds)) {
+            $statusIds = json_decode($statusIds, true); // Decodes JSON array string to PHP array
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                $statusIds = explode(',', $statusIds); // Fallback: Split by comma if it's not a valid JSON string
+            }
         }
+
+
+
 
         // Ensure $statusIds is an array and not empty
         if (is_array($statusIds) && count($statusIds) > 0) {
             //-- Ai Policy tracker country with status and Link
-            $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::whereIn('status_id', $statusIds)->with(['country', 'status'])->get();
+            // $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::whereIn('status_id', $statusIds)->with(['country', 'status'])->get();
+
+
+            $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::whereIn('status_id', $statusIds)
+            ->with(['country', 'status'])
+            ->get();
+
             $URL_MAP = [];
             $STATUS_MAP = [];
             foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {

@@ -1,5 +1,5 @@
-import Contact from "@/Components/contact/Contact";
-import Contributor from "@/Components/contributor/Contributor";
+import Contact from "@/Components/Contact/Contact";
+import Contributor from "@/Components/Contributor/Contributor";
 import { Link } from "@inertiajs/react";
 import React from "react";
 

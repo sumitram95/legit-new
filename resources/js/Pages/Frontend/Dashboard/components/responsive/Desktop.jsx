@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { MapChart } from "../map/MapChart";
+import { MapChart } from "../Map/MapChart";
 import SelectInput from "@/Components/SelectInput";
-import Status from "@/Components/status/Status";
+import Status from "@/Components/Status/Status";
 import HistoricState from "../HistoricState";
-import Table from "@/Components/table/Table";
-import OriginalColumns from "@/Components/table/Columns";
+import Table from "@/Components/Table/Table";
+import OriginalColumns from "@/Components/Table/Columns";
 import EditColumn from "../EditColumn";
 import EditColumnLists from "../EditColumnLists";
-import News from "../new/News";
-import Description from "../description/Description";
-import DescriptionData from "../description/DescriptionData";
-import ContributorLists from "@/Components/contributor/ContributorList";
-import ContactLists from "@/Components/contact/ContactLists";
-import Organization from "../organization/Organization";
+import News from "../News/News";
+import Description from "../Description/Description";
+import DescriptionData from "../Description/DescriptionData";
+import ContributorLists from "@/Components/Contributor/ContributorList";
+import ContactLists from "@/Components/Contact/ContactLists";
+import Organization from "../Organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from "@inertiajs/react";
 import Input from "@/Components/Input";
-import PaginationPage from "@/Components/table/PaginationPage";
+import PaginationPage from "@/Components/Table/PaginationPage";
 import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function Desktop({

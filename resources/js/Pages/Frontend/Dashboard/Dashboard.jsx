@@ -4,8 +4,8 @@ import { AppLayout } from "@/Layouts/AppLayout";
 
 import { Head } from "@inertiajs/react";
 
-import Desktop from "./components/responsive/Desktop";
-import Mobile from "./components/responsive/Mobile";
+import Desktop from "./Components/Responsive/Desktop";
+import Mobile from "./Components/Responsive/Mobile";
 import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function Dashboard({

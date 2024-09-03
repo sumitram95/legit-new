@@ -1,4 +1,4 @@
-import NewsCard from "@/Pages/Frontend/News/components/NewsCard";
+import NewsCard from "@/Pages/Frontend/News/Components/NewsCard";
 import React from "react";
 
 export default function AiNews({ newsLists = [] }) {
