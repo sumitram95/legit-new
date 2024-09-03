@@ -9,8 +9,8 @@ export default function Description({
     contactLists = [],
 }) {
     return (
-        <div className="bg-white h-fit p-5 rounded-md w-full mt-6">
-            <div className="flex justify-between items-center border-b-2 pb-4">
+        <div className="bg-white h-fit py-5 rounded-md w-full mt-6">
+            <div className="flex justify-between items-center border-b px-5 pb-4">
                 <div>
                     <h1 className=" text-xl font-bold mb-2 text-primary-light">
                         AIPolicyTracker Project
@@ -22,22 +22,32 @@ export default function Description({
                     </p>
                 </div>
             </div>
-            <div className="mt-3">
-                <div className="flex">
-                    <div className="w-1/2">
-                        <strong className="text-primary-light">Description</strong>
+
+            <div className="mt-3 px-5">
+                <div className="block md:flex sm:flex">
+                    <div className="w-full md:w-1/2 sm:w-1/2">
+                        <strong className="text-primary-light">
+                            Description
+                        </strong>
 
                         {descriptionData.map((data, index) => (
-                            <div className="flex gap-2 mt-3 text-primary-light" key={index}>
-                                <strong className=" capitalize">{data.name}</strong>
-                                <span className="text-gray-500">{data.title}</span>
+                            <div
+                                className="flex gap-2 mt-3 text-primary-light"
+                                key={index}
+                            >
+                                <strong className=" capitalize">
+                                    {data.name}
+                                </strong>
+                                <span className="text-gray-500">
+                                    {data.title}
+                                </span>
                             </div>
                         ))}
                     </div>
 
-                    <div className="w-1/2">
+                    <div className="w-full mt-5 md:mt-0 sm:mt-0 md:w-1/2 sm:w-1/2">
                         {/* key contributors */}
-                        <div className="flex justify-between">
+                        <div className=" block md:flex sm:md justify-between">
                             <Contributor contributorLists={contributorLists} />
                             <Contact contactLists={contactLists} />
                         </div>
