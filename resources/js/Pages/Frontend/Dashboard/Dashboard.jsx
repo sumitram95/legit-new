@@ -23,8 +23,7 @@ export default function Dashboard({
 
     return (
         <AppLayout>
-            <h1>Home</h1>
-            {/* <Head title="Dashboard" />
+            <Head title="Dashboard" />
 
             {deviceSize == "smallLaptop" ||
             deviceSize == "laptop" ||
@@ -53,7 +52,7 @@ export default function Dashboard({
                     countrywithStatus={countrywithStatus}
                     countryWithAiPolicies={countryWithAiPolicies}
                 />
-            )} */}
+            )}
         </AppLayout>
     );
 }

@@ -27,7 +27,7 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                     <div className="bg-white py-5 text-wrap md:py-0 rounded-md md:rounded-none">
 
 
-                        <div class="table-auto title_line_action mb-2 w-full">
+                        <div className="table-auto title_line_action mb-2 w-full">
                             <div>
                                 <div className="flex">
                                     <div className="status-action" style={{ width: '25%' }}>Status update </div>

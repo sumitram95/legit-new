@@ -3,9 +3,6 @@ import React from "react";
 
 export default function AiTimeLine({ timeLines = [] }) {
 
-    console.log(timeLines);
-    return true;
-
     return (
         <div className="bg-white rounded-md py-3 mt-5">
             <div className=" border-b-2 pb-4 px-5">

@@ -32,8 +32,6 @@ export default function Edit({
         thumbnail: "",
     });
 
-    console.log("upload date : ", updatedData);
-
     const handleChange = (e) => {
         if (e && e.target) {
             const { name, value } = e.target;

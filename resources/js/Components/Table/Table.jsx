@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "@inertiajs/react";
 import NoTableData from "./NoTableData";
 
+import { limitWords } from '@/utils/limitWords';
+
 export default function Table({
     favourite,
     columns = [],
@@ -12,6 +14,7 @@ export default function Table({
     checkedColWithData,
     ...props
 }) {
+
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
     return (
@@ -47,18 +50,18 @@ export default function Table({
                         {checkedColWithData.includes(
                             "Governance structure"
                         ) && (
-                            <th scope="col" className="px-6 py-3">
-                                Governance structure
-                            </th>
-                        )}
+                                <th scope="col" className="px-6 py-3">
+                                    Governance structure
+                                </th>
+                            )}
 
                         {checkedColWithData.includes(
                             "Main motivation/goals of the AI policy"
                         ) && (
-                            <th scope="col" className="px-6 py-3">
-                                Main motivation/goals of the AI policy
-                            </th>
-                        )}
+                                <th scope="col" className="px-6 py-3">
+                                    Main motivation/goals of the AI policy
+                                </th>
+                            )}
 
                         {checkedColWithData.includes("Description") && (
                             <th scope="col" className="px-6 py-3">
@@ -69,16 +72,16 @@ export default function Table({
                         {checkedColWithData.includes(
                             "Link to announcement"
                         ) && (
-                            <th scope="col" className="px-6 py-3">
-                                Link to announcement
-                            </th>
-                        )}
+                                <th scope="col" className="px-6 py-3">
+                                    Link to announcement
+                                </th>
+                            )}
                     </tr>
                 </thead>
                 <tbody>
                     {tableData.map((list) => (
                         <tr className="bg-white border-b" key={list.id}>
-                            <td className="px-6 py-4 sticky-column-td border-e border-neutral-200 ">
+                            <td width="25%" className="px-6 py-4 sticky-column-td border-e border-neutral-200 ">
                                 <div className="flex gap-x-2 items-center">
                                     <button
                                         type="button"
@@ -91,13 +94,12 @@ export default function Table({
                                             <i className="fa fa-star A"></i>
                                         ) : (
                                             <i
-                                                className={`fa ${
-                                                    watchListIds.includes(
-                                                        list.id
-                                                    )
-                                                        ? "fa-star A"
-                                                        : "fa-regular fa-star B"
-                                                }`}
+                                                className={`fa ${watchListIds.includes(
+                                                    list.id
+                                                )
+                                                    ? "fa-star A"
+                                                    : "fa-regular fa-star B"
+                                                    }`}
                                             ></i>
                                         )}
                                     </button>
@@ -108,17 +110,20 @@ export default function Table({
                                         )}
                                         className="text-primary hover:underline"
                                     >
-                                        {list.ai_policy_name}
+                                        {limitWords(list.ai_policy_name, 3)}
                                     </Link>
                                 </div>
                             </td>
-                            <td className="px-6 py-4">{list.country?.name}</td>
-                            <td className="px-6 py-4">{list.governing_body}</td>
-                            <td className="px-6 py-4">
+                            <td width="15%" className="px-6 py-4">{list.country?.name}</td>
+                            <td width="25%" className="px-6 py-4">{list.governing_body}</td>
+                            <td width="10%" className="px-6 py-4">
                                 {list.formatted_created_at}
                             </td>
-                            <td className="px-6 py-4">{list.status?.name}</td>
-                            <td className="px-6 py-4">
+                            <td width="15%" className="px-6 py-4">
+                                <span className={`status-state ${list.status?.name || ''}`}></span>
+                                {list.status?.name}
+                            </td>
+                            <td width="10%" className="px-6 py-4">
                                 <a
                                     href={list.whitepaper_document_link}
                                     target="_blank"
@@ -129,30 +134,34 @@ export default function Table({
                                 </a>
                             </td>
 
+
                             {/* after checked editColumn */}
                             {checkedColWithData.includes(
                                 "Technology partners"
                             ) && (
-                                <td className="px-6 py-4">
-                                    {list.technology_partners}
-                                </td>
-                            )}
+                                    <td width="10%" className="px-6 py-4">
+                                        {list.technology_partners}
+                                    </td>
+                                )}
                             {checkedColWithData.includes(
                                 "Governance structure"
                             ) && (
-                                <td className="px-6 py-4">
-                                    {list.governance_structure}
-                                </td>
-                            )}
+                                    <td width="10%" className="px-6 py-4">
+                                        {limitWords(list.governance_structure, 3)}
+                                    </td>
+                                )}
                             {checkedColWithData.includes(
                                 "Main motivation/goals of the AI policy"
                             ) && (
-                                <td className="px-6 py-4">
-                                    {list.main_motivation}
-                                </td>
-                            )}
+                                    <td width="10%" className="px-6 py-4">
+
+                                        {limitWords(list.main_motivation, 3)}
+                                    </td>
+                                )}
                             {checkedColWithData.includes("Description") && (
-                              <td className="px-6 py-4" dangerouslySetInnerHTML={{ __html: list.description }} />
+                                <td width="10%" className="px-6 py-4">
+                                    {limitWords(list.description, 3)}
+                                </td>
 
                             )}
                         </tr>

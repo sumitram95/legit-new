@@ -36,7 +36,7 @@ class DashboardController extends Controller
         $data['aiPolicyLastUpdate'] = $latestAiPolicy ? Carbon::parse($latestAiPolicy->updated_at)->format('F Y') : '';
 
         //-- Ai Policy tracker country with status and Link
-        $data['aiPolicyTrackerWithStatus'] = $aiPolicyTracker
+        $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::query()
             ->get();
 
         $URL_MAP = [];
@@ -47,7 +47,6 @@ class DashboardController extends Controller
             $STATUS_MAP[$countrySymbol] = $tracker->status->name;
         }
         $data['countrywithStatus'] = $STATUS_MAP;
-
 
         //-- get individual country
         $data['countrywiseAiPolicyTracker'] = Country::query()

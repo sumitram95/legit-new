@@ -108,7 +108,6 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
             const response = await axios.post(
                 route("frontend.showAdvancedInfoPaginate")
             );
-            console.log("Response data:", response.data);
 
             if (response.data && response.data.data) {
                 setNewsData((prevNews) => ({
@@ -179,7 +178,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                     >
                                         <i className="fa-solid ms-3 text-primary fa-angle-down"></i>
 
-                                        {/* <i class="fa-solid fa-angle-up"></i> */}
+                                        {/* <i className="fa-solid fa-angle-up"></i> */}
                                     </button>
                                 </div>
                             </div>

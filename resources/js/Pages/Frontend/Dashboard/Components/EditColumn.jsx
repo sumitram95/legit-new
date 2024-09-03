@@ -9,8 +9,6 @@ export default function EditColumn({
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [checkedItems, setCheckedItems] = useState([]);
 
-    // console.log("checkedEditColumn: ", checkedItems);
-
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };

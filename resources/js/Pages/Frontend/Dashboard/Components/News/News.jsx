@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import NoImage from "@/assets/images/no-image/no-image.png";
 import DOMPurify from 'dompurify';
 
+import { limitWords } from '@/utils/limitWords';
+
 const News = ({ news }) => {
     const sliderRef = useRef(null);
 
@@ -19,12 +21,6 @@ const News = ({ news }) => {
         pauseOnHover: true,
         adaptiveHeight: true,
         arrows: false,
-    };
-
-    const limitWords = (html, limit) => {
-        const text = DOMPurify.sanitize(html).replace(/<[^>]+>/g, ' '); // Remove HTML tags
-        const words = text.split(' ');
-        return words.slice(0, limit).join(' ') + (words.length > limit ? '...' : '');
     };
 
     return (
@@ -69,7 +65,7 @@ const News = ({ news }) => {
                                 <div className="py-5">
                                     <p className="text-xs mb-3 text-light-blue flex items-center gap-[4px]">
                                         <span>
-                                            <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="calendar week" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-calendar-week b-icon bi"><title>Date</title><g><path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"></path><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path></g></svg>
+                                            <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="calendar week" xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi-calendar-week b-icon bi"><title>Date</title><g><path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"></path><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path></g></svg>
                                         </span>
                                         {list.upload_date}
                                     </p>

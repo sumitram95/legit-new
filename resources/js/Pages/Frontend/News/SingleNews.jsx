@@ -37,7 +37,7 @@ export default function News({ news }) {
                                 />
                             ) : (
                                 <div className="w-full h-full flex justify-center items-center">
-                                    <img src={NoImage} alt="" srcset="" className="h-[100px] w-[80px]" />
+                                    <img src={NoImage} alt=""  className="h-[100px] w-[80px]" />
                                 </div>
                             )}
                         </div>
