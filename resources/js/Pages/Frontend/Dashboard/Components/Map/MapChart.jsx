@@ -93,12 +93,12 @@ export function MapChart({
             let policyLinks = policies.map(policy => `
                 <div style="padding: 8px; display: flex; align-items: center; justify-content: space-between;">
                     <a href="${policy.url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <i class="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
+                        <i className="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
                         ${truncateText(policy.name, 3)}
                     </a>
                     <div style="display: flex; align-items: center;">
                         <a href="${policy.url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff;" target="_blank">
-                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                            <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>

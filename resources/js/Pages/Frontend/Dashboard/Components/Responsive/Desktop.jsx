@@ -39,7 +39,7 @@ export default function Desktop({
 
     // countrywithStatus = [];
 
-    console.log(countrywithStatus);
+
     useEffect(() => {
         // Update the state if the initialTableData prop changes
         setTableData(initialTableData);

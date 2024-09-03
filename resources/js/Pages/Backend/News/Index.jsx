@@ -90,10 +90,6 @@ export default function Index({
         }
     }, [successMessage]);
 
-
-
-
-    console.log(tableData);
     return (
         <Layout>
             <Head title="News Lists" />

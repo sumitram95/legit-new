@@ -1,8 +1,6 @@
 import React from "react";
 
 export default function Status({ statuses, statusState, handleStatusChange1, handleShowAll }) {
-
-    console.log(statuses);
     return (
         <div className="flex gap-[24px] border px-[12px] py-[8px] rounded-md flex-wrap">
             {statuses

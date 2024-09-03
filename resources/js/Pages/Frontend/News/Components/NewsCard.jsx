@@ -17,7 +17,6 @@ export default function NewsCard({ newsLists = [] }) {
 
     const deviceSize = useDeviceSize();
 
-    // console.log("device size : ", deviceSize);
     return (
         <div className="">
             {newsLists.map((newsList, index) => (
@@ -65,7 +64,7 @@ export default function NewsCard({ newsLists = [] }) {
                                         aria-label="calendar week"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
-                                        class="bi-calendar-week b-icon bi"
+                                        className="bi-calendar-week b-icon bi"
                                     >
                                         <title>Date</title>
                                         <g>

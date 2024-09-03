@@ -1,7 +1,6 @@
 import Button from "../Button";
 
 export default function PaginatorMobile({ paginator, onPageChange }) {
-    console.log("Paginator props:", paginator);
 
     return (
         <div className="mt-5 flex justify-center bg-primary-light rounded">

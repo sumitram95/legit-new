@@ -27,19 +27,19 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                             <div>
                                 <div className="flex">
                                     <div className="timeline-action status-action flex items-center gap-1" style={{ width: '25%' }}>
-                                        <span><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="arrow repeat" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-arrow-repeat b-icon bi"><g><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"></path><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"></path></g></svg></span>
+                                        <span><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="arrow repeat" xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi-arrow-repeat b-icon bi"><g><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"></path><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"></path></g></svg></span>
                                         Status update
                                     </div>
                                     <div className="timeline-action add-action flex items-center gap-1" style={{ width: '25%' }}>
-                                        <span><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="plus circle" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-plus-circle b-icon bi"><g><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path></g></svg></span>
+                                        <span><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="plus circle" xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi-plus-circle b-icon bi"><g><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path></g></svg></span>
                                         Added data
                                     </div>
                                     <div className="timeline-action update-action flex items-center gap-1" style={{ width: '25%' }}>
-                                        <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="arrow repeat" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-arrow-repeat b-icon bi"><g><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"></path><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"></path></g></svg>
+                                        <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="arrow repeat" xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi-arrow-repeat b-icon bi"><g><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"></path><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"></path></g></svg>
                                         Updated data
                                     </div>
                                     <div className="timeline-action delete-action flex items-center gap-1" style={{ width: '25%' }}>
-                                        <span><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="dash circle" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-dash-circle b-icon bi"><g><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"></path></g></svg></span>
+                                        <span><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="dash circle" xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi-dash-circle b-icon bi"><g><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"></path></g></svg></span>
                                         Deleted data
                                     </div>
                                 </div>
@@ -92,12 +92,12 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             key={log.id}
                                                                         >
                                                                             <div
-                                                                                class="bg-white border border-gray-200 rounded-lg shadow">
+                                                                                className="bg-white border border-gray-200 rounded-lg shadow">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 status-action text-dark capitalize">
+                                                                                    className="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 status-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
-                                                                                <div class="px-6 status-action-item">
+                                                                                <div className="px-6 status-action-item">
                                                                                     <div className="text-xs text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
@@ -122,12 +122,12 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             key={log.id}
                                                                         >
                                                                             <div
-                                                                                class="bg-white border border-gray-200 rounded-lg shadow">
+                                                                                className="bg-white border border-gray-200 rounded-lg shadow">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 add-action text-dark capitalize">
+                                                                                    className="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 add-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
-                                                                                <div class="px-6 add-action-item">
+                                                                                <div className="px-6 add-action-item">
                                                                                     <div className="text-xs text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
@@ -151,12 +151,12 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             key={log.id}
                                                                         >
                                                                             <div
-                                                                                class="bg-white border border-gray-200 rounded-lg shadow ">
+                                                                                className="bg-white border border-gray-200 rounded-lg shadow ">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 update-action text-dark capitalize">
+                                                                                    className="border-b-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 update-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
-                                                                                <div class="px-6 update-action-item">
+                                                                                <div className="px-6 update-action-item">
                                                                                     <div className="text-xs text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
@@ -180,12 +180,12 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                             key={log.id}
                                                                         >
                                                                             <div
-                                                                                class="bg-white border border-gray-200 rounded-lg shadow">
+                                                                                className="bg-white border border-gray-200 rounded-lg shadow">
                                                                                 <h5
-                                                                                    class="border-b-2 border-neutral-100 px-6 py-2 text-xs font-medium leading-tight dark:border-white/10 delete-action text-dark capitalize">
+                                                                                    className="border-b-2 border-neutral-100 px-6 py-2 text-xs font-medium leading-tight dark:border-white/10 delete-action text-dark capitalize">
                                                                                     {item.ai_policy_name || `Item ${item.id}`}
                                                                                 </h5>
-                                                                                <div class="px-6 delete-action-item">
+                                                                                <div className="px-6 delete-action-item">
                                                                                     <div className="text-xs text-base py-2" dangerouslySetInnerHTML={{ __html: log.description }} />
                                                                                 </div>
                                                                             </div>
