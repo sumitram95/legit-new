@@ -17,10 +17,9 @@ import organizationLogo from "@/assets/images/T4DNepal.png";
 import { useForm } from "@inertiajs/react";
 import Input from "@/Components/Input";
 import PaginationPage from "@/Components/Table/PaginationPage";
-// import { useDeviceSize } from "@/Services/useDeviceSize";
+import { useDeviceSize } from "@/Services/useDeviceSize";
 
 export default function Desktop({
-    // useDeviceSize,
     news,
     aiPolicies,
     countries,
@@ -168,7 +167,7 @@ export default function Desktop({
     // Combine OriginalColumns with checkedColumns
     const Columns = [...OriginalColumns, ...checkedColumns];
 
-    useEffect(() => { }, [Columns]);
+    useEffect(() => {}, [Columns]);
 
     ///////////////
     // Function to handle status change
@@ -257,7 +256,7 @@ export default function Desktop({
         });
     };
 
-    // const deviceSize = useDeviceSize;
+    const deviceSize = useDeviceSize();
 
     return (
         <div className="content-wrapper relative top-[-60px]">
@@ -287,19 +286,18 @@ export default function Desktop({
                                 </div>
                             </div>
                             {/* ********************** Status Component (desktop) ********************** */}
-                            {/* {deviceSize == "desktop" ||
-                                (deviceSize == "largeDesktop" && ( */}
-                            <div className="flex justify-center items-center">
-                                <Status
-                                    statuses={statuses}
-                                    statusState={statusState}
-                                    handleStatusChange1={
-                                        handleStatusChange1
-                                    }
-                                    handleShowAll={handleShowAll}
-                                />
-                            </div>
-                            {/* /))} */}
+                            {deviceSize == "largeDesktop" && (
+                                <div className="flex justify-center items-center">
+                                    <Status
+                                        statuses={statuses}
+                                        statusState={statusState}
+                                        handleStatusChange1={
+                                            handleStatusChange1
+                                        }
+                                        handleShowAll={handleShowAll}
+                                    />
+                                </div>
+                            )}
 
                             {/* **********************  Clear filters ********************** */}
                             <div className="flex gap-3 lg:hidden">
@@ -340,15 +338,16 @@ export default function Desktop({
                                         ? "Show filters"
                                         : "Hide filters"}
                                     <i
-                                        className={`fa-solid ${visibleDiv
-                                            ? "fa-chevron-up"
-                                            : "fa-chevron-down"
-                                            } ml-3`}
+                                        className={`fa-solid ${
+                                            visibleDiv
+                                                ? "fa-chevron-up"
+                                                : "fa-chevron-down"
+                                        } ml-3`}
                                     ></i>
                                 </button>
                             </div>
                         </div>
-                        {/* {visibleDiv && deviceSize == "smallLaptop" && (
+                        {visibleDiv && deviceSize == "smallLaptop" && (
                             <div className="px-5 w-full mt-5">
                                 <form className="w-full" id="filterData">
                                     <div className="flex flex-wrap -mx-3 mb-6">
@@ -427,21 +426,21 @@ export default function Desktop({
                                     </div>
                                 </form>
                             </div>
-                        )} */}
+                        )}
 
                         {/* ********************** Status Component (desktop) ********************** */}
-                        {/* {(deviceSize === "desktop" ||
+                        {(deviceSize === "desktop" ||
                             deviceSize === "laptop" ||
                             deviceSize === "smallLaptop") && (
-                                <div className="flex justify-center mt-5 items-center">
-                                    <Status
-                                        statuses={statuses}
-                                        statusState={statusState}
-                                        handleStatusChange1={handleStatusChange1}
-                                        handleShowAll={handleShowAll}
-                                    />
-                                </div>
-                            )} */}
+                            <div className="flex justify-center mt-5 items-center">
+                                <Status
+                                    statuses={statuses}
+                                    statusState={statusState}
+                                    handleStatusChange1={handleStatusChange1}
+                                    handleShowAll={handleShowAll}
+                                />
+                            </div>
+                        )}
 
                         {/* ********************** MapChart Component ********************** */}
                         <div className="mt-5 px-4 map-chart-wrapper">
@@ -464,10 +463,11 @@ export default function Desktop({
                                     className="flex items-center text-primary-light"
                                 >
                                     <i
-                                        className={`fa ${bookmarkCount
-                                            ? "fa-star"
-                                            : "fa-regular fa-star"
-                                            } mr-3`}
+                                        className={`fa ${
+                                            bookmarkCount
+                                                ? "fa-star"
+                                                : "fa-regular fa-star"
+                                        } mr-3`}
                                     ></i>
                                     <span>
                                         {processing
