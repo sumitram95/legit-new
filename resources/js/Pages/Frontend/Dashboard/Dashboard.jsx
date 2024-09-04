@@ -38,15 +38,10 @@ export default function Dashboard({
 
     const [statusState, setStatusState] = useState([]);
 
-    // countrywithStatus = [];
-    // console.log(countrywithStatus);
-
     useEffect(() => {
         // Update the state if the initialTableData prop changes
         setTableData(initialTableData);
     }, [initialTableData]);
-
-    // console.log(statuses);
 
     const [filters, setFilters] = useState({
         AI_Policy_Name: [],
@@ -458,15 +453,15 @@ export default function Dashboard({
                                 </div>
                             )}
 
-                            {/* ********************** Status Component (desktop) ********************** */}
-                            <div className="hidden md:flex lg:flex xl:hidden justify-center mt-5 items-center">
+                            {/* ********************** Status Component (mobile) ********************** */}
+                            {/* <div className="hidden md:flex lg:flex xl:hidden justify-center mt-5 items-center">
                                 <Status
                                     statuses={statuses}
                                     statusState={statusState}
                                     handleStatusChange1={handleStatusChange1}
                                     handleShowAll={handleShowAll}
                                 />
-                            </div>
+                            </div> */}
 
                             {/* ********************** MapChart Component ********************** */}
                             <div className="hidden md:block mt-5 px-4 map-chart-wrapper">
@@ -650,7 +645,7 @@ export default function Dashboard({
 
                 {/* mobile */}
 
-                <div className="mb-5 block md:hidden">
+                {/* <div className="mb-5 block md:hidden">
                     <div className="border rounded-md w-full bg-white sticky top-0">
                         <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
@@ -689,15 +684,11 @@ export default function Dashboard({
                                     )}
 
                                     <button
-                                        // id="dropdownDefaultButton"
                                         onClick={toggleFilterDropDown}
-                                        // data-dropdown-toggle="dropdown"
                                         className="text-primary font-medium rounded-lg text-sm block md:hidden"
                                         type="button"
                                     >
                                         <i className="fa-solid ms-3 text-primary fa-angle-down"></i>
-
-                                        {/* <i className="fa-solid fa-angle-up"></i> */}
                                     </button>
                                 </div>
                             </div>
@@ -772,9 +763,9 @@ export default function Dashboard({
                             </div>
                         )}
                     </div>
-                </div>
+                </div> */}
                 {/* mobile */}
-                <div className="block md:hidden">
+                {/* <div className="block md:hidden">
                     {tableData.data.map((list) => (
                         <div
                             className="bg-white rounded pb-3 mb-5 block md:hidden"
@@ -885,8 +876,6 @@ export default function Dashboard({
                                     </div>
                                 )}
                             </div>
-
-                            {/* show advance info */}
                             <div className="border-b"></div>
                             <div className="pt-3 px-5 flex justify-center items-center">
                                 <button
@@ -924,7 +913,7 @@ export default function Dashboard({
                             Not Found
                         </h1>
                     )}
-                </div>
+                </div> */}
 
                 {/* ********************** News Component ********************** */}
 
@@ -932,7 +921,7 @@ export default function Dashboard({
                     <News news={news} />
                 </div>
 
-                <div className="block md:hidden">
+                {/* <div className="block md:hidden">
                     <div className="md:border-b flex md:hidden border-light-border pb-4 justify-between items-center">
                         <div>
                             <p className="font-bold text-primary-light text-lg leading-none">
@@ -953,7 +942,7 @@ export default function Dashboard({
                     </div>
 
                     <NewsCard newsLists={firstFiveNews} />
-                </div>
+                </div> */}
 
                 {/* ********************** Description Component ********************** */}
                 <Description
