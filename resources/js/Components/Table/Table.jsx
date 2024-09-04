@@ -18,7 +18,7 @@ export default function Table({
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
     return (
-        <div className="relative overflow-x-auto mx-5 mt-5">
+        <div className="relative overflow-x-auto mx-5 mt-5 hidden md:block">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead className="text-xs text-primary uppercase bg-secondary">
                     <tr>
