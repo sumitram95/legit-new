@@ -8,7 +8,7 @@ export default function PaginatorMobile({ paginator, onPageChange }) {
                 <Button
                     onClick={() => onPageChange(paginator.next_page_url)}
                     disabled={!paginator.next_page_url}
-                    className="flex items-center text-white py-2 text-sm font-bold tracking-tight"
+                    className="flex items-center text-white opacity-75 py-2 text-sm font-bold tracking-tight"
                 >
                     <span> Show more news</span>
                     <i className="fa-regular fa-circle-down ms-3"></i>

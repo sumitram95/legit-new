@@ -1,5 +1,5 @@
 import { AppLayout } from "@/Layouts/AppLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import React from "react";
 import AiNews from "./Components/AiNews";
 import SingleAiInfo from "./Components/SingleAiInfo";
@@ -26,7 +26,6 @@ export default function SingleAiPolicyTracker({
             {isDesktop ? (
                 <div className="flex flex-row gap-x-4 content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                     <div className="w-1/4">
-                        {" "}
                         <SingleAiInfo
                             aiPolicyTrackerdetail={
                                 aiPolicyTrackerWithRelatedNews
@@ -34,13 +33,11 @@ export default function SingleAiPolicyTracker({
                         />
                     </div>
                     <div className="w-2/4">
-                        {" "}
                         <AiNews
                             newsLists={aiPolicyTrackerWithRelatedNews.news}
                         />
                     </div>
                     <div className="w-1/4">
-                        {" "}
                         <AiTimeLine
                             timeLines={
                                 aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs
@@ -53,6 +50,17 @@ export default function SingleAiPolicyTracker({
                 </div>
             ) : (
                 <div className="content-wrapper mt-5">
+                    <div className="flex gap-5 mt-3 text-sm mb-5">
+                        <Link
+                            href="/"
+                            className=" text-sm flex gap-2 hover:underline"
+                        >
+                            <span>
+                                <i className="fa-regular fa-circle-left"></i>
+                            </span>
+                            <span>Go to back</span>
+                        </Link>
+                    </div>
                     {/* Flexbox on large screens (lg and xl) */}
                     <div className="w-full block lg:flex gap-8">
                         {/* Single AI Info */}
