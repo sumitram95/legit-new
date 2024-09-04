@@ -645,7 +645,7 @@ export default function Dashboard({
 
                 {/* mobile */}
 
-                {/* <div className="mb-5 block md:hidden">
+                <div className="mb-5 block md:hidden">
                     <div className="border rounded-md w-full bg-white sticky top-0">
                         <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
@@ -763,7 +763,7 @@ export default function Dashboard({
                             </div>
                         )}
                     </div>
-                </div> */}
+                </div>
                 {/* mobile */}
                 <div className="block md:hidden">
                     {tableData.data.map((list) => (
