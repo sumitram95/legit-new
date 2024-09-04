@@ -18,7 +18,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import Input from "@/Components/Input";
 import PaginationPage from "@/Components/Table/PaginationPage";
 import { AppLayout } from "@/Layouts/AppLayout";
-import NewsCard from "../News/Components/NewsCard";
+// import NewsCard from "../News/Components/NewsCard";
 
 export default function Dashboard({
     news,
@@ -645,7 +645,7 @@ export default function Dashboard({
 
                 {/* mobile */}
 
-                <div className="mb-5 block md:hidden">
+                {/* <div className="mb-5 block md:hidden">
                     <div className="border rounded-md w-full bg-white sticky top-0">
                         <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
@@ -763,9 +763,9 @@ export default function Dashboard({
                             </div>
                         )}
                     </div>
-                </div>
+                </div> */}
                 {/* mobile */}
-                {/* <div className="block md:hidden">
+                <div className="block md:hidden">
                     {tableData.data.map((list) => (
                         <div
                             className="bg-white rounded pb-3 mb-5 block md:hidden"
@@ -913,7 +913,7 @@ export default function Dashboard({
                             Not Found
                         </h1>
                     )}
-                </div> */}
+                </div>
 
                 {/* ********************** News Component ********************** */}
 
@@ -921,7 +921,7 @@ export default function Dashboard({
                     <News news={news} />
                 </div>
 
-                <div className="block md:hidden">
+                {/* <div className="block md:hidden">
                     <div className="md:border-b flex md:hidden border-light-border pb-4 justify-between items-center">
                         <div>
                             <p className="font-bold text-primary-light text-lg leading-none">
@@ -942,7 +942,7 @@ export default function Dashboard({
                     </div>
 
                     <NewsCard newsLists={firstFiveNews} />
-                </div>
+                </div> */}
 
                 {/* ********************** Description Component ********************** */}
                 <Description

@@ -16,14 +16,14 @@ export default function News({ news }) {
     return (
         <AppLayout>
             <Head title="News" />
-            <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px] flex justify-center">
-                <div className="rounded-md w-3/4 bg-white py-5">
+            <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px] md:flex justify-center">
+                <div className="rounded-md md:w-3/4 md:bg-white py-5">
                     <div className="" style={{ minHeight: "500px" }}>
                         <div className="text-gray-900 font-bold text-xl mb-2 px-5">
-                            <div className="flex justify-between align-items-center">
+                            <div className="md:flex justify-between align-items-center">
                                 {news.title}
-                                <p className="text-sm text-gray-600 flex items-center gap-2 justify-center">
-                                    <i className="fa-regular fa-clock"> </i>{" "}
+                                <p className="text-xs mt-3 md:mt-0 md:text-sm text-gray-600 md:flex items-center gap-2 justify-center">
+                                    <i className="fa-regular fa-clock"> </i>
                                     {news.upload_date ?? "-"}
                                 </p>
                             </div>
@@ -43,7 +43,6 @@ export default function News({ news }) {
                         </div>
 
                         <div className="px-5 mt-5">
-
                             <p className="text-gray-500 text-xl" dangerouslySetInnerHTML={{ __html: news.description }}></p>
                         </div>
                     </div>
