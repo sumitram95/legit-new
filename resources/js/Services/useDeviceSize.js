@@ -11,24 +11,46 @@ const breakpoints = {
 
 // Custom hook to get the device size
 export const useDeviceSize = () => {
-    const [deviceSize, setDeviceSize] = useState("desktop");
+    const [deviceSize, setDeviceSize] = useState(() => {
+        // Initial state should be set based on the client-side width
+        if (typeof window !== "undefined") {
+            const width = window.innerWidth;
+            if (width < breakpoints.sm) return "mobile";
+            if (width >= breakpoints.sm && width < breakpoints.md)
+                return "tablet";
+            if (width >= breakpoints.md && width < breakpoints.lg)
+                return "smallLaptop";
+            if (width >= breakpoints.lg && width < breakpoints.xl)
+                return "laptop";
+            if (width >= breakpoints.xl && width <= breakpoints.double_xl)
+                return "desktop";
+            return "largeDesktop";
+        }
+        // Default state for server-side rendering
+        return "desktop";
+    });
 
     // Function to check screen size and set the device size
     const handleResize = () => {
-        const width = window.innerWidth;
+        if (typeof window !== "undefined") {
+            const width = window.innerWidth;
 
-        if (width < breakpoints.sm) {
-            setDeviceSize("mobile");
-        } else if (width >= breakpoints.sm && width < breakpoints.md) {
-            setDeviceSize("tablet");
-        } else if (width >= breakpoints.md && width < breakpoints.lg) {
-            setDeviceSize("smallLaptop");
-        } else if (width >= breakpoints.lg && width < breakpoints.xl) {
-            setDeviceSize("laptop");
-        } else if (width >= breakpoints.xl && width <= breakpoints.double_xl) {
-            setDeviceSize("desktop");
-        } else {
-            setDeviceSize("largeDesktop");
+            if (width < breakpoints.sm) {
+                setDeviceSize("mobile");
+            } else if (width >= breakpoints.sm && width < breakpoints.md) {
+                setDeviceSize("tablet");
+            } else if (width >= breakpoints.md && width < breakpoints.lg) {
+                setDeviceSize("smallLaptop");
+            } else if (width >= breakpoints.lg && width < breakpoints.xl) {
+                setDeviceSize("laptop");
+            } else if (
+                width >= breakpoints.xl &&
+                width <= breakpoints.double_xl
+            ) {
+                setDeviceSize("desktop");
+            } else {
+                setDeviceSize("largeDesktop");
+            }
         }
     };
 
