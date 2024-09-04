@@ -14,11 +14,8 @@ export default function SingleAiPolicyTracker({
     latestDateOfUpdateAiPolicyTracker = null,
 }) {
     const deviceSize = useDeviceSize();
-    var isDesktop =
-        deviceSize === "smallLaptop" ||
-        deviceSize === "laptop" ||
-        deviceSize === "desktop" ||
-        deviceSize === "largeDesktop";
+    const isDesktop = ["smallLaptop", "laptop", "desktop", "largeDesktop"].includes(deviceSize);
+
 
     return (
         <AppLayout>

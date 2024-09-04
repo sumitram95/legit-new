@@ -262,28 +262,32 @@ export default function Dashboard({
             handleStatusChange1(status.value, true);
         });
     };
-
     const deviceSize = useDeviceSize();
-
-    var isDesktop =
-        deviceSize === "smallLaptop" ||
-        deviceSize === "laptop" ||
-        deviceSize === "desktop" ||
-        deviceSize === "largeDesktop";
+    const isDesktop = [
+        "smallLaptop",
+        "laptop",
+        "desktop",
+        "largeDesktop",
+    ].includes(deviceSize);
 
     // Slice the array to get the first five items
     const firstFiveNews = news.slice(0, 5);
 
     const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
 
+    // State for showing advanced info
+    const [isShowAdvancedInfo, setShowAdvancedInfo] = useState(null);
 
-        // State for showing advanced info
-        const [isShowAdvancedInfo, setShowAdvancedInfo] = useState(null);
+    // Function to toggle showing advanced info
+    const toggleDropDownShowAdvancedInfo = (id) => {
+        setShowAdvancedInfo((prevState) => (prevState === id ? null : id));
+    };
 
-        // Function to toggle showing advanced info
-        const toggleDropDownShowAdvancedInfo = (id) => {
-            setShowAdvancedInfo((prevState) => (prevState === id ? null : id));
-        };
+    // filter drop down (mobile view)
+    const [isOpenFilter, setOpenFilter] = useState(false);
+    const toggleFilterDropDown = () => {
+        setOpenFilter(!isOpenFilter);
+    };
 
     return (
         <AppLayout>
@@ -298,14 +302,14 @@ export default function Dashboard({
                                         Global Artificial Intelligence (AI)
                                         Policy Status
                                     </p>
-                                    <div className="flex items-center mt-[0.5rem] text-sm">
+                                    <div className="block md:flex items-center mt-[0.5rem] text-sm">
                                         <p className="text-sm leading-normal text-light-blue">
                                             Database Update:
                                             <span className="text-black ml-[4px]">
                                                 {aiPolicyLastUpdate}
                                             </span>
                                         </p>
-                                        <span className="date-separator"></span>
+                                        <span className="date-separator hidden lg:block xl:block"></span>
                                         <p className="text-sm leading-normal text-light-blue">
                                             News Update:
                                             <span className="text-black ml-[4px]">
@@ -674,6 +678,136 @@ export default function Dashboard({
                         </div>
                     </div>
                 </div>
+
+                {!isDesktop && (
+                    <div className="mb-5">
+                        <div className="border rounded-md w-full bg-white sticky top-0">
+                            <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
+                                <div className="flex items-center justify-between w-full">
+                                    <p className="font-bold text-primary-light text-lg leading-none">
+                                        Filters
+                                    </p>
+                                    <div className="flex">
+                                        {isOpenFilter && (
+                                            <button
+                                                className="button-wthout-border flex items-center gap-2 text-light-blue"
+                                                onClick={handleClearFilters}
+                                            >
+                                                <span className="ui-icon">
+                                                    <svg
+                                                        viewBox="0 0 16 16"
+                                                        width="1em"
+                                                        height="1em"
+                                                        focusable="false"
+                                                        role="img"
+                                                        aria-label="x square"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="#7997c4"
+                                                        className="bi-x-square b-icon bi"
+                                                    >
+                                                        <title>Clear</title>
+                                                        <g>
+                                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                                <span className="ui-clear-button_text">
+                                                    Clear
+                                                </span>
+                                            </button>
+                                        )}
+
+                                        <button
+                                            // id="dropdownDefaultButton"
+                                            onClick={toggleFilterDropDown}
+                                            // data-dropdown-toggle="dropdown"
+                                            className="text-primary font-medium rounded-lg text-sm block md:hidden"
+                                            type="button"
+                                        >
+                                            <i className="fa-solid ms-3 text-primary fa-angle-down"></i>
+
+                                            {/* <i className="fa-solid fa-angle-up"></i> */}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {isOpenFilter && (
+                                <div className="px-[16px] my-5">
+                                    <form className="w-full" id="FormFiled">
+                                        <div>
+                                            <SelectInput
+                                                label="AI Policy Name"
+                                                className="mb-2 text-sm font-normal text-light-blue"
+                                                options={aiPolicies.map(
+                                                    (policy) => ({
+                                                        value: policy.value,
+                                                        label: policy.label,
+                                                    })
+                                                )}
+                                                value={filters.AI_Policy_Name}
+                                                onChange={(selectedOptions) =>
+                                                    handleFilterChange(
+                                                        "AI_Policy_Name",
+                                                        selectedOptions
+                                                    )
+                                                }
+                                            />
+
+                                            <SelectInput
+                                                label="Country / Region"
+                                                className="mb-2 text-sm font-normal text-light-blue"
+                                                options={countries.map(
+                                                    (country) => ({
+                                                        value: country.value,
+                                                        label: country.label,
+                                                    })
+                                                )}
+                                                value={filters.country_id}
+                                                onChange={(selectedOptions) =>
+                                                    handleFilterChange(
+                                                        "country_id",
+                                                        selectedOptions
+                                                    )
+                                                }
+                                            />
+
+                                            <SelectInput
+                                                label="Status"
+                                                className="mb-2 text-sm font-normal text-light-blue"
+                                                options={statuses.map(
+                                                    (status) => ({
+                                                        value: status.value,
+                                                        label: status.label,
+                                                    })
+                                                )}
+                                                value={filters.status_id}
+                                                onChange={(selectedOptions) =>
+                                                    handleFilterChange(
+                                                        "status_id",
+                                                        selectedOptions
+                                                    )
+                                                }
+                                            />
+
+                                            <Input
+                                                className="mb-2 text-sm font-normal text-light-blue"
+                                                name="announcement_year"
+                                                value={
+                                                    filters.announcement_year
+                                                }
+                                                onChange={handleInputChange}
+                                                htmlFor="announcement_year"
+                                                label="Announcement Year"
+                                                type="date"
+                                            />
+                                        </div>
+                                    </form>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 {!isDesktop && (
                     <div>
