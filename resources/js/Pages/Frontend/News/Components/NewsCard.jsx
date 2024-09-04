@@ -32,7 +32,7 @@ export default function NewsCard({ newsLists = [] }) {
                                     className="w-full h-full object-cover"
                                     src={`/storage/${newsList.thumbnail?.path}`}
                                     alt=""
-                                    
+
                                 />
                             </div>
                         </div>
@@ -43,7 +43,7 @@ export default function NewsCard({ newsLists = [] }) {
                                     <img
                                         src={NoImage}
                                         alt=""
-                                        
+
                                         className="max-h-[200px] max-w-[90px] object-cover"
                                     />
                                 </div>
@@ -101,7 +101,7 @@ export default function NewsCard({ newsLists = [] }) {
             ))}
 
             {newsLists.length === 0 &&
-                (deviceSize === "mobile" || deviceSize === "tablet" ? (
+                (deviceSize === "mobile" || deviceSize === "tablet" || deviceSize === "smallLaptop" ? (
                     <h1 className="font-bold mt-2 text-primary text-lg text-center">
                         No data found
                     </h1>

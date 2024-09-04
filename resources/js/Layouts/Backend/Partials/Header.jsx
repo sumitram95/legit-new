@@ -40,7 +40,7 @@ export default function Header({ avatarUrl = "NA", userName = nulll }) {
 
                 {dropdownOpen && (
                     <div
-                        id="dropdown"
+                        // id="dropdown"
                         className="z-10 absolute top-12 right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
                     >
                         <ul

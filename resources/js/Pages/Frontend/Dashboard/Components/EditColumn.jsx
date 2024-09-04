@@ -33,7 +33,7 @@ export default function EditColumn({
             <button
                 id="dropdownDefaultButton"
                 onClick={toggleDropdown}
-                data-dropdown-toggle="dropdown"
+                // data-dropdown-toggle="dropdown"
                 className="text-primary-light bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
                 type="button"
             >
@@ -57,7 +57,7 @@ export default function EditColumn({
 
             {isDropdownOpen && (
                 <div
-                    id="dropdown"
+                    // id="dropdown"
                     className="z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2 ml-[-14px]"
                 >
                     <ul
