@@ -454,14 +454,14 @@ export default function Dashboard({
                             )}
 
                             {/* ********************** Status Component (mobile) ********************** */}
-                            {/* <div className="hidden md:flex lg:flex xl:hidden justify-center mt-5 items-center">
+                            <div className="hidden md:flex lg:flex xl:hidden justify-center mt-5 items-center">
                                 <Status
                                     statuses={statuses}
                                     statusState={statusState}
                                     handleStatusChange1={handleStatusChange1}
                                     handleShowAll={handleShowAll}
                                 />
-                            </div> */}
+                            </div>
 
                             {/* ********************** MapChart Component ********************** */}
                             <div className="hidden md:block mt-5 px-4 map-chart-wrapper">
@@ -645,7 +645,7 @@ export default function Dashboard({
 
                 {/* mobile */}
 
-                {/* <div className="mb-5 block md:hidden">
+                <div className="mb-5 block md:hidden">
                     <div className="border rounded-md w-full bg-white sticky top-0">
                         <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
@@ -763,7 +763,7 @@ export default function Dashboard({
                             </div>
                         )}
                     </div>
-                </div> */}
+                </div>
                 {/* mobile */}
                 {/* <div className="block md:hidden">
                     {tableData.data.map((list) => (
@@ -921,7 +921,7 @@ export default function Dashboard({
                     <News news={news} />
                 </div>
 
-                {/* <div className="block md:hidden">
+                <div className="block md:hidden">
                     <div className="md:border-b flex md:hidden border-light-border pb-4 justify-between items-center">
                         <div>
                             <p className="font-bold text-primary-light text-lg leading-none">
@@ -942,7 +942,7 @@ export default function Dashboard({
                     </div>
 
                     <NewsCard newsLists={firstFiveNews} />
-                </div> */}
+                </div>
 
                 {/* ********************** Description Component ********************** */}
                 <Description
