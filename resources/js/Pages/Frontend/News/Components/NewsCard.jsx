@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 import NoImage from "@/assets/images/no-image/no-image.png";
 import DOMPurify from "dompurify";
-import { useDeviceSize } from "@/Services/useDeviceSize";
+import Responsive from "@/Components/Responsive/Responsive";
 
 export default function NewsCard({ newsLists = [] }) {
     const limitWords = (html, limit) => {
@@ -15,99 +15,99 @@ export default function NewsCard({ newsLists = [] }) {
         );
     };
 
-    const deviceSize = useDeviceSize();
-
     return (
         <div className="">
-            {newsLists.map((newsList, index) => (
-                <div
-                    className="px-[5%] py-[5%] md:py-0 rounded md:px-[10%] lg:px-5 w-full lg:max-w-full
-                     lg:flex border-b border-light-border md:pb-5 bg-white mt-5"
-                    key={index}
-                >
-                    {newsList.thumbnail?.path ? (
-                        <div className="lg:w-[25%]">
-                            <div className="h-[200px]">
+        {newsLists.map((newsList, index) => (
+            <div
+                className="px-[5%] py-[5%] rounded md:px-[10%] lg:px-5 w-full lg:max-w-full
+                 lg:flex border-b border-light-border md:pb-5 bg-white"
+                key={index}
+            >
+                {newsList.thumbnail?.path ? (
+                    <div className="lg:w-[40%]">
+                        <div className="h-[300px] ">
+                            <img
+                                className="w-full h-full object-cover"
+                                src={`/storage/${newsList.thumbnail?.path}`}
+                                alt=""
+                                srcset=""
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <div className="lg:w-[25%]">
+                        <div className="h-48 ">
+                            <div className="flex justify-center">
                                 <img
-                                    className="w-full h-full object-cover"
-                                    src={`/storage/${newsList.thumbnail?.path}`}
+                                    src={NoImage}
                                     alt=""
-
+                                    srcset=""
+                                    className="max-h-[200px] max-w-[90px] object-cover"
                                 />
                             </div>
                         </div>
-                    ) : (
-                        <div className="lg:w-[25%]">
-                            <div className="h-48 ">
-                                <div className="flex justify-center">
-                                    <img
-                                        src={NoImage}
-                                        alt=""
+                    </div>
+                )}
 
-                                        className="max-h-[200px] max-w-[90px] object-cover"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    <div className="lg:w-[75%] px-4 mt-4 flex flex-col justify-between leading-normal">
-                        <div className="">
-                            <p className="text-xs mb-3 text-light-blue flex items-center gap-[4px]">
-                                <span>
-                                    <svg
-                                        viewBox="0 0 16 16"
-                                        width="1em"
-                                        height="1em"
-                                        focusable="false"
-                                        role="img"
-                                        aria-label="calendar week"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor"
-                                        className="bi-calendar-week b-icon bi"
-                                    >
-                                        <title>Date</title>
-                                        <g>
-                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"></path>
-                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path>
-                                        </g>
-                                    </svg>
-                                </span>
-                                {newsList.upload_date}
-                            </p>
-                            <div className="mb-2 text-sm font-bold tracking-tight text-primary truncate">
-                                <Link
-                                    href={route("news.single", newsList.id)}
-                                    className="hover:underline"
+                <div className="lg:w-[75%] px-4 flex flex-col justify-between leading-normal pt-4">
+                    <div className="">
+                        <p className="text-xs mb-3 text-light-blue flex items-center gap-[4px]">
+                            <span>
+                                <svg
+                                    viewBox="0 0 16 16"
+                                    width="1em"
+                                    height="1em"
+                                    focusable="false"
+                                    role="img"
+                                    aria-label="calendar week"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor"
+                                    class="bi-calendar-week b-icon bi"
                                 >
-                                    {newsList.title ?? ""}
-                                </Link>
-                            </div>
-                            <div
-                                className="text-gray-700 text-base truncate"
-                                dangerouslySetInnerHTML={{
-                                    __html:
-                                        limitWords(newsList.description, 30) ??
-                                        "",
-                                }}
-                            ></div>
-
-                            {/* <p className="mb-3 font-normal">
-                                {limitWords(newsList.description, 30)}
-                            </p> */}
+                                    <title>Date</title>
+                                    <g>
+                                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"></path>
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                            {newsList.upload_date}
+                        </p>
+                        <div className="mb-2 text-xl font-bold tracking-tight text-primary truncate">
+                            <Link
+                                href={route("news.single", newsList.id)}
+                                className="hover:underline"
+                            >
+                                {newsList.title ?? ""}
+                            </Link>
                         </div>
+                        {/* <div
+                            className="text-gray-700 text-base truncate"
+                            dangerouslySetInnerHTML={{
+                                __html: newsList.description ?? "",
+                            }}
+                        ></div> */}
+
+                        <p className="mb-3 font-normal">
+                            {limitWords(newsList.description, 50)}
+                        </p>
                     </div>
                 </div>
-            ))}
+            </div>
+        ))}
 
-            {newsLists.length === 0 &&
-                (deviceSize === "mobile" || deviceSize === "tablet" || deviceSize === "smallLaptop" ? (
+        {newsLists.length == 0 && (
+            <div>
+                <Responsive responsive={["lg", "xl"]}>
+                    <NoTableData noTableDataTitle={"no data found"} />
+                </Responsive>
+                <Responsive responsive={["sm", "md"]}>
                     <h1 className="font-bold mt-2 text-primary text-lg text-center">
                         No data found
                     </h1>
-                ) : (
-                    <NoTableData noTableDataTitle={"No data found"} />
-                ))}
-        </div>
+                </Responsive>
+            </div>
+        )}
+    </div>
     );
 }

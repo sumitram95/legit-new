@@ -54,25 +54,33 @@ body {
     padding-bottom: 80px;
 }
 
+// header
+.header {
+    background-color: $site-primary-color;
+    padding: 0.8125rem 64px;
+    padding-bottom: 80px;
+}
+
 @media only screen and (max-width: 767px) {
     .header {
-        padding: 0.8125rem 22px;
+        padding: 0.8125rem 16px;
+        padding-bottom: 0.8125rem;
     }
 }
 
 .header-logo {
     width: fit-content;
-    height: 30px;
+    height: 40px;
 }
 
-ul li {
+nav ul li {
     // color: #ffffff;
     position: relative;
     text-decoration: none;
     width: fit-content;
 }
 
-ul li::after {
+nav ul li::after {
     content: "";
     position: absolute;
     left: 0;
@@ -86,12 +94,12 @@ ul li::after {
     transform-origin: right;
 }
 
-ul li:hover::after {
+nav ul li:hover::after {
     transform: scaleX(1);
     transform-origin: left;
 }
 
-ul li:hover::before {
+nav ul li:hover::before {
     content: "";
     position: absolute;
     right: 0;
@@ -221,6 +229,7 @@ $input-placeholder-color: #7997c3;
 $input-min-height: 46px;
 
 .ui-field-wrapper {
+
     .input-group-text,
     input,
     select {
@@ -243,6 +252,7 @@ $input-min-height: 46px;
     }
 
     &.is-invalid {
+
         .input-group-text,
         input,
         select {
@@ -409,6 +419,7 @@ $card-line-border: 1px solid rgba(205, 224, 241, 0.5);
     left: 0px;
     background: #eef6fd;
 }
+
 .sticky-column-td {
     position: sticky;
     left: 0px;

@@ -1,7 +1,21 @@
 import { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
 import LogoImage from "@/assets/images/ai_logo.png";
+import Responsive from "@/Components/Responsive/Responsive";
+
+// Helper function to generate avatar URL
+const generateAvatarUrl = (name) => {
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(
+        name
+    )}&background=EBF4FF&color=7F9CF5`;
+};
+
 export function NavBar({ NavBarLists }) {
+    const { props } = usePage();
+    const userName = props.auth.user ? props.auth.user.name : ""; // Get the user's name or use 'Guest' if not available
+
+    const avatarUrl = generateAvatarUrl(userName);
+
     const [activeItem, setActiveItem] = useState(null);
     const { url } = usePage();
 
@@ -15,6 +29,12 @@ export function NavBar({ NavBarLists }) {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
     };
 
     return (
@@ -62,10 +82,21 @@ export function NavBar({ NavBarLists }) {
                     isOpen ? "" : "hidden"
                 }`}
             >
-                <ul className="md:flex gap-x-12 text-white">
-                    {/* <li className="mt-4 md:mt-0">
-                            <a href="#home" className="hover:text-gray-300">Home</a>
-                        </li> */}
+                <ul className="md:flex items-center gap-x-12 text-white">
+                    {/* show on small device only (avartar ui) */}
+                    {/* <Responsive responsive={["sm"]}>
+                        {userName && (
+                            <div className="float-right cursor-pointer">
+                                <div className="flex justify-center w-[43px] h-[43px] rounded-full overflow-hidden">
+                                    <img
+                                        src={avatarUrl}
+                                        alt="User Avatar"
+                                        className="h-full w-full"
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </Responsive> */}
                     {Object.keys(NavBarLists).map((key) => {
                         const item = NavBarLists[key];
                         const itemUrl = new URL(
@@ -85,9 +116,13 @@ export function NavBar({ NavBarLists }) {
                             : undefined;
 
                         return isExternal ? (
-                            <li className="mt-4 md:mt-0 font-bold" key={key}>
+                            <li
+                                className="mt-4 md:mt-0 font-bold capitalize"
+                                key={key}
+                            >
                                 <a
                                     href={item.url}
+                                    key={key}
                                     target={targetAttrValue}
                                     rel={
                                         targetAttrValue
@@ -103,6 +138,7 @@ export function NavBar({ NavBarLists }) {
                             <li className="mt-4 md:mt-0 font-bold" key={key}>
                                 <Link
                                     href={item.url}
+                                    key={key}
                                     target={targetAttrValue}
                                     rel={
                                         targetAttrValue
@@ -119,42 +155,63 @@ export function NavBar({ NavBarLists }) {
                             </li>
                         );
                     })}
+                    {/* show on small device logout navbar */}
+                    {/* <Responsive responsive={["sm"]}>
+                        {userName && (
+                            <li className="mt-4 md:mt-0 font-bold capitalize">
+                                <Link href="/logout">logout</Link>
+                            </li>
+                        )}
+                    </Responsive> */}
+
+
+                    {/* {!userName ? (
+                        <li className="mt-4 md:mt-0 font-bold">
+                            <Link href={route("login")}>Login</Link>
+                        </li>
+                    ) : (
+
+                        <Responsive responsive={["md", "lg", "xl"]}>
+
+                            <div className="flex justify-between items-center">
+                                <div
+                                    className="flex items-center gap-3 cursor-pointer"
+                                    id="dropdownDefaultButton"
+                                    onClick={toggleDropdown}
+                                >
+                                    <div className="flex justify-center w-[43px] h-[43px] rounded-full overflow-hidden">
+                                        <img
+                                            src={avatarUrl}
+                                            alt="User Avatar"
+                                            className="h-full w-full"
+                                        />
+                                    </div>
+                                </div>
+
+                                {dropdownOpen && (
+                                    <div className="z-10 absolute top-12 right-0 mt-4 mr-5 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <div
+                                            className="py-2 text-sm text-gray-700"
+                                            aria-labelledby="dropdownDefadivtButton"
+                                        >
+                                            <hr />
+                                            <hr />
+                                            <div>
+                                                <Link
+                                                    href={"/logout"}
+                                                    className="block px-4 py-2 hover:bg-gray-100"
+                                                >
+                                                    Logout
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </Responsive>
+                    )} */}
                 </ul>
             </div>
         </nav>
-        // <nav className="flex gap-12 font-bold">
-        //     {Object.keys(NavBarLists).map((key) => {
-        //         const item = NavBarLists[key];
-        //         const itemUrl = new URL(item.url, window.location.origin);
-        //         const isActive = activeItem === key || itemUrl.pathname === currentUrl;
-
-        //         // Determine if it's an external link
-        //         const isExternal = item.name === "whitepaper" || item.name === "Community";
-        //         const targetAttrValue = isExternal ? "_blank" : undefined;
-
-        //         return isExternal ? (
-        //             <a
-        //                 href={item.url}
-        //                 key={key}
-        //                 target={targetAttrValue}
-        //                 rel={targetAttrValue ? "noopener noreferrer" : undefined}
-        //                 onClick={() => handleClick(key)}
-        //             >
-        //                 {item.name}
-        //             </a>
-        //         ) : (
-        //             <Link
-        //                 href={item.url}
-        //                 key={key}
-        //                 target={targetAttrValue}
-        //                 rel={targetAttrValue ? "noopener noreferrer" : undefined}
-        //                 className={`capitalize ${isActive ? "nav-active" : ""}`}
-        //                 onClick={() => handleClick(key)}
-        //             >
-        //                 {item.name}
-        //             </Link>
-        //         );
-        //     })}
-        // </nav>
     );
 }

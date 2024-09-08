@@ -8,7 +8,7 @@ const NavBarLists = {
         url: route("frontend.dashboard"),
     },
     watchlist: {
-        name: "watchlist",
+        name: "Bookmarks",
         url: route("frontend.watch_list.index"),
     },
     news: {
@@ -33,8 +33,8 @@ export function Header() {
     return (
         <header className="header md:px-16">
             {/* <div className="flex justify-between "> */}
-                {/* <HeaderLogo /> */}
-                <NavBar NavBarLists={NavBarLists} />
+            {/* <HeaderLogo /> */}
+            <NavBar NavBarLists={NavBarLists} />
 
             {/* </div> */}
         </header>
