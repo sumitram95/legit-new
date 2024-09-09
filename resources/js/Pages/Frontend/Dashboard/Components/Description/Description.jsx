@@ -16,9 +16,9 @@ export default function Description({
                         AIPolicyTracker Project
                     </h1>
                     <p>
-                        AI Policy Tracker is an open-source project aimed at
-                        providing a comprehensive information resource for
-                        global AI policy initiatives
+                    AIPolicyTracker is a comprehensive resource that
+                        monitors and analyzes artificial intelligence (AI)
+                        policies and regulations across various jurisdictions.
                     </p>
                 </div>
             </div>
@@ -32,22 +32,22 @@ export default function Description({
 
                         {descriptionData.map((data, index) => (
                             <div
-                                className="flex gap-2 mt-3 text-primary-light"
-                                key={index}
-                            >
+                            className="block sm:flex gap-2 mt-3 text-primary-light"
+                            key={index}
+                        >
+                            <p>
                                 <strong className=" capitalize">
                                     {data.name}
                                 </strong>
-                                <span className="text-gray-500">
-                                    {data.title}
-                                </span>
-                            </div>
+                            </p>
+                            <p className="text-gray-500">{data.title}</p>
+                        </div>
                         ))}
                     </div>
 
-                    <div className="w-full mt-5 md:mt-0 sm:mt-0 md:w-1/2 sm:w-1/2">
+                    <div className="lg:w-1/2 mt-5 lg:mt-0">
                         {/* key contributors */}
-                        <div className=" block md:flex sm:md justify-between">
+                        <div className="block md:flex justify-between">
                             <Contributor contributorLists={contributorLists} />
                             <Contact contactLists={contactLists} />
                         </div>

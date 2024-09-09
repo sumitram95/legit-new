@@ -92,12 +92,12 @@ export function MapChart({
 
             let policyLinks = policies.map(policy => `
                 <div style="padding: 8px; display: flex; align-items: center; justify-content: space-between;">
-                    <a href="${policy.url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                    <a href="${policy.url}" target="_blank" style="text-decoration: none; color: #002147;">
                         <i className="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
                         ${truncateText(policy.name, 3)}
                     </a>
                     <div style="display: flex; align-items: center;">
-                        <a href="${policy.url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #007bff;" target="_blank">
+                        <a href="${policy.url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #002147;" target="_blank">
                             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -111,7 +111,7 @@ export function MapChart({
             return `
                 <div style="width: 18rem; border-radius: 0.25rem; padding: 0;">
                     <div style="padding: 0.75rem 1.25rem; border-bottom: 2px solid #f8f9fa; border-radius: 0.25rem 0.25rem 0 0; margin: 0;">
-                        <h2 style="margin: 0; color: #007bff; font-size: 1rem; font-weight: 400;">{name}</h2>
+                        <h2 style="margin: 0; color: #002147; font-size: 1rem; font-weight: 400;">{name}</h2>
                     </div>
                     <div style="padding: 12px;">
                         <div>

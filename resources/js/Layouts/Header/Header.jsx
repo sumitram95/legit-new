@@ -4,7 +4,7 @@ import { NavBar } from "@/Layouts/NavBar/NavBar";
 
 const NavBarLists = {
     dashboard: {
-        name: "Dashboard",
+        name: "Home",
         url: route("frontend.dashboard"),
     },
     watchlist: {

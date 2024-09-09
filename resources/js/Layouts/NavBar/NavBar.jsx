@@ -84,19 +84,22 @@ export function NavBar({ NavBarLists }) {
             >
                 <ul className="md:flex items-center gap-x-12 text-white">
                     {/* show on small device only (avartar ui) */}
-                    {/* <Responsive responsive={["sm"]}>
+                    <Responsive responsive={["sm"]}>
                         {userName && (
-                            <div className="float-right cursor-pointer">
-                                <div className="flex justify-center w-[43px] h-[43px] rounded-full overflow-hidden">
+                            <div className="mt-5 border-b pb-3 flex items-center gap-2">
+                                <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
                                     <img
                                         src={avatarUrl}
                                         alt="User Avatar"
                                         className="h-full w-full"
                                     />
                                 </div>
+                                <div>
+                                    <p className="font-bold text-white">{userName}</p>
+                                </div>
                             </div>
                         )}
-                    </Responsive> */}
+                    </Responsive>
                     {Object.keys(NavBarLists).map((key) => {
                         const item = NavBarLists[key];
                         const itemUrl = new URL(
@@ -156,30 +159,26 @@ export function NavBar({ NavBarLists }) {
                         );
                     })}
                     {/* show on small device logout navbar */}
-                    {/* <Responsive responsive={["sm"]}>
+                    <Responsive responsive={["sm"]}>
                         {userName && (
                             <li className="mt-4 md:mt-0 font-bold capitalize">
                                 <Link href="/logout">logout</Link>
                             </li>
                         )}
-                    </Responsive> */}
+                    </Responsive>
 
-
-                    {/* {!userName ? (
+                    {!userName ? (
                         <li className="mt-4 md:mt-0 font-bold">
                             <Link href={route("login")}>Login</Link>
                         </li>
                     ) : (
-
                         <Responsive responsive={["md", "lg", "xl"]}>
-
                             <div className="flex justify-between items-center">
                                 <div
                                     className="flex items-center gap-3 cursor-pointer"
-                                    id="dropdownDefaultButton"
                                     onClick={toggleDropdown}
                                 >
-                                    <div className="flex justify-center w-[43px] h-[43px] rounded-full overflow-hidden">
+                                    <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
                                         <img
                                             src={avatarUrl}
                                             alt="User Avatar"
@@ -194,6 +193,19 @@ export function NavBar({ NavBarLists }) {
                                             className="py-2 text-sm text-gray-700"
                                             aria-labelledby="dropdownDefadivtButton"
                                         >
+                                            <div className="flex gap-2 items-center pb-1 ml-2">
+                                                <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
+                                                    <img
+                                                        src={avatarUrl}
+                                                        alt="User Avatar"
+                                                        className="h-full w-full"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <p>{userName}</p>
+                                                </div>
+                                            </div>
+
                                             <hr />
                                             <hr />
                                             <div>
@@ -209,7 +221,7 @@ export function NavBar({ NavBarLists }) {
                                 )}
                             </div>
                         </Responsive>
-                    )} */}
+                    )}
                 </ul>
             </div>
         </nav>
