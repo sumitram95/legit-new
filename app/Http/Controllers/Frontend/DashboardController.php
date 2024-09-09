@@ -21,7 +21,7 @@ class DashboardController extends Controller
             ->latest();
 
         $data['tableData'] = $aiPolicyTracker
-            ->authLimitData();
+            ->paginate(10);
 
         $data['news'] = News::query()
             ->with(['thumbnail', 'status'])
@@ -37,7 +37,7 @@ class DashboardController extends Controller
 
         //-- Ai Policy tracker country with status and Link
         $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::query()
-            ->limit(1)->get();
+            ->get();
 
         $URL_MAP = [];
         $STATUS_MAP = [];

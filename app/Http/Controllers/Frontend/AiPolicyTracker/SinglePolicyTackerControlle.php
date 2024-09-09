@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\AiPolicyTracker;
 
 use Carbon\Carbon;
 use App\Models\News;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\AiPolicyTracker;
@@ -13,6 +14,11 @@ class SinglePolicyTackerControlle extends Controller
 {
     public function index($id)
     {
+
+        if (!Auth::check()) {
+            return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
+        }
+
         $data['aiPolicyTrackerWithRelatedNews'] = AiPolicyTracker::query()
             ->with([
                 'news' => function ($query) {

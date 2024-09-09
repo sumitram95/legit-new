@@ -10,9 +10,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Route::get('/', function () {
-//     return Inertia::render('Frontend/Dashboard/Dashboard');
-// })->name("frontend.dashboard");
+Route::get('/denied', function () {
+    return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
+});
+
+
 
 
 Route::middleware('auth')->group(function () {

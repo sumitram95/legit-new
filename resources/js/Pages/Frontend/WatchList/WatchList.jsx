@@ -297,7 +297,7 @@ export default function WatchList({
                                                     type="button"
                                                 >
                                                     Show filters
-                                                    <i class="fa-solid ms-3 text-primary fa-angle-down"></i>
+                                                    <i className="fa-solid ms-3 text-primary fa-angle-down"></i>
                                                 </button>
                                             </div>
 
@@ -353,7 +353,7 @@ export default function WatchList({
                                             className="text-primary font-medium rounded-lg text-sm block"
                                             type="button"
                                         >
-                                            <i class="fa-solid ms-3 text-primary fa-angle-down"></i>
+                                            <i className="fa-solid ms-3 text-primary fa-angle-down"></i>
                                         </button>
                                     </div>
                                 </div>

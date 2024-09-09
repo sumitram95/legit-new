@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import NoTableData from "./NoTableData";
 
 import { limitWords } from "@/utils/limitWords";
@@ -15,6 +15,12 @@ export default function Table({
     ...props
 }) {
     const hasData = Array.isArray(tableData) && tableData.length > 0;
+
+    const authcheck = usePage();
+
+    const isAuth = authcheck.props.auth.user
+        ? authcheck.props.auth.user?.id
+        : null;
 
     return (
         <div className="relative overflow-x-auto mx-5 mt-5 hidden md:block">
@@ -39,13 +45,16 @@ export default function Table({
                         <th scope="col" className="px-6 py-3">
                             Status
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        {/* <th scope="col" className="px-6 py-3">
                             Document Link
+                        </th> */}
+                        <th scope="col" className="px-6 py-3">
+                            Technology partners
                         </th>
                         {/* after show when checked editColumn */}
-                        {checkedColWithData.includes("Technology partners") && (
+                        {checkedColWithData.includes("Document Link") && (
                             <th scope="col" className="px-6 py-3">
-                                Technology partners
+                                Document Link
                             </th>
                         )}
 
@@ -116,7 +125,7 @@ export default function Table({
                                         )}
                                         className="text-primary hover:underline"
                                     >
-                                        {limitWords(list.ai_policy_name, 3)}
+                                        {limitWords(list.ai_policy_name, 4)}
                                     </Link>
                                 </div>
                             </td>
@@ -137,23 +146,28 @@ export default function Table({
                                 ></span>
                                 {list.status?.name}
                             </td>
+
                             <td width="10%" className="px-6 py-4">
-                                <a
-                                    href={list.whitepaper_document_link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="underline text-blue-950"
-                                >
-                                    open
-                                </a>
+                                {list.technology_partners}
                             </td>
 
                             {/* after checked editColumn */}
-                            {checkedColWithData.includes(
-                                "Technology partners"
-                            ) && (
+                            {checkedColWithData.includes("Document Link") && (
                                 <td width="10%" className="px-6 py-4">
-                                    {list.technology_partners}
+                                    {isAuth ? (
+                                        <a
+                                            href={list.whitepaper_document_link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="underline text-blue-950"
+                                        >
+                                            open
+                                        </a>
+                                    ) : (
+                                        <Link href={route("register")}>
+                                            open
+                                        </Link>
+                                    )}
                                 </td>
                             )}
                             {checkedColWithData.includes(

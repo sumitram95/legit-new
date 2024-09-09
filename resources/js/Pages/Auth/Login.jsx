@@ -34,14 +34,94 @@ export default function Login({ status, canResetPassword }) {
                     {/* logo and image side */}
                     <Responsive responsive={["lg", "xl"]}>
                         <div className="w-[50%] p-4 py-6 text-white md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly rounded-md h-screen pr-9">
-                            <div className="bg-blue-500 w-full h-full flex items-center justify-center rounded-md">
-                                {/* <div className="bg-white/20 rounded-[16px] shadow-lg backdrop-blur-sm border border-white/30 h-[400px] w-[360px] flex items-center  justify-center"> */}
+                            {/* <div className=" bg-primary-light w-full h-full flex items-center justify-center rounded-md">
                                 <img
                                     src={AuthLoginImage}
                                     alt="AI Policy Tracker"
                                     className="h-full w-full rounded-md"
                                 />
-                                {/* </div> */}
+                            </div> */}
+
+                            <div className=" bg-primary-light w-full h-full flex items-center justify-center rounded-md px-10">
+                                <div>
+                                    <h1 className=" text-3xl font-bold text-center">
+                                        Welcome Back
+                                    </h1>
+                                    <ul className="mt-5">
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-sm"></i>
+                                            </strong>
+                                            <h2 className="tracking-wider leading-6">
+                                                <strong className="me-2">
+                                                    High-Level AI Regulation
+                                                    Summary:
+                                                </strong>
+                                                A quick overview of AI
+                                                regulation status across
+                                                countries.
+                                            </h2>
+                                        </li>
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-sm"></i>
+                                            </strong>
+                                            <h2 className=" tracking-wider leading-6">
+                                                <strong className="me-2">
+                                                    Detailed Market Profiles:
+                                                </strong>
+                                                In-depth data on AI policies,
+                                                legislation, and schedules in
+                                                individual markets.
+                                            </h2>
+                                        </li>
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
+                                            </strong>
+                                            <h2 className=" tracking-wider">
+                                                <strong className="me-2 leading-6">
+                                                    Policy Alerts:
+                                                </strong>
+                                                Receive real-time alerts on
+                                                important regulatory changes and
+                                                upcoming legislation that could
+                                                impact your business.
+                                            </h2>
+                                        </li>
+                                        <li className="mb-5 font-bold">
+                                            Additionally, enjoy:
+                                        </li>
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
+                                            </strong>
+                                            <h2 className=" tracking-wider">
+                                                <strong className="me-2 leading-6">
+                                                    AI Policy News:
+                                                </strong>
+                                                Stay informed with the latest
+                                                developments in AI governance
+                                                from around the world.
+                                            </h2>
+                                        </li>
+
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
+                                            </strong>
+                                            <h2 className=" tracking-wider">
+                                                <strong className="me-2 leading-6">
+                                                    Policy Timelines:
+                                                </strong>
+                                                Access detailed timelines
+                                                tracking the progress of AI
+                                                policies and regulations in key
+                                                markets.
+                                            </h2>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </Responsive>
@@ -56,8 +136,8 @@ export default function Login({ status, canResetPassword }) {
                                         alt="AI Policy Tracker"
                                         className="w-[127px] h-[33px]"
                                     />
-                                    <h3 className="my-4 text-2xl font-semibold text-primary-light">
-                                        Account Login
+                                    <h3 className="my-4 font-bold text-xl text-primary-light">
+                                        Welcom back!
                                     </h3>
 
                                     {status && (

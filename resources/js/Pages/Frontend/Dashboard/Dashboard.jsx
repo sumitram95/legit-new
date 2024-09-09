@@ -417,7 +417,7 @@ export default function Dashboard({
                                 </div>
 
                                 {/* show on desktop (status component) */}
-                                <Responsive responsive={["xl"]}>
+                                <Responsive responsive={["lg","xl"]}>
                                     <div className="flex justify-center items-center">
                                         <Status
                                             statuses={statuses}
@@ -431,7 +431,7 @@ export default function Dashboard({
                                 </Responsive>
 
                                 {/* md and lg for show and hide search filter button */}
-                                <Responsive responsive={["md", "lg"]}>
+                                {/* <Responsive responsive={["md", "lg"]}>
                                     <div className="flex gap-3 items-center">
                                         <div className="flex gap-4">
                                             {visibleDiv && (
@@ -483,11 +483,11 @@ export default function Dashboard({
                                             </button>
                                         </div>
                                     </div>
-                                </Responsive>
+                                </Responsive> */}
                             </div>
 
                             {/* show on medium and lg device (status component) */}
-                            <Responsive responsive={["md", "lg"]}>
+                            <Responsive responsive={["md"]}>
                                 <div className="flex justify-center items-center mt-5">
                                     <Status
                                         statuses={statuses}

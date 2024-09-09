@@ -25,17 +25,17 @@ const EditColumnLists = [
         status: true,
     },
     {
-        name: "whitepaper_document_link",
-        title: "Document Link",
-        status: true,
-    },
-
-    //
-    {
         name: "technology_partners",
         title: "Technology partners",
+        status: true,
+    },
+    //show in table after checked
+    {
+        name: "whitepaper_document_link",
+        title: "Document Link",
         status: false,
     },
+
     {
         name: "governance_structure",
         title: "Governance structure",
