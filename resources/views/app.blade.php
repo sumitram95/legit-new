@@ -54,7 +54,7 @@
     </script>
 </head>
 
-<body class="font-sans antialiased" style="max-width: 1920px; margin-right: auto; margin-left: auto">
+<body class="Poppins" style="max-width: 1920px; margin-right: auto; margin-left: auto">
     @inertia
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>

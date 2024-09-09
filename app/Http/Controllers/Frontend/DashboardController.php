@@ -30,10 +30,10 @@ class DashboardController extends Controller
 
         $latestNews = News::query()
             ->latest()->first();
-        $data['newsLastUpdate'] = $latestNews ? Carbon::parse($latestNews->updated_at)->format('F Y') : '';
+        $data['newsLastUpdate'] = $latestNews ? Carbon::parse($latestNews->updated_at)->format('d M Y') : '';
 
         $latestAiPolicy = $aiPolicyTracker->first();
-        $data['aiPolicyLastUpdate'] = $latestAiPolicy ? Carbon::parse($latestAiPolicy->updated_at)->format('F Y') : '';
+        $data['aiPolicyLastUpdate'] = $latestAiPolicy ? Carbon::parse($latestAiPolicy->updated_at)->format('d M Y') : '';
 
         //-- Ai Policy tracker country with status and Link
         $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::query()
@@ -167,8 +167,8 @@ class DashboardController extends Controller
 
 
             $data['aiPolicyTrackerWithStatus'] = AiPolicyTracker::whereIn('status_id', $statusIds)
-            ->with(['country', 'status'])
-            ->get();
+                ->with(['country', 'status'])
+                ->get();
 
             $URL_MAP = [];
             $STATUS_MAP = [];

@@ -12,9 +12,9 @@ use Inertia\Inertia;
 
 Route::get('/backend/dashboard', function () {
     return Inertia::render('Backend/Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
 
-Route::middleware(['auth'])
+Route::middleware(['auth', 'isAdmin'])
     ->as("backend.")->group(function () {
 
         // ai policy tracker

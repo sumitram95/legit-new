@@ -10,9 +10,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Route::get('/', function () {
-//     return Inertia::render('Frontend/Dashboard/Dashboard');
-// })->name("frontend.dashboard");
+Route::get('/denied', function () {
+    return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
+});
+
+
 
 
 Route::middleware('auth')->group(function () {
@@ -43,9 +45,9 @@ Route:: as('frontend.')->group(function () {
     Route::controller(WatchListController::class)
         ->as('watch_list.')
         ->group(function () {
-            Route::get('/watchlist', 'index')->name('index');
-            Route::post('/watchlist/show', 'show')->name('show');
-            Route::get('/watchlist/filtered', 'getFilteredData')->name('filtered');
+            Route::get('/bookmarks', 'index')->name('index');
+            Route::post('/bookmarks/show', 'show')->name('show');
+            Route::get('/bookmarks/filtered', 'getFilteredData')->name('filtered');
         });
 
     // time line controller

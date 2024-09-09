@@ -10,6 +10,7 @@ import LogoImage from "@/assets/images/ai_dark_logo.png";
 import LogoImageSquare from "@/assets/images/ai-square.png";
 import AuthLogo from "@/assets/images/auth/login.png";
 import AuthLoginImage from "@/assets/images/auth/loginpage.jpg";
+import Responsive from "@/Components/Responsive/Responsive";
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
@@ -28,138 +29,115 @@ export default function Login({ status, canResetPassword }) {
     return (
         <GuestLayout>
             <Head title="Log in" />
-
-            {/* <div className="blur-ai  p-8 rounded-md py-10 w-1/3">
-                <div className="form-container">
-                    {status && (
-                        <div className="mb-4 font-medium text-sm text-green-600">
-                            {status}
-                        </div>
-                    )}
-
-                    <form onSubmit={submit}>
-                        <div>
-                            <InputLabel
-                                htmlFor="email"
-                                value="Email"
-                                className="text-white"
-                            />
-
-                            <TextInput
-                                id="email"
-                                type="email"
-                                name="email"
-                                value={data.email}
-                                className="mt-1 block w-full bg-transparent border-white text-white"
-                                autoComplete="username"
-                                isFocused={true}
-                                onChange={(e) =>
-                                    setData("email", e.target.value)
-                                }
-                            />
-
-                            <InputError
-                                message={errors.email}
-                                className="mt-2"
-                            />
-                        </div>
-
-                        <div className="mt-4">
-                            <InputLabel
-                                htmlFor="password"
-                                value="Password"
-                                className="text-white"
-                            />
-
-                            <TextInput
-                                id="password"
-                                type="password"
-                                name="password"
-                                value={data.password}
-                                className="mt-1 block w-full bg-transparent border-white text-white"
-                                autoComplete="current-password"
-                                onChange={(e) =>
-                                    setData("password", e.target.value)
-                                }
-                            />
-
-                            <InputError
-                                message={errors.password}
-                                className="mt-2"
-                            />
-                        </div>
-
-                        <div className=" mt-4 flex justify-between">
-                            <label className="flex items-center">
-                                <Checkbox
-                                    name="remember"
-                                    className=" border-white bg-transparent"
-                                    checked={data.remember}
-                                    onChange={(e) =>
-                                        setData("remember", e.target.checked)
-                                    }
-                                />
-                                <span className="ms-2 text-sm text-white">
-                                    Remember me
-                                </span>
-                            </label>
-
-                            <Link
-                                href={route("register")}
-                                className="underline text-sm text-white focus:outline-none"
-                            >
-                                Register
-                            </Link>
-                        </div>
-
-                        <div className="flex items-center justify-end mt-4">
-                            {canResetPassword && (
-                                <Link
-                                    href={route("password.request")}
-                                    className="underline text-sm text-white focus:outline-none"
-                                >
-                                    Forgot your password?
-                                </Link>
-                            )}
-
-                            <PrimaryButton
-                                className="ms-4 bg-blue-600 hover:bg-blue-500"
-                                disabled={processing}
-                            >
-                                Log in
-                            </PrimaryButton>
-                        </div>
-                    </form>
-                </div>
-            </div> */}
-
-            <div className="flex items-center min-h-screen bg-gray-100 lg:justify-center">
+            <div className="lg:flex items-center lg:min-h-screen bg-gray-100 lg:justify-center">
                 <div className="flex flex-col overflow-hidden max md:flex-row md:flex-1 ">
                     {/* logo and image side */}
-                    <div className="w-[50%] p-4 py-6 text-white md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly rounded-md h-screen pr-9">
-                        <div className="bg-blue-500 w-full h-full flex items-center justify-center rounded-md">
-                            {/* <div className="bg-white/20 rounded-[16px] shadow-lg backdrop-blur-sm border border-white/30 h-[400px] w-[360px] flex items-center  justify-center"> */}
+                    <Responsive responsive={["lg", "xl"]}>
+                        <div className="w-[50%] p-4 py-6 text-white md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly rounded-md h-screen pr-9">
+                            {/* <div className=" bg-primary-light w-full h-full flex items-center justify-center rounded-md">
                                 <img
                                     src={AuthLoginImage}
                                     alt="AI Policy Tracker"
                                     className="h-full w-full rounded-md"
                                 />
-                            {/* </div> */}
+                            </div> */}
+
+                            <div className=" bg-primary-light w-full h-full flex items-center justify-center rounded-md px-10">
+                                <div>
+                                    <h1 className=" text-3xl font-bold text-center">
+                                        Welcome Back
+                                    </h1>
+                                    <ul className="mt-5">
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-sm"></i>
+                                            </strong>
+                                            <h2 className="tracking-wider leading-6">
+                                                <strong className="me-2">
+                                                    High-Level AI Regulation
+                                                    Summary:
+                                                </strong>
+                                                A quick overview of AI
+                                                regulation status across
+                                                countries.
+                                            </h2>
+                                        </li>
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-sm"></i>
+                                            </strong>
+                                            <h2 className=" tracking-wider leading-6">
+                                                <strong className="me-2">
+                                                    Detailed Market Profiles:
+                                                </strong>
+                                                In-depth data on AI policies,
+                                                legislation, and schedules in
+                                                individual markets.
+                                            </h2>
+                                        </li>
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
+                                            </strong>
+                                            <h2 className=" tracking-wider">
+                                                <strong className="me-2 leading-6">
+                                                    Policy Alerts:
+                                                </strong>
+                                                Receive real-time alerts on
+                                                important regulatory changes and
+                                                upcoming legislation that could
+                                                impact your business.
+                                            </h2>
+                                        </li>
+                                        <li className="mb-5 font-bold">
+                                            Additionally, enjoy:
+                                        </li>
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
+                                            </strong>
+                                            <h2 className=" tracking-wider">
+                                                <strong className="me-2 leading-6">
+                                                    AI Policy News:
+                                                </strong>
+                                                Stay informed with the latest
+                                                developments in AI governance
+                                                from around the world.
+                                            </h2>
+                                        </li>
+
+                                        <li className="flex items-center gap-3 mb-5">
+                                            <strong>
+                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
+                                            </strong>
+                                            <h2 className=" tracking-wider">
+                                                <strong className="me-2 leading-6">
+                                                    Policy Timelines:
+                                                </strong>
+                                                Access detailed timelines
+                                                tracking the progress of AI
+                                                policies and regulations in key
+                                                markets.
+                                            </h2>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </Responsive>
 
                     {/* Login side */}
-                    <div className="w-[50%]">
-                        <div className="">
-                            <div className="flex items-center h-screen">
-                                <div className="w-[60%] ml-12 ">
+                    <div className="w-full lg:w-[50%]">
+                        <div className="w-full">
+                            <div className="flex items-center lg:h-screen">
+                                <div className="w-full lg:w-[60%] px-5 lg:px-0 mt-6 lg:ml-12 lg:mt-0 ">
                                     <img
                                         src={LogoImage}
                                         alt="AI Policy Tracker"
                                         className="w-[127px] h-[33px]"
                                     />
-                                    <h3 className="my-4 text-2xl font-semibold text-gray-700">
-                                        Account Login
+                                    <h3 className="my-4 font-bold text-xl text-primary-light">
+                                        Welcom back!
                                     </h3>
 
                                     {status && (
@@ -167,10 +145,13 @@ export default function Login({ status, canResetPassword }) {
                                             {status}
                                         </div>
                                     )}
-                                    <form onSubmit={submit} className="flex flex-col space-y-5">
+                                    <form
+                                        onSubmit={submit}
+                                        className="flex flex-col space-y-5"
+                                    >
                                         <div className="flex flex-col space-y-1">
                                             <label
-                                                for="email"
+                                                htmlFor="email"
                                                 className="text-sm font-semibold text-gray-500"
                                             >
                                                 Email address
@@ -184,7 +165,10 @@ export default function Login({ status, canResetPassword }) {
                                                 autoComplete="username"
                                                 isFocused={true}
                                                 onChange={(e) =>
-                                                    setData("email", e.target.value)
+                                                    setData(
+                                                        "email",
+                                                        e.target.value
+                                                    )
                                                 }
                                             />
                                             <InputError
@@ -195,19 +179,19 @@ export default function Login({ status, canResetPassword }) {
                                         <div className="flex flex-col space-y-1">
                                             <div className="flex items-center justify-between">
                                                 <label
-                                                    for="password"
+                                                    htmlFor="password"
                                                     className="text-sm font-semibold text-gray-500"
                                                 >
                                                     Password
                                                 </label>
                                                 {/* {canResetPassword && (
-                                                    <Link
-                                                        href={route("password.request")}
-                                                        className="text-sm text-blue-600 hover:underline focus:text-blue-800"
-                                                    >
-                                                        Forgot your password?
-                                                    </Link>
-                                                )} */}
+                                                <Link
+                                                    href={route("password.request")}
+                                                    className="text-sm text-blue-600 hover:underline focus:text-blue-800"
+                                                >
+                                                    Forgot your password?
+                                                </Link>
+                                            )} */}
                                             </div>
                                             <TextInput
                                                 id="password"
@@ -217,7 +201,10 @@ export default function Login({ status, canResetPassword }) {
                                                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                                                 autoComplete="current-password"
                                                 onChange={(e) =>
-                                                    setData("password", e.target.value)
+                                                    setData(
+                                                        "password",
+                                                        e.target.value
+                                                    )
                                                 }
                                             />
                                             <InputError
@@ -225,31 +212,44 @@ export default function Login({ status, canResetPassword }) {
                                                 className="mt-2"
                                             />
                                         </div>
-                                        <div className="flex items-center space-x-2">
-                                            <Checkbox
-                                                name="remember"
-                                                className="w-4 h-4 transition duration-300 rounded focus:ring-2 focus:ring-offset-0 focus:outline-none focus:ring-blue-200"
-                                                checked={data.remember}
-                                                onChange={(e) =>
-                                                    setData("remember", e.target.checked)
-                                                }
-                                            />
-                                            <label
-                                                for="remember"
-                                                className="text-sm font-semibold text-gray-500"
+                                        <div className="flex justify-between">
+                                            <div className="flex items-center space-x-2">
+                                                <Checkbox
+                                                    name="remember"
+                                                    className="w-4 h-4 transition duration-300 rounded focus:ring-2 focus:ring-offset-0 focus:outline-none focus:ring-blue-200"
+                                                    checked={data.remember}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "remember",
+                                                            e.target.checked
+                                                        )
+                                                    }
+                                                />
+
+                                                <label
+                                                    htmlFor="remember"
+                                                    className="text-sm font-semibold text-gray-500"
+                                                >
+                                                    Remember me
+                                                </label>
+                                            </div>
+                                            <Link
+                                                href={route("register")}
+                                                className="text-sm underline font-semibold text-primary-light hover:text-blue-900"
                                             >
-                                                Remember me
-                                            </label>
+                                                Register
+                                            </Link>
                                         </div>
                                         <div>
                                             <button
                                                 type="submit"
-                                                className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                                                className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-primary-light hover:bg-blue-900 rounded-md shadow focus:outline-none focus:ring-blue-200 focus:ring-4"
                                             >
-                                                Sign in
+                                                {processing
+                                                    ? "Sign in..."
+                                                    : "Sign in"}
                                             </button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>

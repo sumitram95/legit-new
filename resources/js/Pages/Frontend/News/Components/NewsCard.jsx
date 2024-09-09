@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 import NoImage from "@/assets/images/no-image/no-image.png";
 import DOMPurify from "dompurify";
-import { useDeviceSize } from "@/Services/useDeviceSize";
+import Responsive from "@/Components/Responsive/Responsive";
 
 export default function NewsCard({ newsLists = [] }) {
     const limitWords = (html, limit) => {
@@ -15,24 +15,21 @@ export default function NewsCard({ newsLists = [] }) {
         );
     };
 
-    const deviceSize = useDeviceSize();
-
     return (
         <div className="">
             {newsLists.map((newsList, index) => (
                 <div
-                    className="px-[5%] py-[5%] md:py-0 rounded md:px-[10%] lg:px-5 w-full lg:max-w-full
-                     lg:flex border-b border-light-border md:pb-5 bg-white mt-5"
+                    className="px-[5%] py-[5%] rounded md:px-[10%] lg:px-5 w-full lg:max-w-full
+                 lg:flex border-b border-light-border md:pb-5 bg-white"
                     key={index}
                 >
                     {newsList.thumbnail?.path ? (
-                        <div className="lg:w-[25%]">
-                            <div className="h-[200px]">
+                        <div className="lg:w-[40%]">
+                            <div className="h-[300px] ">
                                 <img
                                     className="w-full h-full object-cover"
                                     src={`/storage/${newsList.thumbnail?.path}`}
                                     alt=""
-
                                 />
                             </div>
                         </div>
@@ -43,7 +40,6 @@ export default function NewsCard({ newsLists = [] }) {
                                     <img
                                         src={NoImage}
                                         alt=""
-
                                         className="max-h-[200px] max-w-[90px] object-cover"
                                     />
                                 </div>
@@ -51,7 +47,7 @@ export default function NewsCard({ newsLists = [] }) {
                         </div>
                     )}
 
-                    <div className="lg:w-[75%] px-4 mt-4 flex flex-col justify-between leading-normal">
+                    <div className="lg:w-[75%] px-4 flex flex-col justify-between leading-normal pt-4">
                         <div className="">
                             <p className="text-xs mb-3 text-light-blue flex items-center gap-[4px]">
                                 <span>
@@ -64,7 +60,7 @@ export default function NewsCard({ newsLists = [] }) {
                                         aria-label="calendar week"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
-                                        className="bi-calendar-week b-icon bi"
+                                       className="bi-calendar-week b-icon bi"
                                     >
                                         <title>Date</title>
                                         <g>
@@ -75,7 +71,7 @@ export default function NewsCard({ newsLists = [] }) {
                                 </span>
                                 {newsList.upload_date}
                             </p>
-                            <div className="mb-2 text-sm font-bold tracking-tight text-primary truncate">
+                            <div className="mb-2 text-xl font-bold tracking-tight text-primary truncate">
                                 <Link
                                     href={route("news.single", newsList.id)}
                                     className="hover:underline"
@@ -83,31 +79,33 @@ export default function NewsCard({ newsLists = [] }) {
                                     {newsList.title ?? ""}
                                 </Link>
                             </div>
-                            <div
-                                className="text-gray-700 text-base truncate"
-                                dangerouslySetInnerHTML={{
-                                    __html:
-                                        limitWords(newsList.description, 30) ??
-                                        "",
-                                }}
-                            ></div>
+                            {/* <div
+                            className="text-gray-700 text-base truncate"
+                            dangerouslySetInnerHTML={{
+                                __html: newsList.description ?? "",
+                            }}
+                        ></div> */}
 
-                            {/* <p className="mb-3 font-normal">
-                                {limitWords(newsList.description, 30)}
-                            </p> */}
+                            <p className="mb-3 font-normal">
+                                {limitWords(newsList.description, 50)}
+                            </p>
                         </div>
                     </div>
                 </div>
             ))}
 
-            {newsLists.length === 0 &&
-                (deviceSize === "mobile" || deviceSize === "tablet" || deviceSize === "smallLaptop" ? (
-                    <h1 className="font-bold mt-2 text-primary text-lg text-center">
-                        No data found
-                    </h1>
-                ) : (
-                    <NoTableData noTableDataTitle={"No data found"} />
-                ))}
+            {newsLists.length == 0 && (
+                <div>
+                    <Responsive responsive={["lg", "xl"]}>
+                        <NoTableData noTableDataTitle={"no data found"} />
+                    </Responsive>
+                    <Responsive responsive={["sm", "md"]}>
+                        <h1 className="font-bold mt-2 text-primary text-lg text-center">
+                            No data found
+                        </h1>
+                    </Responsive>
+                </div>
+            )}
         </div>
     );
 }

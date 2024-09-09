@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AiPolicyTracker extends Model
 {
@@ -30,6 +31,17 @@ class AiPolicyTracker extends Model
         'description',
     ];
 
+    public function scopeAuthLimitData($query)
+    {
+        if (Auth::check()) {
+            // If the user is authenticated, paginate with 10 records per page
+            return $query->paginate(10);
+        }
+        // If the user is not authenticated, limit the result to 3 records
+        return $query->paginate(3, ['*'], 'page', 1);
+
+    }
+
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');
@@ -43,7 +55,7 @@ class AiPolicyTracker extends Model
 
     public function getFormattedCreatedAtAttribute()
     {
-        return Carbon::parse($this->announcement_year)->format('M d, Y');
+        return Carbon::parse($this->announcement_year)->format('d M Y');
     }
 
     public function news(): HasMany
