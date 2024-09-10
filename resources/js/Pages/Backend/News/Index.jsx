@@ -94,7 +94,7 @@ export default function Index({
         <Layout>
             <Head title="News Lists" />
             <div className="rounded-lg bg-white py-2 px-5">
-                <div className="relative overflow-x-auto mt-5">
+                <div className="relative overflow-x-auto mt-5 min-h-[400px]">
                     <div className="mb-3 float-end">
                         <Button
                             onClick={toggleAddModal}
