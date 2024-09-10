@@ -14,20 +14,20 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        $status =[
-            "cancelled",
+        $status = [
             "research",
             "whitepaper",
             "pilot",
             "development",
             "launched",
+            "cancelled",
         ];
 
 
-        foreach ($status as  $value) {
+        foreach ($status as $value) {
             Status::create([
-                "id"=>Str::uuid(),
-                "name"=>$value,
+                "id" => Str::uuid(),
+                "name" => $value,
             ]);
         }
     }
