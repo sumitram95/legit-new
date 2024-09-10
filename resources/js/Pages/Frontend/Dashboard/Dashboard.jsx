@@ -254,7 +254,7 @@ export default function Dashboard({
     };
 
     // Slice the array to get the first five items
-    const firstFiveNews = news.slice(0, 5);
+    // const firstFiveNews = news.slice(0, 5);
 
     const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
 
@@ -1012,7 +1012,7 @@ export default function Dashboard({
                 <Responsive responsive={["lg", "xl"]}>
                     <News news={news} />
                 </Responsive>
-                {firstFiveNews.length > 0 && (
+                {/* {firstFiveNews.length > 0 && (
                     <Responsive responsive={["sm", "md"]}>
                         <div className=" mt-5">
                             <div className="md:border-b flex border-light-border pb-4 justify-between items-center">
@@ -1037,7 +1037,7 @@ export default function Dashboard({
                             <NewsCard newsLists={firstFiveNews} />
                         </div>
                     </Responsive>
-                )}
+                )} */}
 
                 {/* ********************** Description Component ********************** */}
                 <Description
