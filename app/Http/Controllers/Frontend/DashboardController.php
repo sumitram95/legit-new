@@ -54,17 +54,17 @@ class DashboardController extends Controller
             ->latest()
             ->get();
 
-        $COUNTRY_WITH_AIPOLICYTRACKER_MAP = [];
+        $countryWithAiPolicyTrackerMap = [];
         foreach ($data['countrywiseAiPolicyTracker'] as $country) {
             $countrySymbol = $country->symbol;
             foreach ($country->aiPolicyTrackers as $tracker) {
-                $COUNTRY_WITH_AIPOLICYTRACKER_MAP[$countrySymbol][] = [
+                $countryWithAiPolicyTrackerMap[$countrySymbol][] = [
                     'name' => $tracker->ai_policy_name,
                     'url' => route('frontend.single_ai_policy_tracker.index', $tracker->id),
                 ];
             }
         }
-        $data['countryWithAiPolicies'] = $COUNTRY_WITH_AIPOLICYTRACKER_MAP;
+        $data['countryWithAiPolicies'] = $countryWithAiPolicyTrackerMap;
 
         //-- End Ai Policy tracker country with status
         $data['aiPolicies'] = AiPolicyTracker::select('id as value', 'ai_policy_name as label')->get();
