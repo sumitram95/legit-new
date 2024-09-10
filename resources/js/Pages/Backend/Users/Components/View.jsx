@@ -26,12 +26,9 @@ const generateAvatarUrl = (name) => {
 export default function View({ user }) {
     const avatarUrl = generateAvatarUrl(user.name);
 
-    console.log("view user : ", user);
-
     return (
-        // <Layout>
         <div className="w-full">
-            <div className="rounded-lg bg-white py-2 w-full">
+            <div className="rounded-lg bg-white w-full">
                 <div className="border-b pb-3  px-5 flex items-center gap-2">
                     <div className="flex justify-center w-[43px] h-[43px] rounded-full overflow-hidden">
                         <img
@@ -123,6 +120,5 @@ export default function View({ user }) {
                 </div>
             </div>
         </div>
-        // </Layout>
     );
 }

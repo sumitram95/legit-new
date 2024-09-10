@@ -117,9 +117,17 @@ export default function Index({
                                             S.N
                                         </th>
                                         <th className="px-6 py-3">Title</th>
-                                        <th className="px-6 py-3" style={{ width: '25%' }}>AI Policy Tracker</th>
+                                        <th
+                                            className="px-6 py-3"
+                                            style={{ width: "25%" }}
+                                        >
+                                            AI Policy Tracker
+                                        </th>
                                         <th className="px-6 py-3">Category</th>
-                                        <th className="px-6 py-3" style={{ width: '13%' }}>
+                                        <th
+                                            className="px-6 py-3"
+                                            style={{ width: "13%" }}
+                                        >
                                             uploaded At
                                         </th>
 
@@ -144,7 +152,10 @@ export default function Index({
                                                 {list.title}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.policy_tracker ? list.policy_tracker.ai_policy_name : ''}
+                                                {list.policy_tracker
+                                                    ? list.policy_tracker
+                                                          .ai_policy_name
+                                                    : ""}
                                             </td>
                                             <td className="px-6 py-4">
                                                 {list.status ? (
@@ -152,9 +163,8 @@ export default function Index({
                                                         {list.status.name}
                                                     </span>
                                                 ) : (
-                                                    ' '
+                                                    " "
                                                 )}
-
                                             </td>
                                             <td className="px-6 py-4">
                                                 {list.upload_date ?? "N/A"}
@@ -194,7 +204,11 @@ export default function Index({
                                 </tbody>
                             </table>
 
-                            <Pagination paginator={tableData} />
+                            {(tableData.data.length >= 10 ||
+                                tableData.current_page ===
+                                    tableData.last_page) && (
+                                <Pagination paginator={tableData} />
+                            )}
                         </>
                     ) : (
                         <NoTableData noTableDataTitle={noTableDataTitle} />
