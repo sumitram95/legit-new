@@ -33,7 +33,7 @@ export default function News({ news }) {
                                 <img
                                     src={`/storage/${news.thumbnail?.path}`}
                                     alt="no-image"
-                                    className="w-full h-full object-cover transform"
+                                    className="w-full h-full object-fill"
                                 />
                             ) : (
                                 <div className="w-full h-full flex justify-center items-center">

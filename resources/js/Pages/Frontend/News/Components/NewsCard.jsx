@@ -27,7 +27,7 @@ export default function NewsCard({ newsLists = [] }) {
                         <div className="lg:w-[40%]">
                             <div className="h-[300px] ">
                                 <img
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full"
                                     src={`/storage/${newsList.thumbnail?.path}`}
                                     alt=""
                                 />

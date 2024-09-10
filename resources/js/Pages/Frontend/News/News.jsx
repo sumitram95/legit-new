@@ -357,7 +357,8 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                 </Responsive>
                             </div>
                             {/* /* show on small ,medium and lg devices for select filter form */}
-                            <Responsive responsive={["sm", "md", "lg"]}>
+                            {/* <Responsive responsive={["sm", "md", "lg"]}> */}
+                            <Responsive responsive={["sm"]}>
                                 {isDropdownOpen && (
                                     <div className="px-5 w-full pt-5 bg-white border-b xl:border-b-0 border-light-border">
                                         <form
