@@ -19,7 +19,9 @@ return new class extends Migration {
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->integer('last_activity')->index();
-            $table->boolean('terms_condiont')->nullable()->default(false);
+            $table->boolean('terms_condition')->nullable()->default(false);
+            $table->string('password')->nullable()->default(null);
+            $table->boolean('status')->nullable()->default(true);
 
             $table->softDeletes();
 

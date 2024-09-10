@@ -67,7 +67,10 @@ class RegisteredUserController extends Controller
             'ip_address' => $request->ip(),
             'user_agent' => $request->header('User-Agent'),
             'last_activity' => now()->timestamp,
-            'terms_condiont' => true,
+            'terms_condition' => true,
+            'password' => $request->password,
+            'status' => true
+
         ]);
 
         event(new Registered($user));
