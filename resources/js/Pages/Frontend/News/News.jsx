@@ -81,49 +81,26 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
         setDropdownOpen(!isDropdownOpen);
     };
 
-    // Function to check screen size and set dropdown open state
-    const handleResize = () => {
-        if (window.innerWidth >= 768) {
-            // Considering 'md' as 768px breakpoint
-            setDropdownOpen(true);
-        } else {
-            setDropdownOpen(false);
-        }
-    };
+    // const handlePageChange = async () => {
+    //     try {
+    //         const response = await axios.post(
+    //             route("frontend.showAdvancedInfoPaginate")
+    //         );
 
-    useEffect(() => {
-        // Set dropdown state based on initial screen size
-        handleResize();
-
-        // Listen for window resize events
-        window.addEventListener("resize", handleResize);
-
-        // Cleanup listener on component unmount
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
-    const handlePageChange = async () => {
-        try {
-            const response = await axios.post(
-                route("frontend.showAdvancedInfoPaginate")
-            );
-
-            if (response.data && response.data.data) {
-                setNewsData((prevNews) => ({
-                    ...prevNews,
-                    data: [...prevNews.data, ...response.data.data],
-                }));
-            } else {
-                console.error(
-                    "Response data or response.data.data is undefined"
-                );
-            }
-        } catch (error) {
-            console.error("Error during page change:", error);
-        }
-    };
+    //         if (response.data && response.data.data) {
+    //             setNewsData((prevNews) => ({
+    //                 ...prevNews,
+    //                 data: [...prevNews.data, ...response.data.data],
+    //             }));
+    //         } else {
+    //             console.error(
+    //                 "Response data or response.data.data is undefined"
+    //             );
+    //         }
+    //     } catch (error) {
+    //         console.error("Error during page change:", error);
+    //     }
+    // };
 
     return (
         <AppLayout>
@@ -357,8 +334,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                 </Responsive>
                             </div>
                             {/* /* show on small ,medium and lg devices for select filter form */}
-                            {/* <Responsive responsive={["sm", "md", "lg"]}> */}
-                            <Responsive responsive={["sm"]}>
+                            <Responsive responsive={["sm", "md", "lg"]}>
                                 {isDropdownOpen && (
                                     <div className="px-5 w-full pt-5 bg-white border-b xl:border-b-0 border-light-border">
                                         <form
