@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MapChart } from "./Components/Map/MapChart";
 import SelectInput from "@/Components/SelectInput";
 import Status from "@/Components/Status/Status";
-import HistoricState from "./Components/HistoricState";
+// import HistoricState from "./Components/HistoricState";
 import Table from "@/Components/Table/Table";
 import OriginalColumns from "@/Components/Table/Columns";
 import EditColumn from "./Components/EditColumn";
@@ -19,7 +19,7 @@ import Input from "@/Components/Input";
 import PaginationPage from "@/Components/Table/PaginationPage";
 import { AppLayout } from "@/Layouts/AppLayout";
 import Responsive from "@/Components/Responsive/Responsive";
-import NewsCard from "../News/Components/NewsCard";
+// import NewsCard from "../News/Components/NewsCard";
 
 export default function Dashboard({
     news,
