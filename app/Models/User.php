@@ -6,10 +6,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    protected $appends = ['formatted_created_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -48,5 +51,10 @@ class User extends Authenticatable
     public function userInfo()
     {
         return $this->hasOne(UserInfo::class);
+    }
+
+    public function getFormattedCreatedAtAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('d M Y');
     }
 }

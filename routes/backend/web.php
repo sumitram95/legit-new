@@ -3,6 +3,7 @@ use App\Http\Controllers\Backend\AiPolicyTrackerController;
 use App\Http\Controllers\Backend\CMS\HeaderMenuController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\NewsController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -52,6 +53,18 @@ Route::middleware(['auth', 'isAdmin'])
 
 
             // Route::delete("/backend/header-menu/delete/{id}", "delete")->name("delete");
+        });
+
+        // user controller
+        Route::controller(UserController::class)->as("users.")->group(function () {
+            Route::get("/backend/users", "index")->name("index");
+            Route::post("/backend/users/views/{id}", "view")->name("view");
+            // Route::post("/backend/aipolicytracker", "store")->name("store");
+            // Route::post("/backend/aipolicytracker/update/{id}", "edit")->name("edit");
+            // Route::put("/backend/aipolicytracker/update/{id}", "update")->name("update");
+
+
+            // Route::delete("/backend/aipolicytracker/delete/{id}", "delete")->name("delete");
         });
 
     });

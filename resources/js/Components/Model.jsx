@@ -16,7 +16,7 @@ export default function Model({
             aria-hidden="true"
             className="fixed inset-0 z-50 flex justify-center items-center w-full h-screen bg-black bg-opacity-50"
         >
-            <div className={`relative p-4 w-full ${width} overflow-y-auto  max-h-full`}>
+            <div className={`relative p-4 w-full ${width} overflow-y-auto  max-h-full custom-scrollbar`}>
                 {/* Modal content */}
                 <div className="relative bg-white rounded-lg shadow">
                     {/* Modal header */}

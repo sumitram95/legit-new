@@ -1,66 +1,51 @@
+import React, { useEffect, useState } from "react";
 import AddIcon from "@/Components/AddIcon";
 import Button from "@/Components/Button";
-import DeleteIcon from "@/Components/DeleteIcon";
-import EditIcon from "@/Components/EditIcon";
-import Model from "@/Components/Model";
-import NoTableData from "@/Components/Table/NoTableData";
-import ViewIcon from "@/Components/ViewIcon";
+// import DeleteIcon from "@/Components/DeleteIcon";
+// import EditIcon from "@/Components/EditIcon";
+// import Model from "@/Components/Model";
+// import NoTableData from "@/Components/Table/NoTableData";
+// import ViewIcon from "@/Components/ViewIcon";
 import Layout from "@/Layouts/Backend/Layout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
-import React, { useEffect, useState } from "react";
-import Add from "./Components/Add";
+import DeleteIcon from "@/Components/DeleteIcon";
+import ViewIcon from "@/Components/ViewIcon";
+import NoTableData from "@/Components/Table/NoTableData";
 import Pagination from "@/Components/Pagination";
-import DeleteModel from "@/Components/DeleteModel";
-import Edit from "./Components/Edit";
+import Model from "@/Components/Model";
+// import View from "./Components/View";
+import View from "./Components/View";
+// import Pagination from "@/Components/Pagination";
+// import DeleteModel from "@/Components/DeleteModel";
+// import Edit from "./Components/Edit";
 import axios from "axios";
 
-export default function Index({
-    tableData = [],
-    countries = null,
-    categories = null,
-    aiPolicyTrackers = null,
-}) {
+export default function Index({ tableData }) {
+    const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
+    const noTableDataTitle = "There are no news lists";
+
     // add modal
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
-    // edit modal
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
-    //delete modal
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-    // set id
-    const [selectedAiId, setSelectedAiId] = useState(null);
+    // add toggle func
+    const toggleAddModal = () => setIsAddModalOpen(!isAddModalOpen);
 
     // set updating data
     const [updatingData, setUpdatingData] = useState(null);
 
-    // add toggle func
-    const toggleAddModal = () => setIsAddModalOpen(!isAddModalOpen);
-
-    // import axios from 'axios'; // Ensure axios is imported
-
-    function openEditModal() {
-        setIsEditModalOpen(!isEditModalOpen);
-    }
-
-    // edit toggle func
     const toggleEdiModal = async (id = null) => {
         if (!id) return;
 
         try {
             // Make a GET request to fetch data by ID
-            const response = await axios.post(`/backend/news/edit/${id}`);
+            const response = await axios.post(`/backend/users/views/${id}`);
 
-            const updatedData = response.data.news; // Adjust according to your response structure
-
+            const updatedData = response.data.user; // Adjust according to your response structure
             if (updatedData) {
                 // Set the updating data and open the modal if data is not null
                 setUpdatingData(updatedData);
-                setSelectedAiId(id);
-                setIsEditModalOpen(!isEditModalOpen);
+                setIsAddModalOpen(!isAddModalOpen);
 
-                openEditModal();
+                toggleAddModal;
             } else {
                 // Handle case where data is null, e.g., show a warning or notification
             }
@@ -69,42 +54,11 @@ export default function Index({
             console.error("Failed to fetch data:", error);
         }
     };
-
-    // delete toggle func
-    const toggleDeleteModal = (id = null) => {
-        setSelectedAiId(id);
-        setIsDeleteModalOpen(!isDeleteModalOpen);
-    };
-
-    const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
-    const noTableDataTitle = "There are no news lists";
-
-    const { props } = usePage();
-    const successMessage = props.flash?.success;
-
-    useEffect(() => {
-        if (successMessage) {
-            setIsAddModalOpen(false); // Close the modal on success
-
-            setIsEditModalOpen(false);
-        }
-    }, [successMessage]);
-
     return (
         <Layout>
             <Head title="News Lists" />
             <div className="rounded-lg bg-white py-2 px-5">
                 <div className="relative overflow-x-auto mt-5 min-h-[400px]">
-                    <div className="mb-3 float-end">
-                        <Button
-                            onClick={toggleAddModal}
-                            type="button"
-                            className="text-sm text-gray-700 font-semibold flex gap-1 bg-secondary px-5 py-2 hover:bg-blue-100"
-                        >
-                            <AddIcon /> <span>Add News</span>
-                        </Button>
-                    </div>
-
                     {hasData ? (
                         <>
                             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -116,27 +70,21 @@ export default function Index({
                                         >
                                             S.N
                                         </th>
-                                        <th className="px-6 py-3">Title</th>
+                                        <th className="px-6 py-3">user name</th>
                                         <th
                                             className="px-6 py-3"
                                             style={{ width: "25%" }}
                                         >
-                                            AI Policy Tracker
+                                            email
                                         </th>
-                                        <th className="px-6 py-3">Category</th>
+                                        <th className="px-6 py-3">Phone No.</th>
                                         <th
                                             className="px-6 py-3"
                                             style={{ width: "13%" }}
                                         >
-                                            uploaded At
+                                            created at
                                         </th>
-
-                                        <th
-                                            style={{ width: "10%" }}
-                                            className="px-6 py-3"
-                                        >
-                                            Action
-                                        </th>
+                                        <th className="px-6 py-3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -149,28 +97,34 @@ export default function Index({
                                                 {tableData.from + index}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.title}
+                                                {list.name}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.policy_tracker
-                                                    ? list.policy_tracker
-                                                          .ai_policy_name
-                                                    : ""}
+                                                {list.email ?? "N/A"}
+                                                {/* <span className=" bg-green-500 text-white px-1 rounded-full text-xs">
+                                            verified
+                                        </span> */}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.status ? (
-                                                    <span className="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">
-                                                        {list.status.name}
-                                                    </span>
-                                                ) : (
-                                                    " "
-                                                )}
+                                                {list.user_info?.phone_no ??
+                                                    "N/A"}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {list.upload_date ?? "N/A"}
+                                                {list.formatted_created_at ??
+                                                    "N/A"}
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">
+                                                    {/* <Link
+                                                        href={route(
+                                                            "backend.users.view",
+                                                            list.id
+                                                        )}
+                                                        className="underline text-blue-950"
+                                                    >
+                                                        <ViewIcon />
+                                                    </Link> */}
+
                                                     <Button
                                                         type="button"
                                                         onClick={() =>
@@ -179,24 +133,16 @@ export default function Index({
                                                             )
                                                         }
                                                     >
-                                                        <EditIcon />
-                                                    </Button>
-                                                    <Link
-                                                        href="#"
-                                                        className="underline text-blue-950"
-                                                    >
                                                         <ViewIcon />
-                                                    </Link>
-                                                    <Button
-                                                        type="button"
-                                                        onClick={() =>
-                                                            toggleDeleteModal(
-                                                                list.id
-                                                            )
-                                                        }
-                                                    >
-                                                        <DeleteIcon />
                                                     </Button>
+                                                    {/* <Button
+                                                type="button"
+                                                onClick={() =>
+                                                    toggleDeleteModal(list.id)
+                                                }
+                                            >
+                                                <DeleteIcon />
+                                            </Button> */}
                                                 </div>
                                             </td>
                                         </tr>
@@ -204,9 +150,7 @@ export default function Index({
                                 </tbody>
                             </table>
 
-                            {(tableData.data.length >= 10 ||
-                                tableData.current_page ===
-                                    tableData.last_page) && (
+                            {tableData.data.length >= 10 && (
                                 <Pagination paginator={tableData} />
                             )}
                         </>
@@ -220,18 +164,15 @@ export default function Index({
             <Model
                 isOpen={isAddModalOpen}
                 onClose={toggleAddModal}
-                title="Add News"
-                width="max-w-6xl"
+                title="User Information"
+                width="max-w-xl"
             >
-                <Add
-                    countries={countries}
-                    categories={categories}
-                    aiPolicyTrackers={aiPolicyTrackers}
-                />
+                {/* {updatingData} */}
+                <View user={updatingData} />
             </Model>
 
             {/* edit model */}
-            <Model
+            {/* <Model
                 isOpen={isEditModalOpen}
                 onClose={openEditModal}
                 title="Edit News"
@@ -245,15 +186,15 @@ export default function Index({
                     aiId={selectedAiId}
                     updatedData={updatingData}
                 />
-            </Model>
-
+            </Model> */}
+            {/*
             <DeleteModel
                 title={"Are you sure you want to delete this news?"}
                 routePath={"/backend/news/delete/"}
                 isOpen={isDeleteModalOpen}
                 onClose={() => toggleDeleteModal()}
                 aiId={selectedAiId}
-            />
+            /> */}
         </Layout>
     );
 }

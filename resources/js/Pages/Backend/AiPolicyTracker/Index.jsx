@@ -91,11 +91,13 @@ export default function Index({
         }
     }, [successMessage]);
 
+    console.log(tableData);
+
     return (
         <Layout>
             <Head title="Country Lists" />
             <div className="rounded-lg bg-white py-2 px-5">
-                <div className="relative overflow-x-auto mt-5">
+                <div className="relative overflow-x-auto mt-5 min-h-[400px]">
                     <div className="mb-3 float-end">
                         <Button
                             onClick={toggleAddModal}
@@ -184,7 +186,6 @@ export default function Index({
                                                         <EditIcon />
                                                     </Button>
 
-
                                                     {/* Delete Action */}
                                                     <Button
                                                         type="button"
@@ -202,8 +203,11 @@ export default function Index({
                                     ))}
                                 </tbody>
                             </table>
-
-                            <Pagination paginator={tableData} />
+                            {(tableData.data.length >= 10 ||
+                                tableData.current_page ===
+                                    tableData.last_page) && (
+                                <Pagination paginator={tableData} />
+                            )}
                         </>
                     ) : (
                         <NoTableData noTableDataTitle={noTableDataTitle} />
@@ -239,7 +243,9 @@ export default function Index({
 
             {/* ******************************* Delete Model *****************************/}
             <DeleteModel
-                title={"Are you sure you want to delete this (AI) policy tracker?"}
+                title={
+                    "Are you sure you want to delete this (AI) policy tracker?"
+                }
                 routePath={"/backend/aipolicytracker/delete/"}
                 isOpen={isDeleteModalOpen}
                 onClose={() => toggleDeleteModal()}

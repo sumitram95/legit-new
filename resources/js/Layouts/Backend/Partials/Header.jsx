@@ -19,7 +19,7 @@ export default function Header({ avatarUrl = "NA", userName = nulll }) {
         >
             <div className="flex justify-between items-center">
                 <div>
-                    Welcome to Dashboard
+                    Welcome To Dashboard
                     {/* {flash.success && <span>fdfdsfd</span>} */}
                 </div>
 
@@ -58,7 +58,7 @@ export default function Header({ avatarUrl = "NA", userName = nulll }) {
                                     </div>
                                     <div>
                                         <p className="font-bold text-sm">
-                                            Sumit Ram
+                                            {userName}
                                         </p>
                                         <p className="text-xs">admin</p>
                                     </div>
