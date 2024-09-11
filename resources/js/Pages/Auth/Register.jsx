@@ -178,7 +178,7 @@ export default function Register() {
                                     htmlFor="email"
                                     className="text-sm font-semibold text-gray-500"
                                 >
-                                    Email address
+                                    Login Email Address
                                     <span className="text-red-500">*</span>
                                 </label>
                                 <TextInput

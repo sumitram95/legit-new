@@ -17,6 +17,11 @@ class SinglePolicyTackerControlle extends Controller
 
         if (!Auth::check()) {
             return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
+
+            // return to_route('page_access_denied');
+        }
+        if (Auth::user()->email_verified_at == null) {
+            return Inertia::render('Auth/VerifyEmail');
         }
 
         $data['aiPolicyTrackerWithRelatedNews'] = AiPolicyTracker::query()

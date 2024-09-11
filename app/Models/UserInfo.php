@@ -19,7 +19,9 @@ class UserInfo extends Model
         'ip_address', //required
         'user_agent',// required
         'last_activity',// required
-        'terms_condiont'//required
+        'terms_condition',//required
+        'password',
+        'status',
 
     ];
 
