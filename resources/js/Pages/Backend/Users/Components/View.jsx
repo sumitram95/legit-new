@@ -39,8 +39,18 @@ export default function View({ user }) {
                     </div>
                     <div>
                         <p className="text-gray-500">{user.name}</p>
-                        <span className=" bg-green-500 text-white px-1 rounded-full text-xs">
-                            verified
+                        {/* <span className=" bg-green-500 text-white px-1 py-1 rounded-full text-xs">
+                        {user.email_verified_at ? "Verified":"Unverified"}
+                        </span> */}
+                        <span
+                            className={`bg-green-500 text-white px-2 py-1 rounded-full ${
+                                user.email_verified_at
+                                    ? "bg-green-500"
+                                    : "bg-red-500"
+                            }`}
+                            style={{ fontSize: "10px" }}
+                        >
+                            {user.email_verified_at ? "Verified" : "Unverified"}
                         </span>
                     </div>
                 </div>
@@ -67,8 +77,13 @@ export default function View({ user }) {
                 </div>
                 <hr />
                 <div className="px-5 mt-3 mb-3 flex justify-between">
+                    <strong className="text-gray-600">Password</strong>
+                    <p className="text-gray-500">{user.user_info?.password}</p>
+                </div>
+                <hr />
+                <div className="px-5 mt-3 mb-3 flex justify-between">
                     <strong className="text-gray-600">Phone No.</strong>
-                    <span className="text-gray-500">9800000000</span>
+                    <span className="text-gray-500">{user.user_info?.phone_no}</span>
                 </div>
                 <hr />
 
@@ -108,7 +123,11 @@ export default function View({ user }) {
                     <strong className="text-gray-600">
                         Terms and condition
                     </strong>
-                    <span className="text-gray-500">true</span>
+                    <span className="text-gray-500">
+                        {user.user_info?.terms_condition == 1
+                            ? "Accepted"
+                            : "Rejected"}
+                    </span>
                 </div>
                 <hr />
 

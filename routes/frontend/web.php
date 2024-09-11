@@ -12,7 +12,7 @@ use Inertia\Inertia;
 
 Route::get('/denied', function () {
     return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
-});
+})->name('page_access_denied');
 
 
 

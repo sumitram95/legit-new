@@ -12,7 +12,10 @@ const generateAvatarUrl = (name) => {
 
 export function NavBar({ NavBarLists }) {
     const { props } = usePage();
-    const userName = props.auth.user ? props.auth.user.name : ""; // Get the user's name or use 'Guest' if not available
+    const userName = props.auth.user ? props.auth.user.name : "";
+
+    const isVerifieEmail =
+        props.auth.user?.email_verified_at == null ? null : props.auth.user?.id;
 
     const avatarUrl = generateAvatarUrl(userName);
 
@@ -95,7 +98,21 @@ export function NavBar({ NavBarLists }) {
                                     />
                                 </div>
                                 <div>
-                                    <p className="font-bold text-white">{userName}</p>
+                                    <p className="font-bold text-white">
+                                        {userName}
+                                    </p>
+                                    <span
+                                        className={`text-white px-2 rounded-full ${
+                                            isVerifieEmail
+                                                ? "bg-green-500"
+                                                : "bg-red-500"
+                                        }`}
+                                        style={{ fontSize: "10px" }}
+                                    >
+                                        {isVerifieEmail
+                                            ? "Verified"
+                                            : "Unverified"}
+                                    </span>
                                 </div>
                             </div>
                         )}
@@ -203,6 +220,20 @@ export function NavBar({ NavBarLists }) {
                                                 </div>
                                                 <div>
                                                     <p>{userName}</p>
+                                                    <span
+                                                        className={`text-white px-2 rounded-full ${
+                                                            isVerifieEmail
+                                                                ? "bg-green-500"
+                                                                : "bg-red-500"
+                                                        }`}
+                                                        style={{
+                                                            fontSize: "10px",
+                                                        }}
+                                                    >
+                                                        {isVerifieEmail
+                                                            ? "Verified"
+                                                            : "Unverified"}
+                                                    </span>
                                                 </div>
                                             </div>
 

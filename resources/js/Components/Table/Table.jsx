@@ -22,6 +22,9 @@ export default function Table({
         ? authcheck.props.auth.user?.id
         : null;
 
+    const isVerifieEmail =
+        authcheck.props.auth.user?.email_verified_at == null ? false : true;
+
     return (
         <div className="relative overflow-x-auto mx-5 mt-5 hidden md:block">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500">

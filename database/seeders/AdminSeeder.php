@@ -17,7 +17,8 @@ class AdminSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@dignep.com.np',
-            'password' => Hash::make("!@12345#")
+            'password' => Hash::make("!@12345#"),
+            'email_verified_at'=>now(),
         ]);
     }
 }
