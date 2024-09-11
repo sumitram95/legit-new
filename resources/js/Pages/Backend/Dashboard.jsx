@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import React from "react";
 import GraphChart from "./Services/GraphChart";
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ data, graphData }) {
     return (
         <Layout>
             <Head title="Dashboard" />
@@ -82,8 +82,15 @@ export default function Dashboard({ data }) {
                         </div>
                     </div>
                 </div>
-                <div className="mb-4 rounded bg-white">
-                   <GraphChart />
+                <div className="mb-4 rounded bg-white px-5 py-5">
+                    <p className="font-bold">
+                        AI Policy Tracker Graph
+                        <span className="text-gray-500 font-semibold ml-5">
+                            ({data.currentYear ?? ""} -{data.upcomingYear ?? ""}
+                            )
+                        </span>
+                    </p>
+                    <GraphChart graphData={graphData} />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-4">
                     <div className="rounded bg-white min-h-28 py-5">

@@ -36,23 +36,10 @@ class DashboardController extends Controller
         $currentYear = Carbon::now()->year;
         $upcomingYear = $currentYear + 1;
 
-        $months = [
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            '10',
-            '11',
-            '12'
-        ];
+        $months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
         // Fetch customer counts for all months
-        $graphCount['PaymentCount'] = AiPolicyTracker::selectRaw('MONTH(created_at) as month, COUNT(*) as value')
+        $graphCount = AiPolicyTracker::selectRaw('MONTH(created_at) as month, COUNT(*) as value')
             ->whereYear('created_at', '>=', $currentYear)
             ->whereYear('created_at', '<=', $upcomingYear)
             ->groupBy(DB::raw('MONTH(created_at)'))
@@ -60,7 +47,6 @@ class DashboardController extends Controller
             ->pluck('value', 'month')
             ->toArray();
 
-            // dd($graphCount['PaymentCount']);
 
         // Prepare data array with counts for all months
         $graphData = [];
@@ -68,16 +54,15 @@ class DashboardController extends Controller
         foreach ($months as $index => $month) {
             $graphData[] = [
                 'month' => $mothNames[$index],
-                'PaymentCount' => $graphCount['PaymentCount'][$month] ?? 0,
+                'value' => $graphCount[$month] ?? 0,
             ];
         }
-
-        dd($graphCount);
-
-
+        $data['currentYear'] = $currentYear;
+        $data['upcomingYear'] = $upcomingYear;
 
         return Inertia::render('Backend/Dashboard', [
             "data" => $data,
+            "graphData" => $graphData,
         ]);
     }
 }
