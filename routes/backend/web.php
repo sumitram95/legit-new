@@ -2,6 +2,7 @@
 use App\Http\Controllers\Backend\AiPolicyTrackerController;
 use App\Http\Controllers\Backend\CMS\HeaderMenuController;
 use App\Http\Controllers\Backend\CountryController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
@@ -11,9 +12,16 @@ use Inertia\Inertia;
 //     return 'backend dashboard';
 // });
 
-Route::get('/backend/dashboard', function () {
-    return Inertia::render('Backend/Dashboard');
-})->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
+
+
+// Route::get('/backend/dashboard', function () {
+//     return Inertia::render('Backend/Dashboard');
+// })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
+
+Route::middleware(['auth', 'verified', 'isAdmin'])->group(function () {
+    Route::get('/backend/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+});
+
 
 Route::middleware(['auth', 'isAdmin'])
     ->as("backend.")->group(function () {
