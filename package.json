@@ -24,6 +24,7 @@
         "@amcharts/amcharts4": "^4.10.39",
         "@amcharts/amcharts4-fonts": "^4.0.1",
         "@amcharts/amcharts4-geodata": "^4.1.30",
+        "@amcharts/amcharts5": "^5.10.5",
         "@ckeditor/ckeditor5-build-classic": "^43.0.0",
         "@ckeditor/ckeditor5-react": "^9.0.0",
         "@react-leaflet/core": "^2.1.0",
