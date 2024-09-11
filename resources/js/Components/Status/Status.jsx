@@ -26,7 +26,7 @@ export default function Status({ statuses, statusState, handleStatusChange1, han
                 style={{ fontSize: '14px' }}
                 onClick={handleShowAll} // Add onClick handler
             >
-                Show all
+                All
             </button>
         </div>
     );

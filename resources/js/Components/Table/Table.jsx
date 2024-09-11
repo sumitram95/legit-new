@@ -22,7 +22,7 @@ export default function Table({
         ? authcheck.props.auth.user?.id
         : null;
 
-    const isVerifieEmail =
+    const isVerifiedEmail =
         authcheck.props.auth.user?.email_verified_at == null ? false : true;
 
     return (
@@ -158,14 +158,26 @@ export default function Table({
                             {checkedColWithData.includes("Document Link") && (
                                 <td width="10%" className="px-6 py-4">
                                     {isAuth ? (
-                                        <a
-                                            href={list.whitepaper_document_link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="underline text-blue-950"
-                                        >
-                                            open
-                                        </a>
+                                        isVerifiedEmail ? (
+                                            <a
+                                                href={
+                                                    list.whitepaper_document_link
+                                                }
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="underline text-blue-950"
+                                            >
+                                                open
+                                            </a>
+                                        ) : (
+                                            <Link
+                                                href={route(
+                                                    "verification.notice"
+                                                )}
+                                            >
+                                                open
+                                            </Link>
+                                        )
                                     ) : (
                                         <Link href={route("register")}>
                                             open

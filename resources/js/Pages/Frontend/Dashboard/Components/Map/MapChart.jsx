@@ -94,7 +94,7 @@ export function MapChart({
                 <div style="padding: 8px; display: flex; align-items: center; justify-content: space-between;">
                     <a href="${policy.url}" target="_blank" style="text-decoration: none; color: #002147;">
                         <i className="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
-                        ${truncateText(policy.name, 3)}
+                        ${truncateText(policy.name, 5)}
                     </a>
                     <div style="display: flex; align-items: center;">
                         <a href="${policy.url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #002147;" target="_blank">
