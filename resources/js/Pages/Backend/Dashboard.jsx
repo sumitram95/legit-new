@@ -9,7 +9,7 @@ export default function Dashboard({ data }) {
             <div className="p-4 rounded-lg">
                 <div className="grid grid-cols-3 gap-4 mb-4">
                     <div className="flex items-center justify-evenly h-24 rounded bg-white">
-                        <div className="bg-green-400 h-8 w-8 rounded-lg flex justify-center items-center">
+                        <div className="bg-blue-950 h-8 w-8 rounded-lg flex justify-center items-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="#4E87D3"
@@ -33,7 +33,7 @@ export default function Dashboard({ data }) {
                         </div>
                     </div>
                     <div className="flex items-center justify-evenly h-24 rounded bg-white">
-                        <div className="bg-green-400 h-8 w-8 rounded-lg flex justify-center items-center">
+                        <div className="bg-blue-950  h-8 w-8 rounded-lg flex justify-center items-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="#4E87D3"
@@ -57,7 +57,7 @@ export default function Dashboard({ data }) {
                         </div>
                     </div>
                     <div className="flex items-center justify-evenly h-24 rounded bg-white">
-                        <div className="bg-green-400 h-8 w-8 rounded-lg flex justify-center items-center">
+                        <div className="bg-blue-950  h-8 w-8 rounded-lg flex justify-center items-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="#4E87D3"
@@ -139,7 +139,7 @@ export default function Dashboard({ data }) {
                         <div className="flex items-center justify-between px-5 mt-2 mb-2">
                             <div>
                                 <span className="text-gray-500 font-semibold text-xs">
-                                    Bookmarks users
+                                    Total Bookmarks
                                 </span>
                             </div>
                             <div className="font-bold text-blue-300">
