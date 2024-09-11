@@ -9,10 +9,10 @@ export default function AiTimeLine({
         <div className="bg-white rounded-md py-3">
             <div className=" border-b pb-4 px-5">
                 <div>
-                    <p className="font-bold text-primary text-lg">Time Line</p>
+                    <p className="font-bold text-primary-light text-lg">Time Line</p>
                 </div>
                 <div className="flex gap-5 mt-3 text-sm">
-                    <p className=" text-sm font-thin text-primary">
+                    <p className="text-sm text-primary">
                         Last update:
                         <span>{latestDateOfUpdateAiPolicyTracker}</span>
                     </p>
