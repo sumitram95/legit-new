@@ -18,7 +18,7 @@ export default function SingleAiInfo({ aiPolicyTrackerdetail }) {
         <div className="bg-white rounded-md py-3">
             <div className="border-b pb-4 px-5">
                 <div>
-                    <p className="font-bold text-primary text-lg">
+                    <p className="font-bold text-primary-light text-lg">
                         {ai_policy_name ?? ""}{" "}
                         <i className="fa-regular fa-star"></i>
                     </p>
@@ -73,7 +73,7 @@ export default function SingleAiInfo({ aiPolicyTrackerdetail }) {
                         className="text-gray-600"
                     >
                         <i className="fa-solid fa-link text-xs"></i>
-                        <span className="ml-1 hover break-words">
+                        <span className="ml-1 hover break-words underline text-blue-500 hover:text-blue-700">
                             {whitepaper_document_link ?? "No link available"}
                         </span>
                     </a>

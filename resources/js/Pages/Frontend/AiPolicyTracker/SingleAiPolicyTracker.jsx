@@ -5,7 +5,7 @@ import AiNews from "./Components/AiNews";
 import SingleAiInfo from "./Components/SingleAiInfo";
 import AiTimeLine from "./Components/AiTimeLine";
 
-import { useDeviceSize } from "@/Services/useDeviceSize";
+// import { useDeviceSize } from "@/Services/useDeviceSize";
 
 const name = "Act Ai";
 
@@ -13,41 +13,41 @@ export default function SingleAiPolicyTracker({
     aiPolicyTrackerWithRelatedNews,
     latestDateOfUpdateAiPolicyTracker = null,
 }) {
-    const deviceSize = useDeviceSize();
-    const isDesktop = ["smallLaptop", "laptop", "desktop", "largeDesktop"].includes(deviceSize);
-
+    const isDesktop = true;
 
     return (
         <AppLayout>
-            <Head title={name} />
-            {isDesktop ? (
-                <div className="flex flex-row gap-x-4 content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
-                    <div className="w-1/4">
-                        <SingleAiInfo
-                            aiPolicyTrackerdetail={
-                                aiPolicyTrackerWithRelatedNews
-                            }
-                        />
-                    </div>
-                    <div className="w-2/4">
-                        <AiNews
-                            newsLists={aiPolicyTrackerWithRelatedNews.news}
-                        />
-                    </div>
-                    <div className="w-1/4">
-                        <AiTimeLine
-                            timeLines={
-                                aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs
-                            }
-                            latestDateOfUpdateAiPolicyTracker={
-                                latestDateOfUpdateAiPolicyTracker
-                            }
-                        />
-                    </div>
+            <Head title="Single Ai Policy Tracker" />
+            <div className="flex gap-5 mt-5 md:mt-0 text-sm md:hidden mb-5">
+                <Link href="/" className=" text-sm flex gap-2 hover:underline">
+                    <span>
+                        <i className="fa-regular fa-circle-left"></i>
+                    </span>
+                    <span>Go to back</span>
+                </Link>
+            </div>
+            <div className="md:flex flex-row gap-x-4 content-wrapper xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
+                <div className="w-full md:w-1/4">
+                    <SingleAiInfo
+                        aiPolicyTrackerdetail={aiPolicyTrackerWithRelatedNews}
+                    />
                 </div>
-            ) : (
-                <div className="content-wrapper mt-5">
-                    <div className="flex gap-5 mt-3 text-sm mb-5">
+                <div className="w-full mt-5 md:mt-0 md:w-2/4">
+                    <AiNews newsLists={aiPolicyTrackerWithRelatedNews.news} />
+                </div>
+                <div className="w-full mt-5 md:mt-0 md:w-1/4">
+                    <AiTimeLine
+                        timeLines={
+                            aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs
+                        }
+                        latestDateOfUpdateAiPolicyTracker={
+                            latestDateOfUpdateAiPolicyTracker
+                        }
+                    />
+                </div>
+            </div>
+            {/* <div className="content-wrapper mt-5"> */}
+            {/* <div className="flex gap-5 mt-3 text-sm mb-5">
                         <Link
                             href="/"
                             className=" text-sm flex gap-2 hover:underline"
@@ -57,27 +57,27 @@ export default function SingleAiPolicyTracker({
                             </span>
                             <span>Go to back</span>
                         </Link>
-                    </div>
-                    {/* Flexbox on large screens (lg and xl) */}
-                    <div className="w-full block lg:flex gap-8">
-                        {/* Single AI Info */}
-                        <div className="w-full lg:max-w-[25%]">
+                    </div> */}
+            {/* Flexbox on large screens (lg and xl) */}
+            {/* <div className="w-full block lg:flex gap-8"> */}
+            {/* Single AI Info */}
+            {/* <div className="w-full lg:max-w-[25%]">
                             <SingleAiInfo
                                 aiPolicyTrackerdetail={
                                     aiPolicyTrackerWithRelatedNews
                                 }
                             />
-                        </div>
+                        </div> */}
 
-                        {/* Ai News */}
-                        <div className="w-full mt-5 lg:mt-0">
+            {/* Ai News */}
+            {/* <div className="w-full mt-5 lg:mt-0">
                             <AiNews
                                 newsLists={aiPolicyTrackerWithRelatedNews.news}
                             />
-                        </div>
+                        </div> */}
 
-                        {/* Ai Timeline */}
-                        <div className="w-full mt-5 lg:mt-0 lg:max-w-[25%]">
+            {/* Ai Timeline */}
+            {/* <div className="w-full mt-5 lg:mt-0 lg:max-w-[25%]">
                             <AiTimeLine
                                 timeLines={
                                     aiPolicyTrackerWithRelatedNews.a_i_policy_activity_logs
@@ -88,8 +88,7 @@ export default function SingleAiPolicyTracker({
                             />
                         </div>
                     </div>
-                </div>
-            )}
+                </div> */}
         </AppLayout>
     );
 }

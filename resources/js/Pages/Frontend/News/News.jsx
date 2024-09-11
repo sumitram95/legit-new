@@ -7,12 +7,10 @@ import NewsCard from "./Components/NewsCard";
 import PaginationPage from "@/Components/Table/PaginationPage";
 import axios from "axios";
 import PaginatorMobile from "@/Components/Paginations/PaginatorMobile";
-import { useDeviceSize } from "@/Services/useDeviceSize";
 import Responsive from "@/Components/Responsive/Responsive";
 
 export default function News({ news: initialNewsData, aiPolicies, countries }) {
     // get device name (mobile, tablet, smalllaptop, laptop, desktop)
-    const deviceSize = useDeviceSize();
 
     const [visibleDiv, setVisibleDiv] = useState(false);
     const [news, setNewsData] = useState(initialNewsData); // Initialize with the prop data
