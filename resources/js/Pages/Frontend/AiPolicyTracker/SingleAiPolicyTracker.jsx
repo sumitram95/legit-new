@@ -5,16 +5,10 @@ import AiNews from "./Components/AiNews";
 import SingleAiInfo from "./Components/SingleAiInfo";
 import AiTimeLine from "./Components/AiTimeLine";
 
-// import { useDeviceSize } from "@/Services/useDeviceSize";
-
-const name = "Act Ai";
-
 export default function SingleAiPolicyTracker({
     aiPolicyTrackerWithRelatedNews,
     latestDateOfUpdateAiPolicyTracker = null,
 }) {
-    const isDesktop = true;
-
     return (
         <AppLayout>
             <Head title="Single Ai Policy Tracker" />

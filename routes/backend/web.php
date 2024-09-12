@@ -75,4 +75,16 @@ Route::middleware(['auth', 'isAdmin'])
             // Route::delete("/backend/aipolicytracker/delete/{id}", "delete")->name("delete");
         });
 
+        // user controller
+        Route::controller(CountryController::class)->as("country.")->group(function () {
+            Route::get("/backend/country", "index")->name("index");
+            Route::post("/backend/country", "store")->name("store");
+            Route::post("/backend/country/view/{id}", "view")->name("view");
+            // Route::post("/backend/country/update/{id}", "edit")->name("edit");
+            // Route::put("/backend/country/update/{id}", "update")->name("update");
+
+
+            // Route::delete("/backend/country/delete/{id}", "delete")->name("delete");
+        });
+
     });

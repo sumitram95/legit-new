@@ -32,7 +32,6 @@ class DashboardController extends Controller
         $data['newsCount'] = News::count();
 
 
-
         $currentYear = Carbon::now()->year;
         $upcomingYear = $currentYear + 1;
 
