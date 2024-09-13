@@ -12,7 +12,7 @@ export default function Description({
         <div className="bg-white h-fit py-5 rounded-md w-full mt-6">
             <div className="flex justify-between items-center border-b px-5 pb-4">
                 <div>
-                    <h1 className=" text-xl font-bold mb-2 text-primary-light">
+                    <h1 className=" text-base lg:text-xl font-bold mb-2 text-primary-light">
                         AIPolicyTracker Project
                     </h1>
                     <p>

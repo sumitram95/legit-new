@@ -131,7 +131,7 @@ export default function Register() {
 
                     {/* register form */}
 
-                    <div className=" w-full px-10 py-10">
+                    <div className=" w-full px-4 md:px-10 py-10">
                         <img
                             src={LogoImage}
                             alt="AI Policy Tracker"
@@ -383,6 +383,14 @@ export default function Register() {
                                 >
                                     {processing ? "Sign Up..." : "Sign Up"}
                                 </button>
+                            </div>
+                            <div className="mt-3 text-center">
+                                <Link
+                                    href="/"
+                                    className="text-sm underline font-semibold text-primary-light hover:text-blue-900"
+                                >
+                                    Go to home
+                                </Link>
                             </div>
                         </form>
                     </div>

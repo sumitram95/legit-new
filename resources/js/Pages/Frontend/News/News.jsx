@@ -161,7 +161,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                     {/* <div className="w-full order-2 xl:order-1 xl:w-[83.33%]"> */}
                     <div className="w-full order-2 xl:order-1">
                         <div className="w-full  md:border rounded-md bg-transparent md:bg-white lg:bg-white">
-                            <div className="border-b border-light-border py-[16px] px-0 pb-0 md:pb-4 ">
+                            <div className="lg:border-b border-light-border lg:py-[16px] px-0 pb-0 md:pb-4 ">
                                 <div className="flex justify-between items-center px-[0] md:px-[16px]  xl:flex">
                                     <div className="">
                                         <p className="font-bold text-primary-light text-lg">
