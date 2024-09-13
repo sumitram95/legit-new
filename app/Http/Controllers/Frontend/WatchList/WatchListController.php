@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Frontend\WatchList;
 
+use App\Models\BookMark;
 use App\Models\Country;
 use App\Models\Status;
+use Auth;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\AiPolicyTracker;
@@ -13,12 +15,14 @@ use Carbon\Carbon;
 
 class WatchListController extends Controller
 {
+
     public function index()
     {
-        $data['tableData'] = AiPolicyTracker::query()
+        $data['tableData'] = AiPolicyTracker::whereHas('bookmark')
             ->with(['country', 'status'])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+
         $data['aiPolicies'] = AiPolicyTracker::get()
             ->map(function ($aiPolicy) {
                 return [
@@ -46,7 +50,24 @@ class WatchListController extends Controller
 
     public function show(Request $request)
     {
+        if (!Auth::check()) {
+            return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
+        }
+
         $uuids = $request->input('uuids');
+
+        if ($uuids) {
+
+            foreach ($uuids as $uuid) {
+                BookMark::updateOrCreate([
+                    'user_id' => Auth::user()->id,
+                    'ai_policy_tracker_id' => $uuid
+                ]);
+            }
+
+
+        }
+
         if (is_array($uuids) && !empty($uuids)) {
 
             $data['tableData'] = AiPolicyTracker::whereIn('id', $uuids)
@@ -57,27 +78,27 @@ class WatchListController extends Controller
 
 
             $data['aiPolicies'] = AiPolicyTracker::get()
-            ->map(function ($aiPolicy) {
-                return [
-                    'value' => $aiPolicy->id,
-                    'label' => $aiPolicy->ai_policy_name,
-                ];
-            });
-        $data['countries'] = Country::get()
-            ->map(function ($country) {
-                return [
-                    'value' => $country->id,
-                    'label' => $country->name,
-                ];
-            });
+                ->map(function ($aiPolicy) {
+                    return [
+                        'value' => $aiPolicy->id,
+                        'label' => $aiPolicy->ai_policy_name,
+                    ];
+                });
+            $data['countries'] = Country::get()
+                ->map(function ($country) {
+                    return [
+                        'value' => $country->id,
+                        'label' => $country->name,
+                    ];
+                });
 
-        $data['statuses'] = Status::get()
-            ->map(function ($status) {
-                return [
-                    'value' => $status->id,
-                    'label' => $status->name,
-                ];
-            });
+            $data['statuses'] = Status::get()
+                ->map(function ($status) {
+                    return [
+                        'value' => $status->id,
+                        'label' => $status->name,
+                    ];
+                });
 
             return Inertia::render('Frontend/WatchList/WatchList', $data);
         }
@@ -123,10 +144,10 @@ class WatchListController extends Controller
                 'governing_body' => $policy->governing_body,
                 'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
                 'status' => $policy->status,
-                'technology_partners'=>$policy->technology_partners,
-                'governance_structure'=>$policy->governance_structure,
-                'main_motivation'=>$policy->main_motivation,
-                'description'=>$policy->description,
+                'technology_partners' => $policy->technology_partners,
+                'governance_structure' => $policy->governance_structure,
+                'main_motivation' => $policy->main_motivation,
+                'description' => $policy->description,
             ];
         });
 

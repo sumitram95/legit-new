@@ -220,7 +220,7 @@ export default function Register() {
                                     required
                                 />
                                 <InputError
-                                    message={errors.email}
+                                    message={errors.phone_no}
                                     className="mt-2"
                                 />
                             </div>

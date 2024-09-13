@@ -68,4 +68,10 @@ class AiPolicyTracker extends Model
         return $this->hasMany(AIPolicyActivityLog::class, 'ai_policy_tracker_id');
     }
 
+    public function bookmark()
+    {
+        return $this->hasOne(BookMark::class, 'ai_policy_tracker_id', 'id')
+            ->where('user_id', Auth::id());
+    }
+
 }
