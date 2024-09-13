@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Auth\User;
+
 
 class UpdateAdminUserCommand extends Command
 {
