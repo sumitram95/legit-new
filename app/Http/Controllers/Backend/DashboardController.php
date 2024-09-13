@@ -16,17 +16,20 @@ class DashboardController extends Controller
     public function dashboard()
     {
 
-        $user = User::whereNot('email', 'admin@dignep.com.np');
+        $user =User::where('email', '!=', 'admin@dignep.com.np');
 
         $data['usersCount'] = $user->count();
 
-        $data['verifiedUsersCount'] = $user
-            ->where('email_verified_at', null)
+        $data['notVerifiedUsersCount'] = (clone $user)
+        ->where('email_verified_at', null)
+        ->count();
+
+        $data['verifiedUsersCount'] = (clone $user)
+            ->whereNotNull('email_verified_at')
             ->count();
 
-        $data['notVerifiedUsersCount'] = $user
-            ->where('email_verified_at', null)
-            ->count();
+
+        // dd($data);
 
         $data['aiPolicyCount'] = AiPolicyTracker::count();
         $data['newsCount'] = News::count();
