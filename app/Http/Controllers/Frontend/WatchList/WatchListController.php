@@ -100,7 +100,9 @@ class WatchListController extends Controller
                     ];
                 });
 
-            return Inertia::render('Frontend/WatchList/WatchList', $data);
+                return to_route('frontend.watch_list.index');
+
+            // return Inertia::render('Frontend/WatchList/WatchList', $data);
         }
 
         // Handle case where 'uuids' is not an array or is empty
