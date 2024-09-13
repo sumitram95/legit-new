@@ -657,7 +657,7 @@ export default function Dashboard({
                             {/* <PaginationPage paginator={tableData} /> */}
 
                             <div className="hidden md:block ">
-                                {tableData.data.length > 9 && (
+                                {tableData.total >= 10 && (
                                     <PaginationPage paginator={tableData} />
                                 )}
                             </div>
@@ -1033,7 +1033,7 @@ export default function Dashboard({
                         </div>
                     ))}
 
-                    {tableData.data.length > 9 && (
+                    {tableData.total >= 10 && (
                         <PaginationPage paginator={tableData} />
                     )}
 
