@@ -24,20 +24,20 @@ export default function Organization({ organizationLogo }) {
         <div className="bg-white h-fit p-5 rounded-md w-full mt-6">
             <div className="flex justify-between items-center pb-4">
                 <div>
-                    <h1 className=" text-xl font-bold mb-2 text-primary-light">
+                    <h1 className="text-base lg:text-xl font-bold mb-2 text-primary-light">
                         Contributing Organizations
                     </h1>
                 </div>
             </div>
             {/* <Slider {...settings}> */}
-                {/* {org.map((data, index) => ( */}
-                    {/* <div className="mt-3" key={index}> */}
-                    <div className="mt-3">
-                        <a href="https://t4dnepal.org.np/" className=" w-fit">
-                            <img src={organizationLogo} alt="" />
-                        </a>
-                    </div>
-                {/* ))} */}
+            {/* {org.map((data, index) => ( */}
+            {/* <div className="mt-3" key={index}> */}
+            <div className="mt-3">
+                <a href="https://t4dnepal.org.np/" className=" w-fit">
+                    <img src={organizationLogo} alt="" />
+                </a>
+            </div>
+            {/* ))} */}
             {/* </Slider> */}
         </div>
     );

@@ -6,11 +6,11 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
         <AppLayout>
             <Head title="Timeline" />
             <div className="block md:relative top-[-60px] w-full ">
-                <div className="md:border rounded-md w-full md:bg-white py-5">
-                    <div className=" md:border-b-2 pb-4 px-5 flex justify-between items-center">
+                <div className="lg:border rounded-md w-full md:bg-white py-5">
+                    <div className=" md:border-b-2 pb-4 lg:px-5 flex justify-between items-center">
                         <div>
                             <div>
-                                <p className="font-bold text-primary text-lg">
+                                <p className="font-bold text-primary-light text-lg">
                                     Timeline
                                 </p>
                             </div>

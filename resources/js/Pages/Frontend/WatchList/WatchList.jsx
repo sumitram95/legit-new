@@ -237,7 +237,7 @@ export default function WatchList({
                     {/* News contenet only Desktop */}
                     <div className="w-full order-2 xl:order-1">
                         <div className="w-full  md:border rounded-md bg-transparent md:bg-white lg:bg-white">
-                            <div className="border-b border-light-border p-[16px]  pb-4 px-5 flex justify-between items-center">
+                            <div className="lg:border-b border-light-border lg:p-[16px]  pb-4 lg:px-5 flex justify-between items-center">
                                 <div className="w-full">
                                     <div className="flex justify-between px-[0] md:px-[16px]  xl:block">
                                         <div>
@@ -255,7 +255,7 @@ export default function WatchList({
                                                         <i className="fa-regular fa-circle-left"></i>
                                                     </span>
                                                     <span>
-                                                        Back to full list of AI
+                                                        Back to full list of (AI)
                                                         Policy
                                                     </span>
                                                 </Link>

@@ -250,6 +250,14 @@ export default function Login({ status, canResetPassword }) {
                                                     : "Sign in"}
                                             </button>
                                         </div>
+                                        <div className="mt-3 text-center">
+                                            <Link
+                                                href="/"
+                                                className="text-sm underline font-semibold text-primary-light hover:text-blue-900"
+                                            >
+                                                Go to home
+                                            </Link>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

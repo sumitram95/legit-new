@@ -280,7 +280,7 @@ export default function Dashboard({
                 <div className="flex gap-[30px]">
                     <div className="w-full">
                         <div className="w-full border-0 md:border rounded-md bg-transparent md:bg-white">
-                            <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
+                            <div className="lg:border-b border-light-border py-[16px] lg:px-[16px] flex justify-between items-center">
                                 <div>
                                     <p className="font-bold text-primary-light text-lg leading-none">
                                         Global Artificial Intelligence (AI)
@@ -778,7 +778,7 @@ export default function Dashboard({
                     <div className="border rounded-md w-full bg-white sticky top-0">
                         <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
-                                <p className="font-bold text-primary-light text-lg leading-none">
+                                <p className="font-bold text-primary text-lg leading-none">
                                     Filters
                                 </p>
                                 <div className="flex">
@@ -903,7 +903,15 @@ export default function Dashboard({
                             <div className="flex flex-wrap justify-between py-3 px-5 bg-blue-100">
                                 <div>
                                     <p className="font-bold text-primary-light text-base w-full leading-none">
-                                        {list.ai_policy_name}
+                                        <Link
+                                            href={route(
+                                                "frontend.single_ai_policy_tracker.index",
+                                                { id: list.id }
+                                            )}
+                                            className="hover:underline"
+                                        >
+                                            {list.ai_policy_name}
+                                        </Link>
                                         <i className="fa-regular fa-star ms-3"></i>
                                     </p>
                                     <p className="mt-2">{list.status?.name}</p>
@@ -923,44 +931,44 @@ export default function Dashboard({
                             <div className="px-5">
                                 <div className="py-3">
                                     <div>
-                                        <p className="text-muted-light text-sm">
+                                        <p className="text-muted-light font-semibold text-sm">
                                             Country
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
-                                        <p>{list.country?.name}</p>
+                                        <p className="text-gray-500">{list.country?.name}</p>
                                     </div>
                                 </div>
                                 <div className="py-3">
                                     <div>
-                                        <p className="text-muted-light text-sm">
+                                        <p className="text-muted-light font-semibold text-sm">
                                             Governing Body
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
-                                        <p>{list.governing_body}</p>
+                                        <p className="text-gray-500">{list.governing_body}</p>
                                     </div>
                                 </div>
 
                                 <div className="py-3">
                                     <div>
-                                        <p className="text-muted-light text-sm">
+                                        <p className="text-muted-light font-semibold text-sm">
                                             Announcement Year
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
-                                        <p>{list.formatted_created_at}</p>
+                                        <p className="text-gray-500">{list.formatted_created_at}</p>
                                     </div>
                                 </div>
 
                                 <div className="py-3">
                                     <div>
-                                        <p className="text-muted-light text-sm">
+                                        <p className="text-muted-light font-semibold text-sm">
                                             Technology Partner
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
-                                        <p>{list.technology_partners}</p>
+                                        <p className="text-gray-500">{list.technology_partners}</p>
                                     </div>
                                 </div>
 
@@ -968,35 +976,35 @@ export default function Dashboard({
                                     <div>
                                         <div className="py-3">
                                             <div>
-                                                <p className="text-muted-light text-sm">
+                                                <p className="text-muted-light font-semibold text-sm">
                                                     Governance structure
                                                 </p>
                                             </div>
                                             <div className="flex mt-1 gap-3 items-center text-sm">
-                                                <p>
+                                                <p className="text-gray-500">
                                                     {list.governance_structure}
                                                 </p>
                                             </div>
                                         </div>
                                         <div className="py-3">
                                             <div>
-                                                <p className="text-muted-light text-sm">
+                                                <p className="text-muted-light font-semibold text-sm">
                                                     Main motivation/goals of the
                                                     AI policy
                                                 </p>
                                             </div>
                                             <div className="flex mt-1 gap-3 items-center text-sm">
-                                                <p>{list.main_motivation}</p>
+                                                <p className="text-gray-500">{list.main_motivation}</p>
                                             </div>
                                         </div>
                                         <div className="py-3">
                                             <div>
-                                                <p className="text-muted-light text-sm">
+                                                <p className="text-muted-light font-semibold text-sm">
                                                     Description
                                                 </p>
                                             </div>
                                             <div
-                                                className="mt-1 text-sm"
+                                                className="mt-1 text-sm text-gray-500"
                                                 dangerouslySetInnerHTML={{
                                                     __html: list.description,
                                                 }}
