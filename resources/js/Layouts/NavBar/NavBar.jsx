@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
 import LogoImage from "@/assets/images/ai_logo.png";
-import Responsive from "@/Components/Responsive/Responsive";
+// import Responsive from "@/Components/Responsive/Responsive";
 
 // Helper function to generate avatar URL
 const generateAvatarUrl = (name) => {
@@ -86,37 +86,32 @@ export function NavBar({ NavBarLists }) {
                 }`}
             >
                 <ul className="md:flex items-center gap-x-12 text-white">
-                    {/* show on small device only (avartar ui) */}
-                    <Responsive responsive={["sm"]}>
-                        {userName && (
-                            <div className="mt-5 border-b pb-3 flex items-center gap-2">
-                                <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
-                                    <img
-                                        src={avatarUrl}
-                                        alt="User Avatar"
-                                        className="h-full w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <p className="font-bold text-white">
-                                        {userName}
-                                    </p>
-                                    <span
-                                        className={`text-white px-2 rounded-full ${
-                                            isVerifieEmail
-                                                ? "bg-green-500"
-                                                : "bg-red-500"
-                                        }`}
-                                        style={{ fontSize: "10px" }}
-                                    >
-                                        {isVerifieEmail
-                                            ? "Verified"
-                                            : "Unverified"}
-                                    </span>
-                                </div>
+                    {userName && (
+                        <div className="mt-5 border-b pb-3 flex md:hidden items-center gap-2">
+                            <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
+                                <img
+                                    src={avatarUrl}
+                                    alt="User Avatar"
+                                    className="h-full w-full"
+                                />
                             </div>
-                        )}
-                    </Responsive>
+                            <div>
+                                <p className="font-bold text-white">
+                                    {userName}
+                                </p>
+                                <span
+                                    className={`text-white px-2 rounded-full ${
+                                        isVerifieEmail
+                                            ? "bg-green-500"
+                                            : "bg-red-500"
+                                    }`}
+                                    style={{ fontSize: "10px" }}
+                                >
+                                    {isVerifieEmail ? "Verified" : "Unverified"}
+                                </span>
+                            </div>
+                        </div>
+                    )}
                     {Object.keys(NavBarLists).map((key) => {
                         const item = NavBarLists[key];
                         const itemUrl = new URL(
@@ -176,82 +171,82 @@ export function NavBar({ NavBarLists }) {
                         );
                     })}
                     {/* show on small device logout navbar */}
-                    <Responsive responsive={["sm"]}>
-                        {userName && (
-                            <li className="mt-4 md:mt-0 font-bold capitalize">
-                                <Link href="/logout">logout</Link>
-                            </li>
-                        )}
-                    </Responsive>
+                    {/* <Responsive responsive={["sm"]}> */}
+                    {userName && (
+                        <li className="mt-4 md:mt-0 md:hidden font-bold capitalize">
+                            <Link href="/logout">logout</Link>
+                        </li>
+                    )}
+                    {/* </Responsive> */}
 
                     {!userName ? (
                         <li className="mt-4 md:mt-0 font-bold">
                             <Link href={route("login")}>Login</Link>
                         </li>
                     ) : (
-                        <Responsive responsive={["md", "lg", "xl"]}>
-                            <div className="flex justify-between items-center">
-                                <div
-                                    className="flex items-center gap-3 cursor-pointer"
-                                    onClick={toggleDropdown}
-                                >
-                                    <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
-                                        <img
-                                            src={avatarUrl}
-                                            alt="User Avatar"
-                                            className="h-full w-full"
-                                        />
-                                    </div>
+                        // <Responsive responsive={["md", "lg", "xl"]}>
+                        <div className="hidden md:flex justify-between items-center">
+                            <div
+                                className="flex items-center gap-3 cursor-pointer"
+                                onClick={toggleDropdown}
+                            >
+                                <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
+                                    <img
+                                        src={avatarUrl}
+                                        alt="User Avatar"
+                                        className="h-full w-full"
+                                    />
                                 </div>
+                            </div>
 
-                                {dropdownOpen && (
-                                    <div className="z-10 absolute top-12 right-0 mt-4 mr-5 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                                        <div
-                                            className="py-2 text-sm text-gray-700"
-                                            aria-labelledby="dropdownDefadivtButton"
-                                        >
-                                            <div className="flex gap-2 items-center pb-1 ml-2">
-                                                <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
-                                                    <img
-                                                        src={avatarUrl}
-                                                        alt="User Avatar"
-                                                        className="h-full w-full"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <p>{userName}</p>
-                                                    <span
-                                                        className={`text-white px-2 rounded-full ${
-                                                            isVerifieEmail
-                                                                ? "bg-green-500"
-                                                                : "bg-red-500"
-                                                        }`}
-                                                        style={{
-                                                            fontSize: "10px",
-                                                        }}
-                                                    >
-                                                        {isVerifieEmail
-                                                            ? "Verified"
-                                                            : "Unverified"}
-                                                    </span>
-                                                </div>
+                            {dropdownOpen && (
+                                <div className="z-10 absolute top-12 right-0 mt-4 mr-5 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                    <div
+                                        className="py-2 text-sm text-gray-700"
+                                        aria-labelledby="dropdownDefadivtButton"
+                                    >
+                                        <div className="flex gap-2 items-center pb-1 ml-2">
+                                            <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
+                                                <img
+                                                    src={avatarUrl}
+                                                    alt="User Avatar"
+                                                    className="h-full w-full"
+                                                />
                                             </div>
-
-                                            <hr />
-                                            <hr />
                                             <div>
-                                                <Link
-                                                    href={"/logout"}
-                                                    className="block px-4 py-2 hover:bg-gray-100"
+                                                <p>{userName}</p>
+                                                <span
+                                                    className={`text-white px-2 rounded-full ${
+                                                        isVerifieEmail
+                                                            ? "bg-green-500"
+                                                            : "bg-red-500"
+                                                    }`}
+                                                    style={{
+                                                        fontSize: "10px",
+                                                    }}
                                                 >
-                                                    Logout
-                                                </Link>
+                                                    {isVerifieEmail
+                                                        ? "Verified"
+                                                        : "Unverified"}
+                                                </span>
                                             </div>
                                         </div>
+
+                                        <hr />
+                                        <hr />
+                                        <div>
+                                            <Link
+                                                href={"/logout"}
+                                                className="block px-4 py-2 hover:bg-gray-100"
+                                            >
+                                                Logout
+                                            </Link>
+                                        </div>
                                     </div>
-                                )}
-                            </div>
-                        </Responsive>
+                                </div>
+                            )}
+                        </div>
+                        // </Responsive>
                     )}
                 </ul>
             </div>
