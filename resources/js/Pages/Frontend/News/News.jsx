@@ -363,7 +363,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
 
                             <div className="mt-5">
                                 <NewsCard newsLists={news.data} />
-                                {news.data.length >= 10 && (
+                                {news.total >= 10 && (
                                     <PaginationPage paginator={news} />
                                 )}
                             </div>

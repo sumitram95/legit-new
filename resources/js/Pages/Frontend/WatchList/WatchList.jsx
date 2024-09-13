@@ -756,7 +756,7 @@ export default function WatchList({
                                 ))}
                             </Responsive>
 
-                            {tableData.data.length >= 10 && (
+                            {tableData.total >= 10 && (
                                 <PaginationPage paginator={tableData} />
                             )}
                             {/* show on small device if table when empty */}
