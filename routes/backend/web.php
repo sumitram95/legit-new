@@ -18,7 +18,7 @@ use Inertia\Inertia;
 //     return Inertia::render('Backend/Dashboard');
 // })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
 
-Route::middleware(['auth', 'verified', 'isAdmin'])->group(function () {
+Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/backend/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 });
 

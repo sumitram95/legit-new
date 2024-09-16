@@ -31,6 +31,7 @@ export default function Dashboard({
     newsLastUpdate,
     countrywithStatus: initialCountrywithStatus,
     countryWithAiPolicies,
+    authUserBookmarkCount,
 }) {
     var [countrywithStatus, setCountrywithStatus] = useState(
         initialCountrywithStatus
@@ -111,45 +112,48 @@ export default function Dashboard({
     };
 
     const [visibleDiv, setVisibleDiv] = useState(false);
-    const [bookmarkCount, setBookmarkCount] = useState(0);
+    const [bookmarkCount, setBookmarkCount] = useState(authUserBookmarkCount);
     const [watchListIds, setWatchListIds] = useState([]);
 
     //****************** BookMark ******************* */
 
-    const handleBookmarkChange = (count) => {
-        setBookmarkCount(count);
-    };
+    // const handleBookmarkChange = (count) => {
+    //     setBookmarkCount(count);
+    // };
 
-    const handleBookmark = (id) => {
-        setWatchListIds((prevIds) => {
-            const updatedIds = prevIds.includes(id)
-                ? prevIds.filter((existingId) => existingId !== id)
-                : [...prevIds, id];
+    // const handleBookmark = (id) => {
+    //     setWatchListIds((prevIds) => {
+    //         const updatedIds = prevIds.includes(id)
+    //             ? prevIds.filter((existingId) => existingId !== id)
+    //             : [...prevIds, id];
 
-            handleBookmarkChange(updatedIds.length);
-            return updatedIds;
-        });
-    };
+    //         handleBookmarkChange(updatedIds.length);
+    //         return updatedIds;
+    //     });
+    // };
 
     //****************** Form Submit ******************* */
-    const { data, setData, post, processing, errors, reset } = useForm({
-        uuids: [],
-    });
+    // const { data, setData, post, processing, errors, reset } = useForm({
+    //     uuids: "",
+    // });
 
-    const submit = (e) => {
-        e.preventDefault();
-        // Set the uuids value
-        setData("uuids", watchListIds);
-    };
+    // const submit = (e) => {
+    //     e.preventDefault();
+    //     // Set the uuids value
+    //     // setData("uuids", watchListIds);
+    //     post(route("frontend.watch_list.show"), {
+    //         onFinish: () => reset("uuids"),
+    //     });
+    // };
 
-    useEffect(() => {
-        // Perform the POST request
-        if (data.uuids.length > 0) {
-            post(route("frontend.watch_list.show"), {
-                onFinish: () => reset("uuids"),
-            });
-        }
-    }, [data.uuids]);
+    // useEffect(() => {
+    //     // Perform the POST request
+    //     if (data.uuids.length > 0) {
+    //         post(route("frontend.watch_list.show"), {
+    //             onFinish: () => reset("uuids"),
+    //         });
+    //     }
+    // }, [data.uuids]);
 
     // edit column
     const [checkedColumns, setCheckedColumns] = useState([]);
@@ -512,31 +516,21 @@ export default function Dashboard({
                             <div className="hidden flex-wrap gap-y-2 mt-5 px-5 md:flex">
                                 {/* watchlist fav */}
                                 <div className="flex-none">
-                                    <form
-                                        onSubmit={submit}
-                                        className="text-primary h-fit bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
+                                    <Link
+                                        href={route(
+                                            "frontend.watch_list.index"
+                                        )}
+                                        className="text-primary-light h-fit bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
                                     >
-                                        <button
-                                            type="submit"
-                                            className="flex items-center text-primary-light"
-                                        >
-                                            <i
-                                                className={`fa ${
-                                                    bookmarkCount
-                                                        ? "fa-star"
-                                                        : "fa-regular fa-star"
-                                                } mr-3`}
-                                            ></i>
-                                            <span>
-                                                {processing
-                                                    ? "Submitting..."
-                                                    : `Bookmarks (${bookmarkCount})`}
-                                            </span>
-                                            {processing && (
-                                                <i className="fa-solid fa-spinner fa-spin ml-3"></i>
-                                            )}
-                                        </button>
-                                    </form>
+                                        <i
+                                            className={`fa ${
+                                                bookmarkCount
+                                                    ? "fa-star"
+                                                    : "fa-regular fa-star"
+                                            } mr-3`}
+                                        ></i>
+                                        <span>Bookmarks ({bookmarkCount})</span>
+                                    </Link>
                                 </div>
 
                                 {/* search filter for table data */}
@@ -643,8 +637,8 @@ export default function Dashboard({
                                 checkedColWithData={checkedColumns}
                                 tableData={tableData.data} // Ensure this matches the structure of the data returned from fetchData
                                 btnName={"Edit Columns "}
-                                onBookmarkChange={handleBookmarkChange}
-                                onHandleBookmark={handleBookmark}
+                                // onBookmarkChange={handleBookmarkChange}
+                                // onHandleBookmark={handleBookmark}
                                 watchListIds={watchListIds}
                             />
 
@@ -912,7 +906,28 @@ export default function Dashboard({
                                         >
                                             {list.ai_policy_name}
                                         </Link>
-                                        <i className="fa-regular fa-star ms-3"></i>
+
+                                        <Link
+                                            href={route(
+                                                "frontend.watch_list.add",
+                                                {
+                                                    id: list.id,
+                                                    isBooked: list.bookmark
+                                                        ?.ai_policy_tracker_id
+                                                        ? true
+                                                        : false,
+                                                }
+                                            )}
+                                            className="text-primary-light ms-3"
+                                        >
+                                            {list.bookmark
+                                                ?.ai_policy_tracker_id ? (
+                                                <i className="fa fa-star A"></i>
+                                            ) : (
+                                                <i className="fa-regular fa-star B"></i>
+                                            )}
+                                        </Link>
+                                        {/* <i className="fa-regular fa-star ms-3"></i> */}
                                     </p>
                                     <p className="mt-2">{list.status?.name}</p>
                                 </div>
@@ -936,7 +951,9 @@ export default function Dashboard({
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
-                                        <p className="text-gray-500">{list.country?.name}</p>
+                                        <p className="text-gray-500">
+                                            {list.country?.name}
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="py-3">
@@ -946,7 +963,9 @@ export default function Dashboard({
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
-                                        <p className="text-gray-500">{list.governing_body}</p>
+                                        <p className="text-gray-500">
+                                            {list.governing_body}
+                                        </p>
                                     </div>
                                 </div>
 
@@ -957,7 +976,9 @@ export default function Dashboard({
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
-                                        <p className="text-gray-500">{list.formatted_created_at}</p>
+                                        <p className="text-gray-500">
+                                            {list.formatted_created_at}
+                                        </p>
                                     </div>
                                 </div>
 
@@ -968,7 +989,9 @@ export default function Dashboard({
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
-                                        <p className="text-gray-500">{list.technology_partners}</p>
+                                        <p className="text-gray-500">
+                                            {list.technology_partners}
+                                        </p>
                                     </div>
                                 </div>
 
@@ -994,7 +1017,9 @@ export default function Dashboard({
                                                 </p>
                                             </div>
                                             <div className="flex mt-1 gap-3 items-center text-sm">
-                                                <p className="text-gray-500">{list.main_motivation}</p>
+                                                <p className="text-gray-500">
+                                                    {list.main_motivation}
+                                                </p>
                                             </div>
                                         </div>
                                         <div className="py-3">
