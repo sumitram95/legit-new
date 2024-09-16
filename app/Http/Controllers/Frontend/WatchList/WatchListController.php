@@ -111,7 +111,7 @@ class WatchListController extends Controller
 
     public function getFilteredData(Request $request)
     {
-        $query = AiPolicyTracker::query();
+        $query = AiPolicyTracker::whereHas('bookmark');
 
         // Apply filters based on the request parameters
         if ($request->has('AI_Policy_Name') && !empty($request->AI_Policy_Name)) {

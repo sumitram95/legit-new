@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
 require __DIR__ . "/frontend/web.php";
-require __DIR__ . '/auth.php';
+// auth for user
+require __DIR__ . "/frontend/auth.php";
+// auth for admin
+require __DIR__ . '/backend/auth.php';
 require __DIR__ . "/backend/web.php";
 
 

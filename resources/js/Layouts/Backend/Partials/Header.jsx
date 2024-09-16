@@ -65,7 +65,7 @@ export default function Header({ avatarUrl = "NA", userName = nulll }) {
                                 </div>
                             </li>
                             <hr />
-                            <li>
+                            {/* <li>
                                 <Link
                                     href={"/profile"}
                                     className="block px-4 py-2 hover:bg-gray-100"
@@ -73,10 +73,10 @@ export default function Header({ avatarUrl = "NA", userName = nulll }) {
                                     Profile
                                 </Link>
                             </li>
-                            <hr />
+                            <hr /> */}
                             <li>
                                 <Link
-                                    href={"/logout"}
+                                    href={route("admin.logout")}
                                     className="block px-4 py-2 hover:bg-gray-100"
                                 >
                                     Sign out
