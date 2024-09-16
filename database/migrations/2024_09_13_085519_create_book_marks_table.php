@@ -12,13 +12,12 @@ return new class extends Migration {
     {
         Schema::create('book_marks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->uuid('ai_policy_tracker_id');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('ai_policy_tracker_id')->references('id')->on('ai_policy_trackers')->onDelete('cascade');
 
-            $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
