@@ -255,8 +255,8 @@ export default function WatchList({
                                                         <i className="fa-regular fa-circle-left"></i>
                                                     </span>
                                                     <span>
-                                                        Back to full list of (AI)
-                                                        Policy
+                                                        Back to full list of
+                                                        (AI) Policy
                                                     </span>
                                                 </Link>
                                             </div>
@@ -587,7 +587,7 @@ export default function WatchList({
                                 {/* content */}
                                 {tableData.data.map((list) => (
                                     <div
-                                        className="bg-white rounded pb-3 my-5"
+                                        className="bg-white rounded pb-3 mt-5 block md:hidden"
                                         key={list.id}
                                     >
                                         <div className="flex flex-wrap justify-between py-3 px-5 bg-blue-100">
@@ -602,7 +602,29 @@ export default function WatchList({
                                                     >
                                                         {list.ai_policy_name}
                                                     </Link>
-                                                    <i className="fa-regular fa-star ms-3"></i>
+
+                                                    <Link
+                                                        href={route(
+                                                            "frontend.watch_list.add",
+                                                            {
+                                                                id: list.id,
+                                                                isBooked: list
+                                                                    .bookmark
+                                                                    ?.ai_policy_tracker_id
+                                                                    ? true
+                                                                    : false,
+                                                            }
+                                                        )}
+                                                        className="text-primary-light ms-3"
+                                                    >
+                                                        {list.bookmark
+                                                            ?.ai_policy_tracker_id ? (
+                                                            <i className="fa fa-star A"></i>
+                                                        ) : (
+                                                            <i className="fa-regular fa-star B"></i>
+                                                        )}
+                                                    </Link>
+                                                    {/* <i className="fa-regular fa-star ms-3"></i> */}
                                                 </p>
                                                 <p className="mt-2">
                                                     {list.status?.name}
@@ -623,33 +645,37 @@ export default function WatchList({
                                         <div className="px-5">
                                             <div className="py-3">
                                                 <div>
-                                                    <p className="text-muted-light text-sm">
+                                                    <p className="text-muted-light font-semibold text-sm">
                                                         Country
                                                     </p>
                                                 </div>
                                                 <div className="flex mt-1 gap-3 items-center text-sm">
-                                                    <p>{list.country?.name}</p>
+                                                    <p className="text-gray-500">
+                                                        {list.country?.name}
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div className="py-3">
                                                 <div>
-                                                    <p className="text-muted-light text-sm">
+                                                    <p className="text-muted-light font-semibold text-sm">
                                                         Governing Body
                                                     </p>
                                                 </div>
                                                 <div className="flex mt-1 gap-3 items-center text-sm">
-                                                    <p>{list.governing_body}</p>
+                                                    <p className="text-gray-500">
+                                                        {list.governing_body}
+                                                    </p>
                                                 </div>
                                             </div>
 
                                             <div className="py-3">
                                                 <div>
-                                                    <p className="text-muted-light text-sm">
+                                                    <p className="text-muted-light font-semibold text-sm">
                                                         Announcement Year
                                                     </p>
                                                 </div>
                                                 <div className="flex mt-1 gap-3 items-center text-sm">
-                                                    <p>
+                                                    <p className="text-gray-500">
                                                         {
                                                             list.formatted_created_at
                                                         }
@@ -659,12 +685,12 @@ export default function WatchList({
 
                                             <div className="py-3">
                                                 <div>
-                                                    <p className="text-muted-light text-sm">
+                                                    <p className="text-muted-light font-semibold text-sm">
                                                         Technology Partner
                                                     </p>
                                                 </div>
                                                 <div className="flex mt-1 gap-3 items-center text-sm">
-                                                    <p>
+                                                    <p className="text-gray-500">
                                                         {
                                                             list.technology_partners
                                                         }
@@ -676,13 +702,13 @@ export default function WatchList({
                                                 <div>
                                                     <div className="py-3">
                                                         <div>
-                                                            <p className="text-muted-light text-sm">
+                                                            <p className="text-muted-light font-semibold text-sm">
                                                                 Governance
                                                                 structure
                                                             </p>
                                                         </div>
                                                         <div className="flex mt-1 gap-3 items-center text-sm">
-                                                            <p>
+                                                            <p className="text-gray-500">
                                                                 {
                                                                     list.governance_structure
                                                                 }
@@ -691,14 +717,14 @@ export default function WatchList({
                                                     </div>
                                                     <div className="py-3">
                                                         <div>
-                                                            <p className="text-muted-light text-sm">
+                                                            <p className="text-muted-light font-semibold text-sm">
                                                                 Main
                                                                 motivation/goals
                                                                 of the AI policy
                                                             </p>
                                                         </div>
                                                         <div className="flex mt-1 gap-3 items-center text-sm">
-                                                            <p>
+                                                            <p className="text-gray-500">
                                                                 {
                                                                     list.main_motivation
                                                                 }
@@ -707,12 +733,12 @@ export default function WatchList({
                                                     </div>
                                                     <div className="py-3">
                                                         <div>
-                                                            <p className="text-muted-light text-sm">
+                                                            <p className="text-muted-light font-semibold text-sm">
                                                                 Description
                                                             </p>
                                                         </div>
                                                         <div
-                                                            className="mt-1 text-sm"
+                                                            className="mt-1 text-sm text-gray-500"
                                                             dangerouslySetInnerHTML={{
                                                                 __html: list.description,
                                                             }}
@@ -721,8 +747,6 @@ export default function WatchList({
                                                 </div>
                                             )}
                                         </div>
-
-                                        {/* show advance info */}
                                         <div className="border-b"></div>
                                         <div className="pt-3 px-5 flex justify-center items-center">
                                             <button
@@ -762,7 +786,7 @@ export default function WatchList({
                             {/* show on small device if table when empty */}
                             <Responsive responsive={["sm"]}>
                                 {!hasData && (
-                                    <h1 className="font-bold text-primary text-lg text-center">
+                                    <h1 className="font-bold text-primary text-lg mt-5 text-center">
                                         Not Found
                                     </h1>
                                 )}

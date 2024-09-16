@@ -116,6 +116,7 @@ class DashboardController extends Controller
                 'id' => $policy->id,
                 'ai_policy_name' => $policy->ai_policy_name,
                 'country' => $policy->country,
+                'bookmark' => $policy->bookmark,
                 'governing_body' => $policy->governing_body,
                 'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
                 'status' => $policy->status,

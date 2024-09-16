@@ -19,7 +19,7 @@ class WatchListController extends Controller
     public function index()
     {
         $data['tableData'] = AiPolicyTracker::whereHas('bookmark')
-            ->with(['country', 'status'])
+            ->with(['country', 'status','bookmark'])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
@@ -48,65 +48,31 @@ class WatchListController extends Controller
         return Inertia::render("Frontend/WatchList/WatchList", $data);
     }
 
-    public function show(Request $request)
+    public function add($id, $isBooked)
     {
         if (!Auth::check()) {
             return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
         }
 
-        $uuids = $request->input('uuids');
-
-        if ($uuids) {
-
-            foreach ($uuids as $uuid) {
-                BookMark::updateOrCreate([
-                    'user_id' => Auth::user()->id,
-                    'ai_policy_tracker_id' => $uuid
-                ]);
-            }
-
-
+        if (!$id) {
+            return to_route('frontend.dashboard')->with('error', 'Woops! not booked');
         }
 
-        if (is_array($uuids) && !empty($uuids)) {
 
-            $data['tableData'] = AiPolicyTracker::whereIn('id', $uuids)
-                ->with(['country', 'status'])
-                ->paginate(15);
-
-            $data['is_favorite'] = true;
-
-
-            $data['aiPolicies'] = AiPolicyTracker::get()
-                ->map(function ($aiPolicy) {
-                    return [
-                        'value' => $aiPolicy->id,
-                        'label' => $aiPolicy->ai_policy_name,
-                    ];
-                });
-            $data['countries'] = Country::get()
-                ->map(function ($country) {
-                    return [
-                        'value' => $country->id,
-                        'label' => $country->name,
-                    ];
-                });
-
-            $data['statuses'] = Status::get()
-                ->map(function ($status) {
-                    return [
-                        'value' => $status->id,
-                        'label' => $status->name,
-                    ];
-                });
-
-                return to_route('frontend.watch_list.index');
-
-            // return Inertia::render('Frontend/WatchList/WatchList', $data);
+        if ($isBooked == "true") {
+            $bookmark = BookMark::where('ai_policy_tracker_id', $id)->first();
+            $bookmark->delete();
+        } else {
+            BookMark::updateOrCreate(['ai_policy_tracker_id' => $id], [
+                'user_id' => Auth::user()->id,
+                'ai_policy_tracker_id' => $id,
+            ]);
         }
 
-        // Handle case where 'uuids' is not an array or is empty
-        return redirect()->back()->with('error', 'Invalid UUIDs');
+
+
+        return back();
+
     }
 
     public function getFilteredData(Request $request)
@@ -143,6 +109,7 @@ class WatchListController extends Controller
                 'id' => $policy->id,
                 'ai_policy_name' => $policy->ai_policy_name,
                 'country' => $policy->country,
+                'bookmark'=>$policy->bookmark,
                 'governing_body' => $policy->governing_body,
                 'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
                 'status' => $policy->status,
