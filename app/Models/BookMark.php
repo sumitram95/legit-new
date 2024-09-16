@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,4 +16,14 @@ class BookMark extends Model
         'user_id',
         'ai_policy_tracker_id'
     ];
+
+    public static function authUserBookmarkCount()
+    {
+        if (Auth::check()) {
+            return self::where('user_id', Auth::id())->count();
+        }
+
+        return 0; // Return 0 if the user is not authenticated
+    }
+
 }

@@ -14,6 +14,8 @@ export default function Table({
     checkedColWithData,
     ...props
 }) {
+    console.log("table data : ", tableData);
+
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
     const authcheck = usePage();
@@ -107,7 +109,20 @@ export default function Table({
                                             onHandleBookmark(list.id)
                                         }
                                     >
-                                        {favourite ? (
+                                        {/* {favourite ? (
+                                            <i className="fa fa-star A"></i>
+                                        ) : (
+                                            <i
+                                                className={`fa ${
+                                                    watchListIds.includes(
+                                                        list.id
+                                                    )
+                                                        ? "fa-star A"
+                                                        : "fa-regular fa-star B"
+                                                }`}
+                                            ></i>
+                                        )} */}
+                                        {list.bookmark?.ai_policy_tracker_id ? (
                                             <i className="fa fa-star A"></i>
                                         ) : (
                                             <i

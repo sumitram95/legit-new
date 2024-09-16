@@ -31,6 +31,7 @@ export default function Dashboard({
     newsLastUpdate,
     countrywithStatus: initialCountrywithStatus,
     countryWithAiPolicies,
+    authUserBookmarkCount,
 }) {
     var [countrywithStatus, setCountrywithStatus] = useState(
         initialCountrywithStatus
@@ -111,7 +112,7 @@ export default function Dashboard({
     };
 
     const [visibleDiv, setVisibleDiv] = useState(false);
-    const [bookmarkCount, setBookmarkCount] = useState(0);
+    const [bookmarkCount, setBookmarkCount] = useState(authUserBookmarkCount);
     const [watchListIds, setWatchListIds] = useState([]);
 
     //****************** BookMark ******************* */

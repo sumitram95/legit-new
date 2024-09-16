@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\BookMark;
 use Log;
 use Carbon\Carbon;
 use App\Models\News;
@@ -16,9 +17,13 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $aiPolicyTracker = AiPolicyTracker::query()
-            ->with(['country', 'status'])
+        $aiPolicyTracker = AiPolicyTracker::with(['country', 'status', 'bookmark'])
             ->latest();
+
+        $data['authUserBookmarkCount'] = BookMark::authUserBookmarkCount();
+
+        // dd($data);
+
 
         $data['tableData'] = $aiPolicyTracker
             ->paginate(10);
