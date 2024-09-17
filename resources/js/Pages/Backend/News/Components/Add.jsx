@@ -4,10 +4,15 @@ import Select from "@/Components/Select";
 import { Head, useForm } from "@inertiajs/react";
 import React, { useState } from "react";
 import ImageUpload from "@/Components/ImageUpload";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-export default function Add({ countries = null, categories = null, aiPolicyTrackers = null, onClose }) {
+export default function Add({
+    countries = null,
+    categories = null,
+    aiPolicyTrackers = null,
+    onClose,
+}) {
     const defaultDate = new Date().toISOString().substring(0, 10);
     const [thumbnails, setThumbnails] = useState([]);
     const [featureImages, setFeatureImages] = useState([]);
@@ -20,6 +25,7 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
         description: "",
         thumbnails: [],
         future_images: [],
+        onClose,
     });
 
     const handleChange = (e) => {
@@ -60,6 +66,10 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
             headers: {
                 "Content-Type": "multipart/form-data",
             },
+            onSuccess: () => {
+                formAiPolicy.reset();
+                onClose();
+            },
         });
     };
 
@@ -90,8 +100,7 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
                         }
                         name="status_id"
                         value={categories.find(
-                            (list) =>
-                                list.value === formAiPolicy.data.status_id
+                            (list) => list.value === formAiPolicy.data.status_id
                         )}
                         label="Category"
                         options={categories}
@@ -108,7 +117,8 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
                         name="policy_tracker_id"
                         value={aiPolicyTrackers.find(
                             (list) =>
-                                list.value === formAiPolicy.data.policy_tracker_id
+                                list.value ===
+                                formAiPolicy.data.policy_tracker_id
                         )}
                         label="AI Policy Tracker"
                         options={aiPolicyTrackers}
@@ -134,14 +144,14 @@ export default function Add({ countries = null, categories = null, aiPolicyTrack
                         title="Drag & drop thumbnail"
                     />
 
-                    <ImageUpload
+                    {/* <ImageUpload
                         multiple
                         onImageChange={(images) =>
                             handleImageChange(images, "feature_img")
                         }
                         name="feature_img"
                         title="Drag & drop multiple feature image"
-                    />
+                    /> */}
                 </div>
 
                 <div className="mt-5">

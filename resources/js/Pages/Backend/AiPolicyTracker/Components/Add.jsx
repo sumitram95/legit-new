@@ -3,10 +3,10 @@ import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Select from "@/Components/Select";
 import { useForm } from "@inertiajs/react";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-export default function Add({ countries = null, status = null }) {
+export default function Add({ countries = null, status = null, onClose }) {
     const defaultDate = new Date().toISOString().substring(0, 10);
 
     const formAiPolicy = useForm({
@@ -36,7 +36,12 @@ export default function Add({ countries = null, status = null }) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        formAiPolicy.post(route("backend.ai_policy_tracker.store"));
+        formAiPolicy.post(route("backend.ai_policy_tracker.store"), {
+            onSuccess: () => {
+                formAiPolicy.reset();
+                onClose();
+            },
+        });
     };
 
     return (
@@ -67,7 +72,10 @@ export default function Add({ countries = null, status = null }) {
                                 country.value === formAiPolicy.data.country_id
                         )}
                         label={"Country"}
-                        options={[{ label: "Select any country", value: '0' }, ...countries]}
+                        options={[
+                            { label: "Select any country", value: "0" },
+                            ...countries,
+                        ]}
                         errorMsg={formAiPolicy.errors.country_id}
                     />
 
@@ -103,7 +111,10 @@ export default function Add({ countries = null, status = null }) {
                                 formAiPolicy.data.status_id
                         )}
                         label={"Status"}
-                        options={[{ label: "Select any status", value: '0' }, ...status]}
+                        options={[
+                            { label: "Select any status", value: "0" },
+                            ...status,
+                        ]}
                         errorMsg={formAiPolicy.errors.status_id}
                     />
 
@@ -166,8 +177,6 @@ export default function Add({ countries = null, status = null }) {
                         </div>
                     )}
                 </div>
-
-
 
                 <div className="float-end">
                     <Button

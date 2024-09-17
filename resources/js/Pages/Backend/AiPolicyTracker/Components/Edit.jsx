@@ -3,14 +3,15 @@ import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Select from "@/Components/Select";
 import { useForm } from "@inertiajs/react";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function Edit({
     countries = null,
     status = null,
     aiId = null,
     updatedData = null,
+    onClose
 }) {
     const formAiPolicy = useForm({
         ai_policy_name: updatedData.ai_policy_name ?? "",
@@ -36,7 +37,12 @@ export default function Edit({
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        formAiPolicy.put(route("backend.ai_policy_tracker.update", aiId));
+        formAiPolicy.put(route("backend.ai_policy_tracker.update", aiId), {
+            onSuccess: () => {
+                // formAiPolicy.reset();
+                onClose();
+            },
+        });
     };
 
     return (

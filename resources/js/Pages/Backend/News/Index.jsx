@@ -227,6 +227,7 @@ export default function Index({
                     countries={countries}
                     categories={categories}
                     aiPolicyTrackers={aiPolicyTrackers}
+                    onClose={toggleAddModal}
                 />
             </Model>
 

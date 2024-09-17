@@ -91,7 +91,7 @@ export default function Index({
         }
     }, [successMessage]);
 
-    console.log(tableData);
+    // console.log(tableData);
 
     return (
         <Layout>
@@ -222,7 +222,7 @@ export default function Index({
                 title="Add new (AI) Policy Tracker"
                 width="max-w-6xl"
             >
-                <Add countries={countries} status={status} />
+                <Add countries={countries} status={status} onClose={toggleAddModal}/>
             </Model>
 
             {/* ******************************* Edit Model *****************************/}

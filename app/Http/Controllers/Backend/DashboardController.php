@@ -16,13 +16,13 @@ class DashboardController extends Controller
     public function dashboard()
     {
 
-        $user =User::where('email', '!=', 'admin@dignep.com.np');
+        $user = User::where('email', '!=', 'admin@dignep.com.np');
 
         $data['usersCount'] = $user->count();
 
         $data['notVerifiedUsersCount'] = (clone $user)
-        ->where('email_verified_at', null)
-        ->count();
+            ->where('email_verified_at', null)
+            ->count();
 
         $data['verifiedUsersCount'] = (clone $user)
             ->whereNotNull('email_verified_at')
@@ -41,13 +41,22 @@ class DashboardController extends Controller
         $months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
         // Fetch customer counts for all months
-        $graphCount = AiPolicyTracker::selectRaw('MONTH(created_at) as month, COUNT(*) as value')
+        // $graphCount = AiPolicyTracker::selectRaw('MONTH(created_at) as month, COUNT(*) as value')
+        //     ->whereYear('created_at', '>=', $currentYear)
+        //     ->whereYear('created_at', '<=', $upcomingYear)
+        //     ->groupBy(DB::raw('MONTH(created_at)'))
+        //     ->orderBy(DB::raw('MONTH(created_at)'), 'asc')
+        //     ->pluck('value', 'month')
+        //     ->toArray();
+
+        $graphCount = AiPolicyTracker::selectRaw('extract(month from created_at) as month, COUNT(*) as value')
             ->whereYear('created_at', '>=', $currentYear)
             ->whereYear('created_at', '<=', $upcomingYear)
-            ->groupBy(DB::raw('MONTH(created_at)'))
-            ->orderBy(DB::raw('MONTH(created_at)'), 'asc')
+            ->groupBy(DB::raw('extract(month from created_at)'))
+            ->orderBy(DB::raw('extract(month from created_at)'), 'asc')
             ->pluck('value', 'month')
             ->toArray();
+
 
 
         // Prepare data array with counts for all months

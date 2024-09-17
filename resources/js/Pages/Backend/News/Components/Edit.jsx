@@ -50,8 +50,11 @@ export default function Edit({
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onClose();
-        formAiPolicy.post(route("backend.news.update", aiId));
+        formAiPolicy.post(route("backend.news.update", aiId), {
+            onSuccess: () => {
+                onClose();
+            },
+        });
     };
 
     return (

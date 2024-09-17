@@ -7,6 +7,7 @@ use App\Models\AiPolicyTracker;
 use App\Models\Country;
 use App\Models\News;
 use App\Models\Status;
+use App\Models\Thumbnail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -121,6 +122,7 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
+        // dd($request->hasFile('thumbnail'));
         $validate = $request->validate([
             'title' => 'required|string|max:255',
             'status_id' => 'required|string',
@@ -138,25 +140,18 @@ class NewsController extends Controller
             if (!$news) {
                 return to_route('backend.news.index')->with('error', 'Not founded');
             }
-
             if ($request->hasFile('thumbnail')) {
                 $thumbnails = $request->thumbnail[0];
-                // $this->fileUpload($thumbnails, "thumbnails", $news);
-
                 $fileName = time() . '-' . $thumbnails->getClientOriginalName();
-
                 $filePath = $thumbnails->storeAs("thumbnails", $fileName, 'public');
-
-                // Get the path relative to storage/
                 $relativePath = str_replace('public/', '', $filePath);
 
-                $news->thumbnail()->update([
+                Thumbnail::updateOrCreate(['news_id'=>$news->id],[
                     'type' => $thumbnails->getMimeType(),
                     'name' => $thumbnails->getClientOriginalName(),
                     'path' => $relativePath,
                 ]);
             }
-
 
             $news->update($validate);
             return to_route('backend.news.index')->with('success', 'SuccessFully Updated');
