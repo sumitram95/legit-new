@@ -16,7 +16,7 @@ import { ToggleSwitch } from "flowbite-react";
 export default function Index({ tableData }) {
     const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
     const noTableDataTitle = "There are no news lists";
-
+    console.log(tableData);
     // Modal state
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
@@ -69,7 +69,6 @@ export default function Index({ tableData }) {
     //         });
     // };
     function toggleSwitch(id, currentStatus) {
-
         const newStatus = currentStatus === 1 ? 0 : 1;
         setIsActive((prevState) => ({ ...prevState, [id]: newStatus }));
         setSelectedId(id);
@@ -89,6 +88,12 @@ export default function Index({ tableData }) {
             .catch((error) => {
                 console.error("Failed to update status:", error);
             });
+    }
+    function checkIfActive(status) {
+        if (status) {
+            return true;
+        }
+        return false;
     }
     // Initialize isActive state
     useEffect(() => {
@@ -173,9 +178,7 @@ export default function Index({ tableData }) {
                                             </td>
                                             <td className="px-6 py-4">
                                                 <ToggleSwitch
-                                                    checked={
-                                                        isActive[list.status] === 1
-                                                    }
+                                                    checked={list.status}
                                                     onClick={() =>
                                                         toggleSwitch(
                                                             list.id,
