@@ -80,19 +80,6 @@ export default function Index({
     const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
     const noTableDataTitle = "There are no (AI) policy tracker lists";
 
-    const { props } = usePage();
-    const successMessage = props.flash?.success;
-
-    useEffect(() => {
-        if (successMessage) {
-            setIsAddModalOpen(false); // Close the modal on success
-
-            setIsEditModalOpen(false);
-        }
-    }, [successMessage]);
-
-    // console.log(tableData);
-
     return (
         <Layout>
             <Head title="Country Lists" />
@@ -167,12 +154,12 @@ export default function Index({
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">
                                                     {/* View Action */}
-                                                    <Link
+                                                    {/* <Link
                                                         href="#"
                                                         className="underline text-blue-950"
                                                     >
                                                         <ViewIcon />
-                                                    </Link>
+                                                    </Link> */}
 
                                                     {/* Edit Action */}
                                                     <Button
@@ -203,9 +190,7 @@ export default function Index({
                                     ))}
                                 </tbody>
                             </table>
-                            {(tableData.data.length >= 10 ||
-                                tableData.current_page ===
-                                    tableData.last_page) && (
+                            {tableData.total > 10 && (
                                 <Pagination paginator={tableData} />
                             )}
                         </>
@@ -222,7 +207,11 @@ export default function Index({
                 title="Add new (AI) Policy Tracker"
                 width="max-w-6xl"
             >
-                <Add countries={countries} status={status} onClose={toggleAddModal}/>
+                <Add
+                    countries={countries}
+                    status={status}
+                    onClose={toggleAddModal}
+                />
             </Model>
 
             {/* ******************************* Edit Model *****************************/}

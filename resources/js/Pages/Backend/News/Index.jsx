@@ -6,8 +6,8 @@ import Model from "@/Components/Model";
 import NoTableData from "@/Components/Table/NoTableData";
 import ViewIcon from "@/Components/ViewIcon";
 import Layout from "@/Layouts/Backend/Layout";
-import { Head, Link, router, usePage } from "@inertiajs/react";
-import React, { useEffect, useState } from "react";
+import { Head, Link } from "@inertiajs/react";
+import React, { useState } from "react";
 import Add from "./Components/Add";
 import Pagination from "@/Components/Pagination";
 import DeleteModel from "@/Components/DeleteModel";
@@ -78,17 +78,6 @@ export default function Index({
 
     const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
     const noTableDataTitle = "There are no news lists";
-
-    const { props } = usePage();
-    const successMessage = props.flash?.success;
-
-    useEffect(() => {
-        if (successMessage) {
-            setIsAddModalOpen(false); // Close the modal on success
-
-            setIsEditModalOpen(false);
-        }
-    }, [successMessage]);
 
     return (
         <Layout>
@@ -181,12 +170,12 @@ export default function Index({
                                                     >
                                                         <EditIcon />
                                                     </Button>
-                                                    <Link
+                                                    {/* <Link
                                                         href="#"
                                                         className="underline text-blue-950"
                                                     >
                                                         <ViewIcon />
-                                                    </Link>
+                                                    </Link> */}
                                                     <Button
                                                         type="button"
                                                         onClick={() =>
@@ -204,9 +193,7 @@ export default function Index({
                                 </tbody>
                             </table>
 
-                            {(tableData.data.length >= 10 ||
-                                tableData.current_page ===
-                                    tableData.last_page) && (
+                            {tableData.total > 10 && (
                                 <Pagination paginator={tableData} />
                             )}
                         </>
