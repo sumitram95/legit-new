@@ -47,11 +47,31 @@ export default function Index({ tableData }) {
     };
 
     // Toggle switch
-    const toggleSwitch = (id, currentStatus) => {
-        const newStatus = currentStatus === 1 ? 0 : 1;
+    // const toggleSwitch = async (id, currentStatus) => {
+    //     const newStatus = currentStatus === 1 ? 0 : 1;
+    //     setIsActive((prevState) => ({ ...prevState, [id]: newStatus }));
+    //     setSelectedId(id);
+    //     console.log(selectedId);
+    //     // Perform the update request
+    //     axios
+    //         .post(route("backend.country.updatedStatus"), {
+    //             id: id,
+    //             status: newStatus,
+    //         })
+    //         .then(function (response) {
+    //             console.log(
+    //                 "successfully ",
+    //                 currentStatus ? "enabled" : "disabled"
+    //             );
+    //         })
+    //         .catch((error) => {
+    //             console.error("Failed to update status:", error);
+    //         });
+    // };
+    function toggleSwitch(id, currentStatus) {
         setIsActive((prevState) => ({ ...prevState, [id]: newStatus }));
         setSelectedId(id);
-
+        console.log(selectedId);
         // Perform the update request
         axios
             .post(route("backend.country.updatedStatus"), {
@@ -67,8 +87,7 @@ export default function Index({ tableData }) {
             .catch((error) => {
                 console.error("Failed to update status:", error);
             });
-    };
-
+    }
     // Initialize isActive state
     useEffect(() => {
         const initialState = {};
