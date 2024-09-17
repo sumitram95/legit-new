@@ -16,7 +16,7 @@ class AiPolicyTracker extends Model
     use SoftDeletes, HasUuids;
     use HasUuids;
 
-    protected $appends = ['formatted_created_at'];
+    protected $appends = ['formatted_created_at', 'created_month'];
 
     protected $fillable = [
         'country_id',
@@ -73,5 +73,10 @@ class AiPolicyTracker extends Model
         return $this->hasOne(BookMark::class, 'ai_policy_tracker_id', 'id')
             ->where('user_id', Auth::id());
     }
+    public function getCreatedMonthAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('M');
+    }
+
 
 }
