@@ -62,9 +62,9 @@ class CountryController extends Controller
             // }
 
             $country->update([
-                'status' => $request->status ?? false
+                'status' => $request->get('status') ? true : false
             ]);
-            return response()->json(['message' => "{$country->name} updated successfully"], 200);
+            return response()->json(['message' => "{$country->name} updated successfully", 'data' => $request->all()], 200);
         } catch (\Throwable $th) {
             return response()->json('Something went wrong on server', 500);
 
