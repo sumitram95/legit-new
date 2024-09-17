@@ -69,6 +69,7 @@ export default function Index({ tableData }) {
     //         });
     // };
     function toggleSwitch(id, currentStatus) {
+                const newStatus = currentStatus === 1 ? 0 : 1;
         setIsActive((prevState) => ({ ...prevState, [id]: newStatus }));
         setSelectedId(id);
         console.log(selectedId);
