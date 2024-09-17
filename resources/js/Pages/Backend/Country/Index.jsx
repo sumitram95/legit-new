@@ -7,7 +7,7 @@ import Button from "@/Components/Button";
 // import NoTableData from "@/Components/Table/NoTableData";
 // import ViewIcon from "@/Components/ViewIcon";
 import Layout from "@/Layouts/Backend/Layout";
-import { Head, Link, router, usePage } from "@inertiajs/react";
+import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import DeleteIcon from "@/Components/DeleteIcon";
 import ViewIcon from "@/Components/ViewIcon";
 import NoTableData from "@/Components/Table/NoTableData";
@@ -21,6 +21,7 @@ import View from "./Components/View";
 import axios from "axios";
 import Add from "./Components/Add";
 import CountryView from "./Components/View";
+import { ToggleSwitch } from "flowbite-react";
 
 export default function Index({ tableData }) {
     const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
@@ -56,14 +57,26 @@ export default function Index({ tableData }) {
         }
     };
 
-    const { props } = usePage();
-    const successMessage = props.flash?.success;
+    const [isActive, setIsActive] = useState(true);
+
+    const [isId, setIsId] = useState(null);
+
+    const country = useForm({
+        id: isId,
+        status: isActive,
+    });
 
     useEffect(() => {
-        if (successMessage) {
-            setIsAddModalOpen(false);
-        }
-    }, [successMessage]);
+        country.setData("status", isActive);
+        country.setData("id", isId);
+    }, [isActive, isId]);
+
+    const toggleSwitch = (id) => {
+        setIsActive(true);
+        setIsId(id);
+    };
+
+    console.log(country);
 
     return (
         <Layout>
@@ -138,18 +151,13 @@ export default function Index({ tableData }) {
                                                 {list.symbol ?? "N/A"}
                                             </td>
                                             <td className="px-6 py-4">
-                                                <span
-                                                    className={`bg-green-500 text-white px-2 py-1 rounded-full ${
-                                                        list.status == 1
-                                                            ? "bg-green-500"
-                                                            : "bg-red-500"
-                                                    }`}
-                                                    style={{ fontSize: "10px" }}
-                                                >
-                                                    {list.status == 1
-                                                        ? "Active"
-                                                        : "Inactive"}
-                                                </span>
+                                                <ToggleSwitch
+                                                    checked={ list.status == 1? isActive:false }
+                                                    // label="Set Status"
+                                                    onChange={() =>
+                                                        toggleSwitch(list.id)
+                                                    }
+                                                />
                                             </td>
                                             <td className="px-6 py-4">
                                                 {list.formatted_created_at ??
