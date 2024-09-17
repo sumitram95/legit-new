@@ -69,7 +69,8 @@ export default function Index({ tableData }) {
     //         });
     // };
     function toggleSwitch(id, currentStatus) {
-                const newStatus = currentStatus === 1 ? 0 : 1;
+
+        const newStatus = currentStatus === 1 ? 0 : 1;
         setIsActive((prevState) => ({ ...prevState, [id]: newStatus }));
         setSelectedId(id);
         console.log(selectedId);
@@ -173,7 +174,7 @@ export default function Index({ tableData }) {
                                             <td className="px-6 py-4">
                                                 <ToggleSwitch
                                                     checked={
-                                                        isActive[list.id] === 1
+                                                        isActive[list.status] === 1
                                                     }
                                                     onClick={() =>
                                                         toggleSwitch(
