@@ -178,7 +178,11 @@ export default function Index({ tableData }) {
                                             </td>
                                             <td className="px-6 py-4">
                                                 <ToggleSwitch
-                                                    checked={list.status}
+                                                    checked={
+                                                        list.status
+                                                            ? false
+                                                            : true
+                                                    }
                                                     onClick={() =>
                                                         toggleSwitch(
                                                             list.id,
