@@ -45,4 +45,25 @@ class CountryController extends Controller
 
         return response()->json(['country' => $country]);
     }
+
+
+    public function updatedStatus(Request $request)
+    {
+        if (!$request->id) {
+            return to_route('backend.country.index')->with('error', 'Sorry not update country status');
+        }
+
+        $country = Country::find($request->id);
+
+        if (!$country) {
+            return to_route('backend.country.index')->with('error', 'Sorry not update country status');
+        }
+
+        $country->update([
+            'status' => $request->status ?? false
+        ]);
+
+        return to_route('backend.country.index')->with('success', 'Successfully updated');
+
+    }
 }

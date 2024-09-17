@@ -80,6 +80,9 @@ Route::middleware(['auth', 'isAdmin'])
             Route::get("/backend/country", "index")->name("index");
             Route::post("/backend/country", "store")->name("store");
             Route::post("/backend/country/view/{id}", "view")->name("view");
+
+
+            Route::post("/backend/country/update-status", "updatedStatus")->name("updatedStatus");
             // Route::post("/backend/country/update/{id}", "edit")->name("edit");
             // Route::put("/backend/country/update/{id}", "update")->name("update");
 

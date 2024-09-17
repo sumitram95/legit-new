@@ -19,7 +19,7 @@ class WatchListController extends Controller
     public function index()
     {
         $data['tableData'] = AiPolicyTracker::whereHas('bookmark')
-            ->with(['country', 'status','bookmark'])
+            ->with(['country', 'status', 'bookmark'])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
@@ -30,13 +30,11 @@ class WatchListController extends Controller
                     'label' => $aiPolicy->ai_policy_name,
                 ];
             });
-        $data['countries'] = Country::get()
-            ->map(function ($country) {
-                return [
-                    'value' => $country->id,
-                    'label' => $country->name,
-                ];
-            });
+
+        $data['countries'] = Country::select('id as value', 'name as label')
+            ->where('status', 1)
+            ->orderBy('name', 'asc')
+            ->get();
 
         $data['statuses'] = Status::get()
             ->map(function ($status) {
@@ -109,7 +107,7 @@ class WatchListController extends Controller
                 'id' => $policy->id,
                 'ai_policy_name' => $policy->ai_policy_name,
                 'country' => $policy->country,
-                'bookmark'=>$policy->bookmark,
+                'bookmark' => $policy->bookmark,
                 'governing_body' => $policy->governing_body,
                 'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
                 'status' => $policy->status,

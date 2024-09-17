@@ -16,14 +16,10 @@ class AiPolicyTrackerController extends Controller
 {
     public function index()
     {
-        $countries = Country::select('id', 'name')->orderBy('name', 'asc')
-            ->get()
-            ->map(function ($country) {
-                return [
-                    'value' => $country->id,
-                    'label' => $country->name,
-                ];
-            });
+        $countries = Country::select('id as value', 'name as label')
+            ->where('status', 1)
+            ->orderBy('name', 'asc')
+            ->get();
 
         $status = Status::select("id", "name")
             ->get()

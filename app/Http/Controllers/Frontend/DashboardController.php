@@ -74,7 +74,10 @@ class DashboardController extends Controller
         //-- End Ai Policy tracker country with status
         $data['aiPolicies'] = AiPolicyTracker::select('id as value', 'ai_policy_name as label')->get();
 
-        $data['countries'] = Country::select('id as value', 'name as label')->get();
+        $data['countries'] = Country::select('id as value', 'name as label')
+            ->where('status', 1)
+            ->orderBy('name', 'asc')
+            ->get();
 
         $data['statuses'] = Status::select('id as value', 'name as label')->get();
 

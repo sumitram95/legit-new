@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from "react";
 import AddIcon from "@/Components/AddIcon";
 import Button from "@/Components/Button";
-// import DeleteIcon from "@/Components/DeleteIcon";
-// import EditIcon from "@/Components/EditIcon";
-// import Model from "@/Components/Model";
-// import NoTableData from "@/Components/Table/NoTableData";
-// import ViewIcon from "@/Components/ViewIcon";
 import Layout from "@/Layouts/Backend/Layout";
-import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import DeleteIcon from "@/Components/DeleteIcon";
 import ViewIcon from "@/Components/ViewIcon";
 import NoTableData from "@/Components/Table/NoTableData";
 import Pagination from "@/Components/Pagination";
 import Model from "@/Components/Model";
-// import View from "./Components/View";
-import View from "./Components/View";
-// import Pagination from "@/Components/Pagination";
-// import DeleteModel from "@/Components/DeleteModel";
-// import Edit from "./Components/Edit";
 import axios from "axios";
 import Add from "./Components/Add";
 import CountryView from "./Components/View";
@@ -27,20 +17,19 @@ export default function Index({ tableData }) {
     const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
     const noTableDataTitle = "There are no news lists";
 
-    // add modal open
+    // Modal state
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    // view modal open
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
-
-    // add toggle func
-    const toggleAddModal = () => setIsAddModalOpen(!isAddModalOpen);
-
-    // add toggle func
-    const toggleViewModal = () => setIsViewModalOpen(!isViewModalOpen);
-
-    // set updating data
     const [updatingData, setUpdatingData] = useState(null);
 
+    const [isActive, setIsActive] = useState({});
+    const [selectedId, setSelectedId] = useState(null);
+
+    // Toggle modals
+    const toggleAddModal = () => setIsAddModalOpen(!isAddModalOpen);
+    const toggleViewModal = () => setIsViewModalOpen(!isViewModalOpen);
+
+    // Fetch country data for the view modal
     const setViewData = async (id = null) => {
         if (!id) return;
 
@@ -50,33 +39,36 @@ export default function Index({ tableData }) {
 
             if (updatedData) {
                 setUpdatingData(updatedData);
-                setIsViewModalOpen(!isAddModalOpen);
+                setIsViewModalOpen(true);
             }
         } catch (error) {
             console.error("Failed to fetch data:", error);
         }
     };
 
-    const [isActive, setIsActive] = useState(true);
+    // Toggle switch
+    const toggleSwitch = (id, currentStatus) => {
+        const newStatus = currentStatus === 1 ? 0 : 1;
+        setIsActive((prevState) => ({ ...prevState, [id]: newStatus }));
+        setSelectedId(id);
 
-    const [isId, setIsId] = useState(null);
-
-    const country = useForm({
-        id: isId,
-        status: isActive,
-    });
-
-    useEffect(() => {
-        country.setData("status", isActive);
-        country.setData("id", isId);
-    }, [isActive, isId]);
-
-    const toggleSwitch = (id) => {
-        setIsActive(true);
-        setIsId(id);
+        // Perform the update request
+        axios.post(route("backend.country.updatedStatus"), {
+            id: id,
+            status: newStatus
+        }).catch(error => {
+            console.error("Failed to update status:", error);
+        });
     };
 
-    console.log(country);
+    // Initialize isActive state
+    useEffect(() => {
+        const initialState = {};
+        tableData.data.forEach((item) => {
+            initialState[item.id] = item.status;
+        });
+        setIsActive(initialState);
+    }, [tableData.data]);
 
     return (
         <Layout>
@@ -97,100 +89,35 @@ export default function Index({ tableData }) {
                             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                                 <thead className="text-xs text-primary uppercase bg-secondary">
                                     <tr>
-                                        <th
-                                            style={{ width: "10%" }}
-                                            className="px-6 py-3"
-                                        >
-                                            S.N
-                                        </th>
-                                        <th
-                                            className="px-6 py-3"
-                                            style={{ width: "40%" }}
-                                        >
-                                            Name
-                                        </th>
-                                        <th
-                                            className="px-6 py-3"
-                                            style={{ width: "10%" }}
-                                        >
-                                            Symbol
-                                        </th>
-                                        <th
-                                            className="px-6 py-3"
-                                            style={{ width: "0%" }}
-                                        >
-                                            Status
-                                        </th>
-                                        <th
-                                            className="px-6 py-3"
-                                            style={{ width: "20%" }}
-                                        >
-                                            created at
-                                        </th>
-                                        <th
-                                            className="px-6 py-3"
-                                            style={{ width: "10%" }}
-                                        >
-                                            Action
-                                        </th>
+                                        <th style={{ width: "10%" }} className="px-6 py-3">S.N</th>
+                                        <th className="px-6 py-3" style={{ width: "40%" }}>Name</th>
+                                        <th className="px-6 py-3" style={{ width: "10%" }}>Symbol</th>
+                                        <th className="px-6 py-3" style={{ width: "0%" }}>Status</th>
+                                        <th className="px-6 py-3" style={{ width: "20%" }}>Created At</th>
+                                        <th className="px-6 py-3" style={{ width: "10%" }}>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {tableData.data.map((list, index) => (
-                                        <tr
-                                            className="bg-white border-b"
-                                            key={list.id}
-                                        >
-                                            <td className="px-6 py-4">
-                                                {tableData.from + index}
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                {list.name}
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                {list.symbol ?? "N/A"}
-                                            </td>
+                                        <tr className="bg-white border-b" key={list.id}>
+                                            <td className="px-6 py-4">{tableData.from + index}</td>
+                                            <td className="px-6 py-4">{list.name}</td>
+                                            <td className="px-6 py-4">{list.symbol ?? "N/A"}</td>
                                             <td className="px-6 py-4">
                                                 <ToggleSwitch
-                                                    checked={ list.status == 1? isActive:false }
-                                                    // label="Set Status"
-                                                    onChange={() =>
-                                                        toggleSwitch(list.id)
-                                                    }
+                                                    checked={isActive[list.id] === 1}
+                                                    onChange={() => toggleSwitch(list.id, isActive[list.id])}
                                                 />
                                             </td>
-                                            <td className="px-6 py-4">
-                                                {list.formatted_created_at ??
-                                                    "N/A"}
-                                            </td>
+                                            <td className="px-6 py-4">{list.formatted_created_at ?? "N/A"}</td>
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">
-                                                    {/* <Link
-                                                        href={route(
-                                                            "backend.users.view",
-                                                            list.id
-                                                        )}
-                                                        className="underline text-blue-950"
-                                                    >
-                                                        <ViewIcon />
-                                                    </Link> */}
-
                                                     <Button
                                                         type="button"
-                                                        onClick={() =>
-                                                            setViewData(list.id)
-                                                        }
+                                                        onClick={() => setViewData(list.id)}
                                                     >
                                                         <ViewIcon />
                                                     </Button>
-                                                    {/* <Button
-                                                type="button"
-                                                onClick={() =>
-                                                    toggleDeleteModal(list.id)
-                                                }
-                                            >
-                                                <DeleteIcon />
-                                            </Button> */}
                                                 </div>
                                             </td>
                                         </tr>
@@ -208,7 +135,7 @@ export default function Index({ tableData }) {
                 </div>
             </div>
 
-            {/* add model */}
+            {/* Add modal */}
             <Model
                 isOpen={isAddModalOpen}
                 onClose={toggleAddModal}
@@ -216,10 +143,9 @@ export default function Index({ tableData }) {
                 width="max-w-xl"
             >
                 <Add />
-                {/* {updatingData} */}
-                {/* <View user={updatingData} /> */}
             </Model>
 
+            {/* View modal */}
             <Model
                 isOpen={isViewModalOpen}
                 onClose={toggleViewModal}
@@ -228,31 +154,6 @@ export default function Index({ tableData }) {
             >
                 <CountryView country={updatingData} />
             </Model>
-
-            {/* edit model */}
-            {/* <Model
-                isOpen={isEditModalOpen}
-                onClose={openEditModal}
-                title="Edit News"
-                width="max-w-6xl"
-            >
-                <Edit
-                    aiPolicyTrackers={aiPolicyTrackers}
-                    countries={countries}
-                    categories={categories}
-                    onClose={openEditModal}
-                    aiId={selectedAiId}
-                    updatedData={updatingData}
-                />
-            </Model> */}
-            {/*
-            <DeleteModel
-                title={"Are you sure you want to delete this news?"}
-                routePath={"/backend/news/delete/"}
-                isOpen={isDeleteModalOpen}
-                onClose={() => toggleDeleteModal()}
-                aiId={selectedAiId}
-            /> */}
         </Layout>
     );
 }
