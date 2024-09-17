@@ -76,7 +76,7 @@ export default function Header({ avatarUrl = "NA", userName = nulll }) {
                             <hr /> */}
                             <li>
                                 <Link
-                                    href={route("admin.logout")}
+                                    href={route("logout")}
                                     className="block px-4 py-2 hover:bg-gray-100"
                                 >
                                     Sign out
