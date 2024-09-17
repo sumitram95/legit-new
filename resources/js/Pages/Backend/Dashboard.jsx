@@ -135,7 +135,7 @@ export default function Dashboard({ data, graphData }) {
                                 </span>
                             </div>
                             <div className="font-bold text-blue-300">
-                                {data?.notVerifiedUsersCount ?? 0}
+                                {data?.bookMarkCount ?? 0}
                             </div>
                         </div>
                     </div>

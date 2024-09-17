@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AiPolicyTracker;
+use App\Models\BookMark;
 use App\Models\News;
 use App\Models\User;
 use Carbon\Carbon;
@@ -33,6 +34,7 @@ class DashboardController extends Controller
 
         $data['aiPolicyCount'] = AiPolicyTracker::count();
         $data['newsCount'] = News::count();
+        $data['bookMarkCount'] = BookMark::count();
 
 
         $currentYear = Carbon::now()->year;
