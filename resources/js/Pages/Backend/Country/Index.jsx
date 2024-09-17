@@ -53,12 +53,20 @@ export default function Index({ tableData }) {
         setSelectedId(id);
 
         // Perform the update request
-        axios.post(route("backend.country.updatedStatus"), {
-            id: id,
-            status: newStatus
-        }).catch(error => {
-            console.error("Failed to update status:", error);
-        });
+        axios
+            .post(route("backend.country.updatedStatus"), {
+                id: id,
+                status: newStatus,
+            })
+            .then(function (response) {
+                console.log(
+                    "successfully ",
+                    currentStatus ? "enabled" : "disabled"
+                );
+            })
+            .catch((error) => {
+                console.error("Failed to update status:", error);
+            });
     };
 
     // Initialize isActive state
@@ -89,32 +97,83 @@ export default function Index({ tableData }) {
                             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                                 <thead className="text-xs text-primary uppercase bg-secondary">
                                     <tr>
-                                        <th style={{ width: "10%" }} className="px-6 py-3">S.N</th>
-                                        <th className="px-6 py-3" style={{ width: "40%" }}>Name</th>
-                                        <th className="px-6 py-3" style={{ width: "10%" }}>Symbol</th>
-                                        <th className="px-6 py-3" style={{ width: "0%" }}>Status</th>
-                                        <th className="px-6 py-3" style={{ width: "20%" }}>Created At</th>
-                                        <th className="px-6 py-3" style={{ width: "10%" }}>Action</th>
+                                        <th
+                                            style={{ width: "10%" }}
+                                            className="px-6 py-3"
+                                        >
+                                            S.N
+                                        </th>
+                                        <th
+                                            className="px-6 py-3"
+                                            style={{ width: "40%" }}
+                                        >
+                                            Name
+                                        </th>
+                                        <th
+                                            className="px-6 py-3"
+                                            style={{ width: "10%" }}
+                                        >
+                                            Symbol
+                                        </th>
+                                        <th
+                                            className="px-6 py-3"
+                                            style={{ width: "0%" }}
+                                        >
+                                            Status
+                                        </th>
+                                        <th
+                                            className="px-6 py-3"
+                                            style={{ width: "20%" }}
+                                        >
+                                            Created At
+                                        </th>
+                                        <th
+                                            className="px-6 py-3"
+                                            style={{ width: "10%" }}
+                                        >
+                                            Action
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {tableData.data.map((list, index) => (
-                                        <tr className="bg-white border-b" key={list.id}>
-                                            <td className="px-6 py-4">{tableData.from + index}</td>
-                                            <td className="px-6 py-4">{list.name}</td>
-                                            <td className="px-6 py-4">{list.symbol ?? "N/A"}</td>
+                                        <tr
+                                            className="bg-white border-b"
+                                            key={list.id}
+                                        >
+                                            <td className="px-6 py-4">
+                                                {tableData.from + index}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {list.name}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {list.symbol ?? "N/A"}
+                                            </td>
                                             <td className="px-6 py-4">
                                                 <ToggleSwitch
-                                                    checked={isActive[list.id] === 1}
-                                                    onChange={() => toggleSwitch(list.id, isActive[list.id])}
+                                                    checked={
+                                                        isActive[list.id] === 1
+                                                    }
+                                                    onClick={() =>
+                                                        toggleSwitch(
+                                                            list.id,
+                                                            isActive[list.id]
+                                                        )
+                                                    }
                                                 />
                                             </td>
-                                            <td className="px-6 py-4">{list.formatted_created_at ?? "N/A"}</td>
+                                            <td className="px-6 py-4">
+                                                {list.formatted_created_at ??
+                                                    "N/A"}
+                                            </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">
                                                     <Button
                                                         type="button"
-                                                        onClick={() => setViewData(list.id)}
+                                                        onClick={() =>
+                                                            setViewData(list.id)
+                                                        }
                                                     >
                                                         <ViewIcon />
                                                     </Button>
