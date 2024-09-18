@@ -6,17 +6,18 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Storage;
 
-class NewAiPolicyTrackerNotification extends Notification
+class UpdateAiPolicyTrackerNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
+
     public $tracker;
     public $user;
+
     public $message;
 
     public function __construct($tracker, $user, $message)
@@ -36,24 +37,20 @@ class NewAiPolicyTrackerNotification extends Notification
         return ['mail', 'database'];
     }
 
-
-    // Define the database notification content
     public function toDatabase($notifiable)
     {
         return [
             'tracker_name' => $this->tracker->ai_policy_name,
             'tracker_id' => $this->tracker->id,
-            // 'message' => 'A new AI Policy Tracker has been added!',
             'message' => $this->message,
         ];
     }
 
     /**
      * Get the mail representation of the notification.
-     */   // Define the email notification content
-    public function toMail($notifiable)
+     */
+    public function toMail(object $notifiable): MailMessage
     {
-
         // Path to the logo image
         $logoPath = public_path('ai_dark_logo.png');
 

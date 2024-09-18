@@ -55,8 +55,13 @@ class AiPolicyTrackerController extends Controller
         $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been added.';
         AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
+        $message = " A new AI Policy Tracker has been added to the system!";
+        $method = "create";
+
+
+
         // Dispatch the job with a delay of 1 minute
-        SendAiPolicyTrackerNotificationJob::dispatch($aiPolicyTracker)
+        SendAiPolicyTrackerNotificationJob::dispatch($aiPolicyTracker, $message, $method)
             ->delay(now()->addMinute());
 
 
@@ -104,6 +109,13 @@ class AiPolicyTrackerController extends Controller
             $activity_name = 'updated data';
             $description = 'AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been Updated.';
             AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
+
+
+            $message = "AI Policy Tracker has been added to the system!";
+            $method = "update";
+            // Dispatch the job with a delay of 1 minute
+            SendAiPolicyTrackerNotificationJob::dispatch($aiPolicyTracker, $message, $method)
+                ->delay(now()->addMinute());
 
             return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Updated');
         } catch (\Throwable $th) {
