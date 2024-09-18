@@ -46,7 +46,7 @@ Route:: as('frontend.')->group(function () {
         ->as('watch_list.')
         ->group(function () {
             Route::get('/bookmarks', 'index')->name('index');
-            Route::get('/bookmarks/add/{id}/{isBooked}', 'add')->name('add');
+            Route::get('/bookmarks/add/{id}/{isBooked}', 'add')->name('add')->middleware('verified');
             Route::get('/bookmarks/filtered', 'getFilteredData')->name('filtered');
         });
 
