@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewAiPolicyReadMarkNotificationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -20,4 +21,15 @@ Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     return "Cache cleared!";
 })->middleware(['auth']);
+
+
+
+
+// for read mark
+
+use App\Http\Controllers\NotificationController;
+
+Route::post('/notifications/mark-as-read', [NewAiPolicyReadMarkNotificationController::class, 'markAsRead'])
+    ->name('notifications.markAsRead');
+
 

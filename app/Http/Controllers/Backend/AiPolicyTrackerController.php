@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Jobs\SendAiPolicyTrackerNotificationJob;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Status;
 use App\Models\Country;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Logs\AiPolicyActivityLogHelper;
 use App\Http\Requests\AiPolicyTrackerPostRequest;
+use App\Notifications\NewAiPolicyTrackerNotification;
 
 class AiPolicyTrackerController extends Controller
 {
@@ -51,6 +54,11 @@ class AiPolicyTrackerController extends Controller
         $activity_name = 'added data';
         $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been added.';
         AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
+
+        // Dispatch the job with a delay of 1 minute
+        SendAiPolicyTrackerNotificationJob::dispatch($aiPolicyTracker)
+            ->delay(now()->addMinute());
+
 
         return to_route('backend.ai_policy_tracker.index')->with('success', 'Successfully Created');
     }
