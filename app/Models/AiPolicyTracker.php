@@ -73,6 +73,11 @@ class AiPolicyTracker extends Model
         return $this->hasOne(BookMark::class, 'ai_policy_tracker_id', 'id')
             ->where('user_id', Auth::id());
     }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(BookMark::class, 'ai_policy_tracker_id', 'id');
+    }
     public function getCreatedMonthAttribute()
     {
         return Carbon::parse($this->created_at)->format('M');

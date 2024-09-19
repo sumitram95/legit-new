@@ -117,6 +117,9 @@ export default function Index({
                                             Status Name
                                         </th>
                                         <th className="px-6 py-3">
+                                            total bookmark
+                                        </th>
+                                        <th className="px-6 py-3">
                                             Created At
                                         </th>
                                         <th
@@ -145,8 +148,12 @@ export default function Index({
                                             <td className="px-6 py-4">
                                                 {list.country?.name ?? "N/A"}
                                             </td>
+
                                             <td className="px-6 py-4">
                                                 {list.status?.name ?? "N/A"}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {list.bookmarks_count ?? 0}
                                             </td>
                                             <td className="px-6 py-4">
                                                 {list.formatted_created_at}
