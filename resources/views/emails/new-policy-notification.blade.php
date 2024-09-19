@@ -101,7 +101,7 @@
             <h1 class="heading">Welcome to AI Policy Tracker!</h1>
             <div class="divider"></div>
             <p class="text">
-                {{ $message ?? '' }}
+                {{ $messageData ?? '' }}
             </p>
             <p class="text">Policy Name: {{ $trackerName ?? 'N/A' }}</p>
             <div style="text-align: center;">

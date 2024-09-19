@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Jobs\SendAiPolicyTrackerNotificationJob;
+use App\Models\BookMark;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Status;
@@ -54,15 +55,11 @@ class AiPolicyTrackerController extends Controller
         $activity_name = 'added data';
         $description = 'A new AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been added.';
         AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
-
-        $message = " A new AI Policy Tracker has been added to the system!";
         $method = "create";
 
-
-
         // Dispatch the job with a delay of 1 minute
-        SendAiPolicyTrackerNotificationJob::dispatch($aiPolicyTracker, $message, $method)
-            ->delay(now()->addMinute());
+        // SendAiPolicyTrackerNotificationJob::dispatch($aiPolicyTracker, $method);
+        // ->delay(now()->addMinute());
 
 
         return to_route('backend.ai_policy_tracker.index')->with('success', 'Successfully Created');
@@ -110,11 +107,11 @@ class AiPolicyTrackerController extends Controller
             $description = 'AI policy, <b>' . $aiPolicyTracker->ai_policy_name . '</b>, has been Updated.';
             AiPolicyActivityLogHelper::createAiPolicyActivityLog($aiPolicyTracker->id, $activity_name, $description);
 
-
-            $message = "AI Policy Tracker has been added to the system!";
             $method = "update";
+
+
             // Dispatch the job with a delay of 1 minute
-            SendAiPolicyTrackerNotificationJob::dispatch($aiPolicyTracker, $message, $method)
+            SendAiPolicyTrackerNotificationJob::dispatch($aiPolicyTracker, $method)
                 ->delay(now()->addMinute());
 
             return to_route('backend.ai_policy_tracker.index')->with('success', 'SuccessFully Updated');

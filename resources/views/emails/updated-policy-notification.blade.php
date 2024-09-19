@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,9 +88,9 @@
         .footer p {
             margin: 4px 0;
         }
-
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="content">
@@ -97,10 +98,10 @@
                 <img src="{{ $message->embed($logo) }}" alt="AI Policy Tracker Logo" class="logo" />
             </div>
             <h1 class="heading">Hi, {{ $userName }}</h1>
-            <h1 class="heading">Welcome to AI Policy Tracker!</h1>
+            <h1 class="heading">Welcome to AI Policy Trackers!</h1>
             <div class="divider"></div>
             <p class="text">
-                A new AI Policy Tracker has been added to the system!
+                {{ $messageData ?? 'no' }}
             </p>
             <p class="text">Policy Name: {{ $trackerName }}</p>
             <div style="text-align: center;">
@@ -115,4 +116,5 @@
         </div>
     </div>
 </body>
+
 </html>

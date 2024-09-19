@@ -26,4 +26,9 @@ class BookMark extends Model
         return 0; // Return 0 if the user is not authenticated
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

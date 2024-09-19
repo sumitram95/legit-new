@@ -18,13 +18,13 @@ class UpdateAiPolicyTrackerNotification extends Notification
     public $tracker;
     public $user;
 
-    public $message;
+    public $messageData;
 
-    public function __construct($tracker, $user, $message)
+    public function __construct($tracker, $user, $messageData)
     {
         $this->tracker = $tracker;
         $this->user = $user;
-        $this->message = $message;
+        $this->messageData = $messageData;
     }
 
     /**
@@ -42,7 +42,7 @@ class UpdateAiPolicyTrackerNotification extends Notification
         return [
             'tracker_name' => $this->tracker->ai_policy_name,
             'tracker_id' => $this->tracker->id,
-            'message' => $this->message,
+            'message' => $this->messageData,
         ];
     }
 
@@ -55,13 +55,13 @@ class UpdateAiPolicyTrackerNotification extends Notification
         $logoPath = public_path('ai_dark_logo.png');
 
         return (new MailMessage)
-            ->subject('New AI Policy Tracker Added')
-            ->view('emails.new-policy-notification', [
+            ->subject('AI policy tracker is updated')
+            ->view('emails.updated-policy-notification', [
                 'trackerName' => $this->tracker->ai_policy_name,
                 'userName' => $this->user->name,
                 'action' => url('/aipolicytracker/single-view/' . $this->tracker->id),
                 'logo' => $logoPath,
-                'message' => $this->message,
+                'messageData' => $this->messageData,
             ]);
     }
 

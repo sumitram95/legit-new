@@ -48,28 +48,37 @@ class WatchListController extends Controller
 
     public function add($id, $isBooked)
     {
-        if (!Auth::check()) {
-            return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
+        try {
+
+            if (!Auth::check()) {
+                return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
+            }
+
+            if (!$id) {
+                return to_route('frontend.dashboard')->with('error', 'Woops! not booked');
+            }
+
+            if ($isBooked == "true") {
+                $bookmark = BookMark::where('ai_policy_tracker_id', $id)
+                    ->where('user_id', Auth::id())
+                    ->first();
+                $bookmark->delete();
+            } else {
+
+                BookMark::updateOrCreate([
+                    'ai_policy_tracker_id' => $id,
+                    'user_id' => Auth::id()
+                ], [
+                    'user_id' => Auth::user()->id,
+                    'ai_policy_tracker_id' => $id,
+                ]);
+            }
+
+            return back();
+        } catch (\Throwable $th) {
+            report($th);
+            return to_route('frontend.dashboard')->with('error', 'Oops! Something went wrong.');
         }
-
-        if (!$id) {
-            return to_route('frontend.dashboard')->with('error', 'Woops! not booked');
-        }
-
-
-        if ($isBooked == "true") {
-            $bookmark = BookMark::where('ai_policy_tracker_id', $id)->first();
-            $bookmark->delete();
-        } else {
-            BookMark::updateOrCreate(['ai_policy_tracker_id' => $id], [
-                'user_id' => Auth::user()->id,
-                'ai_policy_tracker_id' => $id,
-            ]);
-        }
-
-
-
-        return back();
 
     }
 
