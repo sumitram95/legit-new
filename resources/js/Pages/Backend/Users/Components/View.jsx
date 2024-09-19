@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AddIcon from "@/Components/AddIcon";
 import Button from "@/Components/Button";
-// import DeleteIcon from "@/Components/DeleteIcon";
-// import EditIcon from "@/Components/EditIcon";
-// import Model from "@/Components/Model";
-// import NoTableData from "@/Components/Table/NoTableData";
-// import ViewIcon from "@/Components/ViewIcon";
+
 import Layout from "@/Layouts/Backend/Layout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import DeleteIcon from "@/Components/DeleteIcon";
 import ViewIcon from "@/Components/ViewIcon";
-// import Add from "./Components/Add";
-// import Pagination from "@/Components/Pagination";
-// import DeleteModel from "@/Components/DeleteModel";
-// import Edit from "./Components/Edit";
-// import axios from "axios";
 
 // Helper function to generate avatar URL
 const generateAvatarUrl = (name) => {
@@ -23,9 +14,11 @@ const generateAvatarUrl = (name) => {
     )}&background=EBF4FF&color=7F9CF5`;
 };
 
-export default function View({ user }) {
+export default function View({ user, name }) {
+    console.log(user);
     const avatarUrl = generateAvatarUrl(user.name);
 
+    const [isAiPolicyNameView, setIsAiPolicyNameView] = useState(false);
     return (
         <div className="w-full">
             <div className="rounded-lg bg-white w-full">
@@ -83,7 +76,9 @@ export default function View({ user }) {
                 <hr />
                 <div className="px-5 mt-3 mb-3 flex justify-between">
                     <strong className="text-gray-600">Phone No.</strong>
-                    <span className="text-gray-500">{user.user_info?.phone_no}</span>
+                    <span className="text-gray-500">
+                        {user.user_info?.phone_no}
+                    </span>
                 </div>
                 <hr />
 
@@ -131,12 +126,71 @@ export default function View({ user }) {
                 </div>
                 <hr />
 
-                <div className="px-5 mt-3 flex justify-between">
+                <div className="px-5 mt-3 mb-3 flex justify-between">
                     <strong className="text-gray-600">Created at</strong>
                     <span className="text-gray-500">
                         {user.formatted_created_at}
                     </span>
                 </div>
+
+                <hr />
+
+                <div className="px-5 mt-3 flex justify-between">
+                    <div className="flex gap-2 items-center">
+                        <strong className="text-gray-600">
+                            Total Bookmarks
+                        </strong>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="size-5 cursor-pointer hover:text-blue-500"
+                            onClick={() =>
+                                setIsAiPolicyNameView(!isAiPolicyNameView)
+                            }
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                            />
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                            />
+                        </svg>
+                    </div>
+                    <p className="text-gray-500">
+                        {user.book_marks_count ?? 0}
+                    </p>
+                </div>
+
+                {isAiPolicyNameView && (
+                    <>
+                        <hr />
+                        <div className="mt-3 px-5">
+                            <strong className="text-gray-500">
+                                Ai Policy Name
+                            </strong>
+
+                            <ul className="text-gray-500 mt-3">
+                                {user?.book_marks.map((list, index) => (
+                                    <li key={list.id}>
+                                        {index + 1}.{" "}
+                                        {list.aipolicy?.ai_policy_name}
+                                    </li>
+                                ))}
+
+                                {!user?.book_marks.length > 0 && (
+                                    <li>No any ai policy</li>
+                                )}
+                            </ul>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );

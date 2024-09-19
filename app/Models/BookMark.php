@@ -31,4 +31,9 @@ class BookMark extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function aipolicy()
+    {
+        return $this->hasOne(AiPolicyTracker::class, 'id', 'ai_policy_tracker_id');
+    }
+
 }

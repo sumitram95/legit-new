@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AiPolicyTracker;
+use App\Models\BookMark;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,14 +21,13 @@ class UserController extends Controller
     }
     public function view($id)
     {
-        $user = User::with(['userInfo'])
-            ->where('email', '<>', 'admin@dignep.com.np')
-            ->where('id', $id)
-            ->first();
-            return response()->json(['user' => $user]);
+        $data['user'] = User::with(['userInfo', 'bookMarks.aipolicy']) // Eager load relationships
+        ->withCount('bookMarks') // Get the bookmark count
+        ->where('email', '<>', 'admin@dignep.com.np')
+        ->where('id', $id)
+        ->first();
 
-        // return Inertia::render('Backend/Users/Components/View', [
-        //     'user' => $user
-        // ]);
+
+        return response()->json($data);
     }
 }
