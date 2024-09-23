@@ -1,51 +1,14 @@
 import React from "react";
-import { Link, useForm, usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import NoTableData from "./NoTableData";
 
 import { limitWords } from "@/utils/limitWords";
-import { useEffect } from "react";
-import { useState } from "react";
 
 export default function Table({
-    favourite,
-    columns = [],
     tableData = [],
     noTableDataTitle = "No Data",
-    watchListIds = [], // Array of bookmarked IDs
     checkedColWithData,
-    ...props
 }) {
-    const [isUuid, setIsUuid] = useState(null);
-    const [isBooked, setIsBooked] = useState(false);
-
-    const handleBookmark = (id, isBooked = false) => {
-        setIsUuid(id);
-        setIsBooked(isBooked);
-    };
-
-    // Use an effect to run submit when the state is updated
-    useEffect(() => {
-        if (isUuid !== null) {
-            // Only submit if isUuid is set
-            submit();
-        }
-    }, [isUuid]); // Dependency array contains `isUuid` to trigger effect
-    const submit = () => {
-        axios
-            .post("/bookmarks/add", {
-                uuid: isUuid,
-                isBooked: isBooked,
-            })
-            .then((response) => {
-                console.log("Success:", response);
-                // Handle success
-            })
-            .catch((error) => {
-                console.error("Error submitting data:", error);
-                // Handle error
-            });
-    };
-
     const hasData = Array.isArray(tableData) && tableData.length > 0;
 
     const authcheck = usePage();
@@ -132,7 +95,6 @@ export default function Table({
                                 className="px-6 py-4 sticky-column-td border-e border-neutral-200 "
                             >
                                 <div className="flex gap-x-2 items-center">
-
                                     <Link
                                         href={route("frontend.watch_list.add", {
                                             id: list.id,

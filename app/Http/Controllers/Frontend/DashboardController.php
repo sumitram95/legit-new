@@ -22,9 +22,6 @@ class DashboardController extends Controller
 
         $data['authUserBookmarkCount'] = BookMark::authUserBookmarkCount();
 
-        // dd($data);
-
-
         $data['tableData'] = $aiPolicyTracker
             ->paginate(10);
 
