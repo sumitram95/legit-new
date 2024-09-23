@@ -33,6 +33,7 @@ export default function Dashboard({
     countryWithAiPolicies,
     authUserBookmarkCount,
 }) {
+    console;
     var [countrywithStatus, setCountrywithStatus] = useState(
         initialCountrywithStatus
     );
@@ -110,50 +111,6 @@ export default function Dashboard({
         setFilters(clearedFilters);
         fetchData(clearedFilters); // Fetch data with cleared filters
     };
-
-    const [visibleDiv, setVisibleDiv] = useState(false);
-    const [bookmarkCount, setBookmarkCount] = useState(authUserBookmarkCount);
-    const [watchListIds, setWatchListIds] = useState([]);
-
-    //****************** BookMark ******************* */
-
-    // const handleBookmarkChange = (count) => {
-    //     setBookmarkCount(count);
-    // };
-
-    // const handleBookmark = (id) => {
-    //     setWatchListIds((prevIds) => {
-    //         const updatedIds = prevIds.includes(id)
-    //             ? prevIds.filter((existingId) => existingId !== id)
-    //             : [...prevIds, id];
-
-    //         handleBookmarkChange(updatedIds.length);
-    //         return updatedIds;
-    //     });
-    // };
-
-    //****************** Form Submit ******************* */
-    // const { data, setData, post, processing, errors, reset } = useForm({
-    //     uuids: "",
-    // });
-
-    // const submit = (e) => {
-    //     e.preventDefault();
-    //     // Set the uuids value
-    //     // setData("uuids", watchListIds);
-    //     post(route("frontend.watch_list.show"), {
-    //         onFinish: () => reset("uuids"),
-    //     });
-    // };
-
-    // useEffect(() => {
-    //     // Perform the POST request
-    //     if (data.uuids.length > 0) {
-    //         post(route("frontend.watch_list.show"), {
-    //             onFinish: () => reset("uuids"),
-    //         });
-    //     }
-    // }, [data.uuids]);
 
     // edit column
     const [checkedColumns, setCheckedColumns] = useState([]);
@@ -257,9 +214,6 @@ export default function Dashboard({
         });
     };
 
-    // Slice the array to get the first five items
-    // const firstFiveNews = news.slice(0, 5);
-
     const hasData = Array.isArray(tableData.data) && tableData.data.length > 0;
 
     // State for showing advanced info
@@ -318,145 +272,7 @@ export default function Dashboard({
                                         handleShowAll={handleShowAll}
                                     />
                                 </div>
-
-                                {/* **********************  Clear filters ********************** */}
-                                {/* <div className="hidden gap-3 md:flex lg:hidden">
-                                    {visibleDiv && (
-                                        <button
-                                            className="button-wthout-border flex items-center gap-2 text-light-blue"
-                                            onClick={handleClearFilters}
-                                        >
-                                            <span className="ui-icon">
-                                                <svg
-                                                    viewBox="0 0 16 16"
-                                                    width="1em"
-                                                    height="1em"
-                                                    focusable="false"
-                                                    role="img"
-                                                    aria-label="x square"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="#7997c4"
-                                                    className="bi-x-square b-icon bi"
-                                                >
-                                                    <title>Clear</title>
-                                                    <g>
-                                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
-                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                            <span className="ui-clear-button_text">
-                                                Clear
-                                            </span>
-                                        </button>
-                                    )}
-                                    <button
-                                        onClick={() =>
-                                            setVisibleDiv(!visibleDiv)
-                                        }
-                                        className="text-sm text-secondary hover:text-blue-300 lg:hidden"
-                                    >
-                                        {!visibleDiv
-                                            ? "Show filters"
-                                            : "Hide filters"}
-                                        <i
-                                            className={`fa-solid ${
-                                                visibleDiv
-                                                    ? "fa-chevron-up"
-                                                    : "fa-chevron-down"
-                                            } ml-3`}
-                                        ></i>
-                                    </button>
-                                </div> */}
                             </div>
-                            {/* {visibleDiv && (
-                                <div className="px-5 w-full mt-5 hidden md:block">
-                                    <form className="w-full" id="filterData">
-                                        <div className="flex flex-wrap -mx-3 mb-6">
-                                            <div className="w-full md:w-1/2 px-3">
-                                                <SelectInput
-                                                    label="AI Policy Name"
-                                                    className="mb-2 text-sm font-normal text-light-blue"
-                                                    options={aiPolicies.map(
-                                                        (policy) => ({
-                                                            value: policy.value,
-                                                            label: policy.label,
-                                                        })
-                                                    )}
-                                                    value={
-                                                        filters.AI_Policy_Name
-                                                    }
-                                                    onChange={(
-                                                        selectedOptions
-                                                    ) =>
-                                                        handleFilterChange(
-                                                            "AI_Policy_Name",
-                                                            selectedOptions
-                                                        )
-                                                    }
-                                                />
-                                            </div>
-                                            <div className="w-full md:w-1/2 px-3">
-                                                <SelectInput
-                                                    label="Country / Region"
-                                                    className="mb-2 text-sm font-normal text-light-blue"
-                                                    options={countries.map(
-                                                        (country) => ({
-                                                            value: country.value,
-                                                            label: country.label,
-                                                        })
-                                                    )}
-                                                    value={filters.country_id}
-                                                    onChange={(
-                                                        selectedOptions
-                                                    ) =>
-                                                        handleFilterChange(
-                                                            "country_id",
-                                                            selectedOptions
-                                                        )
-                                                    }
-                                                />
-                                            </div>
-
-                                            <div className="w-full md:w-1/2 px-3">
-                                                <SelectInput
-                                                    label="Status"
-                                                    className="mb-2 text-sm font-normal text-light-blue"
-                                                    options={statuses.map(
-                                                        (status) => ({
-                                                            value: status.value,
-                                                            label: status.label,
-                                                        })
-                                                    )}
-                                                    value={filters.status_id}
-                                                    onChange={(
-                                                        selectedOptions
-                                                    ) =>
-                                                        handleFilterChange(
-                                                            "status_id",
-                                                            selectedOptions
-                                                        )
-                                                    }
-                                                />
-                                            </div>
-
-                                            <div className="w-full md:w-1/2 px-3">
-                                                <Input
-                                                    className="mb-2 text-sm font-normal text-light-blue"
-                                                    name="announcement_year"
-                                                    value={
-                                                        filters.announcement_year
-                                                    }
-                                                    onChange={handleInputChange}
-                                                    htmlFor="announcement_year"
-                                                    label="Announcement Year"
-                                                    type="date"
-                                                />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            )} */}
 
                             {/* ********************** Status Component (mobile) ********************** */}
                             <div className="hidden md:flex lg:flex xl:hidden justify-center mt-5 items-center">
@@ -477,41 +293,7 @@ export default function Dashboard({
                                     }
                                 />
                             </div>
-                            {/* ********************** HistoricState Component ********************** */}
-                            {/* <div className="hidden md:block mt-5 px-5">
-                            <HistoricState date={"August 2024"} />
-                        </div> */}
-                            {/* <div className="hidden md:flex justify-between mt-5 px-5">
-                            <form
-                                onSubmit={submit}
-                                className="text-primary bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
-                            >
-                                <button
-                                    type="submit"
-                                    className="flex items-center text-primary-light"
-                                >
-                                    <i
-                                        className={`fa ${
-                                            bookmarkCount
-                                                ? "fa-star"
-                                                : "fa-regular fa-star"
-                                        } mr-3`}
-                                    ></i>
-                                    <span>
-                                        {processing
-                                            ? "Bookmarks..."
-                                            : `Bookmarks (${bookmarkCount})`}
-                                    </span>
-                                    {processing && (
-                                        <i className="fa-solid fa-spinner fa-spin ml-3"></i>
-                                    )}
-                                </button>
-                            </form>
-                            <EditColumn
-                                EditColumnLists={EditColumnLists}
-                                onCheckboxChange={handleCheckboxChange}
-                            />
-                        </div> */}
+
                             {/* boookmarks, search, and editcolumn button */}
                             <div className="hidden flex-wrap gap-y-2 mt-5 px-5 md:flex">
                                 {/* watchlist fav */}
@@ -524,12 +306,14 @@ export default function Dashboard({
                                     >
                                         <i
                                             className={`fa ${
-                                                bookmarkCount
+                                                authUserBookmarkCount
                                                     ? "fa-star"
                                                     : "fa-regular fa-star"
                                             } mr-3`}
                                         ></i>
-                                        <span>Bookmarks ({bookmarkCount})</span>
+                                        <span>
+                                            Bookmarks ({authUserBookmarkCount})
+                                        </span>
                                     </Link>
                                 </div>
 
@@ -622,7 +406,7 @@ export default function Dashboard({
                                     </form>
                                 </div>
 
-                                {/* edit column drow down */}
+                                {/* edit column drop down */}
                                 <div className="flex-none">
                                     <EditColumn
                                         EditColumnLists={EditColumnLists}
@@ -635,20 +419,8 @@ export default function Dashboard({
                             <Table
                                 columns={Columns}
                                 checkedColWithData={checkedColumns}
-                                tableData={tableData.data} // Ensure this matches the structure of the data returned from fetchData
-                                btnName={"Edit Columns "}
-                                // onBookmarkChange={handleBookmarkChange}
-                                // onHandleBookmark={handleBookmark}
-                                watchListIds={watchListIds}
+                                tableData={tableData.data}
                             />
-
-                            {/* Pagination */}
-                            {/* <div className="pagination">
-                {renderPaginationLinks()}
-            </div> */}
-
-                            {/* <Pagination paginator={tableData} /> */}
-                            {/* <PaginationPage paginator={tableData} /> */}
 
                             <div className="hidden md:block ">
                                 {tableData.total >= 10 && (
@@ -657,113 +429,6 @@ export default function Dashboard({
                             </div>
                         </div>
                     </div>
-
-                    {/* ********************** Search Component (desktop) ********************** */}
-                    {/* <div className="hidden lg:block lg:w-[16.67%]">
-                        <div className="border rounded-md w-full bg-white sticky top-0">
-                            <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
-                                <div className="flex items-center justify-between w-full">
-                                    <p className="font-bold text-primary-light text-lg leading-none">
-                                        Filters
-                                    </p>
-                                    <button
-                                        className="button-wthout-border flex items-center gap-2 text-light-blue"
-                                        onClick={handleClearFilters}
-                                    >
-                                        <span className="ui-icon">
-                                            <svg
-                                                viewBox="0 0 16 16"
-                                                width="1em"
-                                                height="1em"
-                                                focusable="false"
-                                                role="img"
-                                                aria-label="x square"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="#7997c4"
-                                                className="bi-x-square b-icon bi"
-                                            >
-                                                <title>Clear</title>
-                                                <g>
-                                                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
-                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                        <span className="ui-clear-button_text">
-                                            Clear
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="px-[16px] my-5">
-                                <form className="w-full" id="FormFiled">
-                                    <div>
-                                        <SelectInput
-                                            label="AI Policy Name"
-                                            className="mb-2 text-sm font-normal text-light-blue"
-                                            options={aiPolicies.map(
-                                                (policy) => ({
-                                                    value: policy.value,
-                                                    label: policy.label,
-                                                })
-                                            )}
-                                            value={filters.AI_Policy_Name}
-                                            onChange={(selectedOptions) =>
-                                                handleFilterChange(
-                                                    "AI_Policy_Name",
-                                                    selectedOptions
-                                                )
-                                            }
-                                        />
-
-                                        <SelectInput
-                                            label="Country / Region"
-                                            className="mb-2 text-sm font-normal text-light-blue"
-                                            options={countries.map(
-                                                (country) => ({
-                                                    value: country.value,
-                                                    label: country.label,
-                                                })
-                                            )}
-                                            value={filters.country_id}
-                                            onChange={(selectedOptions) =>
-                                                handleFilterChange(
-                                                    "country_id",
-                                                    selectedOptions
-                                                )
-                                            }
-                                        />
-
-                                        <SelectInput
-                                            label="Status"
-                                            className="mb-2 text-sm font-normal text-light-blue"
-                                            options={statuses.map((status) => ({
-                                                value: status.value,
-                                                label: status.label,
-                                            }))}
-                                            value={filters.status_id}
-                                            onChange={(selectedOptions) =>
-                                                handleFilterChange(
-                                                    "status_id",
-                                                    selectedOptions
-                                                )
-                                            }
-                                        />
-
-                                        <Input
-                                            className="mb-2 text-sm font-normal text-light-blue"
-                                            name="announcement_year"
-                                            value={filters.announcement_year}
-                                            onChange={handleInputChange}
-                                            htmlFor="announcement_year"
-                                            label="Announcement Year"
-                                            type="date"
-                                        />
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
 
                 {/* mobile */}
@@ -1082,29 +747,6 @@ export default function Dashboard({
                 <div className="hidden md:block">
                     <News news={news} />
                 </div>
-
-                {/* <div className="block md:hidden">
-                <div className="md:border-b flex md:hidden border-light-border pb-4 justify-between items-center">
-                    <div>
-                        <p className="font-bold text-primary-light text-lg leading-none">
-                            News
-                        </p>
-                    </div>
-                    <div className="flex gap-5 mt-3 text-sm">
-                        <Link
-                            href={route("news.index")}
-                            className=" text-sm flex gap-2 hover:underline"
-                        >
-                            <span>Go to all News</span>
-                            <span>
-                                <i className="fa-regular fa-circle-right"></i>
-                            </span>
-                        </Link>
-                    </div>
-                </div>
-
-                <NewsCard newsLists={firstFiveNews} />
-            </div> */}
 
                 {/* ********************** Description Component ********************** */}
                 <Description
