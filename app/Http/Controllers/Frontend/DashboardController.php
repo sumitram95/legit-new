@@ -44,14 +44,17 @@ class DashboardController extends Controller
         $URL_MAP = [];
         $STATUS_MAP = [];
         foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {
-            $countrySymbol = $tracker->country->symbol;
+            $countrySymbol = null;
+            if ($tracker->country->status == 1) {
+                $countrySymbol = $tracker->country->symbol;
+            }
             $URL_MAP[$countrySymbol] = $tracker->whitepaper_document_link;
             $STATUS_MAP[$countrySymbol] = $tracker->status->name;
         }
         $data['countrywithStatus'] = $STATUS_MAP;
 
         //-- get individual country
-        $data['countrywiseAiPolicyTracker'] = Country::query()
+        $data['countrywiseAiPolicyTracker'] = Country::where('status', 1)
             ->withWhereHas('aiPolicyTrackers')
             ->latest()
             ->get();
@@ -179,7 +182,10 @@ class DashboardController extends Controller
             $URL_MAP = [];
             $STATUS_MAP = [];
             foreach ($data['aiPolicyTrackerWithStatus'] as $tracker) {
-                $countrySymbol = $tracker->country->symbol;
+                $countrySymbol = null;
+                if ($tracker->country->status == 1) {
+                    $countrySymbol = $tracker->country->symbol;
+                }
                 $URL_MAP[$countrySymbol] = $tracker->whitepaper_document_link;
                 $STATUS_MAP[$countrySymbol] = $tracker->status->name;
             }
