@@ -39,63 +39,33 @@ class DashboardController extends Controller
         $upcomingYear = $currentYear + 1;
 
 
-        // Fetch customer counts for all months
-        // $graphCount = AiPolicyTracker::selectRaw('MONTH(created_at) as month, COUNT(*) as value')
-        //     ->whereYear('created_at', '>=', $currentYear)
-        //     ->whereYear('created_at', '<=', $upcomingYear)
-        //     ->groupBy(DB::raw('MONTH(created_at)'))
-        //     ->orderBy(DB::raw('MONTH(created_at)'), 'asc')
-        //     ->pluck('value', 'month')
-        //     ->toArray();
 
-        $graphCounts = AiPolicyTracker::get()->groupBy('created_month');
+        // Get all months
+        $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+        // Get the data and group by month
+        // $graphCounts = AiPolicyTracker::get()->groupBy('created_month');
+        $graphCounts = AiPolicyTracker::whereYear('created_at', $currentYear)
+            ->orWhereYear('created_at', $upcomingYear)
+            ->get()
+            ->groupBy('created_month');
 
-        // selectRaw('extract(month from created_at) as month, COUNT(*) as value')
-        //     ->whereYear('created_at', '>=', $currentYear)
-        //     ->whereYear('created_at', '<=', $upcomingYear)
-        //     ->groupBy(DB::raw('extract(month from created_at)'))
-        //     ->orderBy(DB::raw('extract(month from created_at)'), 'asc')
-        //     ->pluck('value', 'month')
-        //     ->toArray();
+        $monthlyCounts = [];
 
+        foreach ($months as $month) {
 
-
-        // Prepare data array with counts for all months
-        $graphData = [];
-        $monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        foreach ($monthNames ?? [] as $monthName) {
-            foreach ($graphCounts ?? [] as $key => $graphCount) {
-                if ($monthName == $key) {
-                    $graphData[] = [
-                        'month' => $key,
-                        'value' => $graphCount->count(),
-                    ];
-                } else {
-                    $graphData[] = [
-                        'month' => $monthName,
-                        'value' => 0,
-                    ];
-                }
-
-            }
-
-            if ($graphCounts->isEmpty()) {
-                $graphData[] = [
-                    'month' => $monthName,
-                    'value' => 0,
-                ];
-            }
-
+            $monthlyCounts[] = [
+                'month' => $month,
+                'value' => isset($graphCounts[$month]) ? $graphCounts[$month]->count() : 0,
+            ];
         }
-
 
         $data['currentYear'] = $currentYear;
         $data['upcomingYear'] = $upcomingYear;
 
         return Inertia::render('Backend/Dashboard', [
             "data" => $data,
-            "graphData" => $graphData,
+            "graphData" => $monthlyCounts,
         ]);
     }
 }
