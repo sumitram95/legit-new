@@ -70,8 +70,5 @@ class CountryController extends Controller
 
         }
 
-
-        return to_route('backend.country.index')->with('success', 'Successfully updated');
-
     }
 }
