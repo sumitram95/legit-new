@@ -45,6 +45,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::user()->email == "admin@dignep.com.np") {
+            return to_route('dashboard');
+        }
+
         return redirect()->intended(route('frontend.dashboard', absolute: false));
     }
 

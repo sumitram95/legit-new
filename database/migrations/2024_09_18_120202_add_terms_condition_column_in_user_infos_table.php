@@ -10,10 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('user_infos', function (Blueprint $table) {
-            $table->boolean('terms_condition')->nullable()->default(false);
+        // Schema::table('user_infos', function (Blueprint $table) {
+        //     $table->boolean('terms_condition')->nullable()->default(false);
 
-        });
+        // });
     }
 
     /**
@@ -21,8 +21,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('user_infos', function (Blueprint $table) {
-            $table->dropColumn("terms_condition");
-        });
-    }
+    //     Schema::table('user_infos', function (Blueprint $table) {
+    //         $table->dropColumn("terms_condition");
+    //     });
+     }
 };
