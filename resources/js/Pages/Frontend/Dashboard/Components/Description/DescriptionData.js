@@ -1,21 +1,20 @@
 const DescriptionData = [
     {
-        name: "Cancelled",
-        title: "Countries that canceled or decommissioned an AI Policy.",
+        name: "Benchmarking IT Readiness",
+        title: "Providing a standardized IT Readiness Index to benchmark digital capabilities across Nepal’s local governments.",
     },
     {
-        name: "Research",
-        title: "Countries that have conducted first explanatory AI Policy research.",
+        name: "Guidance on Digital Tools and Best Practices",
+        title: "Offering information on best practices and recommending tools to improve IT infrastructure and governance.",
     },
     {
-        name: "Development",
-        title: "Countries piloting AI policy in a real environment with a limited number of partie.",
+        name: "Informed Decision-Making",
+        title: "Enabling data-driven decisions through clear, accessible data visualization and tracking tools.",
     },
     {
-        name: "Launched",
-        title: "Countries that officially launched an AI policy.",
+        name: "Promoting Inclusivity",
+        title: "Measuring and encouraging ICT training for all, including disadvantaged groups, to foster an inclusive approach to digital literacy.",
     },
-
 ];
 
 export default DescriptionData;
