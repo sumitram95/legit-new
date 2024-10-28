@@ -29,50 +29,41 @@ export default function Table({
                             scope="col"
                             className="px-6 py-3 sticky-column border-e border-neutral-200 "
                         >
-                            AI Policy Name
+                            Local Government
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Country / Region
+                            Provinnce
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Governing Body
+                            Districts
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Announcement
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Status
-                        </th>
-                        {/* <th scope="col" className="px-6 py-3">
-                            Document Link
-                        </th> */}
-                        <th scope="col" className="px-6 py-3">
-                            Technology partners
+                            Date
                         </th>
                         {/* after show when checked editColumn */}
-                        {checkedColWithData.includes("Document Link") && (
+                        {/* {checkedColWithData.includes("Document Link") && (
                             <th scope="col" className="px-6 py-3">
                                 Document Link
                             </th>
-                        )}
+                        )} */}
 
-                        {checkedColWithData.includes(
+                        {/* {checkedColWithData.includes(
                             "Governance structure"
                         ) && (
                             <th scope="col" className="px-6 py-3">
                                 Governance structure
                             </th>
-                        )}
+                        )} */}
 
-                        {checkedColWithData.includes(
+                        {/* {checkedColWithData.includes(
                             "Main motivation/goals of the AI policy"
                         ) && (
                             <th scope="col" className="px-6 py-3">
                                 Main motivation/goals of the AI policy
                             </th>
-                        )}
+                        )} */}
 
-                        {checkedColWithData.includes("Description") && (
+                        {/* {checkedColWithData.includes("Description") && (
                             <th scope="col" className="px-6 py-3">
                                 description
                             </th>
@@ -84,7 +75,7 @@ export default function Table({
                             <th scope="col" className="px-6 py-3">
                                 Link to announcement
                             </th>
-                        )}
+                        )} */}
                     </tr>
                 </thead>
                 <tbody>
@@ -132,21 +123,21 @@ export default function Table({
                             <td width="10%" className="px-6 py-4">
                                 {list.formatted_created_at}
                             </td>
-                            <td width="15%" className="px-6 py-4">
+                            {/* <td width="15%" className="px-6 py-4">
                                 <span
                                     className={`status-state ${
                                         list.status?.name || ""
                                     }`}
                                 ></span>
                                 {list.status?.name}
-                            </td>
+                            </td> */}
 
-                            <td width="10%" className="px-6 py-4">
+                            {/* <td width="10%" className="px-6 py-4">
                                 {list.technology_partners}
-                            </td>
+                            </td> */}
 
                             {/* after checked editColumn */}
-                            {checkedColWithData.includes("Document Link") && (
+                            {/* {checkedColWithData.includes("Document Link") && (
                                 <td width="10%" className="px-6 py-4">
                                     {isAuth ? (
                                         isVerifiedEmail ? (
@@ -175,15 +166,15 @@ export default function Table({
                                         </Link>
                                     )}
                                 </td>
-                            )}
-                            {checkedColWithData.includes(
+                            )} */}
+                            {/* {checkedColWithData.includes(
                                 "Governance structure"
                             ) && (
                                 <td width="10%" className="px-6 py-4">
                                     {limitWords(list.governance_structure, 3)}
                                 </td>
-                            )}
-                            {checkedColWithData.includes(
+                            )} */}
+                            {/* {checkedColWithData.includes(
                                 "Main motivation/goals of the AI policy"
                             ) && (
                                 <td width="10%" className="px-6 py-4">
@@ -194,7 +185,7 @@ export default function Table({
                                 <td width="10%" className="px-6 py-4">
                                     {limitWords(list.description, 3)}
                                 </td>
-                            )}
+                            )} */}
                         </tr>
                     ))}
                 </tbody>

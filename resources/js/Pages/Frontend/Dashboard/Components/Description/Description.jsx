@@ -13,10 +13,10 @@ export default function Description({
             <div className="flex justify-between items-center border-b px-5 pb-4">
                 <div>
                     <h1 className=" text-base lg:text-xl font-bold mb-2 text-primary-light">
-                        AIPolicyTracker Project
+                        LeGit Project
                     </h1>
                     <p>
-                    AIPolicyTracker is a comprehensive resource that
+                    Legit is a comprehensive resource that
                         monitors and analyzes artificial intelligence (AI)
                         policies and regulations across various jurisdictions.
                     </p>

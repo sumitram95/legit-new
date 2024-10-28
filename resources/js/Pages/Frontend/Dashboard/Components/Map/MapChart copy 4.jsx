@@ -13,22 +13,21 @@ const COLORS = {
     province5: "#AFA3DA",
     province6: "#667A91",
     province7: "#67A8EF",
-    default: "#E0E0E0", // Default color for provinces without policies
 };
 
 export function MapChart() {
     // Default policy data
     const countryWithAiPolicies = {
         "NP-P1": [
-            { name: "leGit 1.1", url: "http://example.com/leGit-1-1" },
-            { name: "leGit 1.2", url: "http://example.com/leGit-1-2" },
-            { name: "leGit 1.3", url: "http://example.com/leGit-1-3" },
-            { name: "leGit 1.4", url: "http://example.com/leGit-1-4" },
-            { name: "leGit 1.5", url: "http://example.com/leGit-1-5" },
+            { name: "Policy 1.1", url: "http://example.com/policy-1-1" },
+            { name: "Policy 1.2", url: "http://example.com/policy-1-2" },
+            { name: "Policy 1.3", url: "http://example.com/policy-1-3" },
+            { name: "Policy 1.4", url: "http://example.com/policy-1-4" },
+            { name: "Policy 1.5", url: "http://example.com/policy-1-5" },
         ],
         "NP-P2": [
-            { name: "leGit 2.1", url: "http://example.com/leGit-2-1" },
-            { name: "leGit 2.2", url: "http://example.com/leGit-2-2" },
+            { name: "Policy 2.1", url: "http://example.com/policy-2-1" },
+            { name: "Policy 2.2", url: "http://example.com/policy-2-2" },
         ],
         "NP-P3": [], // Bagmati Province
         "NP-P4": [], // Gandaki Province
@@ -74,10 +73,7 @@ export function MapChart() {
         // Apply color to provinces
         polygonTemplate.adapter.add("fill", (fill, target) => {
             const provinceId = target.dataItem?.dataContext?.id;
-            // Use predefined color or default color if no policies are available
-            return countryWithAiPolicies[provinceId]?.length > 0
-                ? COLOR_MAP[provinceId] || COLORS.default
-                : COLORS.default;
+            return COLOR_MAP[provinceId] || fill; // Use predefined color or default fill color
         });
 
         // Enable tooltip interaction
