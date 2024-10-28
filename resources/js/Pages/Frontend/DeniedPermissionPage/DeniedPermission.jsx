@@ -11,7 +11,8 @@ export default function DeniedPermission() {
                     <div className="rounded-md md:bg-white lg:bg-white md:w-1/2 md:px-20 py-10">
                         <div className="w-full mb-5 text-center">
                             <span className="text-center text-sm tracking-wider font-bold">
-                                Already registered in (AI) policy tracker?
+                                Already registered in (LeGit) Local e-Government
+                                Infomation Technology?
                             </span>
                             <Link
                                 href={route("login")}
@@ -26,11 +27,10 @@ export default function DeniedPermission() {
 
                         <h1 className="tracking-wider leading-6">
                             <strong className="me-2">
-                                Exclusive Access to Comprehensive AI Policy
-                                Reports
+                                Exclusive Access to Comprehensive LeGit Reports
                             </strong>
                             Upgrade to <strong>Premium</strong> to unlock
-                            exclusive insights into global AI regulatory
+                            exclusive insights into nation regulatory
                             landscapes. Premium users gain access to:
                         </h1>
                         <ul className="mt-5">
@@ -40,10 +40,10 @@ export default function DeniedPermission() {
                                 </strong>
                                 <h2 className=" tracking-wider leading-6">
                                     <strong className="me-2">
-                                        High-Level AI Regulation Summary:
+                                        High-Level LeGit Regulation Summary:
                                     </strong>
-                                    A quick overview of AI regulation status
-                                    across countries.
+                                    A quick overview of LeGit regulation status
+                                    across country with province.
                                 </h2>
                             </li>
                             <li className="flex items-center gap-3 mb-5">
@@ -54,8 +54,8 @@ export default function DeniedPermission() {
                                     <strong className="me-2">
                                         Detailed Market Profiles:
                                     </strong>
-                                    In-depth data on AI policies, legislation,
-                                    and schedules in individual markets.
+                                    In-depth data on LeGit, legislation, and
+                                    schedules in individual markets.
                                 </h2>
                             </li>
                             <li className="flex items-center gap-3 mb-5">
@@ -64,7 +64,7 @@ export default function DeniedPermission() {
                                 </strong>
                                 <h2 className=" tracking-wider">
                                     <strong className="me-2 leading-6">
-                                        Policy Alerts:
+                                        LeGit Alerts:
                                     </strong>
                                     Receive real-time alerts on important
                                     regulatory changes and upcoming legislation
@@ -79,10 +79,10 @@ export default function DeniedPermission() {
                                 </strong>
                                 <h2 className=" tracking-wider">
                                     <strong className="me-2 leading-6">
-                                        AI Policy News:
+                                        LeGit News:
                                     </strong>
-                                    Stay informed with the latest developments
-                                    in AI governance from around the world.
+                                    Stay informed with the latest data in LeGit
+                                    governance from around the province.
                                 </h2>
                             </li>
 
@@ -92,18 +92,18 @@ export default function DeniedPermission() {
                                 </strong>
                                 <h2 className=" tracking-wider">
                                     <strong className="me-2 leading-6">
-                                        Policy Timelines:
+                                        LeGit Timelines:
                                     </strong>
                                     Access detailed timelines tracking the
-                                    progress of AI policies and regulations in
-                                    key markets.
+                                    progress of LeGit and regulations in key
+                                    markets.
                                 </h2>
                             </li>
                         </ul>
 
                         <div className="w-full mt-5">
                             <h2 className="text-center text-xl">
-                                Unlock more (AI) policy tracker
+                                Unlock more LeGit data
                             </h2>
 
                             <div className="flex justify-center mt-5">
@@ -112,7 +112,7 @@ export default function DeniedPermission() {
                                     href={route("register")}
                                     className=" text-xl px-10 py-2 bg-gray-50 hover:bg-gray-100 rounded-full border uppercase"
                                 >
-                                    Register{" "}
+                                    Register
                                     <i className="fa-solid fa-arrow-right-long ml-2"></i>
                                 </Link>
                             </div>
