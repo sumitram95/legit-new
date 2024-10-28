@@ -174,7 +174,9 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                     {/* <Responsive responsive={["md","lg","xl"]}> */}
                                     {/* search filter for table data */}
                                     {/* <div className="flex flex-wrap mt-5 px-5"> */}
-                                    <div className="w-1/2 hidden md:block">
+
+                                    {/* filter desktop */}
+                                    {/* <div className="w-1/2 hidden md:block">
                                         <form className="w-full" id="FormFiled">
                                             <div className="flex">
                                                 <div className="px-3 w-full">
@@ -225,7 +227,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div> */}
                                     {/* </div> */}
                                     {/* </Responsive> */}
                                     {/* md and lg for show and hide search filter button */}
@@ -264,10 +266,9 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                         </div>
                                     </Responsive> */}
                                 </div>
-
                                 {/* show on small devices only */}
-                                {/* <Responsive responsive={["sm"]}> */}
-                                <div className="border-b border-light-border p-[16px] pb-4 flex md:hidden justify-between items-center bg-white mt-4 rounded">
+                                {/* filter mobile */}
+                                {/* <div className="border-b border-light-border p-[16px] pb-4 flex md:hidden justify-between items-center bg-white mt-4 rounded">
                                     <div>
                                         <p className="font-bold text-primary text-lg">
                                             Filters
@@ -304,12 +305,11 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                             <i className="fa-solid ms-3 text-primary fa-angle-down"></i>
                                         </button>
                                     </div>
-                                </div>
-                                {/* </Responsive> */}
+                                </div> */}
                             </div>
                             {/* /* show on small ,medium and lg devices for select filter form */}
                             {/* <Responsive responsive={["sm", "md", "lg"]}> */}
-                            {isDropdownOpen && (
+                            {/* {isDropdownOpen && (
                                 <div className="px-5 w-full pt-5 block md:hidden bg-white border-b xl:border-b-0 border-light-border">
                                     <form className="w-full" id="filterData">
                                         <div className="flex flex-wrap -mx-3 mb-6">
@@ -358,7 +358,7 @@ export default function News({ news: initialNewsData, aiPolicies, countries }) {
                                         </div>
                                     </form>
                                 </div>
-                            )}
+                            )} */}
                             {/* </Responsive> */}
 
                             <div className="mt-5">
