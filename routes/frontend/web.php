@@ -45,9 +45,9 @@ Route:: as('frontend.')->group(function () {
     Route::controller(WatchListController::class)
         ->as('watch_list.')
         ->group(function () {
-            Route::get('/bookmarks', 'index')->name('index');
-            Route::get('/bookmarks/add/{id}/{isBooked}', 'add')->name('add')->middleware('verified');
-            Route::get('/bookmarks/filtered', 'getFilteredData')->name('filtered');
+            Route::get('/alert', 'index')->name('index');
+            Route::get('/alert/add/{id}/{isBooked}', 'add')->name('add')->middleware('verified');
+            Route::get('/alert/filtered', 'getFilteredData')->name('filtered');
         });
 
     // time line controller
