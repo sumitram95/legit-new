@@ -41,7 +41,7 @@ class SinglePolicyTackerControlle extends Controller
         $latestAIPolicyTracker = AiPolicyTracker::orderBy('updated_at', 'DESC')->first();
         $data['latestDateOfUpdateAiPolicyTracker'] = $latestAIPolicyTracker ? Carbon::parse($latestAIPolicyTracker->updated_at)->format('F Y') : '';
 
-        return Inertia::render("Frontend/AiPolicyTracker/SingleAiPolicyTracker", $data);
+        return Inertia::render("Frontend/AiPolicyTracker/SingleAlert", $data);
     }
 
     public function aiPolicyBookMark(Request $request, $id)
