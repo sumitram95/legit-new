@@ -119,7 +119,7 @@ export default function WatchList({
 
     return (
         <AppLayout>
-            <Head title="Watch List" />
+            <Head title="Alert Lists" />
             <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="block sm:block md:block xl:flex gap-[30px]">
                     {/* Sidebar for filters for desktop  */}

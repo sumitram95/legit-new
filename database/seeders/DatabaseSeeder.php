@@ -25,5 +25,20 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(StatusSeeder::class);
         $this->call(AiPolicyTrackerSeeder::class);
+
+
+        $this->call(ProvinceSeeder::class);
+        // $this->call(DistrictSeeder::class);
+        $this->call(KoshiSeeder::class); //p1
+        $this->call(MadheshSeeder::class); //p2
+        $this->call(BagmatiSeeder::class); //p3
+        $this->call(GandakiSeeder::class); //p4
+        $this->call(LumbiniSeeder::class); //p5
+        $this->call(KarnaliSeeder::class); //p6
+        $this->call(SudurpashchimSeeder::class); //p7
+
+        // local government
+
+        $this->call(LocalGovernmentSeeder::class);
     }
 }

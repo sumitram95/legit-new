@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\AiPolicyTracker\SinglePolicyTackerControlle;
 use App\Http\Controllers\Frontend\DashboardController;
+use App\Http\Controllers\Frontend\LegitApplication\LegitApplicationController;
 use App\Http\Controllers\Frontend\News\NewsController;
 use App\Http\Controllers\Frontend\TimeLine\TimeLineController;
 use App\Http\Controllers\Frontend\WatchList\WatchListController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 
 Route::get('/denied', function () {
     return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
@@ -55,7 +57,17 @@ Route:: as('frontend.')->group(function () {
         Route::get('/timeline', 'index')->name('index');
     });
 
-    // single AI policy tracker
+    Route::controller(LegitApplicationController::class)
+        ->as('legit_application_form.')
+        ->group(function () {
+            Route::get('/legit-aplication-form', 'create')->name('create');
+            Route::post('/legit-aplication->form', 'store')->name('store');
+
+            Route::post('/district-data-updata/{value}', 'districtDataUpdate')->name('districtDataUpdate');
+            Route::post('/lg-data-updata/{value}', 'lgDataUpdate')->name('lgDataUpdate');
+        });
+
+    // single legit
     Route::controller(SinglePolicyTackerControlle::class)->as('single_ai_policy_tracker.')->group(function () {
         Route::get("/legit/single-view/{id}", "index")->name('index');
         Route::post("/aipolicytracke/bookmark/{id}", "aiPolicyBookMark")->name('bookmark');

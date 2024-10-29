@@ -175,7 +175,10 @@ export function NavBar({ NavBarLists }) {
                     })}
                     <div className="mt-4 md:mt-0 font-bold">
                         <Link
-                            href={route("login")}
+                            href={route(
+                                "frontend.legit_application_form.create"
+                            )}
+
                             className="bg-blue-400 px-3 rounded-md py-1.5 hover:bg-blue-500"
                         >
                             legit application
