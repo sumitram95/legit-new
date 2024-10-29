@@ -15,12 +15,12 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         $status = [
-            "research",
-            "whitepaper",
-            "pilot",
-            "development",
-            "launched",
-            "cancelled",
+            "province",
+            "district",
+            "local government",
+            // "development",
+            // "launched",
+            // "cancelled",
         ];
 
 

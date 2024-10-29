@@ -13,12 +13,12 @@ export default function Description({
             <div className="flex justify-between items-center border-b px-5 pb-4">
                 <div>
                     <h1 className=" text-base lg:text-xl font-bold mb-2 text-primary-light">
-                        AIPolicyTracker Project
+                        LeGit Project
                     </h1>
                     <p>
-                    AIPolicyTracker is a comprehensive resource that
-                        monitors and analyzes artificial intelligence (AI)
-                        policies and regulations across various jurisdictions.
+                        Primary objective of LeGIT is to support Nepal's local
+                        governments in achieving IT readiness for efficient and
+                        responsive digital governance. Specific goals include
                     </p>
                 </div>
             </div>
@@ -32,16 +32,16 @@ export default function Description({
 
                         {descriptionData.map((data, index) => (
                             <div
-                            className="block sm:flex gap-2 mt-3 text-primary-light"
-                            key={index}
-                        >
-                            <p>
-                                <strong className=" capitalize">
-                                    {data.name}
-                                </strong>
-                            </p>
-                            <p className="text-gray-500">{data.title}</p>
-                        </div>
+                                className="block gap-2 mt-3 text-primary-light"
+                                key={index}
+                            >
+                                <p>
+                                    <strong className=" capitalize">
+                                        {data.name}
+                                    </strong>
+                                </p>
+                                <p className="text-gray-500">{data.title}</p>
+                            </div>
                         ))}
                     </div>
 

@@ -1,39 +1,57 @@
 import React, { useEffect } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
-import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
+import am4geodata_nepalLow from "@amcharts/amcharts4-geodata/nepalLow"; // Import the geodata for Nepal's provinces
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
-// Define colors for categories
+// Define colors for provinces
 const COLORS = {
-    cancelled: "#ec8596",
-    research: "#B5DED7",
-    whitepaper: "#F4F8FC",
-    pilot: "#F1CDB2",
-    development: "#AFA3DA",
-    launched: "#667A91"
-    // launched: "#67A8EF"
+    province1: "#ec8596",
+    province2: "#B5DED7",
+    province3: "#F4F8FC",
+    province4: "#F1CDB2",
+    province5: "#AFA3DA",
+    province6: "#667A91",
+    province7: "#67A8EF",
+    default: "#E0E0E0", // Default color for provinces without policies
 };
 
-export function MapChart({
-    countrywithStatus,
-    countrywithMap,
-    countryWithAiPolicies
-}) {
+export function MapChart() {
+    // Default policy data
+    const countryWithAiPolicies = {
+        "NP-P1": [
+            { name: "leGit 1.1", url: "http://example.com/leGit-1-1" },
+            { name: "leGit 1.2", url: "http://example.com/leGit-1-2" },
+            { name: "leGit 1.3", url: "http://example.com/leGit-1-3" },
+            { name: "leGit 1.4", url: "http://example.com/leGit-1-4" },
+            { name: "leGit 1.5", url: "http://example.com/leGit-1-5" },
+        ],
+        "NP-P2": [
+            { name: "leGit 2.1", url: "http://example.com/leGit-2-1" },
+            { name: "leGit 2.2", url: "http://example.com/leGit-2-2" },
+        ],
+        "NP-P3": [], // Bagmati Province
+        "NP-P4": [], // Gandaki Province
+        "NP-P5": [], // Lumbini Province
+        "NP-P6": [], // Karnali Province
+        "NP-P7": [], // Sudurpashchim Province
+    };
 
-    // Define countries and their associated colors
-    const COLOR_MAP = Object.keys(countrywithStatus).reduce((acc, countryCode) => {
-        const status = countrywithStatus[countryCode];
-        acc[countryCode] = COLORS[status] || '#FFFFFF'; // Default color if status not found
-        return acc;
-    }, {});
+    const COLOR_MAP = {
+        "NP-P1": COLORS.province1,
+        "NP-P2": COLORS.province2,
+        "NP-P3": COLORS.province3,
+        "NP-P4": COLORS.province4,
+        "NP-P5": COLORS.province5,
+        "NP-P6": COLORS.province6,
+        "NP-P7": COLORS.province7,
+    };
 
     const truncateText = (text, wordLimit) => {
-        const words = text.split(' ');
-        if (words.length > wordLimit) {
-            return words.slice(0, wordLimit).join(' ') + '...';
-        }
-        return text;
+        const words = text.split(" ");
+        return words.length > wordLimit
+            ? words.slice(0, wordLimit).join(" ") + "..."
+            : text;
     };
 
     useEffect(() => {
@@ -41,95 +59,90 @@ export function MapChart({
         am4core.useTheme(am4themes_animated);
 
         // Create map instance
-        let chart = am4core.create("chartdiv", am4maps.MapChart);
-
-        // Set map definition
-        chart.geodata = am4geodata_worldLow;
-
-        // Set projection
-        chart.projection = new am4maps.projections.Miller();
+        const chart = am4core.create("chartdiv", am4maps.MapChart);
+        chart.geodata = am4geodata_nepalLow; // Set map definition to Nepal's geodata
+        chart.projection = new am4maps.projections.Miller(); // Set projection
 
         // Create map polygon series
-        let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+        const polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
         polygonSeries.useGeodata = true;
 
-        // Exclude Antarctica
-        polygonSeries.exclude = ["AQ"];
-
         // Configure series
-        let polygonTemplate = polygonSeries.mapPolygons.template;
+        const polygonTemplate = polygonSeries.mapPolygons.template;
         polygonTemplate.tooltipText = "{name}";
 
-        // Add colors to countries
+        // Apply color to provinces
         polygonTemplate.adapter.add("fill", (fill, target) => {
-            const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
-            return COLOR_MAP[countryId] || fill; // Use predefined color or default fill color
+            const provinceId = target.dataItem?.dataContext?.id;
+            // Use predefined color or default color if no policies are available
+            return countryWithAiPolicies[provinceId]?.length > 0
+                ? COLOR_MAP[provinceId] || COLORS.default
+                : COLORS.default;
         });
 
-        // Enable tooltip interaction and keep target hovered
+        // Enable tooltip interaction
         polygonSeries.tooltip.label.interactionsEnabled = true;
         polygonSeries.tooltip.keepTargetHover = true;
 
-        // Fix tooltip position and enable visual center calculation
-        polygonSeries.calculateVisualCenter = true;
+        // Tooltip position
         polygonTemplate.tooltipPosition = "fixed";
 
-        // Zoom control
-        let zoomControl = new am4maps.ZoomControl();
+        // Zoom control setup
+        const zoomControl = new am4maps.ZoomControl();
         chart.zoomControl = zoomControl;
-
-        // Position the zoom control at the top right
         zoomControl.layout = "vertical";
         zoomControl.valign = "top";
         zoomControl.align = "right";
-        zoomControl.marginRight = 15; // Adjust as needed
-        zoomControl.marginTop = 15;   // Adjust as needed
+        zoomControl.marginRight = 15;
+        zoomControl.marginTop = 15;
 
-        // Set URLs in tooltips and dynamically generate the HTML for policy links
+        // Tooltip HTML setup with policy links
         polygonTemplate.adapter.add("tooltipHTML", (html, target) => {
-            const countryId = target.dataItem && target.dataItem.dataContext ? target.dataItem.dataContext.id : null;
-            const policies = countryWithAiPolicies[countryId] || [];
-
-            let policyLinks = policies.map(policy => `
-                <div style="padding: 8px; display: flex; align-items: center; justify-content: space-between;">
-                    <a href="${policy.url}" target="_blank" style="text-decoration: none; color: #002147;">
-                        <i className="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
-                        ${truncateText(policy.name, 5)}
-                    </a>
-                    <div style="display: flex; align-items: center;">
-                        <a href="${policy.url}" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #002147;" target="_blank">
-                            <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+            const provinceId = target.dataItem?.dataContext?.id;
+            const policies = countryWithAiPolicies[provinceId] || [];
+            const policyLinks = policies.length
+                ? policies
+                      .map(
+                          (policy) => `
+                    <div style="padding: 8px; display: flex; align-items: center; justify-content: space-between;">
+                        <a href="${
+                            policy.url
+                        }" target="_blank" style="text-decoration: none; color: #002147;">
+                            <i class="fa fa-regular fa-star" style="margin-right: 0.75rem;"></i>
+                            ${truncateText(policy.name, 5)}
                         </a>
-                    </div>
-                </div>
-            `).join('');
-
-            if (!policyLinks) {
-                policyLinks = "<div style='padding: 8px;'>No policies available</div>";
-            }
+                        <div style="display: flex; align-items: center;">
+                            <a href="${
+                                policy.url
+                            }" style="font-size: 1rem; font-weight: 400; text-align: center; text-decoration: none; color: #002147;" target="_blank">
+                                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>`
+                      )
+                      .join("")
+                : "<div style='padding: 8px;'>No legit available</div>";
 
             return `
                 <div style="width: 18rem; border-radius: 0.25rem; padding: 0;">
                     <div style="padding: 0.75rem 1.25rem; border-bottom: 2px solid #f8f9fa; border-radius: 0.25rem 0.25rem 0 0; margin: 0;">
-                        <h2 style="margin: 0; color: #002147; font-size: 1rem; font-weight: 400;">{name}</h2>
+                        <h2 style="margin: 0; color: #002147; font-size: 1rem; font-weight: 400;">${target.dataItem.dataContext.name}</h2>
                     </div>
-                    <div style="padding: 12px;">
-                        <div>
-                            ${policyLinks}
-                        </div>
-                    </div>
+                    <div style="padding: 12px;">${policyLinks}</div>
                 </div>
             `;
         });
 
         return () => {
-            if (chart) {
-                chart.dispose();
-            }
+            chart.dispose(); // Cleanup chart instance
         };
-    }, [countrywithStatus, countryWithAiPolicies]);
+    }, []);
 
     return (
-        <div id="chartdiv" className="map-chart-wrapper" style={{ width: "100%", height: "500px" }}></div>
+        <div
+            id="chartdiv"
+            className="map-chart-wrapper"
+            style={{ width: "100%", height: "500px" }}
+        ></div>
     );
 }

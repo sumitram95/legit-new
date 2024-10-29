@@ -241,8 +241,8 @@ export default function Dashboard({
                             <div className="lg:border-b border-light-border py-[16px] lg:px-[16px] flex justify-between items-center">
                                 <div>
                                     <p className="font-bold text-primary-light text-lg leading-none">
-                                        Global Artificial Intelligence (AI)
-                                        Policy Status
+                                        Local e-Government Information
+                                        Technology (LeGit)
                                     </p>
                                     <div className="block md:flex items-center mt-[0.5rem] text-sm">
                                         <p className="text-light-blue text-xs">
@@ -309,17 +309,17 @@ export default function Dashboard({
                                                 authUserBookmarkCount
                                                     ? "fa-star"
                                                     : "fa-regular fa-star"
-                                            } mr-3`}
+                                            }`}
                                         ></i>
-                                        <span>
-                                            Bookmarks ({authUserBookmarkCount})
+                                        <span className=" font-bold">
+                                         Alert ({authUserBookmarkCount})
                                         </span>
                                     </Link>
                                 </div>
 
                                 {/* search filter for table data */}
 
-                                <div className="flex-grow">
+                                {/* <div className="flex-grow">
                                     <form className="w-full" id="FormFiled">
                                         <div className="flex">
                                             <div className="w-full px-3">
@@ -404,15 +404,15 @@ export default function Dashboard({
                                             </div>
                                         </div>
                                     </form>
-                                </div>
+                                </div> */}
 
                                 {/* edit column drop down */}
-                                <div className="flex-none">
+                                {/* <div className="flex-none">
                                     <EditColumn
                                         EditColumnLists={EditColumnLists}
                                         onCheckboxChange={handleCheckboxChange}
                                     />
-                                </div>
+                                </div> */}
                             </div>
 
                             {/* ********************** AI Policy Component ********************** */}
@@ -431,9 +431,9 @@ export default function Dashboard({
                     </div>
                 </div>
 
-                {/* mobile */}
+                {/* mobile filter */}
 
-                <div className="mb-5 block md:hidden">
+                {/* <div className="mb-5 block md:hidden">
                     <div className="border rounded-md w-full bg-white sticky top-0">
                         <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
@@ -551,8 +551,8 @@ export default function Dashboard({
                             </div>
                         )}
                     </div>
-                </div>
-                {/* mobile */}
+                </div> */}
+                {/* mobile table data */}
                 <div className="block md:hidden">
                     {tableData.data.map((list) => (
                         <div
@@ -612,7 +612,7 @@ export default function Dashboard({
                                 <div className="py-3">
                                     <div>
                                         <p className="text-muted-light font-semibold text-sm">
-                                            Country
+                                            Local Government
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
@@ -624,7 +624,7 @@ export default function Dashboard({
                                 <div className="py-3">
                                     <div>
                                         <p className="text-muted-light font-semibold text-sm">
-                                            Governing Body
+                                            Provinnce
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
@@ -637,7 +637,7 @@ export default function Dashboard({
                                 <div className="py-3">
                                     <div>
                                         <p className="text-muted-light font-semibold text-sm">
-                                            Announcement Year
+                                            Districts
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
@@ -650,7 +650,7 @@ export default function Dashboard({
                                 <div className="py-3">
                                     <div>
                                         <p className="text-muted-light font-semibold text-sm">
-                                            Technology Partner
+                                            Date
                                         </p>
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
@@ -660,7 +660,7 @@ export default function Dashboard({
                                     </div>
                                 </div>
 
-                                {list.id == isShowAdvancedInfo && (
+                                {/* {list.id == isShowAdvancedInfo && (
                                     <div>
                                         <div className="py-3">
                                             <div>
@@ -701,9 +701,9 @@ export default function Dashboard({
                                             ></div>
                                         </div>
                                     </div>
-                                )}
+                                )} */}
                             </div>
-                            <div className="border-b"></div>
+                            {/* <div className="border-b"></div>
                             <div className="pt-3 px-5 flex justify-center items-center">
                                 <button
                                     onClick={() =>
@@ -727,7 +727,7 @@ export default function Dashboard({
                                             : "    Show advanced info"}
                                     </span>
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     ))}
 

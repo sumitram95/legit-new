@@ -1,4 +1,4 @@
-import Logo from "@/assets/images/ai_logo.png";
+import Logo from "@/assets/images/applogo-removebg.png";
 
 export default function ApplicationLogo({ className = " ", ...props }) {
     return (

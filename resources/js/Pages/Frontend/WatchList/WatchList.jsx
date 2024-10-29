@@ -119,7 +119,7 @@ export default function WatchList({
 
     return (
         <AppLayout>
-            <Head title="Watch List" />
+            <Head title="Alert Lists" />
             <div className="content-wrapper mt-5 xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="block sm:block md:block xl:flex gap-[30px]">
                     {/* Sidebar for filters for desktop  */}
@@ -243,7 +243,7 @@ export default function WatchList({
                                         <div>
                                             <div>
                                                 <p className="font-bold text-primary-light text-lg">
-                                                    Bookmarks
+                                                    Alert
                                                 </p>
                                             </div>
                                             <div className="flex gap-5 mt-3 text-sm">
@@ -256,7 +256,7 @@ export default function WatchList({
                                                     </span>
                                                     <span>
                                                         Back to full list of
-                                                        (AI) Policy
+                                                        Alert
                                                     </span>
                                                 </Link>
                                             </div>
@@ -318,7 +318,7 @@ export default function WatchList({
                             </div>
 
                             {/* show on small devices only (show and hide filter button) */}
-                            <Responsive responsive={["sm"]}>
+                            {/* <Responsive responsive={["sm"]}>
                                 <div className="border-b border-light-border p-[16px] pb-4 flex justify-between items-center bg-white mt-4 rounded">
                                     <div>
                                         <p className="font-bold text-primary text-lg">
@@ -357,10 +357,10 @@ export default function WatchList({
                                         </button>
                                     </div>
                                 </div>
-                            </Responsive>
+                            </Responsive> */}
 
                             {/* /* show on small ,medium and lg devices for select filter form */}
-                            <Responsive responsive={["sm", "md", "lg"]}>
+                            {/* <Responsive responsive={["sm", "md", "lg"]}>
                                 {isDropdownOpen && (
                                     <div className="px-5 w-full pt-5 bg-white border-b xl:border-b-0 border-light-border">
                                         <form
@@ -456,122 +456,9 @@ export default function WatchList({
                                         </form>
                                     </div>
                                 )}
-                            </Responsive>
+                            </Responsive> */}
 
                             {/* edit and search filter column show on desktop */}
-                            <Responsive responsive={["md", "lg", "xl"]}>
-                                {/* search filter for table data */}
-                                <div className="flex flex-wrap mt-5 px-5">
-                                    <div className="flex-grow">
-                                        <form className="w-full" id="FormFiled">
-                                            <div className="flex">
-                                                <div className="w-full px-3">
-                                                    <SelectInput
-                                                        placeholder="AI Policy Name"
-                                                        className="mb-2 text-sm font-normal text-light-blue"
-                                                        options={aiPolicies.map(
-                                                            (policy) => ({
-                                                                value: policy.value,
-                                                                label: policy.label,
-                                                            })
-                                                        )}
-                                                        value={
-                                                            filters.AI_Policy_Name
-                                                        }
-                                                        onChange={(
-                                                            selectedOptions
-                                                        ) =>
-                                                            handleFilterChange(
-                                                                "AI_Policy_Name",
-                                                                selectedOptions
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="w-full px-3">
-                                                    <SelectInput
-                                                        placeholder="Country / Region"
-                                                        className="text-sm mb-2 font-normal text-light-blue"
-                                                        options={countries.map(
-                                                            (country) => ({
-                                                                value: country.value,
-                                                                label: country.label,
-                                                            })
-                                                        )}
-                                                        value={
-                                                            filters.country_id
-                                                        }
-                                                        onChange={(
-                                                            selectedOptions
-                                                        ) =>
-                                                            handleFilterChange(
-                                                                "country_id",
-                                                                selectedOptions
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-
-                                                <div className="w-full px-3">
-                                                    <SelectInput
-                                                        placeholder="Status"
-                                                        className="mb-2 text-sm font-normal text-light-blue"
-                                                        options={statuses.map(
-                                                            (status) => ({
-                                                                value: status.value,
-                                                                label: status.label,
-                                                            })
-                                                        )}
-                                                        value={
-                                                            filters.status_id
-                                                        }
-                                                        onChange={(
-                                                            selectedOptions
-                                                        ) =>
-                                                            handleFilterChange(
-                                                                "status_id",
-                                                                selectedOptions
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-
-                                                <div className="w-full px-3">
-                                                    <Input
-                                                        className="mb-2 text-sm font-normal text-light-blue"
-                                                        name="announcement_year"
-                                                        value={
-                                                            filters.announcement_year
-                                                        }
-                                                        onChange={
-                                                            handleInputChange
-                                                        }
-                                                        htmlFor="announcement_year"
-                                                        placeholder="Announcement Year"
-                                                        type="date"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    {/* <div className="mt-5 flex justify-end px-5">
-                                    <EditColumn
-                                        EditColumnLists={EditColumnLists}
-                                        onCheckboxChange={
-                                            handleCheckboxChange
-                                        }
-                                    />
-                                </div> */}
-                                    <div className="flex-none">
-                                        <EditColumn
-                                            EditColumnLists={EditColumnLists}
-                                            onCheckboxChange={
-                                                handleCheckboxChange
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                            </Responsive>
 
                             {/* show on desktop (table) */}
                             <Responsive responsive={["md", "lg", "xl"]}>
@@ -582,7 +469,7 @@ export default function WatchList({
                                     checkedColWithData={checkedColumns}
                                 />
                             </Responsive>
-                            {/* show on small device table data (ai plicy data) */}
+                            {/* show on small device table data */}
                             <Responsive responsive={["sm"]}>
                                 {/* content */}
                                 {tableData.data.map((list) => (

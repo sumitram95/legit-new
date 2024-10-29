@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
-import LogoImage from "@/assets/images/ai_logo.png";
+// import LogoImage from "@/assets/images/ai_logo.png";
+import LogoImage from "@/assets/images/applogo-removebg.png";
+import ApplicationLogo from "@/Components/ApplicationLogo";
 // import Responsive from "@/Components/Responsive/Responsive";
 
 // Helper function to generate avatar URL
@@ -41,17 +43,18 @@ export function NavBar({ NavBarLists }) {
     };
 
     return (
-        <nav className="block md:flex">
-            <div className="w-full flex justify-between items-center">
+        <nav className="block md:flex justify-between">
+            <div className="w-full md:w-fit flex justify-between items-center">
                 <div className="text-white text-lg font-semibold">
                     <Link href={"/"}>
-                        <div className="header-logo">
+                        <ApplicationLogo className="fill-current h-12" />
+                        {/* <div className="header-logo">
                             <img
                                 src={LogoImage}
                                 alt="AI Policy Tracker"
                                 className="w-full h-full"
                             />
-                        </div>
+                        </div> */}
                     </Link>
                 </div>
                 <div className="md:hidden">
@@ -85,7 +88,7 @@ export function NavBar({ NavBarLists }) {
                     isOpen ? "" : "hidden"
                 }`}
             >
-                <ul className="md:flex items-center gap-x-12 text-white">
+                <ul className="md:flex items-center gap-x-6 text-white">
                     {userName && (
                         <div className="mt-5 border-b pb-3 flex md:hidden items-center gap-2">
                             <div className="flex justify-center w-[38px] h-[38px] rounded-full overflow-hidden">
@@ -170,6 +173,17 @@ export function NavBar({ NavBarLists }) {
                             </li>
                         );
                     })}
+                    <div className="mt-4 md:mt-0 font-bold">
+                        <Link
+                            href={route(
+                                "frontend.legit_application_form.create"
+                            )}
+
+                            className="bg-blue-400 px-3 rounded-md py-1.5 hover:bg-blue-500"
+                        >
+                            legit application
+                        </Link>
+                    </div>
                     {/* show on small device logout navbar */}
                     {/* <Responsive responsive={["sm"]}> */}
                     {userName && (
@@ -180,10 +194,17 @@ export function NavBar({ NavBarLists }) {
                     {/* </Responsive> */}
 
                     {!userName ? (
-                        <li className="mt-4 md:mt-0 font-bold">
-                            <Link href={route("login")}>Login</Link>
-                        </li>
+                        // <li className="mt-4 md:mt-0 font-bold">
+                        <div className="mt-4 md:mt-0 font-bold">
+                            <Link
+                                href={route("login")}
+                                className="bg-blue-400 px-3 rounded-md py-1.5 hover:bg-blue-500"
+                            >
+                                Legit Login
+                            </Link>
+                        </div>
                     ) : (
+                        // </li>
                         // <Responsive responsive={["md", "lg", "xl"]}>
                         <div className="hidden md:flex justify-between items-center">
                             <div

@@ -7,7 +7,7 @@
 
     <!-- Meta Tags -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Global Artificial Intelligence (AI) Policy Tracker">
+    <meta name="twitter:title" content="Local e-Government Information Technoloy">
     <meta name="twitter:description"
         content="Stay informed on AI policy and governance.
 Explore in-depth resources on AI ethics, legislation, compliance, and more. Join our community for discussions, workshops, and conferences. Get access to policy guidelines, standards, best practices, and strategic roadmaps to navigate the evolving landscape of AI policies. Whether you're a researcher, developer, or business leader, we provide the insights you need to understand and shape AI's future.">
@@ -18,7 +18,7 @@ Explore in-depth resources on AI ethics, legislation, compliance, and more. Join
     <meta name="og:description"
         content="Stay informed on AI policy and governance.
 Explore in-depth resources on AI ethics, legislation, compliance, and more. Join our community for discussions, workshops, and conferences. Get access to policy guidelines, standards, best practices, and strategic roadmaps to navigate the evolving landscape of AI policies. Whether you're a researcher, developer, or business leader, we provide the insights you need to understand and shape AI's future.">
-    <meta name="og:image" content="{{ asset('aipolicytracker-logo.jpg') }}">
+    <meta name="og:image" content="{{ asset('applogo-removebg.png') }}">
     <meta name="description"
         content="Stay informed on AI policy and governance.
 Explore in-depth resources on AI ethics, legislation, compliance, and more. Join our community for discussions, workshops, and conferences. Get access to policy guidelines, standards, best practices, and strategic roadmaps to navigate the evolving landscape of AI policies. Whether you're a researcher, developer, or business leader, we provide the insights you need to understand and shape AI's future.">
@@ -27,9 +27,9 @@ Explore in-depth resources on AI ethics, legislation, compliance, and more. Join
 Monitor global AI regulations, analyze AI governance landscapes, and track AI ethics developments. Our user-friendly platform offers AI policy monitoring, alerts, comparison tools, and in-depth search capabilities. Whether you're an AI researcher, developer, or policymaker, our tracker provides valuable insights and resources to navigate the complex world of AI policy.">
 
     <!-- Meta icon -->
-    <link rel="icon" type="image/png" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon-app-logo.png') }}">
 
-    <title>Global Artificial Intelligence (AI) Policy Status</title>
+    <title>Local e-Government Information Technoloy</title>
 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"

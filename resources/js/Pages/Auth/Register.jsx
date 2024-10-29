@@ -8,6 +8,7 @@ import Responsive from "@/Components/Responsive/Responsive";
 import AuthLoginImage from "@/assets/images/auth/loginpage.jpg";
 import LogoImage from "@/assets/images/ai_dark_logo.png";
 import Checkbox from "@/Components/Checkbox";
+import ApplicationLogo from "@/Components/ApplicationLogo";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -32,113 +33,12 @@ export default function Register() {
     return (
         <GuestLayout>
             <Head title="Register" />
-            <div className="w-full">
-                <div className=" flex">
-                    {/* logo and image side */}
-                    <Responsive responsive={["md", "lg", "xl"]}>
-                        <div className="w-[50%] p-4 flex-wrap py-6 text-white md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly rounded-md">
-                            {/* <div className="bg-blue-500 w-full h-full flex items-center justify-center rounded-md">
-                                <img
-                                    src={AuthLoginImage}
-                                    alt="AI Policy Tracker"
-                                    className="h-full w-full rounded-md"
-                                />
-                            </div> */}
-
-                            <div className=" bg-primary-light w-full h-full flex items-center justify-center rounded-md px-10 overflow-y-auto">
-                                <div>
-                                    <h1 className=" text-3xl font-bold text-center">
-                                        Why Sign up?
-                                    </h1>
-                                    <ul className="mt-5">
-                                        <li className="flex items-center gap-3 mb-5">
-                                            <strong>
-                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
-                                            </strong>
-                                            <h2 className=" tracking-wider leading-6">
-                                                <strong className="me-2">
-                                                    High-Level AI Regulation
-                                                    Summary:
-                                                </strong>
-                                                A quick overview of AI
-                                                regulation status across
-                                                countries.
-                                            </h2>
-                                        </li>
-                                        <li className="flex items-center gap-3 mb-5">
-                                            <strong>
-                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
-                                            </strong>
-                                            <h2 className=" tracking-wider leading-6">
-                                                <strong className="me-2">
-                                                    Detailed Market Profiles:
-                                                </strong>
-                                                In-depth data on AI policies,
-                                                legislation, and schedules in
-                                                individual markets.
-                                            </h2>
-                                        </li>
-                                        <li className="flex items-center gap-3 mb-5">
-                                            <strong>
-                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
-                                            </strong>
-                                            <h2 className=" tracking-wider">
-                                                <strong className="me-2 leading-6">
-                                                    Policy Alerts:
-                                                </strong>
-                                                Receive real-time alerts on
-                                                important regulatory changes and
-                                                upcoming legislation that could
-                                                impact your business.
-                                            </h2>
-                                        </li>
-                                        <li className="mb-5 font-bold">
-                                            Additionally, enjoy:
-                                        </li>
-                                        <li className="flex items-center gap-3 mb-5">
-                                            <strong>
-                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
-                                            </strong>
-                                            <h2 className=" tracking-wider">
-                                                <strong className="me-2 leading-6">
-                                                    AI Policy News:
-                                                </strong>
-                                                Stay informed with the latest
-                                                developments in AI governance
-                                                from around the world.
-                                            </h2>
-                                        </li>
-
-                                        <li className="flex items-center gap-3 mb-5">
-                                            <strong>
-                                                <i className="fa-solid fa-arrow-right-long text-xl"></i>
-                                            </strong>
-                                            <h2 className=" tracking-wider">
-                                                <strong className="me-2 leading-6">
-                                                    Policy Timelines:
-                                                </strong>
-                                                Access detailed timelines
-                                                tracking the progress of AI
-                                                policies and regulations in key
-                                                markets.
-                                            </h2>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </Responsive>
-
-                    {/* register form */}
-
-                    <div className=" w-full px-4 md:px-10 py-10">
-                        <img
-                            src={LogoImage}
-                            alt="AI Policy Tracker"
-                            className="w-[127px] h-[33px]"
-                        />
-                        <h3 className="my-2 text-xl font-bold text-primary-light">
-                            Welcome to the AI Policy Tracker!
+            <div className="w-full bg-white md:bg-gray-100 md:flex justify-center md:mt-6 md:mb-6 items-center">
+                <div className="bg-white md:w-1/3 px-8 py-5 rounded-md">
+                    <div className="">
+                    <ApplicationLogo className="fill-current h-12 w-fit" />
+                        <h3 className="my-4 font-bold text-xl text-primary-light">
+                            LeGit Register
                         </h3>
 
                         {status && (
@@ -354,7 +254,8 @@ export default function Register() {
                                         />
 
                                         <a
-                                            href="https://docs.google.com/document/d/1NXmwuuRcvwdtMgUmW_COMR_YboxWQF9lAKa0KQAwtXE/mobilebasic"
+                                            // href="https://docs.google.com/document/d/1NXmwuuRcvwdtMgUmW_COMR_YboxWQF9lAKa0KQAwtXE/mobilebasic"
+                                            href="check"
                                             target="_blank"
                                             className="text-sm font-semibold text-gray-500 hover:underline"
                                         >

@@ -8,7 +8,7 @@ const NavBarLists = {
         url: route("frontend.dashboard"),
     },
     watchlist: {
-        name: "Bookmarks",
+        name: "Alert",
         url: route("frontend.watch_list.index"),
     },
     news: {
@@ -19,14 +19,19 @@ const NavBarLists = {
         name: "Timeline",
         url: route("frontend.time_line.index"),
     },
-    community: {
-        name: "Community",
-        url: "https://community.aipolicytracker.org/",
-    },
-    whitepaper: {
-        name: "whitepaper",
-        url: "https://docs.google.com/document/d/199QtBdQwRWVHXxN5wasRBbTNTgsvmP347GsQFyR2p3o/edit",
-    },
+    // legit_application: {
+    //     name: "legit application",
+    //     url: route("frontend.time_line.index"),
+    // },
+
+    // community: {
+    //     name: "Community",
+    //     url: "https://community.aipolicytracker.org/",
+    // },
+    // whitepaper: {
+    //     name: "whitepaper",
+    //     url: "https://docs.google.com/document/d/199QtBdQwRWVHXxN5wasRBbTNTgsvmP347GsQFyR2p3o/edit",
+    // },
 };
 
 export function Header() {
