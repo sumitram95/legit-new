@@ -15,4 +15,9 @@ class District extends Model
         "province_label",
         "label"
     ];
+
+
+    public function province(){
+        return $this->hasOne(PRovince::class,'label','province_label');
+     }
 }

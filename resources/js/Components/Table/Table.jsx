@@ -41,41 +41,7 @@ export default function Table({
                             Date
                         </th>
                         {/* after show when checked editColumn */}
-                        {/* {checkedColWithData.includes("Document Link") && (
-                            <th scope="col" className="px-6 py-3">
-                                Document Link
-                            </th>
-                        )} */}
 
-                        {/* {checkedColWithData.includes(
-                            "Governance structure"
-                        ) && (
-                            <th scope="col" className="px-6 py-3">
-                                Governance structure
-                            </th>
-                        )} */}
-
-                        {/* {checkedColWithData.includes(
-                            "Main motivation/goals of the AI policy"
-                        ) && (
-                            <th scope="col" className="px-6 py-3">
-                                Main motivation/goals of the AI policy
-                            </th>
-                        )} */}
-
-                        {/* {checkedColWithData.includes("Description") && (
-                            <th scope="col" className="px-6 py-3">
-                                description
-                            </th>
-                        )}
-
-                        {checkedColWithData.includes(
-                            "Link to announcement"
-                        ) && (
-                            <th scope="col" className="px-6 py-3">
-                                Link to announcement
-                            </th>
-                        )} */}
                     </tr>
                 </thead>
                 <tbody>
@@ -86,7 +52,8 @@ export default function Table({
                                 className="px-6 py-4 sticky-column-td border-e border-neutral-200 "
                             >
                                 <div className="flex gap-x-2 items-center">
-                                    <Link
+                                    <i className="fa-regular fa-star B"></i>
+                                    {/* <Link
                                         href={route("frontend.watch_list.add", {
                                             id: list.id,
                                             isBooked: list.bookmark
@@ -101,7 +68,7 @@ export default function Table({
                                         ) : (
                                             <i className="fa-regular fa-star B"></i>
                                         )}
-                                    </Link>
+                                    </Link> */}
 
                                     <Link
                                         href={route(
@@ -110,82 +77,26 @@ export default function Table({
                                         )}
                                         className="text-primary hover:underline"
                                     >
-                                        {limitWords(list.ai_policy_name, 4)}
+                                        {limitWords(list.name_en, 4)}
                                     </Link>
                                 </div>
                             </td>
-                            <td width="15%" className="px-6 py-4">
-                                {list.country?.name}
-                            </td>
                             <td width="25%" className="px-6 py-4">
-                                {list.governing_body}
+                                {list.district?.province?.name_en ?? "null"}
+                            </td>
+                            <td width="15%" className="px-6 py-4">
+                                {list.district?.name_en ?? "null"}
                             </td>
                             <td width="10%" className="px-6 py-4">
                                 {list.formatted_created_at}
                             </td>
-                            {/* <td width="15%" className="px-6 py-4">
-                                <span
-                                    className={`status-state ${
-                                        list.status?.name || ""
-                                    }`}
-                                ></span>
-                                {list.status?.name}
-                            </td> */}
 
-                            {/* <td width="10%" className="px-6 py-4">
-                                {list.technology_partners}
-                            </td> */}
+
+
 
                             {/* after checked editColumn */}
-                            {/* {checkedColWithData.includes("Document Link") && (
-                                <td width="10%" className="px-6 py-4">
-                                    {isAuth ? (
-                                        isVerifiedEmail ? (
-                                            <a
-                                                href={
-                                                    list.whitepaper_document_link
-                                                }
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="underline text-blue-950"
-                                            >
-                                                open
-                                            </a>
-                                        ) : (
-                                            <Link
-                                                href={route(
-                                                    "verification.notice"
-                                                )}
-                                            >
-                                                open
-                                            </Link>
-                                        )
-                                    ) : (
-                                        <Link href={route("register")}>
-                                            open
-                                        </Link>
-                                    )}
-                                </td>
-                            )} */}
-                            {/* {checkedColWithData.includes(
-                                "Governance structure"
-                            ) && (
-                                <td width="10%" className="px-6 py-4">
-                                    {limitWords(list.governance_structure, 3)}
-                                </td>
-                            )} */}
-                            {/* {checkedColWithData.includes(
-                                "Main motivation/goals of the AI policy"
-                            ) && (
-                                <td width="10%" className="px-6 py-4">
-                                    {limitWords(list.main_motivation, 3)}
-                                </td>
-                            )}
-                            {checkedColWithData.includes("Description") && (
-                                <td width="10%" className="px-6 py-4">
-                                    {limitWords(list.description, 3)}
-                                </td>
-                            )} */}
+
+
                         </tr>
                     ))}
                 </tbody>

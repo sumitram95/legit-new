@@ -61,7 +61,7 @@ Route:: as('frontend.')->group(function () {
         ->as('legit_application_form.')
         ->group(function () {
             Route::get('/legit-aplication-form', 'create')->name('create');
-            Route::post('/legit-aplication->form', 'store')->name('store');
+            Route::post('/legit-aplication-form', 'store')->name('store');
 
             Route::post('/district-data-updata/{value}', 'districtDataUpdate')->name('districtDataUpdate');
             Route::post('/lg-data-updata/{value}', 'lgDataUpdate')->name('lgDataUpdate');
