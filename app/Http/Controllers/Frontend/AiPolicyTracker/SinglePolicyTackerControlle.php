@@ -14,7 +14,7 @@ class SinglePolicyTackerControlle extends Controller
 {
     public function index($id)
     {
-
+// dd($id);
         if (!Auth::check()) {
             return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
 

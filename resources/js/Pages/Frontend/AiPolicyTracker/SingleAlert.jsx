@@ -7,9 +7,9 @@ import AiTimeLine from "./Components/AiTimeLine";
 import GraphData from "./Components/GraphData";
 
 export default function SingleAlert({
-    // aiPolicyTrackerWithRelatedNews,
-    // latestDateOfUpdateAiPolicyTracker = null,
-    // graphData
+    aiPolicyTrackerWithRelatedNews,
+    latestDateOfUpdateAiPolicyTracker = null,
+    graphData,
     data,
 }) {
     return (
@@ -26,7 +26,7 @@ export default function SingleAlert({
             <div className="md:flex flex-row gap-x-4 content-wrapper xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="w-full md:w-1/3">
                     <SingleAiInfo
-                        aiPolicyTrackerdetail={data.aiPolicyTrackerWithRelatedNews}
+                        aiPolicyTrackerdetail={data.aiPolicyTrackerWithRelatedNews ?? []}
                     />
                 </div>
                 <div className="w-full mt-5 md:mt-0 md:w-full">

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class LocalGovernment extends Model
 {
@@ -27,6 +28,17 @@ class LocalGovernment extends Model
     public function getFormattedCreatedAtAttribute()
     {
         return $this->created_at ? $this->created_at->format('d M Y') : null;
+    }
+
+    public function bookmark()
+    {
+        return $this->hasOne(BookMark::class, 'ai_policy_tracker_id', 'id')
+            ->where('user_id', Auth::id());
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(BookMark::class, 'ai_policy_tracker_id', 'id');
     }
 
 

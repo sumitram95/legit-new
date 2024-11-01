@@ -78,7 +78,7 @@ export default function SiderBar() {
                             </svg>
 
                             <span className="ms-3 text-sm text-gray-700 capitalize">
-                                AI Plolicy Tracker
+                                Lg Application Form
                             </span>
                         </Link>
                     </li>
@@ -112,7 +112,7 @@ export default function SiderBar() {
                     </li>
 
                     {/* cms */}
-                    <li>
+                    {/* <li>
                         <Link
                             href={route("backend.header_menu.index")}
                             className={`${isActiveUrl(
@@ -138,9 +138,9 @@ export default function SiderBar() {
                                 Cms
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
                     {/* users */}
-                    <li>
+                    {/* <li>
                         <Link
                             href={route("backend.users.index")}
                             className={`${isActiveUrl(
@@ -166,10 +166,10 @@ export default function SiderBar() {
                                 Users
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
 
                     {/* country */}
-                    <li>
+                    {/* <li>
                         <Link
                             href={route("backend.country.index")}
                             className={`${isActiveUrl(
@@ -194,7 +194,7 @@ export default function SiderBar() {
                                 Country
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
                     {/*
                     <li>
                         <button

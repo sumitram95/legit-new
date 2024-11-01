@@ -48,7 +48,9 @@ class WatchListController extends Controller
 
     public function add($id, $isBooked)
     {
-        try {
+
+        // dd($isBooked);
+        // try {
 
             if (!Auth::check()) {
                 return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
@@ -64,7 +66,7 @@ class WatchListController extends Controller
                     ->first();
                 $bookmark->delete();
             } else {
-
+// dd(['id'=>$id, 'isBooked'=>$isBooked]);
                 BookMark::updateOrCreate([
                     'ai_policy_tracker_id' => $id,
                     'user_id' => Auth::id()
@@ -75,10 +77,10 @@ class WatchListController extends Controller
             }
 
             return back();
-        } catch (\Throwable $th) {
-            report($th);
-            return to_route('frontend.dashboard')->with('error', 'Oops! Something went wrong.');
-        }
+        // } catch (\Throwable $th) {
+        //     report($th);
+        //     return to_route('frontend.dashboard')->with('error', 'Oops! Something went wrong.');
+        // }
 
     }
 

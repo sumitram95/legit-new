@@ -20,7 +20,7 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $lgs = LocalGovernment::with('district.province')
+        $lgs = LocalGovernment::with('district.province', 'bookmark')
             ->latest();
 
         $data['tableData'] = $lgs
@@ -98,7 +98,7 @@ class DashboardController extends Controller
 
     public function getFilteredData(Request $request)
     {
-        $query = LocalGovernment::query()->with('district.province' ,'district');
+        $query = LocalGovernment::query()->with('district.province', 'district');
 
         // Apply filters based on the request parameters
         if ($request->has('lg') && !empty($request->lg)) {

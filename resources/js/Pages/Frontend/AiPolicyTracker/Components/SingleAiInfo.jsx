@@ -64,7 +64,7 @@ export default function SingleAiInfo({ aiPolicyTrackerdetail }) {
                     ></p>
                 </div>
 
-                <div className="px-5 mt-4 border-t-2 pt-4">
+                {/* <div className="px-5 mt-4 border-t-2 pt-4">
                     <p className="text-xs">Link to announcement</p>
                     <a
                         href={whitepaper_document_link ?? "#"}
@@ -77,7 +77,7 @@ export default function SingleAiInfo({ aiPolicyTrackerdetail }) {
                             {whitepaper_document_link ?? "No link available"}
                         </span>
                     </a>
-                </div>
+                </div> */}
             </div>
         </div>
     );

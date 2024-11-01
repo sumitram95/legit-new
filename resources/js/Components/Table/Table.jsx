@@ -52,8 +52,8 @@ export default function Table({
                                 className="px-6 py-4 sticky-column-td border-e border-neutral-200 "
                             >
                                 <div className="flex gap-x-2 items-center">
-                                    <i className="fa-regular fa-star B"></i>
-                                    {/* <Link
+                                    {/* <i className="fa-regular fa-star B"></i> */}
+                                    <Link
                                         href={route("frontend.watch_list.add", {
                                             id: list.id,
                                             isBooked: list.bookmark
@@ -68,7 +68,7 @@ export default function Table({
                                         ) : (
                                             <i className="fa-regular fa-star B"></i>
                                         )}
-                                    </Link> */}
+                                    </Link>
 
                                     <Link
                                         href={route(
