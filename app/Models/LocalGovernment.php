@@ -32,13 +32,13 @@ class LocalGovernment extends Model
 
     public function bookmark()
     {
-        return $this->hasOne(BookMark::class, 'ai_policy_tracker_id', 'id')
+        return $this->hasOne(BookMark::class, 'lg_id', 'id')
             ->where('user_id', Auth::id());
     }
 
     public function bookmarks()
     {
-        return $this->hasMany(BookMark::class, 'ai_policy_tracker_id', 'id');
+        return $this->hasMany(BookMark::class, 'lg_id', 'id');
     }
 
 

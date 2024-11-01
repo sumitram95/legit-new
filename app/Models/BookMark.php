@@ -14,7 +14,7 @@ class BookMark extends Model
 
     protected $fillable = [
         'user_id',
-        'ai_policy_tracker_id'
+        'lg_id'
     ];
 
     public static function authUserBookmarkCount()
@@ -33,7 +33,7 @@ class BookMark extends Model
 
     public function aipolicy()
     {
-        return $this->hasOne(AiPolicyTracker::class, 'id', 'ai_policy_tracker_id');
+        return $this->hasOne(AiPolicyTracker::class, 'id', 'lg_id');
     }
 
 }

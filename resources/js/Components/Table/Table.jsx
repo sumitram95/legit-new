@@ -57,13 +57,13 @@ export default function Table({
                                         href={route("frontend.watch_list.add", {
                                             id: list.id,
                                             isBooked: list.bookmark
-                                                ?.ai_policy_tracker_id
+                                                ?.lg_id
                                                 ? true
                                                 : false,
                                         })}
                                         className="text-primary-light"
                                     >
-                                        {list.bookmark?.ai_policy_tracker_id ? (
+                                        {list.bookmark?.lg_id ? (
                                             <i className="fa fa-star A"></i>
                                         ) : (
                                             <i className="fa-regular fa-star B"></i>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\WatchList;
 
 use App\Models\BookMark;
 use App\Models\Country;
+use App\Models\LocalGovernment;
 use App\Models\Status;
 use Auth;
 use Inertia\Inertia;
@@ -15,42 +16,41 @@ use Carbon\Carbon;
 
 class WatchListController extends Controller
 {
-
     public function index()
     {
-        $data['tableData'] = AiPolicyTracker::whereHas('bookmark')
-            ->with(['country', 'status', 'bookmark'])
-            ->orderBy('created_at', 'desc')
+        $data['tableData'] = LocalGovernment::whereHas('bookmark')
+            ->with(['district.province', 'bookmark'])
+            // ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        $data['aiPolicies'] = AiPolicyTracker::get()
-            ->map(function ($aiPolicy) {
-                return [
-                    'value' => $aiPolicy->id,
-                    'label' => $aiPolicy->ai_policy_name,
-                ];
-            });
+            // dd($data);
 
-        $data['countries'] = Country::select('id as value', 'name as label')
-            ->where('status', 1)
-            ->orderBy('name', 'asc')
-            ->get();
+        // $data['aiPolicies'] = AiPolicyTracker::get()
+        //     ->map(function ($aiPolicy) {
+        //         return [
+        //             'value' => $aiPolicy->id,
+        //             'label' => $aiPolicy->ai_policy_name,
+        //         ];
+        //     });
 
-        $data['statuses'] = Status::get()
-            ->map(function ($status) {
-                return [
-                    'value' => $status->id,
-                    'label' => $status->name,
-                ];
-            });
+        // $data['countries'] = Country::select('id as value', 'name as label')
+        //     ->where('status', 1)
+        //     ->orderBy('name', 'asc')
+        //     ->get();
+
+        // $data['statuses'] = Status::get()
+        //     ->map(function ($status) {
+        //         return [
+        //             'value' => $status->id,
+        //             'label' => $status->name,
+        //         ];
+        //     });
         return Inertia::render("Frontend/WatchList/WatchList", $data);
     }
 
     public function add($id, $isBooked)
     {
-
-        // dd($isBooked);
-        // try {
+        try {
 
             if (!Auth::check()) {
                 return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
@@ -61,26 +61,26 @@ class WatchListController extends Controller
             }
 
             if ($isBooked == "true") {
-                $bookmark = BookMark::where('ai_policy_tracker_id', $id)
+                $bookmark = BookMark::where('lg_id', $id)
                     ->where('user_id', Auth::id())
                     ->first();
                 $bookmark->delete();
             } else {
-// dd(['id'=>$id, 'isBooked'=>$isBooked]);
+
                 BookMark::updateOrCreate([
-                    'ai_policy_tracker_id' => $id,
+                    'lg_id' => $id,
                     'user_id' => Auth::id()
                 ], [
                     'user_id' => Auth::user()->id,
-                    'ai_policy_tracker_id' => $id,
+                    'lg_id' => $id,
                 ]);
             }
 
             return back();
-        // } catch (\Throwable $th) {
-        //     report($th);
-        //     return to_route('frontend.dashboard')->with('error', 'Oops! Something went wrong.');
-        // }
+        } catch (\Throwable $th) {
+            report($th);
+            return to_route('frontend.dashboard')->with('error', 'Oops! Something went wrong.');
+        }
 
     }
 
