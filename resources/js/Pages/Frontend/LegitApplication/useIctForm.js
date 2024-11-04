@@ -27,6 +27,10 @@ export const useIctForm = (steps) => {
             no_of_desktop_printer: "",
             no_of_staff_use_compture_software: "",
         },
+        ict_training:{
+            is_conducted_training: undefined,
+            reason_for_not_conducting: "",
+        }
     });
 
     const [responseMsg, setResponseMsg] = useState("");
@@ -36,14 +40,33 @@ export const useIctForm = (steps) => {
         const currentStepFields = steps[stepIndex].fields;
         const newErrors = {};
 
-        currentStepFields.forEach((field) => {
-            if (!data.rural_municipality_details[field] && stepIndex === 0) {
+
+    currentStepFields.forEach((field) => {
+        // if (stepIndex === 0 && !data.rural_municipality_details[field]) {
+        //     newErrors[field] = "This field is required";
+        // }
+        // if (stepIndex === 1 && !data.status_of_ict_infrastructure[field]) {
+        //     newErrors[field] = "This field is required";
+        // }
+        // Only add an error if `is_conducted_training` is undefined
+        // if (stepIndex === 2 && data.ict_training[field] === undefined) {
+        //     newErrors[field] = "This field is required";
+        // }
+
+        if (stepIndex === 2) {
+            if (field === "is_conducted_training" && data.ict_training.is_conducted_training === undefined) {
                 newErrors[field] = "This field is required";
             }
-            if (!data.status_of_ict_infrastructure[field] && stepIndex === 1) {
-                newErrors[field] = "This field is required";
+
+            if (
+                field === "reason_for_not_conducting" &&
+                data.ict_training.is_conducted_training === false &&
+                !data.ict_training.reason_for_not_conducting
+            ) {
+                newErrors[field] = "This field is required if no training was conducted";
             }
-        });
+        }
+    });
 
         return newErrors;
     };

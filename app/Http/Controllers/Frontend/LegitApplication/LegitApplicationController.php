@@ -21,7 +21,7 @@ class LegitApplicationController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $validated = $request->validate([
             // rural municipality details
             'rural_municipality_details.provider_name' => 'required|string|max:255',

@@ -1,6 +1,7 @@
 import React from "react";
 import RuralMunicipalityDetail from "./Partials/RuralMunicipalityDetail";
 import IctInfrastructure from "./Partials/IctInfrastructure";
+import IctTraining from "./Partials/IctTraining";
 
 const Steps = (provinces) => [
     {
@@ -26,11 +27,11 @@ const Steps = (provinces) => [
             "no_of_staff_use_compture_software",
         ],
     },
-    // {
-    //     label: "ICT Training",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
+    {
+        label: "ICT Training",
+        component: <IctTraining />,
+        fields: ["is_conducted_training", "reason_for_not_conducting"],
+    },
     // {
     //     label: "ICT Training Conducted",
     //     component: <IctInfrastructure />,
