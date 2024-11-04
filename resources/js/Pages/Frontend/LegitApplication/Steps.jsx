@@ -30,7 +30,36 @@ const Steps = (provinces) => [
     {
         label: "ICT Training",
         component: <IctTraining />,
-        fields: ["is_conducted_training", "reason_for_not_conducting"],
+        fields: [
+            // ict training
+            "is_conducted_training",
+            "reason_for_not_conducting",
+            // ict training conducted
+            "total_no_of_training",
+            "total_no_of_training_beneficiaries",
+            "no_of_ict_training_lg_staffs",
+            "total_beneficieries_lg_offices",
+            "no_of_male_lg_officer",
+            "no_of_female_lg_officer",
+
+            "no_of_ict_disadvantage_groups",
+            "no_of_benefecieries_disadvantage_groups",
+            "no_of_male_disadvantage_group",
+            "no_of_female_disadvantage_group",
+
+            "no_of_ict_lg_school_or_clubs",
+            "no_of_benefecieries_ict_lg_school_or_clubs",
+            "no_of_male_ict_lg_school_or_clubs",
+            "no_of_female_ict_lg_school_or_clubs",
+
+            "no_of_ict_training_other_agencies",
+            "no_of_benefecieries_ict_training_other_agencies",
+            "no_of_male_ict_training_other_agencies",
+            "no_of_female_ict_training_other_agencies",
+
+            "have_being_using_fund_by_mofaga",
+            // "mention_amount_of_fund_in_training",
+        ],
     },
     // {
     //     label: "ICT Training Conducted",
