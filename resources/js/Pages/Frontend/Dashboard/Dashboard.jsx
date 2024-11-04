@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { MapChart } from "./Components/Map/MapChart";
 import SelectInput from "@/Components/SelectInput";
-import Status from "@/Components/Status/Status";
-// import HistoricState from "./Components/HistoricState";
+// import Status from "@/Components/Status/Status";
 import Table from "@/Components/Table/Table";
 import OriginalColumns from "@/Components/Table/Columns";
-import EditColumn from "./Components/EditColumn";
-import EditColumnLists from "./Components/EditColumnLists";
+// import EditColumn from "./Components/EditColumn";
+// import EditColumnLists from "./Components/EditColumnLists";
 import News from "./Components/News/News";
 import Description from "./Components/Description/Description";
 import DescriptionData from "./Components/Description/DescriptionData";
@@ -15,11 +14,8 @@ import ContactLists from "@/Components/Contact/ContactLists";
 import Organization from "./Components/Organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import Input from "@/Components/Input";
 import PaginationPage from "@/Components/Table/PaginationPage";
 import { AppLayout } from "@/Layouts/AppLayout";
-// import Responsive from "@/Components/Responsive/Responsive";
-// import NewsCard from "../News/Components/NewsCard";
 
 export default function Dashboard({
     news,
@@ -34,7 +30,6 @@ export default function Dashboard({
     countryWithAiPolicies,
     authUserBookmarkCount,
 }) {
-    console;
     var [countrywithStatus, setCountrywithStatus] = useState(
         initialCountrywithStatus
     );
@@ -331,9 +326,7 @@ export default function Dashboard({
                                                         value: lg.value,
                                                         label: lg.label,
                                                     }))}
-                                                    value={
-                                                        filters.lg
-                                                    }
+                                                    value={filters.lg}
                                                     onChange={(
                                                         selectedOptions
                                                     ) =>
@@ -561,29 +554,26 @@ export default function Dashboard({
                                             {list.name_en}
                                         </Link>
 
-                                        {/* <Link
+                                        <Link
                                             href={route(
                                                 "frontend.watch_list.add",
                                                 {
                                                     id: list.id,
                                                     isBooked: list.bookmark
-                                                        ?.ai_policy_tracker_id
+                                                        ?.lg_id
                                                         ? true
                                                         : false,
                                                 }
                                             )}
-                                            className="text-primary-light ms-3"
+                                            className="text-primary-light"
                                         >
-                                            {list.bookmark
-                                                ?.ai_policy_tracker_id ? (
+                                            {list.bookmark?.lg_id ? (
                                                 <i className="fa fa-star A"></i>
                                             ) : (
                                                 <i className="fa-regular fa-star B"></i>
                                             )}
-                                        </Link> */}
-                                        {/* <i className="fa-regular fa-star ms-3"></i> */}
+                                        </Link>
                                     </p>
-                                    {/* <p className="mt-2">{list.name_en}</p> */}
                                 </div>
                                 <div>
                                     <Link
