@@ -28,13 +28,14 @@ Route::middleware(['auth', 'isAdmin'])
 
         // ai policy tracker
         Route::controller(AiPolicyTrackerController::class)->as("ai_policy_tracker.")->group(function () {
-            Route::get("/backend/aipolicytracker", "index")->name("index");
-            Route::post("/backend/aipolicytracker", "store")->name("store");
-            Route::post("/backend/aipolicytracker/update/{id}", "edit")->name("edit");
-            Route::put("/backend/aipolicytracker/update/{id}", "update")->name("update");
+            Route::get("/backend/legit-application", "index")->name("index");
+            Route::post("/backend/legit-application", "store")->name("store");
+            Route::get("/backend/legit-application/view", "view")->name("view");
+            Route::post("/backend/legit-application/update/{id}", "edit")->name("edit");
+            Route::put("/backend/legit-application/update/{id}", "update")->name("update");
 
 
-            Route::delete("/backend/aipolicytracker/delete/{id}", "delete")->name("delete");
+            Route::delete("/backend/legit-application/delete/{id}", "delete")->name("delete");
         });
         /*********************** News Controller ******************************************* */
         Route::controller(NewsController::class)->as("news.")->group(function () {

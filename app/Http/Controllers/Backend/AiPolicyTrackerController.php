@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Jobs\SendAiPolicyTrackerNotificationJob;
 use App\Models\BookMark;
+use App\Models\RuralMunicipalityDetails;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Status;
@@ -34,16 +35,22 @@ class AiPolicyTrackerController extends Controller
                 ];
             });
 
-        $tableData = AiPolicyTracker::with(['country', 'status'])
-            ->withCount('bookmarks')
+        $tableData = RuralMunicipalityDetails::with(['province', 'district', 'lg'])
+            // ->withCount('bookmarks')
             ->orderBy('created_at', 'desc')->paginate(10);
 
-
+        // dd($tableData);
         return Inertia::render("Backend/AiPolicyTracker/Index", [
             'countries' => $countries,
             'status' => $status,
             'tableData' => $tableData,
         ]);
+    }
+
+    public function view()
+    {
+        // dd('fdsaf');
+        return Inertia::render('Backend/AiPolicyTracker/Components/View');
     }
 
     public function store(AiPolicyTrackerPostRequest $request)

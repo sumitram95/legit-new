@@ -31,6 +31,7 @@
         "@emotion/styled": "^11.13.0",
         "@mui/material": "^6.1.5",
         "@mui/styled-engine-sc": "^6.1.5",
+        "@mui/x-tree-view": "^7.22.1",
         "@react-leaflet/core": "^2.1.0",
         "@reduxjs/toolkit": "^2.2.7",
         "dompurify": "^3.1.6",
