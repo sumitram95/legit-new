@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\AiPolicyTracker;
 
+use App\Models\LocalGovernment;
 use Carbon\Carbon;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,6 @@ class SinglePolicyTackerControlle extends Controller
 {
     public function index($id)
     {
-// dd($id);
         if (!Auth::check()) {
             return Inertia::render('Frontend/DeniedPermissionPage/DeniedPermission');
 
@@ -69,6 +69,10 @@ class SinglePolicyTackerControlle extends Controller
          $data['currentYear'] = $currentYear;
          $data['upcomingYear'] = $upcomingYear;
          $data["graphData"] = $monthlyCounts;
+
+         $data['singleLg']=LocalGovernment::with('district.province', 'bookmark')->find($id);
+// dd( $data['singleLg']);
+
 
         return Inertia::render("Frontend/AiPolicyTracker/SingleAlert", ['data'=>$data]);
     }

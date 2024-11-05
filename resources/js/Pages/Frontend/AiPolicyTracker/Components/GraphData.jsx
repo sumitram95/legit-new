@@ -1,6 +1,7 @@
 import GraphChart from "@/Pages/Backend/Services/GraphChart";
 import NewsCard from "@/Pages/Frontend/News/Components/NewsCard";
 import React from "react";
+import SingleGraph from "./SingleGraph";
 
 export default function GraphData({ graphData, currentYear, upcomingYear }) {
     return (
@@ -8,7 +9,7 @@ export default function GraphData({ graphData, currentYear, upcomingYear }) {
             <div className="border-b pb-4 px-5">
                 <div>
                     <p className="font-bold text-primary-light text-lg">
-                        Chart Data
+                        Graph Data
                         <span className="text-gray-500 font-semibold ml-5">
                             ({currentYear ?? ""} - {upcomingYear ?? ""})
                         </span>
@@ -18,7 +19,8 @@ export default function GraphData({ graphData, currentYear, upcomingYear }) {
                     <p className=" text-sm text-primary">Sorted by date</p>
                 </div>
             </div>
-            <GraphChart graphData={graphData} />
+            {/* <GraphChart graphData={graphData} /> */}
+            <SingleGraph />
 
             {/* <NewsCard newsLists={newsLists} /> */}
         </div>
