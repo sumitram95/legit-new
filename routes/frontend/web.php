@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\AiPolicyTracker\SinglePolicyTackerControlle;
+use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\LegitApplication\LegitApplicationController;
 use App\Http\Controllers\Frontend\News\NewsController;
@@ -72,4 +73,10 @@ Route:: as('frontend.')->group(function () {
         Route::get("/legit/single-view/{id}", "index")->name('index');
         Route::post("/aipolicytracke/bookmark/{id}", "aiPolicyBookMark")->name('bookmark');
     });
+
+    Route::controller(CompareController::class)
+        ->as('compare.')
+        ->group(function () {
+            Route::get('/compare', 'index')->name('index');
+        });
 });

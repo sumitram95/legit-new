@@ -55,10 +55,6 @@ class WatchListController extends Controller
 
             ->get();
 
-        // return $data['provinces'];
-
-        // dd($data['provinces']);
-
         $data['districts'] = District::select('id as value', 'name_en as label')->get();
         return Inertia::render("Frontend/WatchList/WatchList", $data);
     }

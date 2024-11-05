@@ -292,7 +292,7 @@ export default function Dashboard({
 
                             {/* boookmarks, search, and editcolumn button */}
                             <div className="hidden flex-wrap gap-y-2 mt-5 px-5 md:flex">
-                                {/* watchlist fav */}
+                                {/* alert */}
                                 <div className="flex-none">
                                     <Link
                                         href={route(
@@ -312,15 +312,29 @@ export default function Dashboard({
                                         </span>
                                     </Link>
                                 </div>
+                                {/* compare */}
+                                <div className="flex-none ml-2">
+                                    <Link
+                                        href={route(
+                                            "frontend.compare.index"
+                                        )}
+                                        className="text-primary-light h-fit bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
+                                    >
+                                        <span className=" font-bold">
+                                            Compare
+                                        </span>
+                                    </Link>
+                                </div>
 
                                 {/* search filter for table data */}
 
                                 <div className="flex-grow">
                                     <form className="w-full" id="FormFiled">
                                         <div className="flex">
+                                            {/* fy */}
                                             <div className="w-full px-3">
                                                 <SelectInput
-                                                    placeholder="Local Government"
+                                                    placeholder="choose the F/Y"
                                                     className="mb-2 text-sm font-normal text-light-blue"
                                                     options={lgs.map((lg) => ({
                                                         value: lg.value,
@@ -337,6 +351,7 @@ export default function Dashboard({
                                                     }
                                                 />
                                             </div>
+                                            {/* province */}
                                             <div className="w-full px-3">
                                                 <SelectInput
                                                     placeholder="Province"
@@ -358,7 +373,7 @@ export default function Dashboard({
                                                     }
                                                 />
                                             </div>
-
+                                            {/* district */}
                                             <div className="w-full px-3">
                                                 <SelectInput
                                                     placeholder="District"
@@ -375,6 +390,26 @@ export default function Dashboard({
                                                     ) =>
                                                         handleFilterChange(
                                                             "district_id",
+                                                            selectedOptions
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+                                            {/* lg */}
+                                            <div className="w-full px-3">
+                                                <SelectInput
+                                                    placeholder="Local Government"
+                                                    className="mb-2 text-sm font-normal text-light-blue"
+                                                    options={lgs.map((lg) => ({
+                                                        value: lg.value,
+                                                        label: lg.label,
+                                                    }))}
+                                                    value={filters.lg}
+                                                    onChange={(
+                                                        selectedOptions
+                                                    ) =>
+                                                        handleFilterChange(
+                                                            "lg",
                                                             selectedOptions
                                                         )
                                                     }
