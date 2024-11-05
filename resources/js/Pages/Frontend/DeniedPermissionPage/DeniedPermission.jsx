@@ -27,11 +27,14 @@ export default function DeniedPermission() {
 
                         <h1 className="tracking-wider leading-6">
                             <strong className="me-2">
-                                Exclusive Access to Comprehensive LeGit Reports
+                                Unlock Comprehensive Insights with LeGIT Premium
+                                Access
                             </strong>
-                            Upgrade to <strong>Premium</strong> to unlock
-                            exclusive insights into nation regulatory
-                            landscapes. Premium users gain access to:
+                            Upgrade to <strong>LeGIT Premium</strong> for
+                            exclusive insights into the IT readiness of Nepal’s
+                            local governments. Premium members gain access to
+                            essential tools and data to drive digital
+                            transformation:
                         </h1>
                         <ul className="mt-5">
                             <li className="flex items-center gap-3 mb-5">
@@ -40,10 +43,11 @@ export default function DeniedPermission() {
                                 </strong>
                                 <h2 className=" tracking-wider leading-6">
                                     <strong className="me-2">
-                                        High-Level LeGit Regulation Summary:
+                                        IT Readiness Overview :
                                     </strong>
-                                    A quick overview of LeGit regulation status
-                                    across country with province.
+                                    A quick summary of IT infrastructure and
+                                    digital capabilities across municipalities,
+                                    with comparisons by region.
                                 </h2>
                             </li>
                             <li className="flex items-center gap-3 mb-5">
@@ -52,10 +56,11 @@ export default function DeniedPermission() {
                                 </strong>
                                 <h2 className=" tracking-wider leading-6">
                                     <strong className="me-2">
-                                        Detailed Market Profiles:
+                                        Detailed Profiles:
                                     </strong>
-                                    In-depth data on LeGit, legislation, and
-                                    schedules in individual markets.
+                                    In-depth assessments of local government
+                                    digital maturity, infrastructure, and
+                                    capacity-building efforts
                                 </h2>
                             </li>
                             <li className="flex items-center gap-3 mb-5">
@@ -64,26 +69,15 @@ export default function DeniedPermission() {
                                 </strong>
                                 <h2 className=" tracking-wider">
                                     <strong className="me-2 leading-6">
-                                        LeGit Alerts:
+                                        Real-Time Alerts :
                                     </strong>
-                                    Receive real-time alerts on important
-                                    regulatory changes and upcoming legislation
-                                    that could impact your business.
+                                    Receive instant notifications on updates or
+                                    new developments in e-governance and digital
+                                    infrastructure.
                                 </h2>
                             </li>
-                            <li className="mb-5">Additionally, enjoy:</li>
-
-                            <li className="flex items-center gap-3 mb-5">
-                                <strong>
-                                    <i className="fa-solid fa-arrow-right-long text-xl"></i>
-                                </strong>
-                                <h2 className=" tracking-wider">
-                                    <strong className="me-2 leading-6">
-                                        LeGit News:
-                                    </strong>
-                                    Stay informed with the latest data in LeGit
-                                    governance from around the province.
-                                </h2>
+                            <li className="mb-5">
+                                Additional premium benefits include:
                             </li>
 
                             <li className="flex items-center gap-3 mb-5">
@@ -92,18 +86,33 @@ export default function DeniedPermission() {
                                 </strong>
                                 <h2 className=" tracking-wider">
                                     <strong className="me-2 leading-6">
-                                        LeGit Timelines:
+                                        Latest e-Governance News :
+                                    </strong>
+                                    Stay updated on advancements and trends in
+                                    Nepal’s digital governance landscape.
+                                </h2>
+                            </li>
+
+                            <li className="flex items-center gap-3 mb-5">
+                                <strong>
+                                    <i className="fa-solid fa-arrow-right-long text-xl"></i>
+                                </strong>
+                                <h2 className=" tracking-wider">
+                                    <strong className="me-2 leading-6">
+                                        Progress Timelines
                                     </strong>
                                     Access detailed timelines tracking the
-                                    progress of LeGit and regulations in key
-                                    markets.
+                                    growth and development of IT readiness
+                                    across municipalities.
                                 </h2>
                             </li>
                         </ul>
 
                         <div className="w-full mt-5">
                             <h2 className="text-center text-xl">
-                                Unlock more LeGit data
+                                Empower data-driven decisions and enhance local
+                                governance capabilities—register for LeGIT
+                                Premium today!
                             </h2>
 
                             <div className="flex justify-center mt-5">
