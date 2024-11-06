@@ -5,11 +5,12 @@ import AiNews from "./Components/AiNews";
 import SingleAiInfo from "./Components/SingleAiInfo";
 import AiTimeLine from "./Components/AiTimeLine";
 import GraphData from "./Components/GraphData";
+import SingleGraph from "./Components/SingleGraph";
 
 export default function SingleAlert({
-    // aiPolicyTrackerWithRelatedNews,
-    // latestDateOfUpdateAiPolicyTracker = null,
-    // graphData
+    aiPolicyTrackerWithRelatedNews,
+    latestDateOfUpdateAiPolicyTracker = null,
+    graphData,
     data,
 }) {
     return (
@@ -26,13 +27,14 @@ export default function SingleAlert({
             <div className="md:flex flex-row gap-x-4 content-wrapper xl:mt-0 lg:mt-0 md:relative md:top-[-60px]">
                 <div className="w-full md:w-1/3">
                     <SingleAiInfo
-                        aiPolicyTrackerdetail={data.aiPolicyTrackerWithRelatedNews}
+                        singleLg={data.singleLg ?? []}
                     />
                 </div>
                 <div className="w-full mt-5 md:mt-0 md:w-full">
                     {/* <AiNews newsLists={aiPolicyTrackerWithRelatedNews.news} />
                      */}
                     <GraphData graphData={data.graphData} currentYear={data.currentYear} upcomingYear={data.upcomingYear}/>
+                    {/* <SingleGraph /> */}
                 </div>
                 {/* <div className="w-full mt-5 md:mt-0 md:w-1/4">
                     <AiTimeLine

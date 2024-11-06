@@ -5,26 +5,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Meta Tags -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Local e-Government Information Technoloy">
-    <meta name="twitter:description"
-        content="Stay informed on AI policy and governance.
-Explore in-depth resources on AI ethics, legislation, compliance, and more. Join our community for discussions, workshops, and conferences. Get access to policy guidelines, standards, best practices, and strategic roadmaps to navigate the evolving landscape of AI policies. Whether you're a researcher, developer, or business leader, we provide the insights you need to understand and shape AI's future.">
-    <meta name="twitter:image" content="{{ asset('aipolicytracker-logo.jpg') }}">
-    <meta name="og:title" content="Global Artificial Intelligence (AI) Policy Tracker">
-    <meta name="og:site_name" content="Global Artificial Intelligence (AI) Policy Tracker">
-    <meta name="og:type" content="website">
-    <meta name="og:description"
-        content="Stay informed on AI policy and governance.
-Explore in-depth resources on AI ethics, legislation, compliance, and more. Join our community for discussions, workshops, and conferences. Get access to policy guidelines, standards, best practices, and strategic roadmaps to navigate the evolving landscape of AI policies. Whether you're a researcher, developer, or business leader, we provide the insights you need to understand and shape AI's future.">
-    <meta name="og:image" content="{{ asset('applogo-removebg.png') }}">
-    <meta name="description"
-        content="Stay informed on AI policy and governance.
-Explore in-depth resources on AI ethics, legislation, compliance, and more. Join our community for discussions, workshops, and conferences. Get access to policy guidelines, standards, best practices, and strategic roadmaps to navigate the evolving landscape of AI policies. Whether you're a researcher, developer, or business leader, we provide the insights you need to understand and shape AI's future.">
-    <meta name="keywords"
-        content="Stay informed on AI policy trends with our comprehensive AI Policy Tracker.
-Monitor global AI regulations, analyze AI governance landscapes, and track AI ethics developments. Our user-friendly platform offers AI policy monitoring, alerts, comparison tools, and in-depth search capabilities. Whether you're an AI researcher, developer, or policymaker, our tracker provides valuable insights and resources to navigate the complex world of AI policy.">
+ <!-- Meta Tags -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Local e-Governance Information Technology Assessment (LeGIT)">
+<meta name="twitter:description"
+      content="Explore the IT readiness of Nepal’s local governments with LeGIT. Access insights on digital infrastructure, connectivity, and e-governance progress. Designed to support efficient, inclusive, and data-driven digital transformation.">
+<meta name="twitter:image" content="{{ asset('legit-logo.jpg') }}">
+
+<meta name="og:title" content="Local e-Governance IT Readiness Assessment (LeGIT)">
+<meta name="og:site_name" content="Local e-Governance IT Readiness Assessment (LeGIT)">
+<meta name="og:type" content="website">
+<meta name="og:description"
+      content="LeGIT provides a comprehensive IT readiness assessment for local governments in Nepal. Track digital infrastructure, ICT training, and e-governance progress to empower digital transformation across Nepal’s municipalities.">
+<meta name="og:image" content="{{ asset('legit-thumbnail.jpg') }}">
+
+<meta name="description"
+      content="LeGIT is Nepal’s premier platform for assessing the IT readiness of local governments. Gain insights on digital infrastructure, ICT capacity, and connectivity to support inclusive, efficient e-governance. Designed for data-driven transformation, LeGIT helps local governments monitor and improve their digital readiness.">
+
+<meta name="keywords"
+      content="Local e-Governance, IT readiness Nepal, e-governance Nepal, digital transformation, ICT assessment, Nepal local government, digital infrastructure, e-governance tools, ICT training, digital readiness index, public sector technology, IT benchmarking, connectivity Nepal, LeGIT">
 
     <!-- Meta icon -->
     <link rel="icon" type="image/png" href="{{ asset('favicon-app-logo.png') }}">

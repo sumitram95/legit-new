@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Frontend\WatchList;
 
 use App\Models\BookMark;
 use App\Models\Country;
+use App\Models\District;
+use App\Models\LocalGovernment;
+use App\Models\Province;
 use App\Models\Status;
 use Auth;
 use Inertia\Inertia;
@@ -15,34 +18,44 @@ use Carbon\Carbon;
 
 class WatchListController extends Controller
 {
-
     public function index()
     {
-        $data['tableData'] = AiPolicyTracker::whereHas('bookmark')
-            ->with(['country', 'status', 'bookmark'])
-            ->orderBy('created_at', 'desc')
+        $data['tableData'] = LocalGovernment::whereHas('bookmark')
+            ->with(['district.province', 'bookmark'])
+            // ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        $data['aiPolicies'] = AiPolicyTracker::get()
-            ->map(function ($aiPolicy) {
-                return [
-                    'value' => $aiPolicy->id,
-                    'label' => $aiPolicy->ai_policy_name,
-                ];
-            });
+            // dd($data);
 
-        $data['countries'] = Country::select('id as value', 'name as label')
-            ->where('status', 1)
-            ->orderBy('name', 'asc')
+        // $data['aiPolicies'] = AiPolicyTracker::get()
+        //     ->map(function ($aiPolicy) {
+        //         return [
+        //             'value' => $aiPolicy->id,
+        //             'label' => $aiPolicy->ai_policy_name,
+        //         ];
+        //     });
+
+        // $data['countries'] = Country::select('id as value', 'name as label')
+        //     ->where('status', 1)
+        //     ->orderBy('name', 'asc')
+        //     ->get();
+
+        // $data['statuses'] = Status::get()
+        //     ->map(function ($status) {
+        //         return [
+        //             'value' => $status->id,
+        //             'label' => $status->name,
+        //         ];
+        //     });
+
+        $data['lgs'] = LocalGovernment::select('id as value', 'name_en as label')->get();
+
+        $data['provinces'] = Province::select('id as value', 'name_en as label', 'label as p_lable')
+            ->orderBy('p_lable', 'asc')
+
             ->get();
 
-        $data['statuses'] = Status::get()
-            ->map(function ($status) {
-                return [
-                    'value' => $status->id,
-                    'label' => $status->name,
-                ];
-            });
+        $data['districts'] = District::select('id as value', 'name_en as label')->get();
         return Inertia::render("Frontend/WatchList/WatchList", $data);
     }
 
@@ -59,18 +72,18 @@ class WatchListController extends Controller
             }
 
             if ($isBooked == "true") {
-                $bookmark = BookMark::where('ai_policy_tracker_id', $id)
+                $bookmark = BookMark::where('lg_id', $id)
                     ->where('user_id', Auth::id())
                     ->first();
                 $bookmark->delete();
             } else {
 
                 BookMark::updateOrCreate([
-                    'ai_policy_tracker_id' => $id,
+                    'lg_id' => $id,
                     'user_id' => Auth::id()
                 ], [
                     'user_id' => Auth::user()->id,
-                    'ai_policy_tracker_id' => $id,
+                    'lg_id' => $id,
                 ]);
             }
 
@@ -82,64 +95,103 @@ class WatchListController extends Controller
 
     }
 
-    public function getFilteredData(Request $request)
+        public function getFilteredData(Request $request)
     {
-        $query = AiPolicyTracker::whereHas('bookmark');
+        $query = LocalGovernment::query()->whereHas('bookmark')->with('district.province', 'district','bookmark');
 
         // Apply filters based on the request parameters
-        if ($request->has('AI_Policy_Name') && !empty($request->AI_Policy_Name)) {
-            $aiPolicyIds = explode(',', $request->AI_Policy_Name);
+        if ($request->has('lg') && !empty($request->lg)) {
+            $aiPolicyIds = explode(',', $request->lg);
             $query->whereIn('id', $aiPolicyIds);
         }
+        if ($request->has('province_id') && !empty($request->province_id)) {
+            $countryIds = explode(',', $request->province_id);
 
-        if ($request->has('country_id') && !empty($request->country_id)) {
-            $countryIds = explode(',', $request->country_id);
-            $query->whereIn('country_id', $countryIds);
+            // Filter based on province_id within district.province relationship
+            $query->whereHas('district.province', function ($q) use ($countryIds) {
+                $q->whereIn('id', $countryIds);
+            });
         }
 
-        if ($request->has('status_id') && !empty($request->status_id)) {
-            $statusIds = explode(',', $request->status_id);
-            $query->whereIn('status_id', $statusIds);
-        }
 
-        if ($request->has('announcement_year') && !empty($request->announcement_year)) {
-            $query->where('announcement_year', $request->announcement_year);
+        if ($request->has('district_id') && !empty($request->district_id)) {
+            $statusIds = explode(',', $request->district_id);
+
+            // Filter based on district_id within district.province relationship
+            $query->whereHas('district', function ($q) use ($statusIds) {
+                $q->whereIn('id', $statusIds);
+            });
         }
 
         // Apply pagination
-        $perPage = $request->get('per_page', 10); // Default to 15 items per page if not provided
+        $perPage = $request->get('per_page', 15); // Default to 15 items per page if not provided
         $filteredData = $query->paginate($perPage);
 
-        // Format the data as needed
-        $tableData = $filteredData->getCollection()->map(function ($policy) {
-            return [
-                'id' => $policy->id,
-                'ai_policy_name' => $policy->ai_policy_name,
-                'country' => $policy->country,
-                'bookmark' => $policy->bookmark,
-                'governing_body' => $policy->governing_body,
-                'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
-                'status' => $policy->status,
-                'technology_partners' => $policy->technology_partners,
-                'governance_structure' => $policy->governance_structure,
-                'main_motivation' => $policy->main_motivation,
-                'description' => $policy->description,
-            ];
-        });
 
         // Return the filtered and paginated data as JSON
         return response()->json([
-            'current_page' => $filteredData->currentPage(),
-            'data' => $tableData,
-            'first_page_url' => $filteredData->url(1),
-            'last_page' => $filteredData->lastPage(),
-            'last_page_url' => $filteredData->url($filteredData->lastPage()),
-            'next_page_url' => $filteredData->nextPageUrl(),
-            'path' => $filteredData->path(),
-            'per_page' => $filteredData->perPage(),
-            'prev_page_url' => $filteredData->previousPageUrl(),
-            'to' => $filteredData->lastItem(),
-            'total' => $filteredData->total(),
+            'data' => $filteredData,
         ]);
     }
+
+    // public function getFilteredData(Request $request)
+    // {
+    //     $query = AiPolicyTracker::whereHas('bookmark');
+
+    //     // Apply filters based on the request parameters
+    //     if ($request->has('AI_Policy_Name') && !empty($request->AI_Policy_Name)) {
+    //         $aiPolicyIds = explode(',', $request->AI_Policy_Name);
+    //         $query->whereIn('id', $aiPolicyIds);
+    //     }
+
+    //     if ($request->has('country_id') && !empty($request->country_id)) {
+    //         $countryIds = explode(',', $request->country_id);
+    //         $query->whereIn('country_id', $countryIds);
+    //     }
+
+    //     if ($request->has('status_id') && !empty($request->status_id)) {
+    //         $statusIds = explode(',', $request->status_id);
+    //         $query->whereIn('status_id', $statusIds);
+    //     }
+
+    //     if ($request->has('announcement_year') && !empty($request->announcement_year)) {
+    //         $query->where('announcement_year', $request->announcement_year);
+    //     }
+
+    //     // Apply pagination
+    //     $perPage = $request->get('per_page', 10); // Default to 15 items per page if not provided
+    //     $filteredData = $query->paginate($perPage);
+
+    //     // Format the data as needed
+    //     $tableData = $filteredData->getCollection()->map(function ($policy) {
+    //         return [
+    //             'id' => $policy->id,
+    //             'ai_policy_name' => $policy->ai_policy_name,
+    //             'country' => $policy->country,
+    //             'bookmark' => $policy->bookmark,
+    //             'governing_body' => $policy->governing_body,
+    //             'formatted_created_at' => \Carbon\Carbon::parse($policy->announcement_date)->format('M d, Y'),
+    //             'status' => $policy->status,
+    //             'technology_partners' => $policy->technology_partners,
+    //             'governance_structure' => $policy->governance_structure,
+    //             'main_motivation' => $policy->main_motivation,
+    //             'description' => $policy->description,
+    //         ];
+    //     });
+
+    //     // Return the filtered and paginated data as JSON
+    //     return response()->json([
+    //         'current_page' => $filteredData->currentPage(),
+    //         'data' => $tableData,
+    //         'first_page_url' => $filteredData->url(1),
+    //         'last_page' => $filteredData->lastPage(),
+    //         'last_page_url' => $filteredData->url($filteredData->lastPage()),
+    //         'next_page_url' => $filteredData->nextPageUrl(),
+    //         'path' => $filteredData->path(),
+    //         'per_page' => $filteredData->perPage(),
+    //         'prev_page_url' => $filteredData->previousPageUrl(),
+    //         'to' => $filteredData->lastItem(),
+    //         'total' => $filteredData->total(),
+    //     ]);
+    // }
 }

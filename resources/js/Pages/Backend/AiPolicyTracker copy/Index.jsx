@@ -158,7 +158,7 @@ export default function Index({
                                                 <div className="flex gap-2">
                                                     {/* View Action */}
                                                     <Link
-                                                        href={route('backend.ai_policy_tracker.view')}
+                                                        href="#"
                                                         className="underline text-blue-950"
                                                     >
                                                         <ViewIcon />

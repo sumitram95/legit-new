@@ -20,7 +20,9 @@ return new class extends Migration
 
             $table->softDeletes();
 
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

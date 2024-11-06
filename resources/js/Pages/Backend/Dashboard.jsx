@@ -30,7 +30,7 @@ export default function Dashboard({ data, graphData }) {
                             <p className="text-2xl font-bold">
                                 {data?.aiPolicyCount ?? 0}
                             </p>
-                            <p className="text-gray-400">Total (AI) Policy</p>
+                            <p className="text-gray-400">Total (LG)</p>
                         </div>
                     </div>
                     <div className="flex items-center justify-evenly h-24 rounded bg-white">
@@ -78,13 +78,13 @@ export default function Dashboard({ data, graphData }) {
                             <p className="text-2xl font-bold">
                                 {data?.usersCount ?? 0}
                             </p>
-                            <p className="text-gray-400">Total Users</p>
+                            <p className="text-gray-400">Total Districts</p>
                         </div>
                     </div>
                 </div>
                 <div className="mb-4 rounded bg-white px-5 py-5">
                     <p className="font-bold">
-                        AI Policy Tracker Graph
+                        LeGit Application Graph
                         <span className="text-gray-500 font-semibold ml-5">
                             ({data.currentYear ?? ""} -{data.upcomingYear ?? ""}
                             )
@@ -92,7 +92,7 @@ export default function Dashboard({ data, graphData }) {
                     </p>
                     <GraphChart graphData={graphData} />
                 </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                {/* <div className="grid grid-cols-2 gap-4 mb-4">
                     <div className="rounded bg-white min-h-28 py-5">
                         <div className="flex items-center justify-between px-5 mb-3">
                             <div>
@@ -139,7 +139,7 @@ export default function Dashboard({ data, graphData }) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
                     <p className="text-2xl text-gray-400 dark:text-gray-500">
                         <svg

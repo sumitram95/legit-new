@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { MapChart } from "./Components/Map/MapChart";
 import SelectInput from "@/Components/SelectInput";
-import Status from "@/Components/Status/Status";
-// import HistoricState from "./Components/HistoricState";
+// import Status from "@/Components/Status/Status";
 import Table from "@/Components/Table/Table";
 import OriginalColumns from "@/Components/Table/Columns";
-import EditColumn from "./Components/EditColumn";
-import EditColumnLists from "./Components/EditColumnLists";
+// import EditColumn from "./Components/EditColumn";
+// import EditColumnLists from "./Components/EditColumnLists";
 import News from "./Components/News/News";
 import Description from "./Components/Description/Description";
 import DescriptionData from "./Components/Description/DescriptionData";
@@ -15,17 +14,15 @@ import ContactLists from "@/Components/Contact/ContactLists";
 import Organization from "./Components/Organization/Organization";
 import organizationLogo from "@/assets/images/T4DNepal.png";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import Input from "@/Components/Input";
 import PaginationPage from "@/Components/Table/PaginationPage";
 import { AppLayout } from "@/Layouts/AppLayout";
-// import Responsive from "@/Components/Responsive/Responsive";
-// import NewsCard from "../News/Components/NewsCard";
 
 export default function Dashboard({
     news,
-    aiPolicies,
-    countries,
+    lgs,
+    provinces,
     statuses,
+    districts,
     tableData: initialTableData,
     aiPolicyLastUpdate,
     newsLastUpdate,
@@ -33,7 +30,6 @@ export default function Dashboard({
     countryWithAiPolicies,
     authUserBookmarkCount,
 }) {
-    console;
     var [countrywithStatus, setCountrywithStatus] = useState(
         initialCountrywithStatus
     );
@@ -47,10 +43,9 @@ export default function Dashboard({
     }, [initialTableData]);
 
     const [filters, setFilters] = useState({
-        AI_Policy_Name: [],
-        country_id: [],
-        status_id: [],
-        announcement_year: "",
+        lg: [],
+        province_id: [],
+        district_id: [],
     });
 
     const handleFilterChange = (name, selectedOptions) => {
@@ -93,7 +88,9 @@ export default function Dashboard({
             );
 
             const result = await response.json();
-            setTableData(result); // Update the tableData state
+
+            console.log(result.data);
+            setTableData(result.data); // Update the tableData state
         } catch (error) {
             console.error("Error fetching filtered data:", error);
         }
@@ -102,10 +99,9 @@ export default function Dashboard({
     //****************** Clear Filter ******************* */
     const handleClearFilters = () => {
         const clearedFilters = {
-            AI_Policy_Name: [],
-            country_id: [],
-            status_id: [],
-            announcement_year: "",
+            lg: [],
+            province_id: [],
+            district_id: [],
         };
 
         setFilters(clearedFilters);
@@ -262,7 +258,7 @@ export default function Dashboard({
                                 </div>
                                 {/* ********************** Status Component (desktop) ********************** */}
 
-                                <div className="hidden xl:flex xl:justify-center xl:items-center xl:mt-5 2xl:flex 2xl:justify-center 2xl:items-center 2xl:mt-5">
+                                {/* <div className="hidden xl:flex xl:justify-center xl:items-center xl:mt-5 2xl:flex 2xl:justify-center 2xl:items-center 2xl:mt-5">
                                     <Status
                                         statuses={statuses}
                                         statusState={statusState}
@@ -271,18 +267,18 @@ export default function Dashboard({
                                         }
                                         handleShowAll={handleShowAll}
                                     />
-                                </div>
+                                </div> */}
                             </div>
 
                             {/* ********************** Status Component (mobile) ********************** */}
-                            <div className="hidden md:flex lg:flex xl:hidden justify-center mt-5 items-center">
+                            {/* <div className="hidden md:flex lg:flex xl:hidden justify-center mt-5 items-center">
                                 <Status
                                     statuses={statuses}
                                     statusState={statusState}
                                     handleStatusChange1={handleStatusChange1}
                                     handleShowAll={handleShowAll}
                                 />
-                            </div>
+                            </div> */}
 
                             {/* ********************** MapChart Component ********************** */}
                             <div className="hidden md:block mt-5 px-4 map-chart-wrapper">
@@ -296,7 +292,7 @@ export default function Dashboard({
 
                             {/* boookmarks, search, and editcolumn button */}
                             <div className="hidden flex-wrap gap-y-2 mt-5 px-5 md:flex">
-                                {/* watchlist fav */}
+                                {/* alert */}
                                 <div className="flex-none">
                                     <Link
                                         href={route(
@@ -312,84 +308,115 @@ export default function Dashboard({
                                             }`}
                                         ></i>
                                         <span className=" font-bold">
-                                         Alert ({authUserBookmarkCount})
+                                            Alert ({authUserBookmarkCount})
+                                        </span>
+                                    </Link>
+                                </div>
+                                {/* compare */}
+                                <div className="flex-none ml-2">
+                                    <Link
+                                        href={route(
+                                            "frontend.compare.index"
+                                        )}
+                                        className="text-primary-light h-fit bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
+                                    >
+                                        <span className=" font-bold">
+                                            Compare
                                         </span>
                                     </Link>
                                 </div>
 
                                 {/* search filter for table data */}
 
-                                {/* <div className="flex-grow">
+                                <div className="flex-grow">
                                     <form className="w-full" id="FormFiled">
                                         <div className="flex">
+                                            {/* fy */}
                                             <div className="w-full px-3">
                                                 <SelectInput
-                                                    placeholder="AI Policy Name"
+                                                    placeholder="choose the F/Y"
                                                     className="mb-2 text-sm font-normal text-light-blue"
-                                                    options={aiPolicies.map(
-                                                        (policy) => ({
-                                                            value: policy.value,
-                                                            label: policy.label,
-                                                        })
-                                                    )}
-                                                    value={
-                                                        filters.AI_Policy_Name
-                                                    }
+                                                    options={lgs.map((lg) => ({
+                                                        value: lg.value,
+                                                        label: lg.label,
+                                                    }))}
+                                                    value={filters.lg}
                                                     onChange={(
                                                         selectedOptions
                                                     ) =>
                                                         handleFilterChange(
-                                                            "AI_Policy_Name",
+                                                            "lg",
                                                             selectedOptions
                                                         )
                                                     }
                                                 />
                                             </div>
+                                            {/* province */}
                                             <div className="w-full px-3">
                                                 <SelectInput
-                                                    placeholder="Country / Region"
+                                                    placeholder="Province"
                                                     className="text-sm mb-2 font-normal text-light-blue"
-                                                    options={countries.map(
-                                                        (country) => ({
-                                                            value: country.value,
-                                                            label: country.label,
+                                                    options={provinces.map(
+                                                        (province) => ({
+                                                            value: province.value,
+                                                            label: province.label,
                                                         })
                                                     )}
-                                                    value={filters.country_id}
+                                                    value={filters.province_id}
                                                     onChange={(
                                                         selectedOptions
                                                     ) =>
                                                         handleFilterChange(
-                                                            "country_id",
+                                                            "province_id",
                                                             selectedOptions
                                                         )
                                                     }
                                                 />
                                             </div>
-
+                                            {/* district */}
                                             <div className="w-full px-3">
                                                 <SelectInput
-                                                    placeholder="Status"
+                                                    placeholder="District"
                                                     className="mb-2 text-sm font-normal text-light-blue"
-                                                    options={statuses.map(
-                                                        (status) => ({
-                                                            value: status.value,
-                                                            label: status.label,
+                                                    options={districts.map(
+                                                        (district) => ({
+                                                            value: district.value,
+                                                            label: district.label,
                                                         })
                                                     )}
-                                                    value={filters.status_id}
+                                                    value={filters.district_id}
                                                     onChange={(
                                                         selectedOptions
                                                     ) =>
                                                         handleFilterChange(
-                                                            "status_id",
+                                                            "district_id",
+                                                            selectedOptions
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+                                            {/* lg */}
+                                            <div className="w-full px-3">
+                                                <SelectInput
+                                                    placeholder="Local Government"
+                                                    className="mb-2 text-sm font-normal text-light-blue"
+                                                    options={lgs.map((lg) => ({
+                                                        value: lg.value,
+                                                        label: lg.label,
+                                                    }))}
+                                                    value={filters.lg}
+                                                    onChange={(
+                                                        selectedOptions
+                                                    ) =>
+                                                        handleFilterChange(
+                                                            "lg",
                                                             selectedOptions
                                                         )
                                                     }
                                                 />
                                             </div>
 
-                                            <div className="w-full px-3">
+                                            {/* <div className="w-full px-3">
                                                 <Input
                                                     className="mb-2 text-sm font-normal text-light-blue"
                                                     name="announcement_year"
@@ -401,10 +428,10 @@ export default function Dashboard({
                                                     placeholder="Announcement Year"
                                                     type="date"
                                                 />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </form>
-                                </div> */}
+                                </div>
 
                                 {/* edit column drop down */}
                                 {/* <div className="flex-none">
@@ -433,7 +460,7 @@ export default function Dashboard({
 
                 {/* mobile filter */}
 
-                {/* <div className="mb-5 block md:hidden">
+                <div className="mb-5 block md:hidden">
                     <div className="border rounded-md w-full bg-white sticky top-0">
                         <div className="border-b border-light-border py-[16px] px-[16px] flex justify-between items-center">
                             <div className="flex items-center justify-between w-full">
@@ -486,72 +513,62 @@ export default function Dashboard({
                                 <form className="w-full" id="FormFiled">
                                     <div>
                                         <SelectInput
-                                            label="AI Policy Name"
+                                            label="Local Government"
                                             className="mb-2 text-sm font-normal text-light-blue"
-                                            options={aiPolicies.map(
-                                                (policy) => ({
-                                                    value: policy.value,
-                                                    label: policy.label,
-                                                })
-                                            )}
-                                            value={filters.AI_Policy_Name}
-                                            onChange={(selectedOptions) =>
-                                                handleFilterChange(
-                                                    "AI_Policy_Name",
-                                                    selectedOptions
-                                                )
-                                            }
-                                        />
-
-                                        <SelectInput
-                                            label="Country / Region"
-                                            className="mb-2 text-sm font-normal text-light-blue"
-                                            options={countries.map(
-                                                (country) => ({
-                                                    value: country.value,
-                                                    label: country.label,
-                                                })
-                                            )}
-                                            value={filters.country_id}
-                                            onChange={(selectedOptions) =>
-                                                handleFilterChange(
-                                                    "country_id",
-                                                    selectedOptions
-                                                )
-                                            }
-                                        />
-
-                                        <SelectInput
-                                            label="Status"
-                                            className="mb-2 text-sm font-normal text-light-blue"
-                                            options={statuses.map((status) => ({
-                                                value: status.value,
-                                                label: status.label,
+                                            options={lgs.map((lg) => ({
+                                                value: lg.value,
+                                                label: lg.label,
                                             }))}
-                                            value={filters.status_id}
+                                            value={filters.lg}
                                             onChange={(selectedOptions) =>
                                                 handleFilterChange(
-                                                    "status_id",
+                                                    "lg",
                                                     selectedOptions
                                                 )
                                             }
                                         />
 
-                                        <Input
+                                        <SelectInput
+                                            label="Province"
                                             className="mb-2 text-sm font-normal text-light-blue"
-                                            name="announcement_year"
-                                            value={filters.announcement_year}
-                                            onChange={handleInputChange}
-                                            htmlFor="announcement_year"
-                                            label="Announcement Year"
-                                            type="date"
+                                            options={provinces.map(
+                                                (province) => ({
+                                                    value: province.value,
+                                                    label: province.label,
+                                                })
+                                            )}
+                                            value={filters.province_id}
+                                            onChange={(selectedOptions) =>
+                                                handleFilterChange(
+                                                    "province_id",
+                                                    selectedOptions
+                                                )
+                                            }
+                                        />
+
+                                        <SelectInput
+                                            label="District"
+                                            className="mb-2 text-sm font-normal text-light-blue"
+                                            options={districts.map(
+                                                (district) => ({
+                                                    value: district.value,
+                                                    label: district.label,
+                                                })
+                                            )}
+                                            value={filters.district_id}
+                                            onChange={(selectedOptions) =>
+                                                handleFilterChange(
+                                                    "district_id",
+                                                    selectedOptions
+                                                )
+                                            }
                                         />
                                     </div>
                                 </form>
                             </div>
                         )}
                     </div>
-                </div> */}
+                </div>
                 {/* mobile table data */}
                 <div className="block md:hidden">
                     {tableData.data.map((list) => (
@@ -569,7 +586,7 @@ export default function Dashboard({
                                             )}
                                             className="hover:underline"
                                         >
-                                            {list.ai_policy_name}
+                                            {list.name_en}
                                         </Link>
 
                                         <Link
@@ -578,23 +595,20 @@ export default function Dashboard({
                                                 {
                                                     id: list.id,
                                                     isBooked: list.bookmark
-                                                        ?.ai_policy_tracker_id
+                                                        ?.lg_id
                                                         ? true
                                                         : false,
                                                 }
                                             )}
-                                            className="text-primary-light ms-3"
+                                            className="text-primary-light"
                                         >
-                                            {list.bookmark
-                                                ?.ai_policy_tracker_id ? (
+                                            {list.bookmark?.lg_id ? (
                                                 <i className="fa fa-star A"></i>
                                             ) : (
                                                 <i className="fa-regular fa-star B"></i>
                                             )}
                                         </Link>
-                                        {/* <i className="fa-regular fa-star ms-3"></i> */}
                                     </p>
-                                    <p className="mt-2">{list.status?.name}</p>
                                 </div>
                                 <div>
                                     <Link
@@ -617,7 +631,7 @@ export default function Dashboard({
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
                                         <p className="text-gray-500">
-                                            {list.country?.name}
+                                            {list.name_en}
                                         </p>
                                     </div>
                                 </div>
@@ -629,7 +643,8 @@ export default function Dashboard({
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
                                         <p className="text-gray-500">
-                                            {list.governing_body}
+                                            {list.district?.province?.name_en ??
+                                                "null"}
                                         </p>
                                     </div>
                                 </div>
@@ -642,7 +657,7 @@ export default function Dashboard({
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
                                         <p className="text-gray-500">
-                                            {list.formatted_created_at}
+                                            {list.district?.name_en ?? "null"}
                                         </p>
                                     </div>
                                 </div>
@@ -655,7 +670,7 @@ export default function Dashboard({
                                     </div>
                                     <div className="flex mt-1 gap-3 items-center text-sm">
                                         <p className="text-gray-500">
-                                            {list.technology_partners}
+                                            {list.formatted_created_at}
                                         </p>
                                     </div>
                                 </div>

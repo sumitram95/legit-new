@@ -58,7 +58,7 @@ export default function RuralMunicipalityDetail({
     };
 
     return (
-        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 mb-4 border-b pb-4">
+        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 mb-4">
             {/* NAME OF DATA PROVIDER */}
             <div className="sm:col-span-2">
                 <div className="flex">

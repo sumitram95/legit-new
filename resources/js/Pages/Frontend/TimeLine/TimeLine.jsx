@@ -250,8 +250,10 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                                 >
                                                                                     <div className="bg-white border border-gray-200 rounded-lg shadow">
                                                                                         <h5 className="border-b-2 flex gap-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight add-action text-dark capitalize">
-                                                                                            {item.ai_policy_name ||
-                                                                                                `Item ${item.id}`}
+                                                                                            {/* {item.ai_policy_name ||
+                                                                                                `Item ${item.id}`}  */}
+                                                                                            Provider
+                                                                                            name
                                                                                             <span className="font-light block md:hidden">
                                                                                                 <svg
                                                                                                     viewBox="0 0 16 16"
@@ -278,10 +280,48 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                                         <div className="px-6 add-action-item">
                                                                                             <div
                                                                                                 className="text-xs py-2"
-                                                                                                dangerouslySetInnerHTML={{
-                                                                                                    __html: log.description,
-                                                                                                }}
-                                                                                            />
+                                                                                                // dangerouslySetInnerHTML={{
+                                                                                                //     __html: log.description,
+                                                                                                // }}
+                                                                                            >
+                                                                                                <h2>
+                                                                                                    Province
+                                                                                                    :
+                                                                                                    <strong>
+                                                                                                        Madhesh
+                                                                                                    </strong>
+                                                                                                </h2>
+                                                                                                <h2>
+                                                                                                    District
+                                                                                                    :{" "}
+                                                                                                    <strong>
+                                                                                                        Dhanusha
+                                                                                                    </strong>
+                                                                                                </h2>
+                                                                                                <h2>
+                                                                                                    LG
+                                                                                                    :{" "}
+                                                                                                    <strong>
+                                                                                                        Janakpur
+                                                                                                        Sub-Metropolitan
+                                                                                                    </strong>
+                                                                                                </h2>
+                                                                                                <h2>
+                                                                                                    Email
+                                                                                                    :{" "}
+                                                                                                    <strong>
+                                                                                                        example@email.com
+                                                                                                    </strong>
+                                                                                                </h2>
+                                                                                                <h2>
+                                                                                                    Position
+                                                                                                    :{" "}
+                                                                                                    <strong>
+                                                                                                        IT
+                                                                                                        Sector
+                                                                                                    </strong>
+                                                                                                </h2>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -317,8 +357,10 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                                 >
                                                                                     <div className="bg-white border border-gray-200 rounded-lg shadow ">
                                                                                         <h5 className="border-b-2 flex gap-2 border-neutral-100 px-6 py-2 text-xs font-bold leading-tight dark:border-white/10 update-action text-dark capitalize">
-                                                                                            {item.ai_policy_name ||
-                                                                                                `Item ${item.id}`}
+                                                                                            {/* {item.ai_policy_name ||
+                                                                                                `Item ${item.id}`} */}
+                                                                                            Provider
+                                                                                            name
                                                                                             <svg
                                                                                                 viewBox="0 0 16 16"
                                                                                                 width="1em"
@@ -346,10 +388,18 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                                         <div className="px-6 update-action-item">
                                                                                             <div
                                                                                                 className="text-xs py-2"
-                                                                                                dangerouslySetInnerHTML={{
-                                                                                                    __html: log.description,
-                                                                                                }}
-                                                                                            />
+                                                                                                // dangerouslySetInnerHTML={{
+                                                                                                //     __html: log.description,
+                                                                                                // }}
+                                                                                            >
+                                                                                                <h2>
+                                                                                                    Email
+                                                                                                    :
+                                                                                                    <strong>
+                                                                                                        example@email.com
+                                                                                                    </strong>
+                                                                                                </h2>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -385,8 +435,9 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                                 >
                                                                                     <div className="bg-white border border-gray-200 rounded-lg shadow">
                                                                                         <h5 className="border-b-2 border-neutral-100 px-6 py-2 text-xs font-medium leading-tight dark:border-white/10 delete-action text-dark capitalize">
-                                                                                            {item.ai_policy_name ||
-                                                                                                `Item ${item.id}`}
+                                                                                            {/* {item.ai_policy_name ||
+                                                                                                `Item ${item.id}`} */}
+                                                                                                Provider name
                                                                                             <span className=" block md:hidden">
                                                                                                 <svg
                                                                                                     viewBox="0 0 16 16"
@@ -413,10 +464,15 @@ export default function TimeLine({ timeLines, lastUpdateDate }) {
                                                                                         <div className="px-6 delete-action-item">
                                                                                             <div
                                                                                                 className="text-xs py-2"
-                                                                                                dangerouslySetInnerHTML={{
-                                                                                                    __html: log.description,
-                                                                                                }}
-                                                                                            />
+                                                                                                // dangerouslySetInnerHTML={{
+                                                                                                //     __html: log.description,
+                                                                                                // }}
+                                                                                            >
+                                                                                               <h2>
+                                                                                                    Temprory Blocked
+
+                                                                                                </h2>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
