@@ -16,7 +16,7 @@ class RuralMunicipalityDetails extends Model
         'email', //required
         'province_label', //required
         'district_label', //required
-        'local_government_lable', //required
+        'local_government_lable', //required local_government_label
         'position', //required
     ];
 
@@ -37,5 +37,10 @@ class RuralMunicipalityDetails extends Model
     public function lg()
     {
         return $this->hasOne(LocalGovernment::class, 'label', 'local_government_lable');
+    }
+
+    public function ictTraining()
+    {
+        return $this->hasOne(IctTraining::class, 'rural_municipality_detail_id', 'id');
     }
 }
