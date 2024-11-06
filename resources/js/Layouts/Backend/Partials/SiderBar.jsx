@@ -78,7 +78,7 @@ export default function SiderBar() {
                             </svg>
 
                             <span className="ms-3 text-sm text-gray-700 capitalize">
-                                Lg Application Form
+                                LeGit Application
                             </span>
                         </Link>
                     </li>

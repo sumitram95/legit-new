@@ -13,6 +13,7 @@ import Pagination from "@/Components/Pagination";
 import DeleteModel from "@/Components/DeleteModel";
 import axios from "axios";
 import Edit from "./Components/Edit";
+import StatusOfForm from "./Components/StatusOfForm";
 
 export default function Index({
     tableData = [],
@@ -21,6 +22,9 @@ export default function Index({
 }) {
     // add modal
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+    // Legit application form modal
+    const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
 
     // edit modal
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -36,6 +40,13 @@ export default function Index({
 
     // add toggle func
     const toggleAddModal = () => setIsAddModalOpen(!isAddModalOpen);
+    // add toggle func
+    const toggleStatusModal = (id = null) => {
+        if (!id) return;
+
+        setSelectedAiId(id);
+        setIsStatusModalOpen(!isStatusModalOpen);
+    };
 
     // import axios from 'axios'; // Ensure axios is imported
 
@@ -85,7 +96,10 @@ export default function Index({
             <Head title="Country Lists" />
             <div className="rounded-lg bg-white py-2 px-5">
                 <div className="relative overflow-x-auto mt-5 min-h-[400px]">
-                    <div className="mb-3 float-end">
+                    <div className="mb-3 text-primary-light text-sm font-bold">
+                        <h1>LeGit Application Form Lists</h1>
+                    </div>
+                    {/* <div className="mb-3 float-end">
                         <Button
                             onClick={toggleAddModal}
                             type="button"
@@ -93,7 +107,7 @@ export default function Index({
                         >
                             <AddIcon /> <span>Add New</span>
                         </Button>
-                    </div>
+                    </div> */}
 
                     {hasData ? (
                         <>
@@ -113,6 +127,7 @@ export default function Index({
                                         <th className="px-6 py-3">Province</th>
                                         <th className="px-6 py-3">District</th>
                                         <th className="px-6 py-3">LG Name</th>
+                                        <th className="px-6 py-3">Status</th>
                                         <th className="px-6 py-3">
                                             Created At
                                         </th>
@@ -152,13 +167,27 @@ export default function Index({
                                                 {list.lg?.name_en ?? 0}
                                             </td>
                                             <td className="px-6 py-4">
+                                                <Button
+                                                    onClick={()=>toggleStatusModal(list.id)}
+                                                    type="button"
+                                                    className="cursor-pointer hover:bg-red-400 capitalize rounded-md px-2 py-0.5 bg-red-500 text-xs text-white"
+                                                >
+                                                    <span>Pending</span>
+                                                </Button>
+                                                {/* <span className=" cursor-pointer hover:bg-red-400 capitalize rounded-md px-2 py-0.5 bg-red-500 text-xs text-white">
+                                                    pending
+                                                </span> */}
+                                            </td>
+                                            <td className="px-6 py-4">
                                                 {list.formatted_created_at}
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex gap-2">
                                                     {/* View Action */}
                                                     <Link
-                                                        href={route('backend.ai_policy_tracker.view')}
+                                                        href={route(
+                                                            "backend.ai_policy_tracker.view"
+                                                        )}
                                                         className="underline text-blue-950"
                                                     >
                                                         <ViewIcon />
@@ -200,17 +229,26 @@ export default function Index({
             </div>
 
             {/* ******************************* Add Model *****************************/}
-            <Model
+            {/* <Model
                 isOpen={isAddModalOpen}
                 onClose={toggleAddModal}
                 title="Add new (AI) Policy Tracker"
                 width="max-w-6xl"
-            >
-                <Add
+            > */}
+            {/* <Add
                     countries={countries}
                     status={status}
                     onClose={toggleAddModal}
-                />
+                /> */}
+            {/* </Model> */}
+            {/* ******************************* Status of legit form Model *****************************/}
+            <Model
+                isOpen={isStatusModalOpen}
+                onClose={toggleStatusModal}
+                title="Change The Status Of LeGit Application Form"
+                width="max-w-xl"
+            >
+                <StatusOfForm id={selectedAiId} onClose={toggleStatusModal} />
             </Model>
 
             {/* ******************************* Edit Model *****************************/}
