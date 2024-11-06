@@ -61,76 +61,71 @@ const Steps = (provinces) => [
             // "mention_amount_of_fund_in_training",
         ],
     },
-    // {
-    //     label: "ICT Training Conducted",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "PHYSICAL INFRASTRUCTURE",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "GEOGRAPHICAL INFORMATION SYSTEM (GIS)",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "SOFTWARE/ SYSTEM",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "LG Profile",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "Website Status",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "Social Media",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
+    {
+        label: "PHYSICAL INFRASTRUCTURE",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "GEOGRAPHICAL INFORMATION SYSTEM (GIS)",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "SOFTWARE/ SYSTEM",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "LG Profile",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "Website Status",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "Social Media",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
     // {
     //     label: "Value Addition",
     //     component: <IctInfrastructure />,
     //     fields: ["ict_infra_email"],
     // },
-    // {
-    //     label: "IMPACT OF ICT",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "KNOWLEDGE MANAGEMENT",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "ICT Budget",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "MOFAGA Fund Utilization",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "Photos",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
-    // {
-    //     label: "Location of LG",
-    //     component: <IctInfrastructure />,
-    //     fields: ["ict_infra_email"],
-    // },
+    {
+        label: "IMPACT OF ICT",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "KNOWLEDGE MANAGEMENT",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "ICT Budget",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "MOFAGA Fund Utilization",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "Photos",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
+    {
+        label: "Location of LG",
+        component: <IctInfrastructure />,
+        fields: ["ict_infra_email"],
+    },
 ];
 
 export default Steps;

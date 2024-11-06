@@ -759,13 +759,18 @@ export default function IctTrainingConducted({ data, setData, errors }) {
 
             {/* have_being_using_fund_by_mofaga */}
             <div className="sm:col-span-3">
-                <div className="flex">
+                {/* <div className="flex"> */}
                     <InputLabel
                         htmlFor="have_being_using_fund_by_mofaga"
-                        value="HAS THE TRAINING BEING CONDUCTED USING THE ANY FUND SENT BY MOFAGA"
-                    />
-                    <span className="ml-2 text-red-500">*</span>
-                </div>
+                        // value="HAS THE TRAINING BEING CONDUCTED USING THE ANY FUND SENT BY MOFAGA"
+                    >
+                        <span>
+                            HAS THE TRAINING BEING CONDUCTED USING THE ANY FUND
+                            SENT BY MOFAGA
+                        </span>
+                        <span className="ml-2 text-red-500">*</span>
+                    </InputLabel>
+                {/* </div> */}
                 <div className="mt-2 flex items-center gap-x-4">
                     <div className="flex items-center">
                         <input
@@ -825,7 +830,7 @@ export default function IctTrainingConducted({ data, setData, errors }) {
                 )}
             </div>
 
-            <div className="sm:col-span-3 mt-4">
+            <div className="sm:col-span-3">
                 <InputLabel
                     htmlFor="mention_amount_of_fund_in_training"
                     value="MENTION THE AMOUNT OF FUND UTILIZED IN THE TRAINING"

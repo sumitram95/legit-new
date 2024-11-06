@@ -80,11 +80,15 @@ export default function IctTraining({ data, setData, errors }) {
                 {/* Conditional reason_for_not_conducting input */}
                 {data.ict_training.is_conducted_training === false && (
                     <div className="sm:col-span-6 mt-4">
-                        <InputLabel
-                            htmlFor="reason_for_not_conducting"
-                            value="IF NOT CONDUCTED, STATE REASON FOR NOT CONDUCTING ANY TRAINING ON ICT"
-                        />
-                        <input
+                        <div className="flex">
+                            <InputLabel
+                                htmlFor="reason_for_not_conducting"
+                                value="IF NOT CONDUCTED, STATE REASON FOR NOT CONDUCTING ANY TRAINING ON ICT"
+                            />
+                            <span className="ml-2 text-red-500">*</span>
+                        </div>
+
+                        {/* <input
                             type="text"
                             name="reason_for_not_conducting"
                             id="reason_for_not_conducting"
@@ -103,8 +107,27 @@ export default function IctTraining({ data, setData, errors }) {
                                 }))
                             }
                             className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        />
-                        <textarea name="" id=""></textarea>
+                        /> */}
+                        <textarea
+                            rows="5"
+                            name="reason_for_not_conducting"
+                            id="reason_for_not_conducting"
+                            value={
+                                data.ict_training.reason_for_not_conducting ||
+                                ""
+                            }
+                            onChange={(e) =>
+                                setData((prev) => ({
+                                    ...prev,
+                                    ict_training: {
+                                        ...prev.ict_training,
+                                        reason_for_not_conducting:
+                                            e.target.value,
+                                    },
+                                }))
+                            }
+                            className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        ></textarea>
                         {errors.reason_for_not_conducting && (
                             <InputError
                                 message={errors.reason_for_not_conducting}
@@ -122,7 +145,6 @@ export default function IctTraining({ data, setData, errors }) {
                     errors={errors}
                 />
             )}
-
         </div>
     );
 }
