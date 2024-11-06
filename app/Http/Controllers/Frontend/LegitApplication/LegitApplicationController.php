@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\LegitApplication;
 
 use App\Http\Controllers\Controller;
 use App\Models\District;
+use App\Models\FiscalYear;
 use App\Models\IctTraining;
 use App\Models\LocalGovernment;
 use App\Models\Province;
@@ -17,6 +18,8 @@ class LegitApplicationController extends Controller
     public function create()
     {
         $data['provinces'] = Province::orderBy("label", "ASC")->get();
+        $data['fys'] = FiscalYear::latest()->get();
+        // dd($data);
         return Inertia::render("Frontend/LegitApplication/LegitApplicationForm", $data);
     }
 
@@ -25,7 +28,7 @@ class LegitApplicationController extends Controller
         // dd($request->all());
 
         $validated = $request->validate([
-            // rural municipality details
+            // rural municipality details fiscal_year_id
             'rural_municipality_details.provider_name' => 'required|string|max:255',
             'rural_municipality_details.phone_no' => 'required',
             'rural_municipality_details.email' => 'required|email',
@@ -33,6 +36,7 @@ class LegitApplicationController extends Controller
             'rural_municipality_details.district_label' => 'required|exists:districts,label',
             'rural_municipality_details.local_government_lable' => 'required|exists:local_governments,label',
             'rural_municipality_details.position' => 'required',
+            'rural_municipality_details.fiscal_year_id' => 'required|exists:fiscal_years,id',
 
             // status of infrastructure
             "status_of_ict_infrastructure.no_of_desktop" => 'required',

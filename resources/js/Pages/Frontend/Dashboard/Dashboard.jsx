@@ -19,10 +19,11 @@ import { AppLayout } from "@/Layouts/AppLayout";
 
 export default function Dashboard({
     news,
-    lgs,
+    lgs, // local government
     provinces,
     statuses,
     districts,
+    fys, // fiscal year
     tableData: initialTableData,
     aiPolicyLastUpdate,
     newsLastUpdate,
@@ -46,6 +47,7 @@ export default function Dashboard({
         lg: [],
         province_id: [],
         district_id: [],
+        fy: [],
     });
 
     const handleFilterChange = (name, selectedOptions) => {
@@ -102,6 +104,7 @@ export default function Dashboard({
             lg: [],
             province_id: [],
             district_id: [],
+            fy: [],
         };
 
         setFilters(clearedFilters);
@@ -312,19 +315,6 @@ export default function Dashboard({
                                         </span>
                                     </Link>
                                 </div>
-                                {/* compare */}
-                                <div className="flex-none ml-2">
-                                    <Link
-                                        href={route(
-                                            "frontend.compare.index"
-                                        )}
-                                        className="text-primary-light h-fit bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
-                                    >
-                                        <span className=" font-bold">
-                                            Compare
-                                        </span>
-                                    </Link>
-                                </div>
 
                                 {/* search filter for table data */}
 
@@ -334,18 +324,18 @@ export default function Dashboard({
                                             {/* fy */}
                                             <div className="w-full px-3">
                                                 <SelectInput
-                                                    placeholder="choose the F/Y"
+                                                    placeholder="F / Y"
                                                     className="mb-2 text-sm font-normal text-light-blue"
-                                                    options={lgs.map((lg) => ({
-                                                        value: lg.value,
-                                                        label: lg.label,
+                                                    options={fys.map((fy) => ({
+                                                        value: fy.value,
+                                                        label: fy.label,
                                                     }))}
-                                                    value={filters.lg}
+                                                    value={filters.fy}
                                                     onChange={(
                                                         selectedOptions
                                                     ) =>
                                                         handleFilterChange(
-                                                            "lg",
+                                                            "fy",
                                                             selectedOptions
                                                         )
                                                     }
@@ -433,16 +423,20 @@ export default function Dashboard({
                                     </form>
                                 </div>
 
-                                {/* edit column drop down */}
-                                {/* <div className="flex-none">
-                                    <EditColumn
-                                        EditColumnLists={EditColumnLists}
-                                        onCheckboxChange={handleCheckboxChange}
-                                    />
-                                </div> */}
+                                {/* compare desktop */}
+                                <div className="flex-none">
+                                    <Link
+                                        href={route("frontend.compare.index")}
+                                        className="text-primary-light h-fit bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
+                                    >
+                                        <span className=" font-bold">
+                                            Compare
+                                        </span>
+                                    </Link>
+                                </div>
                             </div>
 
-                            {/* ********************** AI Policy Component ********************** */}
+                            {/* ********************** lg data ********************** */}
                             <Table
                                 columns={Columns}
                                 checkedColWithData={checkedColumns}
@@ -459,6 +453,16 @@ export default function Dashboard({
                 </div>
 
                 {/* mobile filter */}
+
+                {/* compare desktop */}
+                <div className="mb-4 block md:hidden">
+                    <Link
+                        href={route("frontend.compare.index")}
+                        className="text-primary-light border-2 border-primary-light h-fit bg-secondary hover:bg-blue-100 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
+                    >
+                        <span className=" font-bold">Compare</span>
+                    </Link>
+                </div>
 
                 <div className="mb-5 block md:hidden">
                     <div className="border rounded-md w-full bg-white sticky top-0">
@@ -511,6 +515,24 @@ export default function Dashboard({
                         {isOpenFilter && (
                             <div className="px-[16px] my-5">
                                 <form className="w-full" id="FormFiled">
+                                    {/* fy */}
+                                    <div>
+                                        <SelectInput
+                                            placeholder="F / Y"
+                                            className="mb-2 text-sm font-normal text-light-blue"
+                                            options={fys.map((fy) => ({
+                                                value: fy.value,
+                                                label: fy.label,
+                                            }))}
+                                            value={filters.fy}
+                                            onChange={(selectedOptions) =>
+                                                handleFilterChange(
+                                                    "fy",
+                                                    selectedOptions
+                                                )
+                                            }
+                                        />
+                                    </div>
                                     <div>
                                         <SelectInput
                                             label="Local Government"

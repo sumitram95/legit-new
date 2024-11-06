@@ -10,6 +10,7 @@ export default function RuralMunicipalityDetail({
     errors,
 
     provinces,
+    fys,
 }) {
     const [updatedDistrictData, setUpdatedDistrictData] = useState(null);
     const [updatedLgData, setUpdatedLgData] = useState(null);
@@ -349,6 +350,49 @@ export default function RuralMunicipalityDetail({
                 {errors.position && (
                     <InputError message={errors.position} className="mt-2" />
                 )}
+            </div>
+
+            {/* fiscal year */}
+            <div className="sm:col-span-2">
+                <div className="flex items-center">
+                    <InputLabel htmlFor="fiscal_year_id" value="Fiscal Year" />
+                    <span className="ml-1 text-red-500">*</span>
+                </div>
+                <div className="mt-2">
+                    <select
+                        name="fiscal_year_id"
+                        id="fiscal_year_id"
+                        onChange={(e) => {
+                            setData((prev) => ({
+                                ...prev,
+                                rural_municipality_details: {
+                                    ...prev.rural_municipality_details,
+                                    fiscal_year_id: e.target.value,
+                                },
+                            })),
+                                provinceSelectedHandle(e.target.value ?? null);
+                        }}
+                        placeholder="Choose"
+                        className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    >
+                        <option value="">F / Y</option>
+                        {fys.map((fy, index) => (
+                            <option
+                                key={index}
+                                value={fy.id}
+                                className="text-gray-950"
+                            >
+                                {fy.fy_name}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.fiscal_year_id && (
+                        <InputError
+                            message={errors.fiscal_year_id}
+                            className="mt-2"
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );

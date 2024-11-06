@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rural_municipality_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('fiscal_year_id');
             $table->string('provider_name');
             $table->string('phone_no');
             $table->string('email');

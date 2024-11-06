@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\BookMark;
 use App\Models\District;
+use App\Models\FiscalYear;
 use App\Models\LocalGovernment;
 use App\Models\Province;
 use Log;
@@ -86,11 +87,13 @@ class DashboardController extends Controller
 
             ->get();
 
-        // return $data['provinces'];
+        $data['districts'] = District::select('id as value', 'name_en as label')
+            ->get();
 
-        // dd($data['provinces']);
+        $data['fys'] = FiscalYear::orderBy('fy_name', 'desc')
+            ->select('id as value', 'fy_name as label')->get();
 
-        $data['districts'] = District::select('id as value', 'name_en as label')->get();
+        // dd($data['fys']);
 
         // dd($data['news']);
         return Inertia::render('Frontend/Dashboard/Dashboard', $data);

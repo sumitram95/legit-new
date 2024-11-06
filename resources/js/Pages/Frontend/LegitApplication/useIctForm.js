@@ -20,6 +20,7 @@ export const useIctForm = (steps) => {
             district_label: "",
             local_government_lable: "",
             position: "",
+            fiscal_year_id:"",
         },
         status_of_ict_infrastructure: {
             no_of_desktop: "",

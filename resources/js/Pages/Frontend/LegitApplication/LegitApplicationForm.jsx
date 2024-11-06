@@ -12,8 +12,10 @@ import { Head, Link } from "@inertiajs/react";
 import steps from "./Steps";
 import { useIctForm } from "./useIctForm";
 
-export default function LegitApplicationForm({ provinces }) {
-    const stepList = steps(provinces);
+export default function LegitApplicationForm({ provinces, fys }) {
+
+    console.log(fys);
+    const stepList = steps(provinces, fys);
     const {
         activeStep,
         data,

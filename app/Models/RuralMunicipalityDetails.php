@@ -11,6 +11,7 @@ class RuralMunicipalityDetails extends Model
     use HasUuids, SoftDeletes;
     protected $appends = ['formatted_created_at'];
     protected $fillable = [
+        'fiscal_year_id',
         'provider_name', //required
         'phone_no', //required
         'email', //required

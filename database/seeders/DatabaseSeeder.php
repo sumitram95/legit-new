@@ -38,7 +38,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SudurpashchimSeeder::class); //p7
 
         // local government
-
         $this->call(LocalGovernmentSeeder::class);
+
+        // fiscal year
+        $this->call(FiscalYearSeeder::class);
     }
 }

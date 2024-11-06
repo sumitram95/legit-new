@@ -3,10 +3,10 @@ import RuralMunicipalityDetail from "./Partials/RuralMunicipalityDetail";
 import IctInfrastructure from "./Partials/IctInfrastructure";
 import IctTraining from "./Partials/IctTraining";
 
-const Steps = (provinces) => [
+const Steps = (provinces, fys) => [
     {
         label: "Rural Municipality/ Municipality (LG) Detail",
-        component: <RuralMunicipalityDetail provinces={provinces} />,
+        component: <RuralMunicipalityDetail provinces={provinces} fys={fys} />,
         fields: [
             "provider_name",
             "phone_no",
@@ -15,6 +15,7 @@ const Steps = (provinces) => [
             "district_label",
             "local_government_lable",
             "position",
+            "fiscal_year_id",
         ],
     },
     {
