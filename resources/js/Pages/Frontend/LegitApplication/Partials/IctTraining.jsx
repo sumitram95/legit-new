@@ -58,8 +58,28 @@ export default function IctTraining({ data, setData, errors }) {
                                     setData((prev) => ({
                                         ...prev,
                                         ict_training: {
-                                            ...prev.ict_training,
                                             is_conducted_training: false,
+                                            reason_for_not_conducting: "", // You can keep this if needed, otherwise leave out
+                                            total_no_of_training: null,
+                                            total_no_of_training_beneficiaries: null,
+                                            no_of_ict_training_lg_staffs: null,
+                                            total_beneficieries_lg_offices: null,
+                                            no_of_male_lg_officer: null,
+                                            no_of_female_lg_officer: null,
+                                            no_of_ict_disadvantage_groups: null,
+                                            no_of_benefecieries_disadvantage_groups: null,
+                                            no_of_male_disadvantage_group: null,
+                                            no_of_female_disadvantage_group: null,
+                                            no_of_ict_lg_school_or_clubs: null,
+                                            no_of_benefecieries_ict_lg_school_or_clubs: null,
+                                            no_of_male_ict_lg_school_or_clubs: null,
+                                            no_of_female_ict_lg_school_or_clubs: null,
+                                            no_of_ict_training_other_agencies: null,
+                                            no_of_benefecieries_ict_training_other_agencies: null,
+                                            no_of_male_ict_training_other_agencies: null,
+                                            no_of_female_ict_training_other_agencies: null,
+                                            have_being_using_fund_by_mofaga: false,
+                                            mention_amount_of_fund_in_training: null,
                                         },
                                     }))
                                 }
@@ -87,27 +107,6 @@ export default function IctTraining({ data, setData, errors }) {
                             />
                             <span className="ml-2 text-red-500">*</span>
                         </div>
-
-                        {/* <input
-                            type="text"
-                            name="reason_for_not_conducting"
-                            id="reason_for_not_conducting"
-                            value={
-                                data.ict_training.reason_for_not_conducting ||
-                                ""
-                            }
-                            onChange={(e) =>
-                                setData((prev) => ({
-                                    ...prev,
-                                    ict_training: {
-                                        ...prev.ict_training,
-                                        reason_for_not_conducting:
-                                            e.target.value,
-                                    },
-                                }))
-                            }
-                            className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        /> */}
                         <textarea
                             rows="5"
                             name="reason_for_not_conducting"
@@ -148,4 +147,3 @@ export default function IctTraining({ data, setData, errors }) {
         </div>
     );
 }
-//

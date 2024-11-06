@@ -53,7 +53,7 @@ export const useIctForm = (steps) => {
             no_of_male_ict_training_other_agencies: "",
             no_of_female_ict_training_other_agencies: "",
 
-            have_being_using_fund_by_mofaga: undefined,
+            have_being_using_fund_by_mofaga: false,
             mention_amount_of_fund_in_training: "",
         },
     });
